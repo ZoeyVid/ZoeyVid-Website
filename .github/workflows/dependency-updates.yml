@@ -96,7 +96,7 @@ jobs:
         with:
           signoff: true
           delete-branch: true
-          commit-message: update tailwindcss version
-          branch: update-tailwindcss-version
-          title: update tailwindcss version
-          body: update tailwindcss version
+          commit-message: update tailwindcss
+          branch: update-tailwindcss
+          title: update tailwindcss
+          body: update tailwindcss
