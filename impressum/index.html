@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+	<meta charset="UTF-8">
+	<title>Startseite - ZoeyVid</title>
+	<link href="/assets/css/output.css" rel="stylesheet">
+	<script src="/assets/plugins/jquery-3.6.1.min.js"></script>
+    <script src="/assets/js/markdownReader.js"></script>
+    <script src="/assets/plugins/marked.min.js"></script>
+</head>
+<body>
+    <noscript>
+        <style type="text/css">
+            .pagecontainer {display:none;}
+            body {
+              background-color: black;
+              color: white;
+            }
+            .noscriptmsg {
+              margin: 0;
+              position: absolute;
+              top: 50%;
+              left: 50%;
+                  transform: translate(-50%, -50%);
+                    }
+                </style>
+            <div class="noscriptmsg">
+                    Please enable Javascript. You need it to visit this site!
+                </div>
+        </noscript>
+    <div id="Impressum">
+        <script>readMarkdown("Impressum", "https://dl.zvcdn.de/.imprint.md")</script>
+	<div id="footer">
+        <script>
+                $(function () {
+                  $("#footer").load("/assets/elements/footer.html");
+                });
+        </script>
+</body>
+</html>
