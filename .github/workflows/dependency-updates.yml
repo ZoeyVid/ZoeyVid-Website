@@ -1,0 +1,102 @@
+name: dependency-updates
+
+on:
+  branch_protection_rule:
+  check_run:
+  check_suite:
+  delete:
+  discussion:
+  discussion_comment:
+  fork:
+  gollum:
+  issue_comment:
+  issues:
+  label:
+  milestone:
+  page_build:
+  project:
+  project_card:
+  project_column:
+  public:
+  repository_dispatch:
+  status:
+  watch:
+  
+  push:
+  schedule:
+    - cron:  "0 */6 * * *"
+  workflow_dispatch:
+
+jobs:
+  jquery-update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: update jquery version
+        id: update
+        run: |
+          JQUERY_VERSION="$(
+          git ls-remote --tags https://github.com/jquery/jquery \
+              | cut -d/ -f3 \
+              | sort -V \
+              | tail -1 \
+              | sed -E "s/\^\{\}//"
+          )"
+          curl -L https://code.jquery.com/jquery-$JQUERY_VERSION.min.js -o assets/plugins/jquery.min.js
+          echo "version=$JQUERY_VERSION" >> $GITHUB_OUTPUT
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v4
+        with:
+          signoff: true
+          delete-branch: true
+          commit-message: update jquery version to ${{ steps.update.outputs.version }}
+          branch: update-jquery-version
+          title: update jquery version to ${{ steps.update.outputs.version }}
+          body: update jquery version to ${{ steps.update.outputs.version }}
+
+
+  marked-update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: update marked version
+        id: update
+        run: curl -L https://cdn.jsdelivr.net/npm/marked/marked.min.js -o assets/plugins/marked.min.js
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v4
+        with:
+          signoff: true
+          delete-branch: true
+          commit-message: update marked version
+          branch: update-marked-version
+          title: update marked version
+          body: update marked version
+
+
+  tailwindcss-update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: update tailwindcss version
+        id: update
+        run: |
+          yarn global add tailwindcss
+          tailwindcss -i assets/css/main.css -o assets/css/output.css --watch
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v4
+        with:
+          signoff: true
+          delete-branch: true
+          commit-message: update tailwindcss version
+          branch: update-tailwindcss-version
+          title: update tailwindcss version
+          body: update tailwindcss version
