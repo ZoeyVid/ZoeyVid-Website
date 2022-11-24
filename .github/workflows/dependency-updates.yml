@@ -89,7 +89,7 @@ jobs:
         id: update
         run: |
           yarn global add tailwindcss
-          tailwindcss -i assets/css/main.css -o assets/css/output.css --watch
+          tailwindcss -i assets/css/main.css -o assets/css/output.css
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
