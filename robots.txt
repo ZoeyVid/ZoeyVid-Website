@@ -1,6 +1,6 @@
 User-agent: *
-Disallow: /imprint
-Disallow: /privacy
+Disallow: /datenschutz
+Disallow: /impressum
 Disallow: /assets
 
 Sitemap: https://zoeyvid.de/sitemap.xml
