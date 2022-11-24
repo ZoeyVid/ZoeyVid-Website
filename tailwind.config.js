@@ -2,7 +2,7 @@
 module.exports = {
   content: [
     'index.html',
-    'assets/elements/footer.html',
+    '**/*.{html,js}',
   ],
   darkMode: 'true',
   theme: {
