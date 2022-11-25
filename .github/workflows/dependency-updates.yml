@@ -67,14 +67,17 @@ jobs:
       - name: update marked version
         id: update
         run: curl -L https://cdn.jsdelivr.net/npm/marked/marked.min.js -o assets/plugins/marked.min.js
-
-      - name: Push changes
+          
+      - name: commit changes
         run: |
           git config user.name "GitHub"
           git config user.email "noreply@github.com"
           git add -A
           git commit -sm "update marked version"
-          git push || exit 0
+
+      - name: push changes
+        continue-on-error: true
+        run: git push
 
   tailwindcss-update:
     runs-on: ubuntu-latest
@@ -87,11 +90,14 @@ jobs:
         run: |
           yarn global add tailwindcss
           tailwindcss -i assets/css/main.css -o assets/css/output.css
-
-      - name: Push changes
+          
+      - name: commit changes
         run: |
           git config user.name "GitHub"
           git config user.email "noreply@github.com"
           git add -A
           git commit -sm "update tailwindcss"
-          git push || exit 0
+
+      - name: push changes
+        continue-on-error: true
+        run: git push
