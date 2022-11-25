@@ -68,16 +68,12 @@ jobs:
         id: update
         run: curl -L https://cdn.jsdelivr.net/npm/marked/marked.min.js -o assets/plugins/marked.min.js
 
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v4
-        with:
-          signoff: true
-          delete-branch: true
-          commit-message: update marked version
-          branch: update-marked-version
-          title: update marked version
-          body: update marked version
-
+      - name: Push changes
+        run: |
+          git config user.name 'GitHub'
+          git config user.email 'noreply@github.com
+          git commit -sam "update marked version"
+          git push
 
   tailwindcss-update:
     runs-on: ubuntu-latest
@@ -91,12 +87,9 @@ jobs:
           yarn global add tailwindcss
           tailwindcss -i assets/css/main.css -o assets/css/output.css
 
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v4
-        with:
-          signoff: true
-          delete-branch: true
-          commit-message: update tailwindcss
-          branch: update-tailwindcss
-          title: update tailwindcss
-          body: update tailwindcss
+      - name: Push changes
+        run: |
+          git config user.name 'GitHub'
+          git config user.email 'noreply@github.com
+          git commit -sam "update tailwindcss"
+          git push
