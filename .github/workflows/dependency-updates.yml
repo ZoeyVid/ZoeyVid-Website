@@ -72,8 +72,9 @@ jobs:
         run: |
           git config user.name "GitHub"
           git config user.email "noreply@github.com"
-          git commit -sam "update marked version"
-          git push
+          git add -A
+          git commit -sm "update marked version"
+          git push || exit 0
 
   tailwindcss-update:
     runs-on: ubuntu-latest
@@ -91,5 +92,6 @@ jobs:
         run: |
           git config user.name "GitHub"
           git config user.email "noreply@github.com"
-          git commit -sam "update tailwindcss"
-          git push
+          git add -A
+          git commit -sm "update tailwindcss"
+          git push || exit 0
