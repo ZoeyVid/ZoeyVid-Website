@@ -131,7 +131,6 @@
 	<h1 class="text-3xl font-bold underline">
 		Hello world!
 	  </h1>
-	<a rel="me" href="https://mastodon.social/@DavidCraftDev">Mastodon</a>
 	<div id="footer">
 	<script>
 			$(function () {
