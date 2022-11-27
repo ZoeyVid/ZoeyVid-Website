@@ -27,8 +27,30 @@ on:
     - cron:  "0 */6 * * *"
   workflow_dispatch:
 
-jobs:
+jobs:          
+  tailwindcss-marked-update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: update tailwindcss/marked
+        id: update
+        run: | 
+         curl -L https://cdn.jsdelivr.net/npm/marked/marked.min.js -o assets/plugins/marked.min.js
+          yarn global add tailwindcss
+          tailwindcss -i assets/css/main.css -o assets/css/output.css
+          
+      - name: push changes
+        run: |
+          git config user.name "GitHub"
+          git config user.email "noreply@github.com"
+          git add -A
+          git diff-index --quiet HEAD || git commit -sm "update tailwindcss/marked"
+          git push
+          
   jquery-update:
+    needs: tailwindcss-marked-update
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -56,42 +78,3 @@ jobs:
           branch: update-jquery-version
           title: update jquery version to ${{ steps.update.outputs.version }}
           body: update jquery version to ${{ steps.update.outputs.version }}
-
-
-  marked-update:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: update marked version
-        id: update
-        run: curl -L https://cdn.jsdelivr.net/npm/marked/marked.min.js -o assets/plugins/marked.min.js
-          
-      - name: push changes
-        run: |
-          git config user.name "GitHub"
-          git config user.email "noreply@github.com"
-          git add -A
-          git diff-index --quiet HEAD || git commit -sm "update marked version"
-          git push
-
-  tailwindcss-update:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: update tailwindcss version
-        id: update
-        run: |
-          yarn global add tailwindcss
-          tailwindcss -i assets/css/main.css -o assets/css/output.css
-          
-      - name: push changes
-        run: |
-          git config user.name "GitHub"
-          git config user.email "noreply@github.com"
-          git add -A
-          git diff-index --quiet HEAD || git commit -sm "update tailwindcss"
-          git push
