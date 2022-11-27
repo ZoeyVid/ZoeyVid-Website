@@ -16,7 +16,7 @@ jobs:
       - name: update tailwindcss
         uses: ZoeyVid/tailwindcss-update@develop
         with:
-          input: assets/css/main.css
+          input: assets/css/input.css
           output: assets/css/output.css
 
       - name: update marked version
