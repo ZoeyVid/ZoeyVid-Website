@@ -13,12 +13,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: update tailwindcss/marked
-        id: update
-        run: | 
-          curl -L https://cdn.jsdelivr.net/npm/marked/marked.min.js -o assets/plugins/marked.min.js
-          yarn global add tailwindcss
-          tailwindcss -i assets/css/main.css -o assets/css/output.css
+      - name: Hello world action step
+        uses: ZoeyVid/tailwindcss-update@develop
+        with:
+          input: assets/css/main.css
+          output: assets/css/output.css
+
+      - name: update marked
+        run: curl -L https://cdn.jsdelivr.net/npm/marked/marked.min.js -o assets/plugins/marked.min.js
           
       - name: push changes
         run: |
