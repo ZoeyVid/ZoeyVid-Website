@@ -1,8 +1,3 @@
-<script>
-    document.getElementById("navbar").classList.add("pb-4");
-    console.log(document.location.pathname);
-    console.log(document.location);
-</script>
 <header>
     <nav class="bg-gray-800">
         <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -94,7 +89,7 @@
         <div class="sm:hidden" id="mobile-menu">
           <div class="space-y-1 px-2 pt-2 pb-3">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-            <a href="/" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Startseite</a>
+            <a href="/" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium" id="startseite">Startseite</a>
       
             <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Team</a>
       
@@ -105,3 +100,9 @@
         </div>
       </nav>
 </header>
+<script>
+  document.getElementById("navbar").classList.add("pb-4");
+  if(document.location.pathname == "/"){
+      document.getElementById("startseite").ariaCurrent = "page";
+  }
+</script>
