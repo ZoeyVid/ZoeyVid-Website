@@ -102,6 +102,7 @@
 </header>
 <script>
   document.getElementById("navbar").classList.add("pb-4");
+  document.getElementsByTagName('noscript')[0].remove();
   if(document.location.pathname == "/"){
     document.getElementById("startseite").classList.add("bg-gray-900");
       document.getElementById("startseite").classList.replace("text-gray-300", "text-white");
