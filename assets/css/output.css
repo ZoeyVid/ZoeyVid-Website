@@ -788,6 +788,10 @@ video {
   padding-right: 1rem;
 }
 
+.pb-4 {
+  padding-bottom: 1rem;
+}
+
 .pr-4 {
   padding-right: 1rem;
 }
@@ -810,10 +814,6 @@ video {
 
 .pb-3 {
   padding-bottom: 0.75rem;
-}
-
-.pb-4 {
-  padding-bottom: 1rem;
 }
 
 .text-sm {
