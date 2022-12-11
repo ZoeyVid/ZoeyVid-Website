@@ -17,6 +17,8 @@ jobs:
         
       - name: update repos
         run: | 
+         curl -skL https://api.github.com/rate_limit --header "authorization: Bearer ${{ secrets.GITHUB_TOKEN }}"
+         curl -skIL https://api.github.com/rate_limit --header "authorization: Bearer ${{ secrets.GITHUB_TOKEN }}"
          export user=ZoeyVid
          export domain=zoeyvid.de
          rm -rf assets/repos
