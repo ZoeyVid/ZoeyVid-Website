@@ -46,7 +46,7 @@ jobs:
           git push
           
   repos-update:
-    needs: tailwindcss-update
+    needs: marked-update
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
