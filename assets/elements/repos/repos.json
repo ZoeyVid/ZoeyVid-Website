@@ -25,5 +25,5 @@ openresty-quic: { description: null, homepage: null, url: https://zoeyvid.de/ass
 ribstnib: { description: null, homepage: null, url: https://zoeyvid.de/assets/elements/repos/ribstnib.md},
 tailwindcss-update: { description: null, homepage: null, url: https://zoeyvid.de/assets/elements/repos/tailwindcss-update.md},
 unbound-docker: { description: null, homepage: null, url: https://zoeyvid.de/assets/elements/repos/unbound-docker.md},
-vokabel-trainer: { description: null, homepage: null, url: https://zoeyvid.de/assets/elements/repos/vokabel-trainer.md}
+vokabel-trainer: { description: null, homepage: null, url: https://zoeyvid.de/assets/elements/repos/vokabel-trainer.md},
 }
