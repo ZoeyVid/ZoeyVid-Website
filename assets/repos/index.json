@@ -127,22 +127,6 @@
     "description": "Docker image for Nginx + HTTP/3 ",
     "homepage": "https://hub.docker.com/r/zoeyvid/nginx-quic"
   },
-  "openresty-nginx-quic": {
-    "name": "openresty-nginx-quic",
-    "html_url": "https://github.com/ZoeyVid/openresty-nginx-quic",
-    "readme": "https://zoeyvid.de/assets/repos/openresty-nginx-quic.md",
-    "fork": "false",
-    "description": "Docker image for Nginx + HTTP/3 powered by Openresty",
-    "homepage": "https://hub.docker.com/r/zoeyvid/openresty-nginx-quic"
-  },
-  "openresty-quic": {
-    "name": "openresty-quic",
-    "html_url": "https://github.com/ZoeyVid/openresty-quic",
-    "readme": "https://zoeyvid.de/assets/repos/openresty-quic.md",
-    "fork": "true",
-    "description": "High Performance Web Platform Based on Nginx and LuaJIT",
-    "homepage": "https://openresty.org"
-  },
   "ribstnib": {
     "name": "ribstnib",
     "html_url": "https://github.com/ZoeyVid/ribstnib",
