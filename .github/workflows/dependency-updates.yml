@@ -17,8 +17,8 @@ jobs:
         
       - name: update repos
         run: | 
-         export user=ZoeyVid
-         export domain=zoeyvid.de
+         user=ZoeyVid
+         domain=zoeyvid.de
          rm -rf assets/repos
          mkdir assets/repos
          for repo in $(curl -skL https://api.github.com/orgs/$user/repos --header "authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" | jq -r ".[].name" | grep -v .github | grep -Pv \"\|$(curl -skL https://api.github.com/orgs/$user/repos --header "authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" | jq ".[] | select(.archived==true)" | jq -r ".name" | paste -s -d "|")\|\" | sort); do curl -skL https://raw.githubusercontent.com/$repo/$(curl -skL "https://api.github.com/repos/$user/$repo" --header "authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" | jq -r ".default_branch")/README.md -o assets/repos/$repo.md; done;
