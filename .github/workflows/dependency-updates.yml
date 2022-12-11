@@ -27,26 +27,8 @@ jobs:
           git diff-index --quiet HEAD || git commit -sm "update tailwindcss"
           git push
           
-  marked-update:
-    needs: tailwindcss-update
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: update marked version
-        run: curl -L https://cdn.jsdelivr.net/npm/marked/marked.min.js -o assets/plugins/marked.min.js
-          
-      - name: push changes
-        run: |
-          git config user.name "GitHub"
-          git config user.email "noreply@github.com"
-          git add -A
-          git diff-index --quiet HEAD || git commit -sm "update marked"
-          git push
-          
   repos-update:
-    needs: marked-update
+    needs: tailwindcss-update
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -65,8 +47,28 @@ jobs:
           git diff-index --quiet HEAD || git commit -sm "update repos.txt"
           git push
           
-  jquery-update:
+  marked-update:
     needs: repos-update
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: update marked version
+        run: curl -L https://cdn.jsdelivr.net/npm/marked/marked.min.js -o assets/plugins/marked.min.js
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v4
+        with:
+          signoff: true
+          delete-branch: true
+          commit-message: update marked version
+          branch: update-marked-version
+          title: update marked version to ${{ steps.update.outputs.version }}
+          body: update marked version to ${{ steps.update.outputs.version }}
+          
+  jquery-update:
+    needs: marked-update
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
