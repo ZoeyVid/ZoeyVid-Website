@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+         ref: ${{ github.ref_name }}
         
       - name: update repos
         run: | 
@@ -41,6 +43,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+         ref: ${{ github.ref_name }}
 
       - name: update marked version
         run: curl -L https://cdn.jsdelivr.net/npm/marked/marked.min.js -o assets/plugins/marked.min.js
@@ -60,6 +64,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+         ref: ${{ github.ref_name }}
+         
       - name: json-syntax-check
         uses: limitusus/json-syntax-check@v2
         with:
@@ -71,6 +78,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+         ref: ${{ github.ref_name }}
 
       - name: update tailwindcss
         uses: ZoeyVid/tailwindcss-update@develop
@@ -92,6 +101,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+         ref: ${{ github.ref_name }}
 
       - name: update jquery version
         id: update
