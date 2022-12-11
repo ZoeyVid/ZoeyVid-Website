@@ -41,13 +41,6 @@
     "description": "This plugins adds a /ram command",
     "homepage": "https://ci.zvcdn.de/job/Ram-Plugin/lastSuccessfulBuild/artifact/target/ram.jar"
   },
-  "SanCraft-Lobby": {
-    "name": "SanCraft-Lobby",
-    "html_url": "https://github.com/ZoeyVid/SanCraft-Lobby",
-    "readme": "https://zoeyvid/assets/elements/repos/SanCraft-Lobby.md",
-    "description": "The lobby plugin of the SanCraft Network!",
-    "homepage": "https://sancraft.de"
-  },
   "Stacker": {
     "name": "Stacker",
     "html_url": "https://github.com/ZoeyVid/Stacker",
