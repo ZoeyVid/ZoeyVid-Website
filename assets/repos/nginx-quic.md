@@ -1,1 +1,2 @@
-400: Invalid request
+# nginx-quic
+Docker image for Nginx + HTTP/3
