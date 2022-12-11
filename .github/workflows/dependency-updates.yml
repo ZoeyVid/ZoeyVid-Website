@@ -24,6 +24,11 @@ jobs:
          jq . assets/elements/repos/tmp.json | tee assets/elements/repos/repos.json
 #         rm -rf assets/elements/repos/tmp.json
 #         sed -i "s|null||g" assets/elements/repos/repos.json
+
+      - name: json-syntax-check
+        uses: limitusus/json-syntax-check@v2
+        with:
+          pattern: "\\.json$*"
      
       - name: push changes
         run: |
