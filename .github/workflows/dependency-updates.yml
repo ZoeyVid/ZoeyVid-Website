@@ -25,11 +25,6 @@ jobs:
          jq . assets/elements/repos/tmp.json | tee assets/elements/repos/repos.json
 #         rm -rf assets/elements/repos/tmp.json
 #         sed -i "s|null||g" assets/elements/repos/repos.json
-
-      - name: json-syntax-check
-        uses: limitusus/json-syntax-check@v2
-        with:
-          pattern: "\\.json$*"
      
       - name: push changes
         run: |
@@ -58,6 +53,16 @@ jobs:
           branch: update-marked-version
           title: update marked version to ${{ steps.update.outputs.version }}
           body: update marked version to ${{ steps.update.outputs.version }}
+          
+  test-json:
+    needs: marked-update
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: json-syntax-check
+        uses: limitusus/json-syntax-check@v2
+        with:
+          pattern: "\\.json$*"
 
   tailwindcss-update:
     needs: marked-update
