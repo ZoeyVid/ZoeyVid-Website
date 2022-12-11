@@ -1,189 +1,189 @@
 {
   "AdGuardHome-Win-Installer": {
     "name": "AdGuardHome-Win-Installer",
-    "url": "https://github.com/ZoeyVid/AdGuardHome-Win-Installer",
+    "html_url": "https://github.com/ZoeyVid/AdGuardHome-Win-Installer",
     "readme": "https://zoeyvid/assets/elements/repos/AdGuardHome-Win-Installer.md",
     "description": "AdGuardHome-Installer for Windows",
     "homepage": "https://github.com/ZoeyVid/AdGuardHome-Win-Installer/releases/latest/download/AdGuardHome.bat"
   },
   "AntiGamemode": {
     "name": "AntiGamemode",
-    "url": "https://github.com/ZoeyVid/AntiGamemode",
+    "html_url": "https://github.com/ZoeyVid/AntiGamemode",
     "readme": "https://zoeyvid/assets/elements/repos/AntiGamemode.md",
     "description": "",
     "homepage": "https://ci.zvcdn.de/view/Plugins/job/AntiGamemode/lastSuccessfulBuild/artifact/target/AntiGamemode.jar"
   },
   "Mod-Installer": {
     "name": "Mod-Installer",
-    "url": "https://github.com/ZoeyVid/Mod-Installer",
+    "html_url": "https://github.com/ZoeyVid/Mod-Installer",
     "readme": "https://zoeyvid/assets/elements/repos/Mod-Installer.md",
     "description": "With this installer with controller support you can install Optifine, Fabric, Forge, Iris, ESSENTIAL and my 1.19 Modpacks! And download texturepacks! You can also save mods in up to 8 profiles!",
     "homepage": "https://github.com/ZoeyVid/Mod-Installer/releases/latest/download/Installer.bat"
   },
   "Peng-Bot": {
     "name": "Peng-Bot",
-    "url": "https://github.com/ZoeyVid/Peng-Bot",
+    "html_url": "https://github.com/ZoeyVid/Peng-Bot",
     "readme": "https://zoeyvid/assets/elements/repos/Peng-Bot.md",
     "description": "A Bot that reacts to messages that starts with ping, pewpew oder peng...",
     "homepage": "https://discord.com/api/oauth2/authorize?client_id=742096151301455882&permissions=274877908992&scope=applications.commands%20bot"
   },
   "Peng-Bot-Old": {
     "name": "Peng-Bot-Old",
-    "url": "https://github.com/ZoeyVid/Peng-Bot-Old",
+    "html_url": "https://github.com/ZoeyVid/Peng-Bot-Old",
     "readme": "https://zoeyvid/assets/elements/repos/Peng-Bot-Old.md",
     "description": "See new repository",
     "homepage": "https://github.com/SanCraftDev/Peng-Bot"
   },
   "Ram": {
     "name": "Ram",
-    "url": "https://github.com/ZoeyVid/Ram",
+    "html_url": "https://github.com/ZoeyVid/Ram",
     "readme": "https://zoeyvid/assets/elements/repos/Ram.md",
     "description": "This plugins adds a /ram command",
     "homepage": "https://ci.zvcdn.de/job/Ram-Plugin/lastSuccessfulBuild/artifact/target/ram.jar"
   },
   "SanCraft-Core": {
     "name": "SanCraft-Core",
-    "url": "https://github.com/ZoeyVid/SanCraft-Core",
+    "html_url": "https://github.com/ZoeyVid/SanCraft-Core",
     "readme": "https://zoeyvid/assets/elements/repos/SanCraft-Core.md",
     "description": "The Plugin of the SanCraft Network!",
     "homepage": "https://sancraft.de"
   },
   "SanCraft-Lobby": {
     "name": "SanCraft-Lobby",
-    "url": "https://github.com/ZoeyVid/SanCraft-Lobby",
+    "html_url": "https://github.com/ZoeyVid/SanCraft-Lobby",
     "readme": "https://zoeyvid/assets/elements/repos/SanCraft-Lobby.md",
     "description": "The lobby plugin of the SanCraft Network!",
     "homepage": "https://sancraft.de"
   },
   "SanCraft-Website": {
     "name": "SanCraft-Website",
-    "url": "https://github.com/ZoeyVid/SanCraft-Website",
+    "html_url": "https://github.com/ZoeyVid/SanCraft-Website",
     "readme": "https://zoeyvid/assets/elements/repos/SanCraft-Website.md",
     "description": "The SanCraft Website",
     "homepage": "https://sancraft.de"
   },
   "SanCraftDev-Website": {
     "name": "SanCraftDev-Website",
-    "url": "https://github.com/ZoeyVid/SanCraftDev-Website",
+    "html_url": "https://github.com/ZoeyVid/SanCraftDev-Website",
     "readme": "https://zoeyvid/assets/elements/repos/SanCraftDev-Website.md",
     "description": "The SanCraftDev Website",
     "homepage": "https://sancraft.dev"
   },
   "Stacker": {
     "name": "Stacker",
-    "url": "https://github.com/ZoeyVid/Stacker",
+    "html_url": "https://github.com/ZoeyVid/Stacker",
     "readme": "https://zoeyvid/assets/elements/repos/Stacker.md",
     "description": "A plugin to stack player above player! ",
     "homepage": "https://ci.zvcdn.de/job/Stacker/lastSuccessfulBuild/artifact/target/stacker.jar"
   },
   "ZoeyVid-Webseite": {
     "name": "ZoeyVid-Webseite",
-    "url": "https://github.com/ZoeyVid/ZoeyVid-Webseite",
+    "html_url": "https://github.com/ZoeyVid/ZoeyVid-Webseite",
     "readme": "https://zoeyvid/assets/elements/repos/ZoeyVid-Webseite.md",
     "description": "The ZoeyVid Website",
     "homepage": "https://zoeyvid.de"
   },
   "ZoeyVidHandy-Bot": {
     "name": "ZoeyVidHandy-Bot",
-    "url": "https://github.com/ZoeyVid/ZoeyVidHandy-Bot",
+    "html_url": "https://github.com/ZoeyVid/ZoeyVidHandy-Bot",
     "readme": "https://zoeyvid/assets/elements/repos/ZoeyVidHandy-Bot.md",
     "description": "The Bot of the SanCraftHandy Discord Server!",
     "homepage": "https://sancraft.dev/dc"
   },
   "cloudflared": {
     "name": "cloudflared",
-    "url": "https://github.com/ZoeyVid/cloudflared",
+    "html_url": "https://github.com/ZoeyVid/cloudflared",
     "readme": "https://zoeyvid/assets/elements/repos/cloudflared.md",
     "description": "",
     "homepage": "https://hub.docker.com/r/zoeyvid/cloudflared"
   },
   "cloudflared-dns": {
     "name": "cloudflared-dns",
-    "url": "https://github.com/ZoeyVid/cloudflared-dns",
+    "html_url": "https://github.com/ZoeyVid/cloudflared-dns",
     "readme": "https://zoeyvid/assets/elements/repos/cloudflared-dns.md",
     "description": "",
     "homepage": "https://hub.docker.com/r/zoeyvid/cloudflared-dns"
   },
   "curl-quic": {
     "name": "curl-quic",
-    "url": "https://github.com/ZoeyVid/curl-quic",
+    "html_url": "https://github.com/ZoeyVid/curl-quic",
     "readme": "https://zoeyvid/assets/elements/repos/curl-quic.md",
     "description": "",
     "homepage": "https://hub.docker.com/r/zoeyvid/curl-quic"
   },
   "docker-ssh-tarpit": {
     "name": "docker-ssh-tarpit",
-    "url": "https://github.com/ZoeyVid/docker-ssh-tarpit",
+    "html_url": "https://github.com/ZoeyVid/docker-ssh-tarpit",
     "readme": "https://zoeyvid/assets/elements/repos/docker-ssh-tarpit.md",
     "description": "SSH-Tarpi for docker",
     "homepage": "https://hub.docker.com/r/zoeyvid/docker-ssh-tarpit"
   },
   "git-updater": {
     "name": "git-updater",
-    "url": "https://github.com/ZoeyVid/git-updater",
+    "html_url": "https://github.com/ZoeyVid/git-updater",
     "readme": "https://zoeyvid/assets/elements/repos/git-updater.md",
     "description": "",
     "homepage": "https://hub.docker.com/r/zoeyvid/git-updater"
   },
   "jenkins-ssh-agent": {
     "name": "jenkins-ssh-agent",
-    "url": "https://github.com/ZoeyVid/jenkins-ssh-agent",
+    "html_url": "https://github.com/ZoeyVid/jenkins-ssh-agent",
     "readme": "https://zoeyvid/assets/elements/repos/jenkins-ssh-agent.md",
     "description": "",
     "homepage": "https://hub.docker.com/r/zoeyvid/jenkins-ssh-agent"
   },
   "nginx-proxy-manager": {
     "name": "nginx-proxy-manager",
-    "url": "https://github.com/ZoeyVid/nginx-proxy-manager",
+    "html_url": "https://github.com/ZoeyVid/nginx-proxy-manager",
     "readme": "https://zoeyvid/assets/elements/repos/nginx-proxy-manager.md",
     "description": "Docker container for managing Nginx proxy hosts with a simple, powerful interface",
     "homepage": "https://hub.docker.com/r/zoeyvid/nginx-proxy-manager"
   },
   "nginx-quic": {
     "name": "nginx-quic",
-    "url": "https://github.com/ZoeyVid/nginx-quic",
+    "html_url": "https://github.com/ZoeyVid/nginx-quic",
     "readme": "https://zoeyvid/assets/elements/repos/nginx-quic.md",
     "description": "Docker image for Nginx + HTTP/3 ",
     "homepage": "https://hub.docker.com/r/zoeyvid/nginx-quic"
   },
   "openresty-nginx-quic": {
     "name": "openresty-nginx-quic",
-    "url": "https://github.com/ZoeyVid/openresty-nginx-quic",
+    "html_url": "https://github.com/ZoeyVid/openresty-nginx-quic",
     "readme": "https://zoeyvid/assets/elements/repos/openresty-nginx-quic.md",
     "description": "Docker image for Nginx + HTTP/3 powered by Openresty",
     "homepage": "https://hub.docker.com/r/zoeyvid/openresty-nginx-quic"
   },
   "openresty-quic": {
     "name": "openresty-quic",
-    "url": "https://github.com/ZoeyVid/openresty-quic",
+    "html_url": "https://github.com/ZoeyVid/openresty-quic",
     "readme": "https://zoeyvid/assets/elements/repos/openresty-quic.md",
     "description": "High Performance Web Platform Based on Nginx and LuaJIT",
     "homepage": "https://openresty.org"
   },
   "ribstnib": {
     "name": "ribstnib",
-    "url": "https://github.com/ZoeyVid/ribstnib",
+    "html_url": "https://github.com/ZoeyVid/ribstnib",
     "readme": "https://zoeyvid/assets/elements/repos/ribstnib.md",
     "description": "A datapack to smelt raw ingot blocks to normal ingot blocks!",
     "homepage": "https://sancraft.dev/ribstnib"
   },
   "tailwindcss-update": {
     "name": "tailwindcss-update",
-    "url": "https://github.com/ZoeyVid/tailwindcss-update",
+    "html_url": "https://github.com/ZoeyVid/tailwindcss-update",
     "readme": "https://zoeyvid/assets/elements/repos/tailwindcss-update.md",
     "description": "a action that generates tailwindcss files",
     "homepage": "https://github.com/marketplace/actions/generate-tailwind-css"
   },
   "unbound-docker": {
     "name": "unbound-docker",
-    "url": "https://github.com/ZoeyVid/unbound-docker",
+    "html_url": "https://github.com/ZoeyVid/unbound-docker",
     "readme": "https://zoeyvid/assets/elements/repos/unbound-docker.md",
     "description": "",
     "homepage": "https://hub.docker.com/r/zoeyvid/unbound-docker"
   },
   "vokabel-trainer": {
     "name": "vokabel-trainer",
-    "url": "https://github.com/ZoeyVid/vokabel-trainer",
+    "html_url": "https://github.com/ZoeyVid/vokabel-trainer",
     "readme": "https://zoeyvid/assets/elements/repos/vokabel-trainer.md",
     "description": "Ein Vokabel Trainer",
     "homepage": "https://hub.docker.com/r/zoeyvid/vokabel-trainer"
