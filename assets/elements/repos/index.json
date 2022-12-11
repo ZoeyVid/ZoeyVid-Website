@@ -3,6 +3,7 @@
     "name": "AdGuardHome-Win-Installer",
     "html_url": "https://github.com/ZoeyVid/AdGuardHome-Win-Installer",
     "readme": "https://zoeyvid/assets/elements/repos/AdGuardHome-Win-Installer.md",
+    "fork": "false",
     "description": "AdGuardHome-Installer for Windows",
     "homepage": "https://github.com/ZoeyVid/AdGuardHome-Win-Installer/releases/latest/download/AdGuardHome.bat"
   },
@@ -10,6 +11,7 @@
     "name": "AntiGamemode",
     "html_url": "https://github.com/ZoeyVid/AntiGamemode",
     "readme": "https://zoeyvid/assets/elements/repos/AntiGamemode.md",
+    "fork": "false",
     "description": "",
     "homepage": "https://ci.zvcdn.de/view/Plugins/job/AntiGamemode/lastSuccessfulBuild/artifact/target/AntiGamemode.jar"
   },
@@ -17,6 +19,7 @@
     "name": "Mod-Installer",
     "html_url": "https://github.com/ZoeyVid/Mod-Installer",
     "readme": "https://zoeyvid/assets/elements/repos/Mod-Installer.md",
+    "fork": "false",
     "description": "With this installer with controller support you can install Optifine, Fabric, Forge, Iris, ESSENTIAL and my 1.19 Modpacks! And download texturepacks! You can also save mods in up to 8 profiles!",
     "homepage": "https://github.com/ZoeyVid/Mod-Installer/releases/latest/download/Installer.bat"
   },
@@ -24,6 +27,7 @@
     "name": "Peng-Bot",
     "html_url": "https://github.com/ZoeyVid/Peng-Bot",
     "readme": "https://zoeyvid/assets/elements/repos/Peng-Bot.md",
+    "fork": "false",
     "description": "A Bot that reacts to messages that starts with ping, pewpew oder peng...",
     "homepage": "https://discord.com/api/oauth2/authorize?client_id=742096151301455882&permissions=274877908992&scope=applications.commands%20bot"
   },
@@ -31,6 +35,7 @@
     "name": "Peng-Bot-Old",
     "html_url": "https://github.com/ZoeyVid/Peng-Bot-Old",
     "readme": "https://zoeyvid/assets/elements/repos/Peng-Bot-Old.md",
+    "fork": "false",
     "description": "See new repository",
     "homepage": "https://github.com/SanCraftDev/Peng-Bot"
   },
@@ -38,6 +43,7 @@
     "name": "Ram",
     "html_url": "https://github.com/ZoeyVid/Ram",
     "readme": "https://zoeyvid/assets/elements/repos/Ram.md",
+    "fork": "false",
     "description": "This plugins adds a /ram command",
     "homepage": "https://ci.zvcdn.de/job/Ram-Plugin/lastSuccessfulBuild/artifact/target/ram.jar"
   },
@@ -45,6 +51,7 @@
     "name": "Stacker",
     "html_url": "https://github.com/ZoeyVid/Stacker",
     "readme": "https://zoeyvid/assets/elements/repos/Stacker.md",
+    "fork": "false",
     "description": "A plugin to stack player above player! ",
     "homepage": "https://ci.zvcdn.de/job/Stacker/lastSuccessfulBuild/artifact/target/stacker.jar"
   },
@@ -52,6 +59,7 @@
     "name": "ZoeyVid-Webseite",
     "html_url": "https://github.com/ZoeyVid/ZoeyVid-Webseite",
     "readme": "https://zoeyvid/assets/elements/repos/ZoeyVid-Webseite.md",
+    "fork": "false",
     "description": "The ZoeyVid Website",
     "homepage": "https://zoeyvid.de"
   },
@@ -59,6 +67,7 @@
     "name": "ZoeyVidHandy-Bot",
     "html_url": "https://github.com/ZoeyVid/ZoeyVidHandy-Bot",
     "readme": "https://zoeyvid/assets/elements/repos/ZoeyVidHandy-Bot.md",
+    "fork": "false",
     "description": "The Bot of the SanCraftHandy Discord Server!",
     "homepage": "https://sancraft.dev/dc"
   },
@@ -66,6 +75,7 @@
     "name": "cloudflared",
     "html_url": "https://github.com/ZoeyVid/cloudflared",
     "readme": "https://zoeyvid/assets/elements/repos/cloudflared.md",
+    "fork": "false",
     "description": "",
     "homepage": "https://hub.docker.com/r/zoeyvid/cloudflared"
   },
@@ -73,6 +83,7 @@
     "name": "cloudflared-dns",
     "html_url": "https://github.com/ZoeyVid/cloudflared-dns",
     "readme": "https://zoeyvid/assets/elements/repos/cloudflared-dns.md",
+    "fork": "false",
     "description": "",
     "homepage": "https://hub.docker.com/r/zoeyvid/cloudflared-dns"
   },
@@ -80,6 +91,7 @@
     "name": "curl-quic",
     "html_url": "https://github.com/ZoeyVid/curl-quic",
     "readme": "https://zoeyvid/assets/elements/repos/curl-quic.md",
+    "fork": "false",
     "description": "",
     "homepage": "https://hub.docker.com/r/zoeyvid/curl-quic"
   },
@@ -87,6 +99,7 @@
     "name": "docker-ssh-tarpit",
     "html_url": "https://github.com/ZoeyVid/docker-ssh-tarpit",
     "readme": "https://zoeyvid/assets/elements/repos/docker-ssh-tarpit.md",
+    "fork": "false",
     "description": "SSH-Tarpi for docker",
     "homepage": "https://hub.docker.com/r/zoeyvid/docker-ssh-tarpit"
   },
@@ -94,6 +107,7 @@
     "name": "git-updater",
     "html_url": "https://github.com/ZoeyVid/git-updater",
     "readme": "https://zoeyvid/assets/elements/repos/git-updater.md",
+    "fork": "false",
     "description": "",
     "homepage": "https://hub.docker.com/r/zoeyvid/git-updater"
   },
@@ -101,6 +115,7 @@
     "name": "jenkins-ssh-agent",
     "html_url": "https://github.com/ZoeyVid/jenkins-ssh-agent",
     "readme": "https://zoeyvid/assets/elements/repos/jenkins-ssh-agent.md",
+    "fork": "false",
     "description": "",
     "homepage": "https://hub.docker.com/r/zoeyvid/jenkins-ssh-agent"
   },
@@ -108,6 +123,7 @@
     "name": "nginx-proxy-manager",
     "html_url": "https://github.com/ZoeyVid/nginx-proxy-manager",
     "readme": "https://zoeyvid/assets/elements/repos/nginx-proxy-manager.md",
+    "fork": "true",
     "description": "Docker container for managing Nginx proxy hosts with a simple, powerful interface",
     "homepage": "https://hub.docker.com/r/zoeyvid/nginx-proxy-manager"
   },
@@ -115,6 +131,7 @@
     "name": "nginx-quic",
     "html_url": "https://github.com/ZoeyVid/nginx-quic",
     "readme": "https://zoeyvid/assets/elements/repos/nginx-quic.md",
+    "fork": "false",
     "description": "Docker image for Nginx + HTTP/3 ",
     "homepage": "https://hub.docker.com/r/zoeyvid/nginx-quic"
   },
@@ -122,6 +139,7 @@
     "name": "openresty-nginx-quic",
     "html_url": "https://github.com/ZoeyVid/openresty-nginx-quic",
     "readme": "https://zoeyvid/assets/elements/repos/openresty-nginx-quic.md",
+    "fork": "false",
     "description": "Docker image for Nginx + HTTP/3 powered by Openresty",
     "homepage": "https://hub.docker.com/r/zoeyvid/openresty-nginx-quic"
   },
@@ -129,6 +147,7 @@
     "name": "openresty-quic",
     "html_url": "https://github.com/ZoeyVid/openresty-quic",
     "readme": "https://zoeyvid/assets/elements/repos/openresty-quic.md",
+    "fork": "true",
     "description": "High Performance Web Platform Based on Nginx and LuaJIT",
     "homepage": "https://openresty.org"
   },
@@ -136,6 +155,7 @@
     "name": "ribstnib",
     "html_url": "https://github.com/ZoeyVid/ribstnib",
     "readme": "https://zoeyvid/assets/elements/repos/ribstnib.md",
+    "fork": "false",
     "description": "A datapack to smelt raw ingot blocks to normal ingot blocks!",
     "homepage": "https://sancraft.dev/ribstnib"
   },
@@ -143,6 +163,7 @@
     "name": "tailwindcss-update",
     "html_url": "https://github.com/ZoeyVid/tailwindcss-update",
     "readme": "https://zoeyvid/assets/elements/repos/tailwindcss-update.md",
+    "fork": "false",
     "description": "a action that generates tailwindcss files",
     "homepage": "https://github.com/marketplace/actions/generate-tailwind-css"
   },
@@ -150,6 +171,7 @@
     "name": "unbound-docker",
     "html_url": "https://github.com/ZoeyVid/unbound-docker",
     "readme": "https://zoeyvid/assets/elements/repos/unbound-docker.md",
+    "fork": "false",
     "description": "",
     "homepage": "https://hub.docker.com/r/zoeyvid/unbound-docker"
   },
@@ -157,6 +179,7 @@
     "name": "vokabel-trainer",
     "html_url": "https://github.com/ZoeyVid/vokabel-trainer",
     "readme": "https://zoeyvid/assets/elements/repos/vokabel-trainer.md",
+    "fork": "false",
     "description": "Ein Vokabel Trainer",
     "homepage": "https://hub.docker.com/r/zoeyvid/vokabel-trainer"
   }
