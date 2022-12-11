@@ -25,5 +25,5 @@
 "ribstnib": { "name": "ribstnib", "description": "A datapack to smelt raw ingot blocks to normal ingot blocks!", "homepage": "https://sancraft.dev/ribstnib", "url": "https://zoeyvid.de/assets/elements/repos/ribstnib.md"},
 "tailwindcss-update": { "name": "tailwindcss-update", "description": "a action that generates tailwindcss files", "homepage": "https://github.com/marketplace/actions/generate-tailwind-css", "url": "https://zoeyvid.de/assets/elements/repos/tailwindcss-update.md"},
 "unbound-docker": { "name": "unbound-docker", "description": "null", "homepage": "https://hub.docker.com/r/zoeyvid/unbound-docker", "url": "https://zoeyvid.de/assets/elements/repos/unbound-docker.md"},
-"vokabel-trainer": { "name": "vokabel-trainer", "description": "Ein Vokabel Trainer", "homepage": "https://hub.docker.com/r/zoeyvid/vokabel-trainer", "url": "https://zoeyvid.de/assets/elements/repos/vokabel-trainer.md"},
+"vokabel-trainer": { "name": "vokabel-trainer", "description": "Ein Vokabel Trainer", "homepage": "https://hub.docker.com/r/zoeyvid/vokabel-trainer", "url": "https://zoeyvid.de/assets/elements/repos/vokabel-trainer.md"}
 }

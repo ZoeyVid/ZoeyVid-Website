@@ -1,0 +1,164 @@
+{
+  "AdGuardHome-Win-Installer": {
+    "name": "AdGuardHome-Win-Installer",
+    "description": "AdGuardHome-Installer for Windows",
+    "homepage": "https://github.com/ZoeyVid/AdGuardHome-Win-Installer/releases/latest/download/AdGuardHome.bat",
+    "url": "https://zoeyvid.de/assets/elements/repos/AdGuardHome-Win-Installer.md"
+  },
+  "AntiGamemode": {
+    "name": "AntiGamemode",
+    "description": "null",
+    "homepage": "https://ci.zvcdn.de/view/Plugins/job/AntiGamemode/lastSuccessfulBuild/artifact/target/AntiGamemode.jar",
+    "url": "https://zoeyvid.de/assets/elements/repos/AntiGamemode.md"
+  },
+  "Mod-Installer": {
+    "name": "Mod-Installer",
+    "description": "With this installer with controller support you can install Optifine, Fabric, Forge, Iris, ESSENTIAL and my 1.19 Modpacks! And download texturepacks! You can also save mods in up to 8 profiles!",
+    "homepage": "https://github.com/ZoeyVid/Mod-Installer/releases/latest/download/Installer.bat",
+    "url": "https://zoeyvid.de/assets/elements/repos/Mod-Installer.md"
+  },
+  "Peng-Bot": {
+    "name": "Peng-Bot",
+    "description": "A Bot that reacts to messages that starts with ping, pewpew oder peng...",
+    "homepage": "https://discord.com/api/oauth2/authorize?client_id=742096151301455882&permissions=274877908992&scope=applications.commands%20bot",
+    "url": "https://zoeyvid.de/assets/elements/repos/Peng-Bot.md"
+  },
+  "Peng-Bot-Old": {
+    "name": "Peng-Bot-Old",
+    "description": "See new repository",
+    "homepage": "https://github.com/SanCraftDev/Peng-Bot",
+    "url": "https://zoeyvid.de/assets/elements/repos/Peng-Bot-Old.md"
+  },
+  "Ram": {
+    "name": "Ram",
+    "description": "This plugins adds a /ram command",
+    "homepage": "https://ci.zvcdn.de/job/Ram-Plugin/lastSuccessfulBuild/artifact/target/ram.jar",
+    "url": "https://zoeyvid.de/assets/elements/repos/Ram.md"
+  },
+  "SanCraft-Core": {
+    "name": "SanCraft-Core",
+    "description": "The Plugin of the SanCraft Network!",
+    "homepage": "https://sancraft.de",
+    "url": "https://zoeyvid.de/assets/elements/repos/SanCraft-Core.md"
+  },
+  "SanCraft-Lobby": {
+    "name": "SanCraft-Lobby",
+    "description": "The lobby plugin of the SanCraft Network!",
+    "homepage": "https://sancraft.de",
+    "url": "https://zoeyvid.de/assets/elements/repos/SanCraft-Lobby.md"
+  },
+  "SanCraft-Website": {
+    "name": "SanCraft-Website",
+    "description": "The SanCraft Website",
+    "homepage": "https://sancraft.de",
+    "url": "https://zoeyvid.de/assets/elements/repos/SanCraft-Website.md"
+  },
+  "SanCraftDev-Website": {
+    "name": "SanCraftDev-Website",
+    "description": "The SanCraftDev Website",
+    "homepage": "https://sancraft.dev",
+    "url": "https://zoeyvid.de/assets/elements/repos/SanCraftDev-Website.md"
+  },
+  "Stacker": {
+    "name": "Stacker",
+    "description": "A plugin to stack player above player! ",
+    "homepage": "https://ci.zvcdn.de/job/Stacker/lastSuccessfulBuild/artifact/target/stacker.jar",
+    "url": "https://zoeyvid.de/assets/elements/repos/Stacker.md"
+  },
+  "ZoeyVid-Webseite": {
+    "name": "ZoeyVid-Webseite",
+    "description": "The ZoeyVid Website",
+    "homepage": "https://zoeyvid.de",
+    "url": "https://zoeyvid.de/assets/elements/repos/ZoeyVid-Webseite.md"
+  },
+  "ZoeyVidHandy-Bot": {
+    "name": "ZoeyVidHandy-Bot",
+    "description": "The Bot of the SanCraftHandy Discord Server!",
+    "homepage": "https://sancraft.dev/dc",
+    "url": "https://zoeyvid.de/assets/elements/repos/ZoeyVidHandy-Bot.md"
+  },
+  "cloudflared": {
+    "name": "cloudflared",
+    "description": "null",
+    "homepage": "https://hub.docker.com/r/zoeyvid/cloudflared",
+    "url": "https://zoeyvid.de/assets/elements/repos/cloudflared.md"
+  },
+  "cloudflared-dns": {
+    "name": "cloudflared-dns",
+    "description": "null",
+    "homepage": "https://hub.docker.com/r/zoeyvid/cloudflared-dns",
+    "url": "https://zoeyvid.de/assets/elements/repos/cloudflared-dns.md"
+  },
+  "curl-quic": {
+    "name": "curl-quic",
+    "description": "null",
+    "homepage": "https://hub.docker.com/r/zoeyvid/curl-quic",
+    "url": "https://zoeyvid.de/assets/elements/repos/curl-quic.md"
+  },
+  "docker-ssh-tarpit": {
+    "name": "docker-ssh-tarpit",
+    "description": "SSH-Tarpi for docker",
+    "homepage": "https://hub.docker.com/r/zoeyvid/docker-ssh-tarpit",
+    "url": "https://zoeyvid.de/assets/elements/repos/docker-ssh-tarpit.md"
+  },
+  "git-updater": {
+    "name": "git-updater",
+    "description": "null",
+    "homepage": "https://hub.docker.com/r/zoeyvid/git-updater",
+    "url": "https://zoeyvid.de/assets/elements/repos/git-updater.md"
+  },
+  "jenkins-ssh-agent": {
+    "name": "jenkins-ssh-agent",
+    "description": "null",
+    "homepage": "https://hub.docker.com/r/zoeyvid/jenkins-ssh-agent",
+    "url": "https://zoeyvid.de/assets/elements/repos/jenkins-ssh-agent.md"
+  },
+  "nginx-proxy-manager": {
+    "name": "nginx-proxy-manager",
+    "description": "Docker container for managing Nginx proxy hosts with a simple, powerful interface",
+    "homepage": "https://hub.docker.com/r/zoeyvid/nginx-proxy-manager",
+    "url": "https://zoeyvid.de/assets/elements/repos/nginx-proxy-manager.md"
+  },
+  "nginx-quic": {
+    "name": "nginx-quic",
+    "description": "Docker image for Nginx + HTTP/3 ",
+    "homepage": "https://hub.docker.com/r/zoeyvid/nginx-quic",
+    "url": "https://zoeyvid.de/assets/elements/repos/nginx-quic.md"
+  },
+  "openresty-nginx-quic": {
+    "name": "openresty-nginx-quic",
+    "description": "Docker image for Nginx + HTTP/3 powered by Openresty",
+    "homepage": "https://hub.docker.com/r/zoeyvid/openresty-nginx-quic",
+    "url": "https://zoeyvid.de/assets/elements/repos/openresty-nginx-quic.md"
+  },
+  "openresty-quic": {
+    "name": "openresty-quic",
+    "description": "High Performance Web Platform Based on Nginx and LuaJIT",
+    "homepage": "https://openresty.org",
+    "url": "https://zoeyvid.de/assets/elements/repos/openresty-quic.md"
+  },
+  "ribstnib": {
+    "name": "ribstnib",
+    "description": "A datapack to smelt raw ingot blocks to normal ingot blocks!",
+    "homepage": "https://sancraft.dev/ribstnib",
+    "url": "https://zoeyvid.de/assets/elements/repos/ribstnib.md"
+  },
+  "tailwindcss-update": {
+    "name": "tailwindcss-update",
+    "description": "a action that generates tailwindcss files",
+    "homepage": "https://github.com/marketplace/actions/generate-tailwind-css",
+    "url": "https://zoeyvid.de/assets/elements/repos/tailwindcss-update.md"
+  },
+  "unbound-docker": {
+    "name": "unbound-docker",
+    "description": "null",
+    "homepage": "https://hub.docker.com/r/zoeyvid/unbound-docker",
+    "url": "https://zoeyvid.de/assets/elements/repos/unbound-docker.md"
+  },
+  "vokabel-trainer": {
+    "name": "vokabel-trainer",
+    "description": "Ein Vokabel Trainer",
+    "homepage": "https://hub.docker.com/r/zoeyvid/vokabel-trainer",
+    "url": "https://zoeyvid.de/assets/elements/repos/vokabel-trainer.md"
+  }
+}
