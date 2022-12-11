@@ -17,10 +17,10 @@ https://raw.githubusercontent.com/ZoeyVid/curl-quic/develop/README.md
 https://raw.githubusercontent.com/ZoeyVid/docker-ssh-tarpit/develop/README.md
 https://raw.githubusercontent.com/ZoeyVid/git-updater/develop/README.md
 https://raw.githubusercontent.com/ZoeyVid/jenkins-ssh-agent/develop/README.md
-https://raw.githubusercontent.com/ZoeyVid/nginx-proxy-manager/develop develop develop/README.md
+https://raw.githubusercontent.com/ZoeyVid/nginx-proxy-manager/develop/README.md
 https://raw.githubusercontent.com/ZoeyVid/nginx-quic/develop/README.md
 https://raw.githubusercontent.com/ZoeyVid/openresty-nginx-quic/develop/README.md
-https://raw.githubusercontent.com/ZoeyVid/openresty-quic/main master master/README.md
+https://raw.githubusercontent.com/ZoeyVid/openresty-quic/main/README.md
 https://raw.githubusercontent.com/ZoeyVid/ribstnib/main/README.md
 https://raw.githubusercontent.com/ZoeyVid/tailwindcss-update/develop/README.md
 https://raw.githubusercontent.com/ZoeyVid/unbound-docker/develop/README.md
