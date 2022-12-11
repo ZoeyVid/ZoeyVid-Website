@@ -37,7 +37,7 @@ jobs:
       - name: update repos
         run: | 
          rm -rf assets/elements/repos.txt
-         for repo in $(curl -skL "https://api.github.com/orgs/ZoeyVid/repos" --header "authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" | grep -e full_name | grep -v .github | cut -d \" -f 4 | sort); do echo https://raw.githubusercontent.com/"${repo}"/$(curl -skL "https://api.github.com/repos/$repo" --header "authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" | grep -e default_branch | cut -d \" -f 4 | sort)/README.md | tee -a assets/elements/repos.txt; done;
+         for repo in $(curl -skL "https://api.github.com/orgs/ZoeyVid/repos" --header "authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" | jq -r ".[].full_name" | grep -v .github | sort); do echo https://raw.githubusercontent.com/"${repo}"/$(curl -skL "https://api.github.com/repos/$repo" --header "authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" | jq -r ".default_branch")/README.md | tee -a assets/elements/repos.txt; done;
           
       - name: push changes
         run: |
