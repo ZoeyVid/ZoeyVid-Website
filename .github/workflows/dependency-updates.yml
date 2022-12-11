@@ -69,7 +69,7 @@ jobs:
           git push
           
   jquery-update:
-    needs: marked-update
+    needs: tailwindcss-update
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
