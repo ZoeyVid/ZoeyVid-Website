@@ -70,8 +70,9 @@
   document.getElementsByTagName('noscript')[0].remove();
   if(document.location.pathname == "/"){
     document.getElementById("startseite").classList.add("bg-gray-900");
-      document.getElementById("startseite").classList.replace("text-gray-300", "text-white");
-      document.getElementById("startseite").classList.remove("hover:bg-gray-700");
-      document.getElementById("startseite").classList.remove("hover:text-white");
+    document.getElementById("startseite").classList.replace("text-gray-300", "text-white");
+    document.getElementById("startseite").classList.remove("hover:bg-gray-700");
+    document.getElementById("startseite").classList.remove("hover:text-white");
+    document.getElementById("navbar").classList.remove("pb-4");
   }
 </script>
