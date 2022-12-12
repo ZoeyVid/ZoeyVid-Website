@@ -47,10 +47,10 @@
     "description": "A plugin to stack player above player! ",
     "homepage": "https://ci.zvcdn.de/job/Stacker/lastSuccessfulBuild/artifact/target/stacker.jar"
   },
-  "ZoeyVid-Webseite": {
-    "name": "ZoeyVid-Webseite",
-    "html_url": "https://github.com/ZoeyVid/ZoeyVid-Webseite",
-    "readme": "https://zoeyvid.de/assets/repos/ZoeyVid-Webseite.md",
+  "ZoeyVid-Website": {
+    "name": "ZoeyVid-Website",
+    "html_url": "https://github.com/ZoeyVid/ZoeyVid-Website",
+    "readme": "https://zoeyvid.de/assets/repos/ZoeyVid-Website.md",
     "fork": "false",
     "description": "The ZoeyVid Website",
     "homepage": "https://zoeyvid.de"
