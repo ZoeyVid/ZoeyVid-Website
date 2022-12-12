@@ -30,7 +30,7 @@ jobs:
          jq . assets/repos/repos.json | tee assets/repos/index.json
          sed -i "s|null||g" assets/repos/index.json
          rm -rf assets/repos/repos.json
-         yq -P assets/repos/index.json | tee assets/repos/index.yaml
+#         yq -P assets/repos/index.json | tee assets/repos/index.yaml
      
       - name: push changes
         run: |
