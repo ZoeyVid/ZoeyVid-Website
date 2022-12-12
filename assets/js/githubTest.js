@@ -4,6 +4,6 @@ function countAllRepos() {
       return response.json()
     })
     .then((json) => {
-      console.log(Object.keys(json.shareInfo[i]).length)
+      console.log(Object.keys(json).length)
     })
 }
