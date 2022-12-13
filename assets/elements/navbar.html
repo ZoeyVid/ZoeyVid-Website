@@ -51,7 +51,7 @@
         </div>
       
         <!-- Mobile menu, show/hide based on menu state. -->
-        <div class="sm:hidden" id="mobile-menu">
+        <div class="sm:hidden hidden" id="mobile-menu">
           <div class="space-y-1 px-2 pt-2 pb-3">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
             <a href="/" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium" id="navbarStartseiteMobile">Startseite</a>
@@ -69,6 +69,7 @@
   document.getElementById("navbar").classList.add("pb-4");
   document.getElementsByTagName('noscript')[0].remove();
   if(document.location.pathname == "/"){
+    document.getElementById("navbar").classList.remove("pb-4");
     document.getElementById("navbarStartseite").classList.add("bg-gray-900");
     document.getElementById("navbarStartseite").classList.replace("text-gray-300", "text-white");
     document.getElementById("navbarStartseite").classList.remove("hover:bg-gray-700");
@@ -77,7 +78,6 @@
     document.getElementById("navbarStartseiteMobile").classList.replace("text-gray-300", "text-white");
     document.getElementById("navbarStartseiteMobile").classList.remove("hover:bg-gray-700");
     document.getElementById("navbnavbarStartseiteMobilearStartseite").classList.remove("hover:text-white");
-    document.getElementById("navbar").classList.remove("pb-4");
   }
 
   function toggleMobile(){
