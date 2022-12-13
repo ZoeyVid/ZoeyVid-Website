@@ -1,2 +1,1 @@
-# nginx-quic
-Docker image for Nginx + HTTP/3
+404: Not Found
