@@ -39,7 +39,8 @@
     <div id="Projekt" class="pr-4 pl-4">
         <script>
             const urlParams = new URLSearchParams(window.location.search);
-            readMarkdown("Projekt", "https://zoeyvid.de/assets/repos/" + urlParams.get("projekt") + ".md")
+	    if(!urlParams.get("projekt")) window.location.href = "https://zoeyvid.de/"
+            readMarkdown("Projekt", "https://zoeyvid.de/assets/repos/" + urlParams.get("projekt").toLowerCase() + ".md")
         </script>
     </div>
 	<div id="footer">
