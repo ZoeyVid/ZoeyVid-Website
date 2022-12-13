@@ -4,7 +4,7 @@
           <div class="relative flex h-16 items-center justify-between">
             <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
               <!-- Mobile menu button-->
-              <button type="button" class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+              <button type="button" class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false" onclick="toggleMobile()">
                 <span class="sr-only">Open main menu</span>
                 <!--
                   Icon when menu is closed.
@@ -36,7 +36,7 @@
               <div class="hidden sm:ml-6 sm:block">
                 <div class="flex space-x-4">
                   <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                  <a href="/" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" id="startseite">Startseite</a>
+                  <a href="/" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" id="navbarStartseite">Startseite</a>
       
                   <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Team</a>
       
@@ -54,7 +54,7 @@
         <div class="sm:hidden" id="mobile-menu">
           <div class="space-y-1 px-2 pt-2 pb-3">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-            <a href="/" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium" id="startseite">Startseite</a>
+            <a href="/" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium" id="navbarStartseiteMobile">Startseite</a>
       
             <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Team</a>
       
@@ -69,10 +69,23 @@
   document.getElementById("navbar").classList.add("pb-4");
   document.getElementsByTagName('noscript')[0].remove();
   if(document.location.pathname == "/"){
-    document.getElementById("startseite").classList.add("bg-gray-900");
-    document.getElementById("startseite").classList.replace("text-gray-300", "text-white");
-    document.getElementById("startseite").classList.remove("hover:bg-gray-700");
-    document.getElementById("startseite").classList.remove("hover:text-white");
+    document.getElementById("navbarStartseite").classList.add("bg-gray-900");
+    document.getElementById("navbarStartseite").classList.replace("text-gray-300", "text-white");
+    document.getElementById("navbarStartseite").classList.remove("hover:bg-gray-700");
+    document.getElementById("navbarStartseite").classList.remove("hover:text-white");
+    document.getElementById("navbarStartseiteMobile").classList.add("bg-gray-900");
+    document.getElementById("navbarStartseiteMobile").classList.replace("text-gray-300", "text-white");
+    document.getElementById("navbarStartseiteMobile").classList.remove("hover:bg-gray-700");
+    document.getElementById("navbnavbarStartseiteMobilearStartseite").classList.remove("hover:text-white");
     document.getElementById("navbar").classList.remove("pb-4");
+  }
+
+  function toggleMobile(){
+    var mobileMenu = document.getElementById("mobile-menu");
+    if(mobileMenu.classList.contains("hidden")){
+      mobileMenu.classList.remove("hidden");
+    }else{
+      mobileMenu.classList.add("hidden");
+    }
   }
 </script>
