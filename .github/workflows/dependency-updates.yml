@@ -32,6 +32,11 @@ jobs:
          sed -i "s|null||g" $path/index.json
          rm -rf $path/repos.json
 #         yq -P $path/index.json | tee $path/index.yaml
+         
+      - name: json-syntax-check
+        uses: limitusus/json-syntax-check@v2
+        with:
+          pattern: "\\.json$*"
      
       - name: push changes
         run: |
@@ -62,19 +67,6 @@ jobs:
           branch: update-marked-version
           title: update marked version to ${{ steps.update.outputs.version }}
           body: update marked version to ${{ steps.update.outputs.version }}
-          
-  test-json:
-    needs: marked-update
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-         ref: ${{ github.ref_name }}
-         
-      - name: json-syntax-check
-        uses: limitusus/json-syntax-check@v2
-        with:
-          pattern: "\\.json$*"
 
   tailwindcss-update:
     needs: marked-update
