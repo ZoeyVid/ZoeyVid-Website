@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+	<meta charset="UTF-8">
+	<title>Impressum - ZoeyVid</title>
+	<link href="/assets/css/output.css" rel="stylesheet">
+	<script src="/assets/plugins/jquery.min.js"></script>
+    <script src="/assets/js/markdownReader.js"></script>
+    <script src="/assets/plugins/marked.min.js"></script>
+    <link rel="icon" type="image/webp" href="https://zvcdn.de/images/ZoeyVid-PB.webp">
+</head>
+<body>
+    <div id="navbar">
+		<script>
+				$(function () {
+				  $("#navbar").load("/assets/elements/navbar.html");
+				});
+		</script>
+	</div>
+    <noscript>
+        <style type="text/css">
+            .pagecontainer {display:none;}
+            body {
+              background-color: black;
+              color: white;
+            }
+            .noscriptmsg {
+              margin: 0;
+              position: absolute;
+              top: 50%;
+              left: 50%;
+                  transform: translate(-50%, -50%);
+                    }
+                </style>
+            <div class="noscriptmsg">
+                    Please enable Javascript. You need it to visit this site!
+                </div>
+        </noscript>
+    <div id="Projekt" class="pr-4 pl-4">
+        <script>readMarkdown("Projekt", "https://zvcdn.de/assets/repos/" + urlParams.get("projekt") + ".md")</script>
+    </div>
+	<div id="footer">
+        <script>
+                $(function () {
+                  $("#footer").load("../assets/elements/footer.html");
+                })
+        </script>
+    </div>
+</body>
+</html>
