@@ -2,7 +2,7 @@
   "AdGuardHome-Win-Installer": {
     "name": "AdGuardHome-Win-Installer",
     "html_url": "https://github.com/ZoeyVid/AdGuardHome-Win-Installer",
-    "readme": "https://zoeyvid.de/assets/repos/AdGuardHome-Win-Installer.md",
+    "readme": "https://zoeyvid.de/assets/repos/adguardhome-win-installer.md",
     "fork": "false",
     "description": "AdGuardHome-Installer for Windows",
     "homepage": "https://github.com/ZoeyVid/AdGuardHome-Win-Installer/releases/latest/download/AdGuardHome.bat"
@@ -10,7 +10,7 @@
   "AntiGamemode": {
     "name": "AntiGamemode",
     "html_url": "https://github.com/ZoeyVid/AntiGamemode",
-    "readme": "https://zoeyvid.de/assets/repos/AntiGamemode.md",
+    "readme": "https://zoeyvid.de/assets/repos/antigamemode.md",
     "fork": "false",
     "description": "",
     "homepage": "https://ci.zvcdn.de/view/Plugins/job/AntiGamemode/lastSuccessfulBuild/artifact/target/AntiGamemode.jar"
@@ -18,7 +18,7 @@
   "Mod-Installer": {
     "name": "Mod-Installer",
     "html_url": "https://github.com/ZoeyVid/Mod-Installer",
-    "readme": "https://zoeyvid.de/assets/repos/Mod-Installer.md",
+    "readme": "https://zoeyvid.de/assets/repos/mod-installer.md",
     "fork": "false",
     "description": "With this installer with controller support you can install Optifine, Fabric, Forge, Iris, ESSENTIAL and my 1.19 Modpacks! And download texturepacks! You can also save mods in up to 8 profiles!",
     "homepage": "https://github.com/ZoeyVid/Mod-Installer/releases/latest/download/Installer.bat"
@@ -26,7 +26,7 @@
   "Peng-Bot": {
     "name": "Peng-Bot",
     "html_url": "https://github.com/ZoeyVid/Peng-Bot",
-    "readme": "https://zoeyvid.de/assets/repos/Peng-Bot.md",
+    "readme": "https://zoeyvid.de/assets/repos/peng-bot.md",
     "fork": "false",
     "description": "A Bot that reacts to messages that starts with ping, pewpew oder peng...",
     "homepage": "https://discord.com/api/oauth2/authorize?client_id=742096151301455882&permissions=274877908992&scope=applications.commands%20bot"
@@ -34,7 +34,7 @@
   "Ram": {
     "name": "Ram",
     "html_url": "https://github.com/ZoeyVid/Ram",
-    "readme": "https://zoeyvid.de/assets/repos/Ram.md",
+    "readme": "https://zoeyvid.de/assets/repos/ram.md",
     "fork": "false",
     "description": "This plugins adds a /ram command",
     "homepage": "https://ci.zvcdn.de/job/Ram-Plugin/lastSuccessfulBuild/artifact/target/ram.jar"
@@ -42,7 +42,7 @@
   "Stacker": {
     "name": "Stacker",
     "html_url": "https://github.com/ZoeyVid/Stacker",
-    "readme": "https://zoeyvid.de/assets/repos/Stacker.md",
+    "readme": "https://zoeyvid.de/assets/repos/stacker.md",
     "fork": "false",
     "description": "A plugin to stack player above player! ",
     "homepage": "https://ci.zvcdn.de/job/Stacker/lastSuccessfulBuild/artifact/target/stacker.jar"
@@ -50,7 +50,7 @@
   "ZoeyVid-Website": {
     "name": "ZoeyVid-Website",
     "html_url": "https://github.com/ZoeyVid/ZoeyVid-Website",
-    "readme": "https://zoeyvid.de/assets/repos/ZoeyVid-Website.md",
+    "readme": "https://zoeyvid.de/assets/repos/zoeyvid-website.md",
     "fork": "false",
     "description": "The ZoeyVid Website",
     "homepage": "https://zoeyvid.de"
@@ -58,7 +58,7 @@
   "ZoeyVidHandy-Bot": {
     "name": "ZoeyVidHandy-Bot",
     "html_url": "https://github.com/ZoeyVid/ZoeyVidHandy-Bot",
-    "readme": "https://zoeyvid.de/assets/repos/ZoeyVidHandy-Bot.md",
+    "readme": "https://zoeyvid.de/assets/repos/zoeyvidhandy-bot.md",
     "fork": "false",
     "description": "The Bot of the SanCraftHandy Discord Server!",
     "homepage": "https://sancraft.dev/dc"
