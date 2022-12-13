@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
 	<meta charset="UTF-8">
-	<title>Impressum - ZoeyVid</title>
+	<title>TEST - ZoeyVid</title>
 	<link href="/assets/css/output.css" rel="stylesheet">
 	<script src="/assets/plugins/jquery.min.js"></script>
     <script src="/assets/js/markdownReader.js"></script>
@@ -37,7 +37,10 @@
                 </div>
         </noscript>
     <div id="Projekt" class="pr-4 pl-4">
-        <script>readMarkdown("Projekt", "https://zvcdn.de/assets/repos/" + urlParams.get("projekt") + ".md")</script>
+        <script>
+            const urlParams = new URLSearchParams(window.location.search);
+            readMarkdown("Projekt", "https://zvcdn.de/assets/repos/" + urlParams.get("projekt") + ".md")
+        </script>
     </div>
 	<div id="footer">
         <script>
