@@ -17,9 +17,9 @@ jobs:
         
       - name: update repos
         run: | 
-         user=ZoeyVid
-         domain=zoeyvid.de
-         path=assets/repos
+         export user=ZoeyVid
+         export domain=zoeyvid.de
+         export path=assets/repos
          rm -rf $path
          mkdir $path
          curl -sL https://api.github.com/rate_limit
