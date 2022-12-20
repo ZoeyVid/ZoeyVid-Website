@@ -8,6 +8,7 @@
 	<link href="/assets/css/output.css" rel="stylesheet">
 	<script src="/assets/plugins/jquery.min.js"></script>
     <script src="/assets/js/markdownReader.js"></script>
+    <script src="/assets/js/htmlReader.js"></script>
     <script src="/assets/plugins/marked.min.js"></script>
     <link rel="icon" type="image/webp" href="https://zvcdn.de/images/ZoeyVid-PB.webp">
 </head>
@@ -39,13 +40,19 @@
                 </div>
         </noscript>
     <div id="Projekt" class="pr-4 pl-4">
-        <script>
+        <!--<script>
             const urlParams = new URLSearchParams(window.location.search);
             // Check if the URL Parm in the Index JSON
             if(!urlParams.get("projekt")) window.location.href = "https://zoeyvid.de/"
             $(function () {
 				  $("#Projekt").load("https://zoeyvid.de/assets/repos/" + urlParams.get("projekt") + ".html");
 				});
+        </script>-->
+        <script>
+            const urlParams = new URLSearchParams(window.location.search);
+            // Check if the URL Parm in the Index JSON
+            if(!urlParams.get("projekt")) window.location.href = "https://zoeyvid.de/"
+            readHTML("Projekt", "https://zoeyvid.de/assets/repos/" + urlParams.get("projekt") + ".html")
         </script>
     </div>
 	<div id="footer">
