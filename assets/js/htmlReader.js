@@ -5,5 +5,6 @@ function readHTML (div, url) {
       })
       .then((text) => {
         document.getElementById(div).innerHTML = text
+        // Eval? 
       })
 }
