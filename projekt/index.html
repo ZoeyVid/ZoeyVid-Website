@@ -43,7 +43,7 @@
             const urlParams = new URLSearchParams(window.location.search);
 	    if(!urlParams.get("projekt")) window.location.href = "https://zoeyvid.de/"
             readMarkdown("Projekt", "https://zoeyvid.de/assets/repos/" + urlParams.get("projekt") + ".md")
-        </script>-->
+        </script>
         <script>
             const urlParams = new URLSearchParams(window.location.search);
             // Check if the URL Parm in the Index JSON
@@ -51,6 +51,12 @@
             $(function () {
 				  $("#Projekt").load("https://zoeyvid.de/assets/repos/" + urlParams.get("projekt") + ".html");
 				});
+        </script>-->
+        <script>
+            const urlParams = new URLSearchParams(window.location.search);
+            // Check if the URL Parm in the Index JSON
+            if(!urlParams.get("projekt")) window.location.href = "https://zoeyvid.de/"
+            document.getElementById("Projekt").innerHTML = "https://zoeyvid.de/assets/repos/" + urlParams.get("projekt") + ".html"
         </script>
     </div>
 	<div id="footer">
