@@ -1,0 +1,133 @@
+<p align="center">
+	<a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/64fb7ed5ef9e175687573940e302297deb9600b1e28d43c58a2d4c55e4e5168d/68747470733a2f2f6e67696e7870726f78796d616e616765722e636f6d2f6769746875622e706e67"><img src="https://camo.githubusercontent.com/64fb7ed5ef9e175687573940e302297deb9600b1e28d43c58a2d4c55e4e5168d/68747470733a2f2f6e67696e7870726f78796d616e616765722e636f6d2f6769746875622e706e67" data-canonical-src="https://nginxproxymanager.com/github.png" style="max-width: 100%;"></a>
+	<br><br>
+	<a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/ca4488154eb0ef16e37724edea9c7f7f5ff9148c06c611f2f16c8c8eda36e3f7/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f76657273696f6e2d322e392e31392b2d677265656e2e7376673f7374796c653d666f722d7468652d6261646765"><img src="https://camo.githubusercontent.com/ca4488154eb0ef16e37724edea9c7f7f5ff9148c06c611f2f16c8c8eda36e3f7/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f76657273696f6e2d322e392e31392b2d677265656e2e7376673f7374796c653d666f722d7468652d6261646765" data-canonical-src="https://img.shields.io/badge/version-2.9.19+-green.svg?style=for-the-badge" style="max-width: 100%;"></a>
+	<a href="https://hub.docker.com/r/zoeyvid/nginx-proxy-manager" rel="nofollow">
+		<img src="https://camo.githubusercontent.com/7545e5894009317cd246f63ad7942a175ce4f79945c4b37585429401b26c8b27/68747470733a2f2f696d672e736869656c64732e696f2f646f636b65722f73746172732f7a6f65797669642f6e67696e782d70726f78792d6d616e616765722e7376673f7374796c653d666f722d7468652d6261646765" data-canonical-src="https://img.shields.io/docker/stars/zoeyvid/nginx-proxy-manager.svg?style=for-the-badge" style="max-width: 100%;">
+	</a>
+	<a href="https://hub.docker.com/r/zoeyvid/nginx-proxy-manager" rel="nofollow">
+		<img src="https://camo.githubusercontent.com/d478b14a415950e1a11fa2c34791c2f9d6fe703384d21e2b1fbe85f66bd8653e/68747470733a2f2f696d672e736869656c64732e696f2f646f636b65722f70756c6c732f7a6f65797669642f6e67696e782d70726f78792d6d616e616765722e7376673f7374796c653d666f722d7468652d6261646765" data-canonical-src="https://img.shields.io/docker/pulls/zoeyvid/nginx-proxy-manager.svg?style=for-the-badge" style="max-width: 100%;">
+	</a>
+</p>
+<p>This project comes as a pre-built docker image that enables you to easily forward to your websites
+running at home or otherwise, including free SSL, without having to know too much about Nginx or Letsencrypt.</p>
+<ul>
+<li><a href="#quick-setup">Quick Setup</a></li>
+<li><a href="https://nginxproxymanager.com/screenshots" rel="nofollow">Screenshots</a></li>
+</ul>
+<h2><a id="user-content-project-goal" class="anchor" aria-hidden="true" href="#project-goal"><span aria-hidden="true" class="octicon octicon-link"></span></a>Project Goal</h2>
+<p>I created this project to fill a personal need to provide users with a easy way to accomplish reverse
+proxying hosts with SSL termination and it had to be so easy that a monkey could do it. This goal hasn't changed.
+While there might be advanced options they are optional and the project should be as simple as possible
+so that the barrier for entry here is low.</p>
+<p><a href="https://www.buymeacoffee.com/jc21" rel="nofollow"><img src="https://camo.githubusercontent.com/674bfc1dd775fa1c51eebaf73df1c45fbb6ad76357508b1dc227d7010ba23a68/687474703a2f2f7075626c69632e6a6332312e636f6d2f6769746875622f62792d6d652d612d636f666665652e706e67" alt="Buy Me A Coffee" data-canonical-src="http://public.jc21.com/github/by-me-a-coffee.png" style="max-width: 100%;"></a></p>
+<h2><a id="user-content-features" class="anchor" aria-hidden="true" href="#features"><span aria-hidden="true" class="octicon octicon-link"></span></a>Features</h2>
+<ul>
+<li>Beautiful and Secure Admin Interface based on <a href="https://tabler.github.io/" rel="nofollow">Tabler</a>
+</li>
+<li>Easily create forwarding domains, redirections, streams and 404 hosts without knowing anything about Nginx</li>
+<li>Free SSL using Let's Encrypt or provide your own custom SSL certificates</li>
+<li>Access Lists and basic HTTP Authentication for your hosts</li>
+<li>Advanced Nginx configuration available for super users</li>
+<li>User management, permissions and audit log</li>
+</ul>
+<h1><a id="user-content-new-features" class="anchor" aria-hidden="true" href="#new-features"><span aria-hidden="true" class="octicon octicon-link"></span></a>New Features</h1>
+<ul>
+<li>HTTP/3 (QUIC) Support if you enable HTTP/2 (can not be enabled separate)</li>
+<li>Fix Proxy Hosts, if origin only accepts TLSv1.3</li>
+<li>Only use TLSv1.2 and TLSv1.3</li>
+<li>Uses OCSP Stapling
+<ul>
+<li>Needs manual migration if you use custom certificates, just upload the CA/Intermediate Certificate (file name: <code>chain.pem</code>) in the <code>/opt/npm/custom_ssl/npm-[certificate-id]</code> folder</li>
+</ul>
+</li>
+<li>Smaller then the original</li>
+<li>Runs the admin interface on port 81 with ssl (https)</li>
+<li>Default page runs also with ssl (https)</li>
+<li>Uses <a href="https://gitHub.com/Naereen/Nginx-Fancyindex-Theme">fancyindex</a> if you use the npm directly as webserver</li>
+<li>Expose INTERNAL backend api only to localhost</li>
+<li>Easy security headers, see <a href="https://github.com/GetPageSpeed/ngx_security_headers">here</a>, enabled by default if you enable hsts</li>
+<li>Access Log disabled</li>
+<li>Error Log written to console</li>
+<li>PHP included, you can add php extensions, see aviable packages here: <a href="https://pkgs.alpinelinux.org/packages?name=php" rel="nofollow">https://pkgs.alpinelinux.org/packages?name=php</a>*</li>
+</ul>
+<h2><a id="user-content-soon" class="anchor" aria-hidden="true" href="#soon"><span aria-hidden="true" class="octicon octicon-link"></span></a>Soon</h2>
+<ul>
+<li>more</li>
+<li>I will try to create a pr to contribute to the original project</li>
+</ul>
+<h1><a id="user-content-use-as-webserver" class="anchor" aria-hidden="true" href="#use-as-webserver"><span aria-hidden="true" class="octicon octicon-link"></span></a>Use as webserver</h1>
+<ol>
+<li>Create a new Proxy Host</li>
+<li>Set <code>Scheme</code> to <code>http</code>, <code>Forward Hostname / IP</code> to <code>0.0.0.0</code>, <code>Forward Port</code> to <code>1</code> and enable <code>Websockets Support</code> (you can also use other values, since these get fully ignored)</li>
+<li>Maybe set an Access List</li>
+<li>Make your SSL Settings
+5.1 Custom Nginx Configuration (advanced tab), which looks the following for plain html, the slash at the end of the file path is important:</li>
+</ol>
+<pre><code>location / {
+alias /var/www/&lt;your-html-site-folder-name&gt;/;
+}
+</code></pre>
+<p>5.2 Custom Nginx Configuration (advanced tab), which looks the following for plain html &amp; php, the slash at the end of the file path is important:</p>
+<pre><code>location / {
+alias /var/www/&lt;your-php-site-folder-name&gt;/;
+
+location ~ [^/]\.php(/|$) {
+fastcgi_pass php82;
+fastcgi_split_path_info ^(.+?\.php)(/.*)$;
+if (!-f $document_root$fastcgi_script_name) {return 404;}
+}
+</code></pre>
+<h1><a id="user-content-quick-setup" class="anchor" aria-hidden="true" href="#quick-setup"><span aria-hidden="true" class="octicon octicon-link"></span></a>Quick Setup</h1>
+<ol>
+<li>Install Docker and Docker Compose (or portainer)</li>
+</ol>
+<ul>
+<li><a href="https://docs.docker.com/engine" rel="nofollow">Docker Install documentation</a></li>
+<li><a href="https://docs.docker.com/compose/install/linux" rel="nofollow">Docker Compose Install documentation</a></li>
+</ul>
+<ol start="2">
+<li>Create a compose.yaml file similar to this (or use it as a portainer stack):</li>
+</ol>
+<div class="highlight highlight-source-yaml"><pre><span class="pl-ent">version</span>: <span class="pl-s"><span class="pl-pds">"</span>3<span class="pl-pds">"</span></span>
+<span class="pl-ent">services</span>:
+    <span class="pl-ent">nginx-proxy-manager</span>:
+        <span class="pl-ent">container_name</span>: <span class="pl-s">nginx-proxy-manager</span>
+        <span class="pl-ent">image</span>: <span class="pl-s">zoeyvid/nginx-proxy-manager</span>
+        <span class="pl-ent">restart</span>: <span class="pl-s">always</span>
+        <span class="pl-ent">network_mode</span>: <span class="pl-s">host</span>
+        <span class="pl-ent">volumes</span>:
+        - <span class="pl-s"><span class="pl-pds">"</span>/opt/npm:/data<span class="pl-pds">"</span></span>
+        - <span class="pl-s"><span class="pl-pds">"</span>/opt/npm-letsencrypt:/etc/letsencrypt<span class="pl-pds">"</span></span> <span class="pl-c"><span class="pl-c">#</span> Only needed for first time migration from original nginx-proxy-manager to this fork</span>
+        - <span class="pl-s"><span class="pl-pds">"</span>/var/www:/var/www<span class="pl-pds">"</span></span> <span class="pl-c"><span class="pl-c">#</span> optional, if you want to use it as webserver for html</span>
+        <span class="pl-ent">environment</span>:
+        - <span class="pl-s"><span class="pl-pds">"</span>TZ=Europe/Berlin<span class="pl-pds">"</span></span>
+<span class="pl-c"><span class="pl-c">#</span>        - "NGINX_LOG_NOT_FOUND=true" # Allow logging of 404 errors</span>
+<span class="pl-c"><span class="pl-c">#</span>        - "NPM_LISTEN_LOCALHOST=true" # Bind the NPM Dashboard on Port 81 only to localhost</span>
+<span class="pl-c"><span class="pl-c">#</span>        - "PHP_APKS=php7-curl php8-curl php81-curl php-82-curl" # Add php extensions, see aviable packages here: https://pkgs.alpinelinux.org/packages?name=php*</span></pre></div>
+<ol start="3">
+<li>Bring up your stack by running (or deploy your portainer stack)</li>
+</ol>
+<div class="highlight highlight-source-shell"><pre>docker compose up -d</pre></div>
+<ol start="4">
+<li>Log in to the Admin UI</li>
+</ol>
+<p>When your docker container is running, connect to it on port <code>81</code> for the admin interface.
+Sometimes this can take a little bit because of the entropy of keys.
+You may need to open port 81 in your firewall.
+You may need to use another IP-Adress.</p>
+<p><a href="https://127.0.0.1:81" rel="nofollow">https://127.0.0.1:81</a></p>
+<p>Default Admin User:</p>
+<pre><code>Email:    admin@example.com
+Password: 9KcvfmAvcVonB7YOMqdjJGsTG2JL058Rx6xFNMintAeaGETsRBRlSbfXdi1inoCa
+</code></pre>
+<p>Immediately after logging in with this default user you will be asked to modify your details and change your password.</p>
+<h2><a id="user-content-contributors" class="anchor" aria-hidden="true" href="#contributors"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contributors</h2>
+<p>Special thanks to <a href="https://github.com/NginxProxyManager/nginx-proxy-manager/graphs/contributors">all of our contributors</a>.</p>
+<h1><a id="user-content-please-report-bugs-first-to-this-fork-before-reporting-them-to-the-original-repository" class="anchor" aria-hidden="true" href="#please-report-bugs-first-to-this-fork-before-reporting-them-to-the-original-repository"><span aria-hidden="true" class="octicon octicon-link"></span></a>Please report Bugs first to this fork before reporting them to the original Repository</h1>
+<h2><a id="user-content-getting-support" class="anchor" aria-hidden="true" href="#getting-support"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting Support</h2>
+<ol>
+<li><a href="https://github.com/ZoeyVid/nginx-proxy-manager/issues">Found a bug?</a></li>
+<li><a href="https://github.com/ZoeyVid/nginx-proxy-manager/discussions">Discussions</a></li>
+</ol>
+
