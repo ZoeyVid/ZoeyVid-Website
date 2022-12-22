@@ -6,5 +6,4 @@ function readHTML (div, url) {
       .then((text) => {
         document.getElementById(div).innerHTML = text
       })
-      if(div == "navbar") pageLoad()
 }
