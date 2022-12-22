@@ -1,3 +1,4 @@
+function navbarLoad() {
 document.getElementById("navbar").classList.add("pb-4");
 document.getElementsByTagName('noscript')[0].remove();
 if(document.location.pathname == "/"){
@@ -10,6 +11,7 @@ if(document.location.pathname == "/"){
   document.getElementById("navbarStartseiteMobile").classList.replace("text-gray-300", "text-white");
   document.getElementById("navbarStartseiteMobile").classList.remove("hover:bg-gray-700");
   document.getElementById("navbarStartseiteMobile").classList.remove("hover:text-white");
+}
 }
 
 function toggleMobile(){
