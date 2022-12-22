@@ -5,6 +5,6 @@ function readHTML (div, url) {
       })
       .then((text) => {
         document.getElementById(div).innerHTML = text
-        // Eval? 
       })
+      if(div == "navbar") pageLoad()
 }
