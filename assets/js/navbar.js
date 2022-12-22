@@ -19,6 +19,6 @@ function toggleMobile(){
   }else{
     mobileMenu.classList.add("hidden");
   }
-
-  console.log(document.getElementById("navbar"))
 }
+
+console.log(document.getElementById("navbar"))
