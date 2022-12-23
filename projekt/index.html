@@ -37,10 +37,7 @@
         </noscript>
     <div id="Projekt" class="pr-4 pl-4">
         <script>
-            const urlParams = new URLSearchParams(window.location.search);
-            // Check if the URL Parm in the Index JSON
-            if(!urlParams.get("projekt")) window.location.href = "https://zoeyvid.de/"
-            readHTML("Projekt", "https://zoeyvid.de/assets/repos/" + urlParams.get("projekt") + ".html")
+          getProjekt()
         </script>
     </div>
 	<div id="footer">
