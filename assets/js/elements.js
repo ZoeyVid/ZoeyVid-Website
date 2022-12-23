@@ -12,6 +12,16 @@ if(document.location.pathname == "/"){
   document.getElementById("navbarStartseiteMobile").classList.remove("hover:bg-gray-700");
   document.getElementById("navbarStartseiteMobile").classList.remove("hover:text-white");
 }
+if(document.location.pathname.startsWith("/projekt")){
+  document.getElementById("navbarProjekte").classList.add("bg-gray-900");
+  document.getElementById("navbarProjekte").classList.replace("text-gray-300", "text-white");
+  document.getElementById("navbarProjekte").classList.remove("hover:bg-gray-700");
+  document.getElementById("navbarProjekte").classList.remove("hover:text-white");
+  document.getElementById("navbarProjekteMobile").classList.add("bg-gray-900");
+  document.getElementById("navbarProjekteMobile").classList.replace("text-gray-300", "text-white");
+  document.getElementById("navbarProjekteMobile").classList.remove("hover:bg-gray-700");
+  document.getElementById("navbarProjekteMobile").classList.remove("hover:text-white");
+}
 document.getElementById("footer").classList.add("pt-4");
 }
 
