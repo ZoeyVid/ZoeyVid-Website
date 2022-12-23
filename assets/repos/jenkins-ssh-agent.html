@@ -1,1 +1,40 @@
-<meta charset=utf-8> <h1><a id="user-content-jenkins-ssh-agent" class="anchor" aria-hidden="true" href="#jenkins-ssh-agent"><span aria-hidden="true" class="octicon octicon-link"></span></a>jenkins-ssh-agent</h1> <h2><a id="user-content-paths" class="anchor" aria-hidden="true" href="#paths"><span aria-hidden="true" class="octicon octicon-link"></span></a>Paths:</h2> <ul> <li>/usr/bin/git</li> <li>/usr/bin/git-lfs</li> <li>/home/jenkins/mvn</li> <li>/home/jenkins/mvn4</li> <li>/usr/lib/jvm/java-1.8.0-amazon-corretto</li> <li>/usr/lib/jvm/java-11-amazon-corretto</li> <li>/usr/lib/jvm/java-15-amazon-corretto</li> <li>/usr/lib/jvm/java-16-amazon-corretto</li> <li>/usr/lib/jvm/java-17-amazon-corretto</li> <li>/usr/lib/jvm/java-18-amazon-corretto</li> <li>/usr/lib/jvm/java-19-amazon-corretto</li> </ul> <h2><a id="user-content-composeyaml" class="anchor" aria-hidden="true" href="#composeyaml"><span aria-hidden="true" class="octicon octicon-link"></span></a>compose.yaml:</h2> <div class="highlight highlight-source-yaml"><pre><span class="pl-ent">version</span>: <span class="pl-s"><span class="pl-pds">"</span>3<span class="pl-pds">"</span></span> <span class="pl-ent">services</span>: <span class="pl-ent">jenkins</span>: <span class="pl-ent">container_name</span>: <span class="pl-s">jenkins</span> <span class="pl-ent">image</span>: <span class="pl-s">jenkins/jenkins:alpine</span> <span class="pl-ent">restart</span>: <span class="pl-s">always</span> <span class="pl-ent">user</span>: <span class="pl-s">root</span> <span class="pl-ent">environment</span>: - <span class="pl-s"><span class="pl-pds">"</span>TZ=Europe/Berlin<span class="pl-pds">"</span></span> - <span class="pl-s"><span class="pl-pds">"</span>JAVA_OPTS=-Xmx512M -Xms256M<span class="pl-pds">"</span></span> <span class="pl-ent">ports</span>: - <span class="pl-s"><span class="pl-pds">"</span>58080:8080<span class="pl-pds">"</span></span> <span class="pl-ent">volumes</span>: - <span class="pl-s"><span class="pl-pds">"</span>/opt/jenkins:/var/jenkins_home<span class="pl-pds">"</span></span> <span class="pl-ent">links</span>: - <span class="pl-s">jenkins-agent</span> <span class="pl-ent">jenkins-agent</span>: <span class="pl-ent">container_name</span>: <span class="pl-s">jenkins-agent</span> <span class="pl-ent">image</span>: <span class="pl-s">zoeyvid/jenkins-ssh-agent</span> <span class="pl-ent">restart</span>: <span class="pl-s">always</span> <span class="pl-ent">environment</span>: - <span class="pl-s"><span class="pl-pds">"</span>TZ=Europe/Berlin<span class="pl-pds">"</span></span> - <span class="pl-s"><span class="pl-pds">"</span>JENKINS_AGENT_SSH_PUBKEY=ssh-rsa ABCDEFGHIJKLMNOPQRSTUVWXYZ<span class="pl-pds">"</span></span></pre></div>
+<h1><a id="user-content-jenkins-ssh-agent" class="anchor" aria-hidden="true" href="#jenkins-ssh-agent"><span aria-hidden="true" class="octicon octicon-link"></span></a>jenkins-ssh-agent</h1>
+<h2><a id="user-content-paths" class="anchor" aria-hidden="true" href="#paths"><span aria-hidden="true" class="octicon octicon-link"></span></a>Paths:</h2>
+<ul>
+<li>/usr/bin/git</li>
+<li>/usr/bin/git-lfs</li>
+<li>/home/jenkins/mvn</li>
+<li>/home/jenkins/mvn4</li>
+<li>/usr/lib/jvm/java-1.8.0-amazon-corretto</li>
+<li>/usr/lib/jvm/java-11-amazon-corretto</li>
+<li>/usr/lib/jvm/java-15-amazon-corretto</li>
+<li>/usr/lib/jvm/java-16-amazon-corretto</li>
+<li>/usr/lib/jvm/java-17-amazon-corretto</li>
+<li>/usr/lib/jvm/java-18-amazon-corretto</li>
+<li>/usr/lib/jvm/java-19-amazon-corretto</li>
+</ul>
+<h2><a id="user-content-composeyaml" class="anchor" aria-hidden="true" href="#composeyaml"><span aria-hidden="true" class="octicon octicon-link"></span></a>compose.yaml:</h2>
+<div class="highlight highlight-source-yaml"><pre><span class="pl-ent">version</span>: <span class="pl-s"><span class="pl-pds">"</span>3<span class="pl-pds">"</span></span>
+<span class="pl-ent">services</span>:
+    <span class="pl-ent">jenkins</span>:
+        <span class="pl-ent">container_name</span>: <span class="pl-s">jenkins</span>
+        <span class="pl-ent">image</span>: <span class="pl-s">jenkins/jenkins:alpine</span>
+        <span class="pl-ent">restart</span>: <span class="pl-s">always</span>
+        <span class="pl-ent">user</span>: <span class="pl-s">root</span>
+        <span class="pl-ent">environment</span>:
+        - <span class="pl-s"><span class="pl-pds">"</span>TZ=Europe/Berlin<span class="pl-pds">"</span></span>
+        - <span class="pl-s"><span class="pl-pds">"</span>JAVA_OPTS=-Xmx512M -Xms256M<span class="pl-pds">"</span></span>
+        <span class="pl-ent">ports</span>:
+        - <span class="pl-s"><span class="pl-pds">"</span>58080:8080<span class="pl-pds">"</span></span>
+        <span class="pl-ent">volumes</span>:
+        - <span class="pl-s"><span class="pl-pds">"</span>/opt/jenkins:/var/jenkins_home<span class="pl-pds">"</span></span>
+        <span class="pl-ent">links</span>:
+        - <span class="pl-s">jenkins-agent</span>
+
+    <span class="pl-ent">jenkins-agent</span>:
+        <span class="pl-ent">container_name</span>: <span class="pl-s">jenkins-agent</span>
+        <span class="pl-ent">image</span>: <span class="pl-s">zoeyvid/jenkins-ssh-agent</span>
+        <span class="pl-ent">restart</span>: <span class="pl-s">always</span>
+        <span class="pl-ent">environment</span>:
+        - <span class="pl-s"><span class="pl-pds">"</span>TZ=Europe/Berlin<span class="pl-pds">"</span></span>
+        - <span class="pl-s"><span class="pl-pds">"</span>JENKINS_AGENT_SSH_PUBKEY=ssh-rsa ABCDEFGHIJKLMNOPQRSTUVWXYZ<span class="pl-pds">"</span></span></pre></div>
