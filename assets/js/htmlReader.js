@@ -7,6 +7,8 @@ function readHTML (div, url) {
         document.getElementById(div).innerHTML = text
       })
       .then(() => {
+        if(div == "footer"){
         elementLoad()
+        }
       })
 }
