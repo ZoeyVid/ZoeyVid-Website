@@ -5,8 +5,14 @@
 @layer base {
     h1 {
       @apply text-2xl;
+      @apply font-bold;
+      @apply pt-2;
+      @apply pb-2;
     }
     h2 {
       @apply text-xl;
+      @apply font-bold;
+      @apply pt-2;
+      @apply pb-2;
     }
   }
