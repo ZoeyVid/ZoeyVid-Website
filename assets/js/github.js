@@ -31,6 +31,8 @@ function getProjekt() {
       Object.keys(json).forEach(element => {
         if(element == urlParams.get("projekt")){
           console.log(element)
+          exist = true
+          console.log(exist)
         }
       })
     })
