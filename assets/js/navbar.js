@@ -1,6 +1,6 @@
 function navbarLoad() {
 document.getElementById("navbar").classList.add("pb-4");
-console.log(document.getElementsByTagName('noscript')[0])
+document.getElementsByTagName('noscript')[0].remove();
 if(document.location.pathname == "/"){
   document.getElementById("navbar").classList.remove("pb-4");
   document.getElementById("navbarStartseite").classList.add("bg-gray-900");
