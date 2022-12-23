@@ -17,5 +17,6 @@
     }
     ul {
       @apply list-disc;
+      @apply pl-8;
     }
   }
