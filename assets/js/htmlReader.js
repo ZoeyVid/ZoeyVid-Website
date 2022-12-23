@@ -7,6 +7,6 @@ function readHTML (div, url) {
         document.getElementById(div).innerHTML = text
       })
       .then(() => {
-        navbarLoad()
+        elementLoad()
       })
 }
