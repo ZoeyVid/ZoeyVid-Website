@@ -7,7 +7,7 @@
 	  <title>Projekte - ZoeyVid</title>
 	  <link href="/assets/css/output.css" rel="stylesheet">
     <script src="/assets/js/htmlReader.js"></script>
-    <script src="/assets/js/navbar.js"></script>
+    <script src="/assets/js/elements.js"></script>
     <link rel="icon" type="image/webp" href="https://zvcdn.de/images/ZoeyVid-PB.webp">
     <script src="/assets/js/github.js"></script>
     <script>getAllRepos()</script>
@@ -15,9 +15,7 @@
 <body>
     <div id="navbar">
 		<script>
-				$(function () {
-				  $("#navbar").load("/assets/elements/navbar.html");
-				});
+				readHTML("navbar", "/assets/elements/navbar.html")
 		</script>
 	</div>
     <noscript>
@@ -43,9 +41,7 @@
     </div>
 	<div id="footer">
         <script>
-                $(function () {
-                  $("#footer").load("../assets/elements/footer.html");
-                })
+                readHTML("footer", "/assets/elements/footer.html")
         </script>
     </div>
 </body>
