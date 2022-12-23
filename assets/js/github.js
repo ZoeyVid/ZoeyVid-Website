@@ -32,6 +32,7 @@ function getProjekt() {
         if(element == urlParams.get("projekt")){
           exist = true
           document.title = element + " - ZoeyVid"
+          var description = document.createElement('meta');  description.setAttribute('name', 'description');  description.content = "TEST";  document.getElementsByTagName('head')[0].appendChild(description);
           // Set Description
         }
       })
