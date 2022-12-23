@@ -14,8 +14,8 @@ function getAllRepos() {
       return response.json()
     })
     .then((json) => {
-      Object.keys(JSON).forEach(element => {
-        document.getElementById("projekte").appendChild("<a href='https://zoeyvid.de/projekt?projekt=" + element + "'><div class='bg-gray-800 rounded-lg p-4 m-2'><h1 class='text-2xl font-bold'>" + element + "</h1><p class='text-gray-300'>" + json[element].description + "</p></div></a>")
+      Object.keys(json).forEach(element => {
+        document.getElementById("projekte").innerHTML += "<a href='https://zoeyvid.de/projekt?projekt=" + element + "'><div class='bg-gray-800 rounded-lg p-4 m-2'><h1 class='text-2xl font-bold'>" + element + "</h1><p class='text-gray-300'>" + json[element].description + "</p></div></a>"
       })
     })
 }
