@@ -29,6 +29,8 @@ function getProjekt() {
     })
     .then((json) => {
       Object.keys(json).forEach(element => {
+        console.log(element)
+        console.log(element.name)
         if(element.name == urlParams.get("projekt")){
           console.log(element)
         }
