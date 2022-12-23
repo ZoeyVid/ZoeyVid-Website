@@ -30,12 +30,13 @@ function getProjekt() {
     .then((json) => {
       Object.keys(json).forEach(element => {
         if(element == urlParams.get("projekt")){
-          console.log(element)
           exist = true
-          console.log(exist)
+          document.title = element + " - ZoeyVid"
+          // Set Description
         }
       })
+    }).then(() => {
+      if(!exist) window.location.href = "https://zoeyvid.de/"
+      readHTML("Projekt", "https://zoeyvid.de/assets/repos/" + urlParams.get("projekt") + ".html")
     })
-    if(!urlParams.get("projekt")) window.location.href = "https://zoeyvid.de/"
-    readHTML("Projekt", "https://zoeyvid.de/assets/repos/" + urlParams.get("projekt") + ".html")
 }
