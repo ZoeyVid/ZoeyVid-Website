@@ -6,10 +6,7 @@
   <meta name="description" content="Test" />
 	<title>TEST - ZoeyVid</title>
 	<link href="/assets/css/output.css" rel="stylesheet">
-	<script src="/assets/plugins/jquery.min.js"></script>
-    <script src="/assets/js/markdownReader.js"></script>
     <script src="/assets/js/htmlReader.js"></script>
-    <script src="/assets/plugins/marked.min.js"></script>
     <script src="/assets/js/navbar.js" defer></script>
     <link rel="icon" type="image/webp" href="https://zvcdn.de/images/ZoeyVid-PB.webp">
 </head>
@@ -56,9 +53,7 @@
     </div>
 	<div id="footer">
         <script>
-                $(function () {
-                  $("#footer").load("../assets/elements/footer.html");
-                })
+                readHTML("footer", "/assets/elements/footer.html")
         </script>
     </div>
 </body>

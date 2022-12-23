@@ -6,7 +6,6 @@
 	<meta name="description" content="Die Startseite der Webseite von ZoeyVid" />
 	<title>Startseite - ZoeyVid</title>
 	<link href="/assets/css/output.css" rel="stylesheet">
-	<script src="/assets/plugins/jquery.min.js"></script>
 	<script src="/assets/js/navbar.js"></script>
 	<script src="/assets/js/htmlReader.js"></script>
 	<script src="/assets/js/navbar.js"></script>
@@ -45,9 +44,7 @@
 	
 	<div id="footer">
 	<script>
-			$(function () {
-			  $("#footer").load("/assets/elements/footer.html");
-			});
+			readHTML("footer", "/assets/elements/footer.html")
 	</script>
 	</div>
 	<div id="verify">
