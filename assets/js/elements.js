@@ -36,7 +36,7 @@ function toggleMobile() {
 
 function git() {
   window.location.href =
-    "https://github.com/ZoeyVid/ZoeyVid-Webseite/edit/main" +
+    "https://github.com/ZoeyVid/ZoeyVid-Webseite/blob/main" +
     window.location.pathname +
     "index.html";
 }
