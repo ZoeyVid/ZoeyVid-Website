@@ -29,14 +29,14 @@ function getProjekt() {
     })
     .then((json) => {
       Object.keys(json).forEach(element => {
-        if(element == urlParams.get("projekt")){
+        if (element == urlParams.get("projekt")) {
           exist = true
           document.title = element + " - ZoeyVid"
-          var description = document.createElement('meta');  description.setAttribute('name', 'description');  description.content = json[element].description;  document.getElementsByTagName('head')[0].appendChild(description);
+          var description = document.createElement('meta'); description.setAttribute('name', 'description'); description.content = json[element].description; document.getElementsByTagName('head')[0].appendChild(description);
         }
       })
     }).then(() => {
-      if(!exist) window.location.href = "https://zoeyvid.de/"
+      if (!exist) window.location.href = "https://zoeyvid.de/"
       readHTML("Projekt", "https://zoeyvid.de/assets/repos/" + urlParams.get("projekt") + ".html")
     })
 }

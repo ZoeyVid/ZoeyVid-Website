@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -14,43 +15,49 @@
 	<script src="/assets/js/github.js"></script>
 	<script>countAllRepos()</script>
 </head>
+
 <body>
 	<div id="navbar">
 		<script>
-				readHTML("navbar", "/assets/elements/navbar.html")
+			readHTML("navbar", "/assets/elements/navbar.html")
 		</script>
 	</div>
 	<noscript>
-    <style type="text/css">
-        .pagecontainer {display:none;}
-        body {
-          background-color: black;
-          color: white;
-        }
-        .noscriptmsg {
-          margin: 0;
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          	transform: translate(-50%, -50%);
-        		}
-    		</style>
+		<style type="text/css">
+			.pagecontainer {
+				display: none;
+			}
+
+			body {
+				background-color: black;
+				color: white;
+			}
+
+			.noscriptmsg {
+				margin: 0;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+			}
+		</style>
 		<div class="noscriptmsg">
-        		Please enable Javascript. You need it to visit this site!
-    		</div>
+			Please enable Javascript. You need it to visit this site!
+		</div>
 	</noscript>
-	<img src="https://zvcdn.de/images/ZoeyVid-Banner.webp"  class="w-full h-auto" alt="Banner">
-	
+	<img src="https://zvcdn.de/images/ZoeyVid-Banner.webp" class="w-full h-auto" alt="Banner">
+
 	<div id="footer">
-	<script>
+		<script>
 			readHTML("footer", "/assets/elements/footer.html")
-	</script>
+		</script>
 	</div>
 	<div id="verify">
-        	<a rel="me" href="https://social.zoeyvid.de/@Zoey">Mastodon</a>
-        	<a rel="me" href="https://social.zoeyvid.de/@David">Mastodon</a>
-        	<a rel="me" href="https://social.zoeyvid.de/@ZoeyVid">Mastodon</a>
-			<script> document.getElementById("verify").style.display = "none" </script>
-    </div>
+		<a rel="me" href="https://social.zoeyvid.de/@Zoey">Mastodon</a>
+		<a rel="me" href="https://social.zoeyvid.de/@David">Mastodon</a>
+		<a rel="me" href="https://social.zoeyvid.de/@ZoeyVid">Mastodon</a>
+		<script> document.getElementById("verify").style.display = "none" </script>
+	</div>
 </body>
+
 </html>
