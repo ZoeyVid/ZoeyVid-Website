@@ -16,4 +16,9 @@
     @apply pt-2;
     @apply pb-2;
   }
+
+  ul {
+    @apply list-disc;
+    @apply pl-8;
+  }
 }

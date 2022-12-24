@@ -422,11 +422,22 @@ video {
 h1 {
   font-size: 1.5rem;
   line-height: 2rem;
+  font-weight: 700;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 h2 {
   font-size: 1.25rem;
   line-height: 1.75rem;
+  font-weight: 700;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+ul {
+  list-style-type: disc;
+  padding-left: 2rem;
 }
 
 *, ::before, ::after {
@@ -669,6 +680,10 @@ h2 {
 
 .transform {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.list-none {
+  list-style-type: none;
 }
 
 .flex-wrap {

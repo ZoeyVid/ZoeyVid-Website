@@ -60,8 +60,8 @@
     "html_url": "https://github.com/ZoeyVid/ZoeyVidHandy-Bot",
     "readme": "https://zoeyvid.de/assets/repos/ZoeyVidHandy-Bot.html",
     "fork": "false",
-    "description": "The Bot of the SanCraftHandy Discord Server!",
-    "homepage": "https://sancraft.dev/dc"
+    "description": "The Bot of the ZoeyVidHandy Discord Server!",
+    "homepage": "https://zoeyvid.de/dc"
   },
   "cloudflared": {
     "name": "cloudflared",
