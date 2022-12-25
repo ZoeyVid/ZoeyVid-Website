@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  @apply flex ;
+  @apply flex-col;
+  @apply min-h-screen;
+}
+
 @layer base {
   h1 {
     @apply text-2xl;
