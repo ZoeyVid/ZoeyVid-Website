@@ -732,12 +732,6 @@ ul {
   background-color: rgb(17 24 39 / var(--tw-bg-opacity));
 }
 
-.from-zv-green {
-  --tw-gradient-from: #296236;
-  --tw-gradient-to: rgb(41 98 54 / 0);
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-}
-
 .p-4 {
   padding: 1rem;
 }
@@ -831,10 +825,16 @@ ul {
 
 html {
   height: 100%;
+  --tw-gradient-from: #296236;
+  --tw-gradient-to: rgb(41 98 54 / 0);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
 body {
   height: 100%;
+  --tw-gradient-from: #296236;
+  --tw-gradient-to: rgb(41 98 54 / 0);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
 .hover\:bg-gray-700:hover {
