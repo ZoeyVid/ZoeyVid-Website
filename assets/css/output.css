@@ -718,10 +718,6 @@ ul {
   margin-bottom: calc(0.25rem * var(--tw-space-y-reverse));
 }
 
-.self-center {
-  align-self: center;
-}
-
 .rounded-md {
   border-radius: 0.375rem;
 }
@@ -790,6 +786,10 @@ ul {
 
 .pt-4 {
   padding-top: 1rem;
+}
+
+.align-middle {
+  vertical-align: middle;
 }
 
 .text-sm {
