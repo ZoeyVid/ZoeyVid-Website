@@ -2,14 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  @apply h-full;
-  @apply from-zv-green;
-}
-body {
-  @apply h-full;
-  @apply from-zv-green;
-}
+@apply h-full;
+@apply from-zv-green;
 
 @layer base {
   h1 {
