@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply bg-[#296236];
-}
-
 @layer base {
   h1 {
     @apply text-2xl;
