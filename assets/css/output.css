@@ -823,20 +823,6 @@ ul {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
-html {
-  height: 100%;
-  --tw-gradient-from: #296236;
-  --tw-gradient-to: rgb(41 98 54 / 0);
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-}
-
-body {
-  height: 100%;
-  --tw-gradient-from: #296236;
-  --tw-gradient-to: rgb(41 98 54 / 0);
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-}
-
 .hover\:bg-gray-700:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(55 65 81 / var(--tw-bg-opacity));
