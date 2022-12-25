@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  @apply min-h-screen;
+  @apply bg-gradient-to-b;
+  @apply from-zv-green;
+  @apply to-zv-green;
+}
+
 @layer base {
   h1 {
     @apply text-2xl;
