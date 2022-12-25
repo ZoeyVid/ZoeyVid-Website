@@ -15,8 +15,10 @@ function getAllRepos() {
     })
     .then((json) => {
       document.getElementById("Projekte").classList.add("flex");
+      document.getElementById("Projekte").classList.add("space-x-4");
+      document.getElementById("Projekte").classList.add("space-y-4");
       Object.keys(json).forEach(element => {
-        document.getElementById("Projekte").innerHTML += "<a href='https://zoeyvid.de/projekt?projekt=" + element + "' class='text-white p-4'><div class='bg-gray-800 rounded-lg p-4 m-2 w-1/3'><h1 class='text-2xl font-bold'>" + element + "</h1><p class='text-gray-300'>" + json[element].description + "</p></div></a>"
+        document.getElementById("Projekte").innerHTML += "<a href='https://zoeyvid.de/projekt?projekt=" + element + "' class='text-white'><div class='bg-gray-800 rounded-lg p-4 m-2 w-1/3'><h1 class='text-2xl font-bold'>" + element + "</h1><p class='text-gray-300'>" + json[element].description + "</p></div></a>"
       })
     })
 }
