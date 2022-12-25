@@ -618,6 +618,10 @@ ul {
   margin-right: 1rem;
 }
 
+.mt-auto {
+  margin-top: auto;
+}
+
 .block {
   display: block;
 }
