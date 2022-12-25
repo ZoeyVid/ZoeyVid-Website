@@ -832,7 +832,7 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .hover\:bg-gray-700:hover {
