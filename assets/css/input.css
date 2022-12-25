@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 body {
-  @apply flex ;
+  @apply flex;
   @apply flex-col;
-  @apply min-h-screen;
+  @apply h-screen;
 }
 
 @layer base {
