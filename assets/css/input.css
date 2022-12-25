@@ -6,6 +6,7 @@ body {
   @apply flex;
   @apply flex-col;
   @apply h-screen;
+  @apply justify-between;
 }
 
 @layer base {
