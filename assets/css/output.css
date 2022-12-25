@@ -642,10 +642,6 @@ ul {
   display: none;
 }
 
-.h-auto {
-  height: auto;
-}
-
 .h-16 {
   height: 4rem;
 }
@@ -658,8 +654,8 @@ ul {
   height: 2.5rem;
 }
 
-.w-full {
-  width: 100%;
+.w-screen {
+  width: 100vw;
 }
 
 .w-6 {
