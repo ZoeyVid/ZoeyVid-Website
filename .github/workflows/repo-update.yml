@@ -28,7 +28,7 @@ jobs:
          for repo in $(curl -sl https://api.github.com/orgs/$user/repos --header "authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" | jq -r ".[].name" | grep -v .github | grep -Pv \"\|$(curl -sl https://api.github.com/orgs/$user/repos --header "authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" | jq ".[] | select(.archived==true)" | jq -r ".name" | paste -s -d "|")\|\" | sort -r | head -n 1); do echo \"$repo\": { \"name\": \"$repo\", \"html_url\": \"$(curl -sl https://api.github.com/repos/$user/$repo --header "authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" | jq -r '.html_url')\", \"readme\": \"https://$domain/$path/$repo.html\", \"fork\": \"$(curl -sl https://api.github.com/repos/$user/$repo --header "authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" | jq -r '.fork')\", \"description\": \"$(curl -sl https://api.github.com/repos/$user/$repo --header "authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" | jq -r '.description')\", \"homepage\": \"$(curl -sl https://api.github.com/repos/$user/$repo --header "authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" | jq -r '.homepage')\"} | tee -a $path/repos.json; done;
          echo } | tee -a $path/repos.json
          jq . $path/repos.json | tee $path/index.json
-         sed -i "s|null||g" $path/index.json
+         sed -i "s|\"null\"|\"\"|g" $path/index.json
          rm -rf $path/repos.json
 #         yq -P $path/index.json | tee $path/index.yaml
          
