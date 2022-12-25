@@ -4,7 +4,7 @@ function elementLoad() {
   document.getElementsByTagName('noscript')[0].remove();
   if (document.location.pathname == "/") {
     document.getElementById("navbar").classList.remove("pb-4");
-    document.getElementById("footer").classList.remove("pb-4");
+    document.getElementById("footer").classList.remove("pt-4");
     document.getElementById("navbarStartseite").classList.add("bg-gray-900");
     document.getElementById("navbarStartseite").classList.replace("text-gray-300", "text-white");
     document.getElementById("navbarStartseite").classList.remove("hover:bg-gray-700");
