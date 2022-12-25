@@ -1,7 +1,6 @@
 function elementLoad() {
   document.getElementById("navbar").classList.add("pb-4");
   document.getElementById("footer").classList.add("pt-4");
-  document.getElementById("footer").classList.add("justify-self-end");
   document.getElementsByTagName('noscript')[0].remove();
   if (document.location.pathname == "/") {
     document.getElementById("navbar").classList.remove("pb-4");
