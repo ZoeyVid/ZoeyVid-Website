@@ -2,11 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
+body {
   @apply min-h-screen;
-  @apply bg-gradient-to-b;
-  @apply from-zv-green;
-  @apply to-zv-green;
+  @apply bg-[#296236];
 }
 
 @layer base {
