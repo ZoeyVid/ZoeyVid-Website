@@ -714,6 +714,10 @@ ul {
   margin-bottom: calc(0.25rem * var(--tw-space-y-reverse));
 }
 
+.justify-self-end {
+  justify-self: end;
+}
+
 .rounded-md {
   border-radius: 0.375rem;
 }
