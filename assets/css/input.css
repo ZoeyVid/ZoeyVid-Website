@@ -2,9 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@apply h-full;
-@apply from-zv-green;
-
 @layer base {
   h1 {
     @apply text-2xl;
