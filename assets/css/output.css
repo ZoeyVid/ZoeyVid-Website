@@ -823,13 +823,10 @@ ul {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
-html {
+body {
   min-height: 100vh;
-  background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
-  --tw-gradient-from: #296236;
-  --tw-gradient-to: rgb(41 98 54 / 0);
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-  --tw-gradient-to: #296236;
+  --tw-bg-opacity: 1;
+  background-color: rgb(41 98 54 / var(--tw-bg-opacity));
 }
 
 .hover\:bg-gray-700:hover {
