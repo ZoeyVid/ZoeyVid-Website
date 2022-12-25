@@ -824,7 +824,6 @@ ul {
 }
 
 body {
-  min-height: 100vh;
   --tw-bg-opacity: 1;
   background-color: rgb(41 98 54 / var(--tw-bg-opacity));
 }
