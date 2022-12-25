@@ -5,11 +5,7 @@ module.exports = {
   ],
   darkMode: 'true',
   theme: {
-    extend: {
-      colors: {
-        'zv-green': '#296236',
-      },
-    }
+    extend: {},
   },
   plugins: [],
 }
