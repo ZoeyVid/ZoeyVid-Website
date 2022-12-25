@@ -26,9 +26,6 @@ function elementLoad() {
     document.getElementById("navbarProjekteMobile").classList.remove("hover:bg-gray-700");
     document.getElementById("navbarProjekteMobile").classList.remove("hover:text-white");
   }
-  if (document.location.pathname.startsWith("/projekte")) {
-    document.getElementById("footer").classList.remove("mt-auto");
-  }
 }
 
 function toggleMobile() {
