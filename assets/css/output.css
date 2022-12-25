@@ -666,6 +666,10 @@ ul {
   width: auto;
 }
 
+.w-1\/2 {
+  width: 50%;
+}
+
 .max-w-7xl {
   max-width: 80rem;
 }
