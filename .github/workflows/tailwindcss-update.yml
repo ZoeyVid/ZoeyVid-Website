@@ -18,7 +18,7 @@ jobs:
         with:
           input: assets/css/input.css
           output: assets/css/output.css
-          plugins: "@tailwindcss/forms cross-env"
+          plugins: "@tailwindcss/forms"
           
       - name: push changes
         run: |
