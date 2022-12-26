@@ -5,8 +5,8 @@
 body {
   @apply flex;
   @apply flex-col;
-  @apply min-h-full;
-  @apply min-w-full;
+  @apply min-h-screen;
+  @apply min-w-screen;
 }
 
 @layer base {
