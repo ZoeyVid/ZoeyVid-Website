@@ -4,9 +4,9 @@
 
 body {
   @apply flex;
-  /* @apply flex-col; 
-  @apply w-screen; */
-  @apply h-screen;
+  @apply flex-col;
+  @apply w-screen;
+  @apply min-h-screen;
 }
 
 @layer base {
