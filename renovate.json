@@ -5,5 +5,6 @@
   "baseBranches": [],
   "includeForks": true,
   "automerge": true,
-  "branchPrefix": "renovate-deps-update-"
+  "branchPrefix": "renovate-deps-update-",
+  "rangeStrategy": "pin"
 }
