@@ -829,8 +829,8 @@ ul {
 }
 
 body {
-  /* @apply flex;
-  @apply flex-col; 
+  display: flex;
+  /* @apply flex-col; 
   @apply w-screen; */
   height: 100vh;
 }
