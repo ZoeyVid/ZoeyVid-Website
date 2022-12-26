@@ -16,8 +16,8 @@ jobs:
       - name: update tailwindcss
         uses: ZoeyVid/tailwindcss-update@main
         with:
-          input: src/input.css
-          output: src/output.css
+          input: assets/css/input.css
+          output: assets/css/output.css
           plugins: "@tailwindcss/forms"
           
       - name: push changes
