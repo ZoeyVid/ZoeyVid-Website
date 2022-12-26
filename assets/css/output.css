@@ -830,9 +830,9 @@ ul {
 
 body {
   display: flex;
-  /* @apply flex-col; 
-  @apply w-screen; */
-  height: 100vh;
+  flex-direction: column;
+  width: 100vw;
+  min-height: 100vh;
 }
 
 .hover\:bg-gray-700:hover {
