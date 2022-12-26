@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 body {
-  /* @apply flex;
-  @apply flex-col; 
+  @apply flex;
+  /* @apply flex-col; 
   @apply w-screen; */
   @apply h-screen;
 }
