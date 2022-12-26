@@ -16,15 +16,15 @@
         <span class="pl-ent">uses</span>: <span class="pl-s">actions/checkout@v3</span>
 
       - <span class="pl-ent">name</span>: <span class="pl-s">update tailwindcss</span>
-        <span class="pl-ent">uses</span>: <span class="pl-s">ZoeyVid/tailwindcss-update@develop</span>
+        <span class="pl-ent">uses</span>: <span class="pl-s">ZoeyVid/tailwindcss-update@main</span>
         <span class="pl-ent">with</span>:
           <span class="pl-ent">input</span>: <span class="pl-s">src/input.css</span>
           <span class="pl-ent">output</span>: <span class="pl-s">src/output.css</span>
+          <span class="pl-ent">plugins</span>: <span class="pl-s"><span class="pl-pds">"</span>@tailwindcss/forms<span class="pl-pds">"</span></span>
           
       - <span class="pl-ent">name</span>: <span class="pl-s">push changes</span>
         <span class="pl-ent">run</span>: <span class="pl-s">|</span>
 <span class="pl-s">          git config user.name "GitHub"</span>
 <span class="pl-s">          git config user.email "noreply@github.com"</span>
-<span class="pl-s">          git add -A</span>
 <span class="pl-s">          git diff-index --quiet HEAD || git commit -sm "tailwindcss-update"</span>
 <span class="pl-s">          git push</span></pre></div>
