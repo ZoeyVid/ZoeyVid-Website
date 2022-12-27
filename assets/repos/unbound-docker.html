@@ -1,77 +1,76 @@
 <meta charset=utf-8>
 <h1><a id="user-content-unbound-docker" class="anchor" aria-hidden="true" href="#unbound-docker"><span aria-hidden="true" class="octicon octicon-link"></span></a>unbound-docker</h1>
-<pre lang="yml"><code>version: "3"
-services:
-    adguardhome:
-        container_name: adguardhome
-        image: adguard/adguardhome
-        restart: always
-        ports:
-        - "80:80/tcp" # http web
-        - "443:443/tcp" # https web / DoH
-        - "443:443/udp" # https web (HTTP/3-QUIC) / DoH3
-        - "127.0.0.1:53:53/tcp" # plain DNS
-        - "127.0.0.1:53:53/udp" # plain DNS
-        - "853:853/tcp" # DNS-over-TLS
-        - "853:853/udp" # DNS-over-QUIC
-#        - "784:784/udp" # DNS-over-QUIC
-#        - "8853:8853/udp" # DNS-over-QUIC
-#        - "5443:5443/tcp" # DNSCrypt
-#        - "5443:5443/udp" # DNSCrypt
-#        - "67:67/udp" # DHCP server
-#        - "68:68/udp" # DHCP server
-        - "3000:3000/tcp" # Only needed for the first time Setup
-        volumes:
-        - "/opt/adgh/work:/opt/adguardhome/work"
-        - "/opt/adgh/conf:/opt/adguardhome/conf"
-        - "/etc/ssl/fullchain-dns.pem:/etc/ssl/fullchain-dns.pem:ro"
-        - "/etc/ssl/privkey-dns.pem:/etc/ssl/privkey-dns.pem:ro"
-        dns:
-        - 9.9.9.9
-        - 149.112.112.112
-        - 2620:fe::fe
-        - 2620:fe::fe:9
-        - 1.1.1.2
-        - 1.0.0.2
-        - 2606:4700:4700::1112
-        - 2606:4700:4700::1002
-        - 94.140.14.14
-        - 94.140.15.15
-        - 2a10:50c0::ad1:ff
-        - 2a10:50c0::ad2:ff
-        depends_on:
-        - unbound
-        links:
-        - unbound
-        networks:
-          unbound:
+<div class="highlight highlight-source-yaml"><pre><span class="pl-ent">version</span>: <span class="pl-s"><span class="pl-pds">"</span>3<span class="pl-pds">"</span></span>
+<span class="pl-ent">services</span>:
+    <span class="pl-ent">adguardhome</span>:
+        <span class="pl-ent">container_name</span>: <span class="pl-s">adguardhome</span>
+        <span class="pl-ent">image</span>: <span class="pl-s">adguard/adguardhome</span>
+        <span class="pl-ent">restart</span>: <span class="pl-s">always</span>
+        <span class="pl-ent">ports</span>:
+        - <span class="pl-s"><span class="pl-pds">"</span>80:80/tcp<span class="pl-pds">"</span></span> <span class="pl-c"><span class="pl-c">#</span> http web</span>
+        - <span class="pl-s"><span class="pl-pds">"</span>443:443/tcp<span class="pl-pds">"</span></span> <span class="pl-c"><span class="pl-c">#</span> https web / DoH</span>
+        - <span class="pl-s"><span class="pl-pds">"</span>443:443/udp<span class="pl-pds">"</span></span> <span class="pl-c"><span class="pl-c">#</span> https web (HTTP/3-QUIC) / DoH3</span>
+        - <span class="pl-s"><span class="pl-pds">"</span>127.0.0.1:53:53/tcp<span class="pl-pds">"</span></span> <span class="pl-c"><span class="pl-c">#</span> plain DNS</span>
+        - <span class="pl-s"><span class="pl-pds">"</span>127.0.0.1:53:53/udp<span class="pl-pds">"</span></span> <span class="pl-c"><span class="pl-c">#</span> plain DNS</span>
+        - <span class="pl-s"><span class="pl-pds">"</span>853:853/tcp<span class="pl-pds">"</span></span> <span class="pl-c"><span class="pl-c">#</span> DNS-over-TLS</span>
+        - <span class="pl-s"><span class="pl-pds">"</span>853:853/udp<span class="pl-pds">"</span></span> <span class="pl-c"><span class="pl-c">#</span> DNS-over-QUIC</span>
+<span class="pl-c"><span class="pl-c">#</span>        - "784:784/udp" # DNS-over-QUIC</span>
+<span class="pl-c"><span class="pl-c">#</span>        - "8853:8853/udp" # DNS-over-QUIC</span>
+<span class="pl-c"><span class="pl-c">#</span>        - "5443:5443/tcp" # DNSCrypt</span>
+<span class="pl-c"><span class="pl-c">#</span>        - "5443:5443/udp" # DNSCrypt</span>
+<span class="pl-c"><span class="pl-c">#</span>        - "67:67/udp" # DHCP server</span>
+<span class="pl-c"><span class="pl-c">#</span>        - "68:68/udp" # DHCP server</span>
+        - <span class="pl-s"><span class="pl-pds">"</span>3000:3000/tcp<span class="pl-pds">"</span></span> <span class="pl-c"><span class="pl-c">#</span> Only needed for the first time Setup</span>
+        <span class="pl-ent">volumes</span>:
+        - <span class="pl-s"><span class="pl-pds">"</span>/opt/adgh/work:/opt/adguardhome/work<span class="pl-pds">"</span></span>
+        - <span class="pl-s"><span class="pl-pds">"</span>/opt/adgh/conf:/opt/adguardhome/conf<span class="pl-pds">"</span></span>
+        - <span class="pl-s"><span class="pl-pds">"</span>/etc/ssl/fullchain-dns.pem:/etc/ssl/fullchain-dns.pem:ro<span class="pl-pds">"</span></span>
+        - <span class="pl-s"><span class="pl-pds">"</span>/etc/ssl/privkey-dns.pem:/etc/ssl/privkey-dns.pem:ro<span class="pl-pds">"</span></span>
+        <span class="pl-ent">dns</span>:
+        - <span class="pl-s">9.9.9.9</span>
+        - <span class="pl-s">149.112.112.112</span>
+        - <span class="pl-s">2620:fe::fe</span>
+        - <span class="pl-s">2620:fe::fe:9</span>
+        - <span class="pl-s">1.1.1.2</span>
+        - <span class="pl-s">1.0.0.2</span>
+        - <span class="pl-s">2606:4700:4700::1112</span>
+        - <span class="pl-s">2606:4700:4700::1002</span>
+        - <span class="pl-s">94.140.14.14</span>
+        - <span class="pl-s">94.140.15.15</span>
+        - <span class="pl-s">2a10:50c0::ad1:ff</span>
+        - <span class="pl-s">2a10:50c0::ad2:ff</span>
+        <span class="pl-ent">depends_on</span>:
+        - <span class="pl-s">unbound</span>
+        <span class="pl-ent">links</span>:
+        - <span class="pl-s">unbound</span>
+        <span class="pl-ent">networks</span>:
+          <span class="pl-ent">unbound</span>:
 
-    unbound:
-        container_name: adguardhome-unbound
-        image: zoeyvid/unbound-docker
-        restart: always
-        dns:
-        - 9.9.9.9
-        - 149.112.112.112
-        - 2620:fe::fe
-        - 2620:fe::fe:9
-        - 1.1.1.2
-        - 1.0.0.2
-        - 2606:4700:4700::1112
-        - 2606:4700:4700::1002
-        - 94.140.14.14
-        - 94.140.15.15
-        - 2a10:50c0::ad1:ff
-        - 2a10:50c0::ad2:ff
-        networks:
-          unbound:
-            ipv4_address: 172.16.16.2
+    <span class="pl-ent">unbound</span>:
+        <span class="pl-ent">container_name</span>: <span class="pl-s">adguardhome-unbound</span>
+        <span class="pl-ent">image</span>: <span class="pl-s">zoeyvid/unbound-docker</span>
+        <span class="pl-ent">restart</span>: <span class="pl-s">always</span>
+        <span class="pl-ent">dns</span>:
+        - <span class="pl-s">9.9.9.9</span>
+        - <span class="pl-s">149.112.112.112</span>
+        - <span class="pl-s">2620:fe::fe</span>
+        - <span class="pl-s">2620:fe::fe:9</span>
+        - <span class="pl-s">1.1.1.2</span>
+        - <span class="pl-s">1.0.0.2</span>
+        - <span class="pl-s">2606:4700:4700::1112</span>
+        - <span class="pl-s">2606:4700:4700::1002</span>
+        - <span class="pl-s">94.140.14.14</span>
+        - <span class="pl-s">94.140.15.15</span>
+        - <span class="pl-s">2a10:50c0::ad1:ff</span>
+        - <span class="pl-s">2a10:50c0::ad2:ff</span>
+        <span class="pl-ent">networks</span>:
+          <span class="pl-ent">unbound</span>:
+            <span class="pl-ent">ipv4_address</span>: <span class="pl-s">172.16.16.2</span>
         
-networks:
-  unbound:
-    ipam:
-      driver: default
-      config:
-      - subnet: 172.16.16.0/24
-</code></pre>
+<span class="pl-ent">networks</span>:
+  <span class="pl-ent">unbound</span>:
+    <span class="pl-ent">ipam</span>:
+      <span class="pl-ent">driver</span>: <span class="pl-s">default</span>
+      <span class="pl-ent">config</span>:
+      - <span class="pl-ent">subnet</span>: <span class="pl-s">172.16.16.0/24</span></pre></div>
 <p>Then use only <code>172.16.16.2</code> as your upstream server in AdGuard Home!</p>
