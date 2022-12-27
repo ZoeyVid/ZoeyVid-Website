@@ -1,38 +1,41 @@
 <meta charset=utf-8>
 <h1><a id="user-content-cloudflared-dns" class="anchor" aria-hidden="true" href="#cloudflared-dns"><span aria-hidden="true" class="octicon octicon-link"></span></a>Cloudflared-DNS</h1>
-<div class="highlight highlight-source-yaml"><pre><span class="pl-ent">version</span>: <span class="pl-s"><span class="pl-pds">"</span>3<span class="pl-pds">"</span></span>
-<span class="pl-ent">services</span>:
-    <span class="pl-ent">cloudflared</span>:
-        <span class="pl-ent">container_name</span>: <span class="pl-s">cloudflared-dns</span>
-        <span class="pl-ent">image</span>: <span class="pl-s">zoeyvid/cloudflared-dns</span>
-        <span class="pl-ent">restart</span>: <span class="pl-s">always</span>
-        <span class="pl-ent">ports</span>:
-        - <span class="pl-s"><span class="pl-pds">"</span>127.0.0.1:53:53<span class="pl-pds">"</span></span>
-        - <span class="pl-s"><span class="pl-pds">"</span>127.0.0.1:53:53/udp<span class="pl-pds">"</span></span>
-        - <span class="pl-s"><span class="pl-pds">"</span>[::1]:53:53<span class="pl-pds">"</span></span>
-        - <span class="pl-s"><span class="pl-pds">"</span>[::1]:53:53/udp<span class="pl-pds">"</span></span>
-        <span class="pl-ent">environment</span>:
-        - <span class="pl-s"><span class="pl-pds">"</span>TZ=Europe/Berlin<span class="pl-pds">"</span></span>
-        - <span class="pl-s"><span class="pl-pds">"</span>upstream=https://dns.adguard-dns.com/dns-query<span class="pl-pds">"</span></span>
-<span class="pl-c"><span class="pl-c">#</span>        entrypoint: cloudflared</span>
-<span class="pl-c"><span class="pl-c">#</span>        command: --no-autoupdate # command to execute after cloudflared --no-autoupdate</span>
-        <span class="pl-ent">dns</span>:
-        - <span class="pl-s">9.9.9.9</span>
-        - <span class="pl-s">149.112.112.112</span>
-        - <span class="pl-s">2620:fe::fe</span>
-        - <span class="pl-s">2620:fe::fe:9</span>
-        - <span class="pl-s">1.1.1.2</span>
-        - <span class="pl-s">1.0.0.2</span>
-        - <span class="pl-s">2606:4700:4700::1112</span>
-        - <span class="pl-s">2606:4700:4700::1002</span>
-        - <span class="pl-s">94.140.14.14</span>
-        - <span class="pl-s">94.140.15.15</span>
-        - <span class="pl-s">2a10:50c0::ad1:ff</span>
-        - <span class="pl-s">2a10:50c0::ad2:ff</span></pre></div>
+<pre lang="yml"><code>version: "3"
+services:
+    cloudflared:
+        container_name: cloudflared-dns
+        image: zoeyvid/cloudflared-dns
+        restart: always
+        ports:
+        - "127.0.0.1:53:53"
+        - "127.0.0.1:53:53/udp"
+        - "[::1]:53:53"
+        - "[::1]:53:53/udp"
+        environment:
+        - "TZ=Europe/Berlin"
+        - "upstream=https://dns.adguard-dns.com/dns-query"
+#        entrypoint: cloudflared
+#        command: --no-autoupdate # command to execute after cloudflared --no-autoupdate
+        dns:
+        - 9.9.9.9
+        - 149.112.112.112
+        - 2620:fe::fe
+        - 2620:fe::fe:9
+        - 1.1.1.2
+        - 1.0.0.2
+        - 2606:4700:4700::1112
+        - 2606:4700:4700::1002
+        - 94.140.14.14
+        - 94.140.15.15
+        - 2a10:50c0::ad1:ff
+        - 2a10:50c0::ad2:ff
+</code></pre>
 <br>
 Or run: 
-<div class="highlight highlight-source-shell"><pre>docker run -e <span class="pl-s"><span class="pl-pds">"</span>TZ=Europe/Berlin<span class="pl-pds">"</span></span> -e <span class="pl-s"><span class="pl-pds">"</span>upstream=https://dns.adguard-dns.com/dns-query<span class="pl-pds">"</span></span> -p <span class="pl-s"><span class="pl-pds">"</span>127.0.0.1:53:53<span class="pl-pds">"</span></span> -p <span class="pl-s"><span class="pl-pds">"</span>127.0.0.1:53:53/udp<span class="pl-pds">"</span></span> -p <span class="pl-s"><span class="pl-pds">"</span>[::1]:53:53<span class="pl-pds">"</span></span> -p <span class="pl-s"><span class="pl-pds">"</span>[::1]:53:53/udp<span class="pl-pds">"</span></span> --restart always --name cloudflared-dns --dns 9.9.9.9 --dns 149.112.112.112 --dns 2620:fe::fe --dns 2620:fe::fe:9 --dns 1.1.1.2 --dns 1.0.0.2 --dns 2606:4700:4700::1112 --dns 2606:4700:4700::1002 --dns 94.140.14.14 --dns 94.140.15.15 --dns 2a10:50c0::ad1:ff --dns 2a10:50c0::ad2:ff zoeyvid/cloudflared-dns</pre></div>
+<pre lang="sh"><code>docker run -e "TZ=Europe/Berlin" -e "upstream=https://dns.adguard-dns.com/dns-query" -p "127.0.0.1:53:53" -p "127.0.0.1:53:53/udp" -p "[::1]:53:53" -p "[::1]:53:53/udp" --restart always --name cloudflared-dns --dns 9.9.9.9 --dns 149.112.112.112 --dns 2620:fe::fe --dns 2620:fe::fe:9 --dns 1.1.1.2 --dns 1.0.0.2 --dns 2606:4700:4700::1112 --dns 2606:4700:4700::1002 --dns 94.140.14.14 --dns 94.140.15.15 --dns 2a10:50c0::ad1:ff --dns 2a10:50c0::ad2:ff zoeyvid/cloudflared-dns
+</code></pre>
 <h2><a id="user-content-disable-resolved-used-on-debian" class="anchor" aria-hidden="true" href="#disable-resolved-used-on-debian"><span aria-hidden="true" class="octicon octicon-link"></span></a>Disable resolved (used on debian)</h2>
-<div class="highlight highlight-source-shell"><pre>systemctl disable --now systemd-resolved
+<pre lang="sh"><code>systemctl disable --now systemd-resolved
 rm -rf /etc/resolv.conf
-<span class="pl-c1">echo</span> nameserver 127.0.0.1 <span class="pl-k">&gt;&gt;</span> /etc/resolv.conf</pre></div>
+echo nameserver 127.0.0.1 &gt;&gt; /etc/resolv.conf
+</code></pre>
