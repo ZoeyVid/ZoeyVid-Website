@@ -13,13 +13,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: update tailwindcss
+      - name: update tailwindcss (minify)
         uses: ZoeyVid/tailwindcss-update@main
         with:
           input: assets/css/input.css
           output: assets/css/output.css
           plugins: "@tailwindcss/forms"
           params: "--minify"
+
+      - name: update tailwindcss
+        uses: ZoeyVid/tailwindcss-update@main
+        with:
+          input: assets/css/input.css
+          output: assets/css/full.css
+          plugins: "@tailwindcss/forms"
           
       - name: push changes
         run: |
