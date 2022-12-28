@@ -111,26 +111,28 @@ if (!-f $document_root$fastcgi_script_name) {return 404;}
 <ol start="2">
 <li>Create a compose.yaml file similar to this (or use it as a portainer stack):</li>
 </ol>
-<div class="highlight highlight-source-yaml"><pre><span class="pl-ent">version</span>: <span class="pl-s"><span class="pl-pds">"</span>3<span class="pl-pds">"</span></span>
-<span class="pl-ent">services</span>:
-    <span class="pl-ent">nginx-proxy-manager</span>:
-        <span class="pl-ent">container_name</span>: <span class="pl-s">nginx-proxy-manager</span>
-        <span class="pl-ent">image</span>: <span class="pl-s">zoeyvid/nginx-proxy-manager</span>
-        <span class="pl-ent">restart</span>: <span class="pl-s">always</span>
-        <span class="pl-ent">network_mode</span>: <span class="pl-s">host</span>
-        <span class="pl-ent">volumes</span>:
-        - <span class="pl-s"><span class="pl-pds">"</span>/opt/npm:/data<span class="pl-pds">"</span></span>
-        - <span class="pl-s"><span class="pl-pds">"</span>/opt/npm-letsencrypt:/etc/letsencrypt<span class="pl-pds">"</span></span> <span class="pl-c"><span class="pl-c">#</span> Only needed for first time migration from original nginx-proxy-manager to this fork</span>
-        - <span class="pl-s"><span class="pl-pds">"</span>/var/www:/var/www<span class="pl-pds">"</span></span> <span class="pl-c"><span class="pl-c">#</span> optional, if you want to use it as webserver for html</span>
-        <span class="pl-ent">environment</span>:
-        - <span class="pl-s"><span class="pl-pds">"</span>TZ=Europe/Berlin<span class="pl-pds">"</span></span>
-<span class="pl-c"><span class="pl-c">#</span>        - "NGINX_LOG_NOT_FOUND=true" # Allow logging of 404 errors</span>
-<span class="pl-c"><span class="pl-c">#</span>        - "NPM_LISTEN_LOCALHOST=true" # Bind the NPM Dashboard on Port 81 only to localhost</span>
-<span class="pl-c"><span class="pl-c">#</span>        - "PHP_APKS=php7-curl php8-curl php81-curl php-82-curl" # Add php extensions, see aviable packages here: https://pkgs.alpinelinux.org/packages?branch=edge&amp;name=php\*&amp;arch=x86_64</span></pre></div>
+<pre lang="yml"><code>version: "3"
+services:
+    nginx-proxy-manager:
+        container_name: nginx-proxy-manager
+        image: zoeyvid/nginx-proxy-manager
+        restart: always
+        network_mode: host
+        volumes:
+        - "/opt/npm:/data"
+        - "/opt/npm-letsencrypt:/etc/letsencrypt" # Only needed for first time migration from original nginx-proxy-manager to this fork
+        - "/var/www:/var/www" # optional, if you want to use it as webserver for html
+        environment:
+        - "TZ=Europe/Berlin"
+#        - "NGINX_LOG_NOT_FOUND=true" # Allow logging of 404 errors
+#        - "NPM_LISTEN_LOCALHOST=true" # Bind the NPM Dashboard on Port 81 only to localhost
+#        - "PHP_APKS=php7-curl php8-curl php81-curl php-82-curl" # Add php extensions, see aviable packages here: https://pkgs.alpinelinux.org/packages?branch=edge&amp;name=php\*&amp;arch=x86_64
+</code></pre>
 <ol start="3">
 <li>Bring up your stack by running (or deploy your portainer stack)</li>
 </ol>
-<div class="highlight highlight-source-shell"><pre>docker compose up -d</pre></div>
+<pre lang="bash"><code>docker compose up -d
+</code></pre>
 <ol start="4">
 <li>Log in to the Admin UI</li>
 </ol>
