@@ -28,4 +28,8 @@ body {
     @apply list-disc;
     @apply pl-8;
   }
+
+  a{
+    @apply hover:underline
+  }
 }
