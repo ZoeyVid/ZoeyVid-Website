@@ -18,7 +18,6 @@ jobs:
         with:
           input: assets/css/input.css
           output: assets/css/output.css
-          plugins: "@tailwindcss/forms"
           params: "--minify"
 
       - name: update tailwindcss
@@ -26,7 +25,6 @@ jobs:
         with:
           input: assets/css/input.css
           output: assets/css/full.css
-          plugins: "@tailwindcss/forms"
           
       - name: push changes
         run: |
