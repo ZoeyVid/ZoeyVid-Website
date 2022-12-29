@@ -852,6 +852,10 @@ ul {
   flex-grow: 1;
 }
 
+.basis-1\/2 {
+  flex-basis: 50%;
+}
+
 .table-auto {
   table-layout: auto;
 }
