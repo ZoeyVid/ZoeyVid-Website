@@ -20,11 +20,11 @@ jobs:
           output: assets/css/output.css
           params: "--minify"
 
-      - name: update tailwindcss
-        uses: ZoeyVid/tailwindcss-update@main
-        with:
-          input: assets/css/input.css
-          output: assets/css/full.css
+#      - name: update tailwindcss
+#        uses: ZoeyVid/tailwindcss-update@main
+#        with:
+#          input: assets/css/input.css
+#          output: assets/css/full.css
           
       - name: push changes
         run: |
