@@ -74,7 +74,9 @@
     "readme": "https://zoeyvid.de/assets/repos/ZoeyVid-Website.html",
     "fork": "false",
     "description": "The ZoeyVid Website",
-    "topics": [],
+    "topics": [
+      "website"
+    ],
     "homepage": "https://zoeyvid.de"
   },
   "ZoeyVidHandy-Bot": {
@@ -188,7 +190,11 @@
     "readme": "https://zoeyvid.de/assets/repos/ribstnib.html",
     "fork": "false",
     "description": "A datapack to smelt raw ingot blocks to normal ingot blocks!",
-    "topics": [],
+    "topics": [
+      "datapack",
+      "minecraft",
+      "minecraft-datapack"
+    ],
     "homepage": "https://sancraft.dev/ribstnib"
   },
   "tailwindcss-update": {
