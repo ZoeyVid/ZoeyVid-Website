@@ -24,7 +24,7 @@ function getAllRepos() {
         json[element].topics.forEach(topic => {
           document.getElementById(element + "Topics").innerHTML += "<span class='bg-gray-700 rounded-lg p-1 mr-2'>" + topic + "</span>"
         })
-        if(json[element].fork) {
+        if(Boolean(json[element].fork)) {
           document.getElementById(element + "Headline").innerText += " (Fork)"
         }
       })
