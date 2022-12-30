@@ -22,7 +22,7 @@ function getAllRepos() {
       Object.keys(json).forEach(element => {
         console.log(json[element].topics)
         json[element].topics.forEach(topic => {
-          document.getElementById(element + "Topics").innerHTML += "<span class='bg-gray-700 rounded-lg p-1 mr-1'>" + topic + "</span>"
+          document.getElementById(element + "Topics").innerHTML += "<span class='bg-gray-700 rounded-lg p-1 mr-1 mt-2'>" + topic + "</span>"
         })
         if(json[element].fork) {
           document.getElementById(element + "Headline").innerText += " (Fork)"
