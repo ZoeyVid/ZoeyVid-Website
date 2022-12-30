@@ -19,6 +19,7 @@ function getAllRepos() {
       })
     }).then(() => {
       Object.keys(json).forEach(element => {
+        console.log(json[element].topics)
         json[element].topics.forEach(topic => {
           document.getElementById(element + "Topics").innerHTML += "<span class='bg-gray-700 rounded-lg p-1 m-1'>" + topic + "</span>"
         })
