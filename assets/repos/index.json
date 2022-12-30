@@ -3,7 +3,7 @@
     "name": "AdGuardHome-Win-Installer",
     "html_url": "https://github.com/ZoeyVid/AdGuardHome-Win-Installer",
     "readme": "https://zoeyvid.de/assets/repos/AdGuardHome-Win-Installer.html",
-    "fork": "false",
+    "fork": false,
     "description": "AdGuardHome-Installer for Windows",
     "topics": [
       "installer",
@@ -15,7 +15,7 @@
     "name": "AntiGamemode",
     "html_url": "https://github.com/ZoeyVid/AntiGamemode",
     "readme": "https://zoeyvid.de/assets/repos/AntiGamemode.html",
-    "fork": "false",
+    "fork": false,
     "description": "",
     "topics": [],
     "homepage": "https://ci.zvcdn.de/view/Plugins/job/AntiGamemode/lastSuccessfulBuild/artifact/target/AntiGamemode.jar"
@@ -24,7 +24,7 @@
     "name": "Mod-Installer",
     "html_url": "https://github.com/ZoeyVid/Mod-Installer",
     "readme": "https://zoeyvid.de/assets/repos/Mod-Installer.html",
-    "fork": "false",
+    "fork": false,
     "description": "With this installer with controller support you can install Optifine, Fabric, Forge, Iris, ESSENTIAL and my 1.19 Modpacks! And download texturepacks! You can also save mods in up to 8 profiles!",
     "topics": [
       "minecraft",
@@ -36,7 +36,7 @@
     "name": "Peng-Bot",
     "html_url": "https://github.com/ZoeyVid/Peng-Bot",
     "readme": "https://zoeyvid.de/assets/repos/Peng-Bot.html",
-    "fork": "false",
+    "fork": false,
     "description": "A Bot that reacts to messages that starts with ping, pewpew oder peng...",
     "topics": [
       "bot",
@@ -48,7 +48,7 @@
     "name": "Ram",
     "html_url": "https://github.com/ZoeyVid/Ram",
     "readme": "https://zoeyvid.de/assets/repos/Ram.html",
-    "fork": "false",
+    "fork": false,
     "description": "This plugins adds a /ram command",
     "topics": [
       "plugin"
@@ -59,7 +59,7 @@
     "name": "Stacker",
     "html_url": "https://github.com/ZoeyVid/Stacker",
     "readme": "https://zoeyvid.de/assets/repos/Stacker.html",
-    "fork": "false",
+    "fork": false,
     "description": "A plugin to stack player above player! ",
     "topics": [
       "bukkit",
@@ -72,7 +72,7 @@
     "name": "ZoeyVid-Website",
     "html_url": "https://github.com/ZoeyVid/ZoeyVid-Website",
     "readme": "https://zoeyvid.de/assets/repos/ZoeyVid-Website.html",
-    "fork": "false",
+    "fork": false,
     "description": "The ZoeyVid Website",
     "topics": [
       "website"
@@ -83,7 +83,7 @@
     "name": "ZoeyVidHandy-Bot",
     "html_url": "https://github.com/ZoeyVid/ZoeyVidHandy-Bot",
     "readme": "https://zoeyvid.de/assets/repos/ZoeyVidHandy-Bot.html",
-    "fork": "false",
+    "fork": false,
     "description": "The Bot of the ZoeyVidHandy Discord Server!",
     "topics": [],
     "homepage": "https://zoeyvid.de/dc"
@@ -92,7 +92,7 @@
     "name": "cloudflared",
     "html_url": "https://github.com/ZoeyVid/cloudflared",
     "readme": "https://zoeyvid.de/assets/repos/cloudflared.html",
-    "fork": "false",
+    "fork": false,
     "description": "",
     "topics": [
       "cloudflare",
@@ -104,7 +104,7 @@
     "name": "cloudflared-dns",
     "html_url": "https://github.com/ZoeyVid/cloudflared-dns",
     "readme": "https://zoeyvid.de/assets/repos/cloudflared-dns.html",
-    "fork": "false",
+    "fork": false,
     "description": "",
     "topics": [
       "cloudflare",
@@ -119,7 +119,7 @@
     "name": "curl-quic",
     "html_url": "https://github.com/ZoeyVid/curl-quic",
     "readme": "https://zoeyvid.de/assets/repos/curl-quic.html",
-    "fork": "false",
+    "fork": false,
     "description": "",
     "topics": [
       "cloudflare",
@@ -132,7 +132,7 @@
     "name": "docker-ssh-tarpit",
     "html_url": "https://github.com/ZoeyVid/docker-ssh-tarpit",
     "readme": "https://zoeyvid.de/assets/repos/docker-ssh-tarpit.html",
-    "fork": "false",
+    "fork": false,
     "description": "SSH-Tarpi for docker",
     "topics": [
       "docker",
@@ -146,7 +146,7 @@
     "name": "git-updater",
     "html_url": "https://github.com/ZoeyVid/git-updater",
     "readme": "https://zoeyvid.de/assets/repos/git-updater.html",
-    "fork": "false",
+    "fork": false,
     "description": "",
     "topics": [],
     "homepage": "https://hub.docker.com/r/zoeyvid/git-updater"
@@ -155,7 +155,7 @@
     "name": "jenkins-ssh-agent",
     "html_url": "https://github.com/ZoeyVid/jenkins-ssh-agent",
     "readme": "https://zoeyvid.de/assets/repos/jenkins-ssh-agent.html",
-    "fork": "false",
+    "fork": false,
     "description": "",
     "topics": [
       "java",
@@ -167,7 +167,7 @@
     "name": "nginx-proxy-manager",
     "html_url": "https://github.com/ZoeyVid/nginx-proxy-manager",
     "readme": "https://zoeyvid.de/assets/repos/nginx-proxy-manager.html",
-    "fork": "true",
+    "fork": true,
     "description": "Docker container for managing Nginx proxy hosts with a simple, powerful interface",
     "topics": [],
     "homepage": "https://hub.docker.com/r/zoeyvid/nginx-proxy-manager"
@@ -176,7 +176,7 @@
     "name": "nginx-quic",
     "html_url": "https://github.com/ZoeyVid/nginx-quic",
     "readme": "https://zoeyvid.de/assets/repos/nginx-quic.html",
-    "fork": "false",
+    "fork": false,
     "description": "Docker image for Nginx + HTTP/3 ",
     "topics": [
       "docker",
@@ -188,7 +188,7 @@
     "name": "ribstnib",
     "html_url": "https://github.com/ZoeyVid/ribstnib",
     "readme": "https://zoeyvid.de/assets/repos/ribstnib.html",
-    "fork": "false",
+    "fork": false,
     "description": "A datapack to smelt raw ingot blocks to normal ingot blocks!",
     "topics": [
       "datapack",
@@ -201,7 +201,7 @@
     "name": "tailwindcss-update",
     "html_url": "https://github.com/ZoeyVid/tailwindcss-update",
     "readme": "https://zoeyvid.de/assets/repos/tailwindcss-update.html",
-    "fork": "false",
+    "fork": false,
     "description": "a action that generates tailwindcss files",
     "topics": [],
     "homepage": "https://github.com/marketplace/actions/generate-tailwind-css"
@@ -210,7 +210,7 @@
     "name": "unbound-docker",
     "html_url": "https://github.com/ZoeyVid/unbound-docker",
     "readme": "https://zoeyvid.de/assets/repos/unbound-docker.html",
-    "fork": "false",
+    "fork": false,
     "description": "",
     "topics": [
       "dns",
@@ -224,7 +224,7 @@
     "name": "vokabel-trainer",
     "html_url": "https://github.com/ZoeyVid/vokabel-trainer",
     "readme": "https://zoeyvid.de/assets/repos/vokabel-trainer.html",
-    "fork": "false",
+    "fork": false,
     "description": "Ein Vokabel Trainer",
     "topics": [],
     "homepage": "https://hub.docker.com/r/zoeyvid/vokabel-trainer"
