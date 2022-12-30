@@ -22,12 +22,12 @@ function getAllRepos() {
       Object.keys(json).forEach(element => {
         console.log(json[element].topics)
         json[element].topics.forEach(topic => {
-          document.getElementById(element + "Topics").innerHTML += "<span class='bg-gray-700 rounded-lg pt-2 pb-2 m-1'>" + topic + "</span>"
+          document.getElementById(element + "Topics").innerHTML += "<span class='bg-gray-700 rounded-lg p-1 mr-1'>" + topic + "</span>"
         })
+        if(json[element].fork) {
+          document.getElementById(element + "Headline").innerText += " (Fork)"
+        }
       })
-      if(json[element].fork) {
-        document.getElementById(element + "Headline").innerText += " (Fork)"
-      }
     })
 }
 
