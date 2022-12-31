@@ -1,0 +1,2 @@
+Contact: mailto:zoeyvid@zvcdn.de
+Encryption: https://zoeyvid.de/.well-known/publickey.asc
