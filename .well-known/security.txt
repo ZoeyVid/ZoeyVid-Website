@@ -1,2 +1,12 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
 Contact: mailto:zoeyvid@zvcdn.de
 Encryption: https://zoeyvid.de/.well-known/publickey.asc
+-----BEGIN PGP SIGNATURE-----
+
+iHUEARYKAB0WIQQZsl0LheH0mUz2hsVuOQn3bP/+fAUCY7BlPgAKCRBuOQn3bP/+
+fHl8AQDel7FacPuXZg/evgnigPRC1ryWeRuja9nOKrFZ0icH9gEApY/cBM0w46zo
+C0SowPodbUtLvNDW8nOWMDUzbiR9LQ0=
+=8mTX
+-----END PGP SIGNATURE-----
