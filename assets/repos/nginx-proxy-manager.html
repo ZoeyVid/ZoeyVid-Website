@@ -11,14 +11,14 @@
 	</a>
 </p>
 <p>This project comes as a pre-built docker image that enables you to easily forward to your websites
-running at home or otherwise, including free SSL, without having to know too much about Nginx or Letsencrypt.</p>
+running at home or otherwise, including free TLS, without having to know too much about Nginx or Letsencrypt.</p>
 <ul>
 <li><a href="#quick-setup">Quick Setup</a></li>
 <li><a href="https://nginxproxymanager.com/screenshots" rel="nofollow">Screenshots</a></li>
 </ul>
 <h2><a id="user-content-project-goal" class="anchor" aria-hidden="true" href="#project-goal"><span aria-hidden="true" class="octicon octicon-link"></span></a>Project Goal</h2>
 <p>I created this project to fill a personal need to provide users with a easy way to accomplish reverse
-proxying hosts with SSL termination and it had to be so easy that a monkey could do it. This goal hasn't changed.
+proxying hosts with TLS termination and it had to be so easy that a monkey could do it. This goal hasn't changed.
 While there might be advanced options they are optional and the project should be as simple as possible
 so that the barrier for entry here is low.</p>
 <p><a href="https://www.buymeacoffee.com/jc21" rel="nofollow"><img src="https://camo.githubusercontent.com/674bfc1dd775fa1c51eebaf73df1c45fbb6ad76357508b1dc227d7010ba23a68/687474703a2f2f7075626c69632e6a6332312e636f6d2f6769746875622f62792d6d652d612d636f666665652e706e67" alt="Buy Me A Coffee" data-canonical-src="http://public.jc21.com/github/by-me-a-coffee.png" style="max-width: 100%;"></a></p>
@@ -27,7 +27,7 @@ so that the barrier for entry here is low.</p>
 <li>Beautiful and Secure Admin Interface based on <a href="https://tabler.github.io/" rel="nofollow">Tabler</a>
 </li>
 <li>Easily create forwarding domains, redirections, streams and 404 hosts without knowing anything about Nginx</li>
-<li>Free SSL using Let's Encrypt or provide your own custom SSL certificates</li>
+<li>Free trusted TLS certificates using Certbot (Let's Encrypt) or provide your own custom TLS certificates</li>
 <li>Access Lists and basic HTTP Authentication for your hosts</li>
 <li>Advanced Nginx configuration available for super users</li>
 <li>User management, permissions and audit log</li>
@@ -39,12 +39,12 @@ so that the barrier for entry here is low.</p>
 <li>Only use TLSv1.2 and TLSv1.3</li>
 <li>Uses OCSP Stapling
 <ul>
-<li>Needs manual migration if you use custom certificates, just upload the CA/Intermediate Certificate (file name: <code>chain.pem</code>) in the <code>/opt/npm/ssl/custom/npm-[certificate-id]</code> folder</li>
+<li>Needs manual migration if you use custom certificates, just upload the CA/Intermediate Certificate (file name: <code>chain.pem</code>) in the <code>/opt/npm/tls/custom/npm-[certificate-id]</code> folder</li>
 </ul>
 </li>
 <li>Smaller then the original</li>
-<li>Runs the admin interface on port 81 with ssl (https)</li>
-<li>Default page runs also with ssl (https)</li>
+<li>Runs the admin interface on port 81 with https</li>
+<li>Default page runs also with https</li>
 <li>Uses <a href="https://gitHub.com/Naereen/Nginx-Fancyindex-Theme">fancyindex</a> if you use the npm directly as webserver</li>
 <li>Expose INTERNAL backend api only to localhost</li>
 <li>Easy security headers, see <a href="https://github.com/GetPageSpeed/ngx_security_headers">here</a>, enabled by default if you enable hsts</li>
