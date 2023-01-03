@@ -50,7 +50,7 @@ so that the barrier for entry here is low.</p>
 <li>Easy security headers, see <a href="https://github.com/GetPageSpeed/ngx_security_headers">here</a>, enabled by default if you enable hsts</li>
 <li>Access Log disabled</li>
 <li>Error Log written to console</li>
-<li>PHP included, you can add php extensions, see aviable packages here: <a href="https://pkgs.alpinelinux.org/packages?branch=edge&amp;name=php*&amp;arch=x86_64" rel="nofollow">https://pkgs.alpinelinux.org/packages?branch=edge&amp;name=php*&amp;arch=x86_64</a>
+<li>PHP included, you can add php extensions, see aviable packages here: <a href="https://pkgs.alpinelinux.org/packages?branch=edge&amp;name=php*&amp;arch=x86_64&amp;repo=community" rel="nofollow">https://pkgs.alpinelinux.org/packages?branch=edge&amp;name=php*&amp;arch=x86_64&amp;repo=community</a>
 </li>
 <li>allows different acme servers</li>
 <li>up to 64 domains per cert allowed</li>
@@ -79,9 +79,9 @@ alias /var/www/&lt;your-html-site-folder-name&gt;/;
 <p>b) Custom Nginx Configuration (advanced tab), which looks the following for file server and <strong>php</strong>:</p>
 <ul>
 <li>Note: the slash at the end of the file path is important</li>
-<li>Note: you can replace <code>fastcgi_pass php82;</code> with <code>fastcgi_pass</code> <code>php7</code>/<code>php8</code>/<code>php81</code>/<code>php82</code> <code>;</code>
+<li>Note: you can replace <code>fastcgi_pass php82;</code> with <code>fastcgi_pass</code> <code>php81</code>/<code>php82</code> <code>;</code>
 </li>
-<li>Note: to add more php extension use the packes from <a href="https://pkgs.alpinelinux.org/packages?branch=edge&amp;name=php*&amp;arch=x86_64" rel="nofollow">here</a> and add them using the <code>PHP_APKS</code> env (see compose file)</li>
+<li>Note: to add more php extension use the packes from <a href="https://pkgs.alpinelinux.org/packages?branch=edge&amp;name=php*&amp;arch=x86_64&amp;repo=community" rel="nofollow">here</a> and add them using the <code>PHP_APKS</code> env (see compose file)</li>
 </ul>
 <pre><code>location / {
 alias /var/www/&lt;your-php-site-folder-name&gt;/;
@@ -126,7 +126,7 @@ if (!-f $document_root$fastcgi_script_name) {return 404;}
         - <span class="pl-s"><span class="pl-pds">"</span>TZ=Europe/Berlin<span class="pl-pds">"</span></span>
 <span class="pl-c"><span class="pl-c">#</span>        - "NGINX_LOG_NOT_FOUND=true" # Allow logging of 404 errors</span>
 <span class="pl-c"><span class="pl-c">#</span>        - "NPM_LISTEN_LOCALHOST=true" # Bind the NPM Dashboard on Port 81 only to localhost</span>
-<span class="pl-c"><span class="pl-c">#</span>        - "PHP_APKS=php7-curl php8-curl php81-curl php-82-curl" # Add php extensions, see aviable packages here: https://pkgs.alpinelinux.org/packages?branch=edge&amp;name=php\*&amp;arch=x86_64</span></pre></div>
+<span class="pl-c"><span class="pl-c">#</span>        - "PHP_APKS=php7-curl php8-curl php81-curl php-82-curl" # Add php extensions, see aviable packages here: https://pkgs.alpinelinux.org/packages?branch=edge&amp;name=php*&amp;arch=x86_64&amp;repo=community</span></pre></div>
 <ol start="3">
 <li>Bring up your stack by running (or deploy your portainer stack)</li>
 </ol>
