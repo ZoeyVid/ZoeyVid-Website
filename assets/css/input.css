@@ -7,7 +7,6 @@ body {
   @apply flex-col;
   @apply w-screen;
   @apply min-h-screen;
-  @apply break-words
 }
 
 @layer base {

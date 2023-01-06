@@ -51,7 +51,8 @@
     <div id="Projekte" class="pr-4 pl-4 flex flex-row flex-wrap">
         <script>getAllRepos()</script>
     </div>
-    <code class="pr-4 pl-4 break-words">
+    <pre>
+    <code class="pr-4 pl-4 break-all">
         version: "3"
         services:
             nginx-proxy-manager:
@@ -67,7 +68,7 @@
                 - "TZ=Europe/Berlin"
         #        - "NGINX_LOG_NOT_FOUND=true" # Allow logging of 404 errors
         #        - "NPM_LISTEN_LOCALHOST=true" # Bind the NPM Dashboard on Port 81 only to localhost
-        #        - "PHP_APKS=php81-curl php-82-curl" # Add php extensions, see aviable packages here: https://pkgs.alpinelinux.org/packages?branch=edge&repo=community&arch=x86_64&name=php8*-*</code>
+        #        - "PHP_APKS=php81-curl php-82-curl" # Add php extensions, see aviable packages here: https://pkgs.alpinelinux.org/packages?branch=edge&repo=community&arch=x86_64&name=php8*-*</code></pre>
     <div id="footer">
         <script>
             readHTML("footer", "/assets/elements/footer.html")
