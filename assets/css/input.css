@@ -30,6 +30,6 @@ body {
   }
 }
 
-a#Projekt {
-    .hover:underline;
+a#Projekt:hover {
+    .underline;
 }
