@@ -19,7 +19,6 @@ jobs:
           input: assets/css/input.css
           output: assets/css/output.css
           params: "--minify"
-          plugins: "tailwind-highlightjs"
 
 #      - name: update tailwindcss
 #        uses: ZoeyVid/tailwindcss-update@main
