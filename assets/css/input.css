@@ -37,4 +37,7 @@ a#Projekt:hover {
 .highlight {
     .break-all 
     .whitespace-pre-line
+    .bg-zinc-800
+    .text-white
+    .rounded-lg
 }
