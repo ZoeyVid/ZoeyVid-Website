@@ -29,3 +29,7 @@ body {
     @apply pl-8;
   }
 }
+
+a#Projekt {
+    .hover:underline;
+}
