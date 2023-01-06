@@ -39,7 +39,7 @@ so that the barrier for entry here is low.</p>
 <li>Only use TLSv1.2 and TLSv1.3</li>
 <li>Uses OCSP Stapling
 <ul>
-<li>Needs manual migration if you use custom certificates, just upload the CA/Intermediate Certificate (file name: <code>chain.pem</code>) in the <code>/opt/npm/tls/custom/npm-[certificate-id]</code> folder</li>
+<li>Needs manual migration if you use custom certificates, just upload the CA/Intermediate Certificate (file name: <code class="pr-4 pl-4 break-all whitespace-pre-line">chain.pem</code>) in the <code class="pr-4 pl-4 break-all whitespace-pre-line">/opt/npm/tls/custom/npm-[certificate-id]</code> folder</li>
 </ul>
 </li>
 <li>Smaller then the original</li>
@@ -63,7 +63,7 @@ so that the barrier for entry here is low.</p>
 <h1><a id="user-content-use-as-webserver" class="anchor" aria-hidden="true" href="#use-as-webserver"><span aria-hidden="true" class="octicon octicon-link"></span></a>Use as webserver</h1>
 <ol>
 <li>Create a new Proxy Host</li>
-<li>Set <code>Scheme</code> to <code>http</code>, <code>Forward Hostname / IP</code> to <code>0.0.0.0</code>, <code>Forward Port</code> to <code>1</code> and enable <code>Websockets Support</code> (you can also use other values, since these get fully ignored)</li>
+<li>Set <code class="pr-4 pl-4 break-all whitespace-pre-line">Scheme</code> to <code class="pr-4 pl-4 break-all whitespace-pre-line">http</code>, <code class="pr-4 pl-4 break-all whitespace-pre-line">Forward Hostname / IP</code> to <code class="pr-4 pl-4 break-all whitespace-pre-line">0.0.0.0</code>, <code class="pr-4 pl-4 break-all whitespace-pre-line">Forward Port</code> to <code class="pr-4 pl-4 break-all whitespace-pre-line">1</code> and enable <code class="pr-4 pl-4 break-all whitespace-pre-line">Websockets Support</code> (you can also use other values, since these get fully ignored)</li>
 <li>Maybe set an Access List</li>
 <li>Make your SSL Settings</li>
 <li>
@@ -72,18 +72,18 @@ so that the barrier for entry here is low.</p>
 <ul>
 <li>Note: the slash at the end of the file path is important</li>
 </ul>
-<pre><code>location / {
+<pre><code class="pr-4 pl-4 break-all whitespace-pre-line">location / {
 alias /var/www/&lt;your-html-site-folder-name&gt;/;
 }
 </code></pre>
 <p>b) Custom Nginx Configuration (advanced tab), which looks the following for file server and <strong>php</strong>:</p>
 <ul>
 <li>Note: the slash at the end of the file path is important</li>
-<li>Note: you can replace <code>fastcgi_pass php82;</code> with <code>fastcgi_pass</code> <code>php81</code>/<code>php82</code> <code>;</code>
+<li>Note: you can replace <code class="pr-4 pl-4 break-all whitespace-pre-line">fastcgi_pass php82;</code> with <code class="pr-4 pl-4 break-all whitespace-pre-line">fastcgi_pass</code> <code class="pr-4 pl-4 break-all whitespace-pre-line">php81</code>/<code class="pr-4 pl-4 break-all whitespace-pre-line">php82</code> <code class="pr-4 pl-4 break-all whitespace-pre-line">;</code>
 </li>
-<li>Note: to add more php extension use the packes from <a href="https://pkgs.alpinelinux.org/packages?branch=edge&amp;repo=community&amp;arch=x86_64&amp;name=php8*-*" rel="nofollow">here</a> and add them using the <code>PHP_APKS</code> env (see compose file)</li>
+<li>Note: to add more php extension use the packes from <a href="https://pkgs.alpinelinux.org/packages?branch=edge&amp;repo=community&amp;arch=x86_64&amp;name=php8*-*" rel="nofollow">here</a> and add them using the <code class="pr-4 pl-4 break-all whitespace-pre-line">PHP_APKS</code> env (see compose file)</li>
 </ul>
-<pre><code>location / {
+<pre><code class="pr-4 pl-4 break-all whitespace-pre-line">location / {
 alias /var/www/&lt;your-php-site-folder-name&gt;/;
 
 location ~ [^/]\.php(/|$) {
@@ -94,7 +94,7 @@ if (!-f $document_root$fastcgi_script_name) {return 404;}
 </code></pre>
 <h1><a id="user-content-custom-acme-server" class="anchor" aria-hidden="true" href="#custom-acme-server"><span aria-hidden="true" class="octicon octicon-link"></span></a>custom acme server</h1>
 <ol>
-<li>Open this file: <code>nano</code> <code>/opt/npm/ssl/certbot/config.ini</code>
+<li>Open this file: <code class="pr-4 pl-4 break-all whitespace-pre-line">nano</code> <code class="pr-4 pl-4 break-all whitespace-pre-line">/opt/npm/ssl/certbot/config.ini</code>
 </li>
 <li>uncomment the server line and change it to your acme server</li>
 <li>maybe set eab keys</li>
@@ -134,13 +134,13 @@ if (!-f $document_root$fastcgi_script_name) {return 404;}
 <ol start="4">
 <li>Log in to the Admin UI</li>
 </ol>
-<p>When your docker container is running, connect to it on port <code>81</code> for the admin interface.
+<p>When your docker container is running, connect to it on port <code class="pr-4 pl-4 break-all whitespace-pre-line">81</code> for the admin interface.
 Sometimes this can take a little bit because of the entropy of keys.
 You may need to open port 81 in your firewall.
 You may need to use another IP-Adress.</p>
 <p><a href="https://127.0.0.1:81" rel="nofollow">https://127.0.0.1:81</a></p>
 <p>Default Admin User:</p>
-<pre><code>Email:    admin@example.com
+<pre><code class="pr-4 pl-4 break-all whitespace-pre-line">Email:    admin@example.com
 Password: 9KcvfmAvcVonB7YOMqdjJGsTG2JL058Rx6xFNMintAeaGETsRBRlSbfXdi1inoCa
 </code></pre>
 <p>Immediately after logging in with this default user you will be asked to modify your details and change your password.</p>
