@@ -39,7 +39,7 @@ body {
 
   #Projekt a{
      @apply hover:underline;
-     @apply text-sky-900;
+     @apply text-blue-600;
    }
   
   #Impressum a{
