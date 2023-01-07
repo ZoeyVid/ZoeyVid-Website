@@ -30,8 +30,8 @@ body {
   }
 
   pre {
-    @apply break-all;
-    @apply whitespace-pre-line;
+    @apply overflow-x-auto;
+    @apply whitespace-nowrap;
     @apply bg-gray-800;
     @apply text-white;
     @apply rounded-lg;
