@@ -40,4 +40,12 @@ body {
   #Projekt a{
      @apply hover:underline
    }
+  
+  #Impressum a{
+     @apply hover:underline
+  }
+
+  #Datenschutz a {
+     @apply hover:underline
+  }
 }
