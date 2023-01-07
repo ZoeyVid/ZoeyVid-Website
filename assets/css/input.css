@@ -39,13 +39,16 @@ body {
 
   #Projekt a{
      @apply hover:underline
+     @apply text-sky-900
    }
   
   #Impressum a{
      @apply hover:underline
+     @apply text-sky-900
   }
 
   #Datenschutz a {
      @apply hover:underline
+     @apply text-sky-900
   }
 }
