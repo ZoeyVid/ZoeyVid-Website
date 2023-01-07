@@ -37,8 +37,4 @@ body {
     @apply rounded-lg;
     @apply p-4;
   }
-
-  a#Projekt:hover {
-    @apply underline
-  }
 }
