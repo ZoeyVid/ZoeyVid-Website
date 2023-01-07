@@ -31,7 +31,6 @@ body {
 
   pre {
     @apply overflow-x-auto;
-    @apply whitespace-pre-line;
     @apply bg-gray-800;
     @apply text-white;
     @apply rounded-lg;
