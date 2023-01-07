@@ -51,24 +51,6 @@
     <div id="Projekte" class="pr-4 pl-4 flex flex-row flex-wrap">
         <script>getAllRepos()</script>
     </div>
-    <pre>
-    <code class="pr-4 pl-4 break-all whitespace-pre-line">
-        version: "3"
-        services:
-            nginx-proxy-manager:
-                container_name: nginx-proxy-manager
-                image: zoeyvid/nginx-proxy-manager
-                restart: always
-                network_mode: host
-                volumes:
-                - "/opt/npm:/data"
-                - "/opt/npm-letsencrypt:/etc/letsencrypt" # Only needed for first time migration from original nginx-proxy-manager to this fork
-                - "/var/www:/var/www" # optional, if you want to use it as webserver for html
-                environment:
-                - "TZ=Europe/Berlin"
-        #        - "NGINX_LOG_NOT_FOUND=true" # Allow logging of 404 errors
-        #        - "NPM_LISTEN_LOCALHOST=true" # Bind the NPM Dashboard on Port 81 only to localhost
-        #        - "PHP_APKS=php81-curl php-82-curl" # Add php extensions, see aviable packages here: https://pkgs.alpinelinux.org/packages?branch=edge&repo=community&arch=x86_64&name=php8*-*</code></pre>
     <div id="footer">
         <script>
             readHTML("footer", "/assets/elements/footer.html")
