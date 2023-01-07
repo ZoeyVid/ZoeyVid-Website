@@ -37,7 +37,3 @@ body {
     @apply .rounded-lg;
   }
 }
-
-a#Projekt:hover {
-    .underline;
-}
