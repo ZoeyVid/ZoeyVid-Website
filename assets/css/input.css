@@ -37,7 +37,7 @@ body {
     @apply p-4;
   }
 
-  a#Projekt:hover {
-    @apply underline
-  }
+  #Projekt a{
+     @apply hover:underline
+   }
 }
