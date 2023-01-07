@@ -36,4 +36,8 @@ body {
     @apply text-white;
     @apply rounded-lg;
   }
+
+  a#Projekt {
+    @apply hover:underline
+  }
 }
