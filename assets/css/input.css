@@ -30,10 +30,10 @@ body {
   }
 
   pre {
-    @apply .break-all;
-    @apply .whitespace-pre-line;
-    @apply .bg-zinc-800;
-    @apply .text-white;
-    @apply .rounded-lg;
+    @apply break-all;
+    @apply whitespace-pre-line;
+    @apply bg-zinc-800;
+    @apply text-white;
+    @apply rounded-lg;
   }
 }
