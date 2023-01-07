@@ -28,16 +28,16 @@ body {
     @apply list-disc;
     @apply pl-8;
   }
+
+  pre {
+    @apply .break-all;
+    @apply .whitespace-pre-line;
+    @apply .bg-zinc-800;
+    @apply .text-white;
+    @apply .rounded-lg;
+  }
 }
 
 a#Projekt:hover {
     .underline;
-}
-
-.highlight {
-    .break-all 
-    .whitespace-pre-line
-    .bg-zinc-800
-    .text-white
-    .rounded-lg
 }
