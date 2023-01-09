@@ -43,7 +43,7 @@ body {
    }
   
   p[aligin=center] {
-    @apply items-center;
+    @apply content-start;
   }
 
 }
