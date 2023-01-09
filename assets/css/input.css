@@ -39,7 +39,7 @@ body {
 
   #Projekt a, #Impressum a, #Datenschutz a {
      @apply hover:underline;
-     @apply text-blue-600;
+     @apply text-[#0000EE];
    }
   
   p[aligin=center] {
