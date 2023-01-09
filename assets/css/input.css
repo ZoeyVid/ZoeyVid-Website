@@ -51,4 +51,9 @@ body {
      @apply hover:underline;
      @apply text-sky-900;
   }
+  
+  [aligin=center] {
+    @apply items-center;
+  }
+
 }
