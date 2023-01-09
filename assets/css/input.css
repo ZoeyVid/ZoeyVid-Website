@@ -52,7 +52,7 @@ body {
      @apply text-sky-900;
   }
   
-  [aligin=center] {
+  p[aligin=center] {
     @apply items-center;
   }
 
