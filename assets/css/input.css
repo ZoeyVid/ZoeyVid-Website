@@ -37,20 +37,10 @@ body {
     @apply p-4;
   }
 
-  #Projekt a{
+  #Projekt a, #Impressum a, #Datenschutz a {
      @apply hover:underline;
      @apply text-blue-600;
    }
-  
-  #Impressum a{
-     @apply hover:underline;
-     @apply text-sky-900;
-  }
-
-  #Datenschutz a {
-     @apply hover:underline;
-     @apply text-sky-900;
-  }
   
   p[aligin=center] {
     @apply items-center;
