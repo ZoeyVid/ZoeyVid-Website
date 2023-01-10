@@ -36,6 +36,12 @@ body {
     @apply rounded-lg;
     @apply p-4;
   }
+  
+  code {
+    @apply bg-gray-800;
+    @apply text-white;
+    @apply rounded-lg;
+  }
 
   #Projekt a, #Impressum a, #Datenschutz a {
      @apply hover:underline;
