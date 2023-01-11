@@ -45,11 +45,6 @@ function git() {
 }
 
 function changeExternalLinks() {
-	document.querySelectorAll("a").forEach(element => {
-    console.log(element)
-		element.href = "#"
-    console.log(element.href)
-    element.onClick = "window.alert(" + element.href + ")"
-	})
-  return "done"
+  const links = document.querySelectorAll("a.google");
+links.forEach(link => link.href = "https://google.com");
 }
