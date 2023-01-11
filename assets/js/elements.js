@@ -45,6 +45,6 @@ function git() {
 }
 
 function changeExternalLinks() {
-  const links = document.querySelectorAll("a.google");
+  const links = document.querySelectorAll("a");
 links.forEach(link => link.href = "https://google.com");
 }
