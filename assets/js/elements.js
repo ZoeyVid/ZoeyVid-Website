@@ -51,7 +51,7 @@ function changeExternalLinks() {
       var externLink = link.href
     link.href = ""
       link.onclick = function() {
-    if(confirm("Willst du wirklich zoeyvid.de verlassen, und auf " + String(externLink) + " gehen?")) document.location.href = externLink
+    if(confirm("Willst du wirklich zoeyvid.de verlassen, und auf " + String(externLink) + " gehen?") == true) document.location.href = externLink
 };
   }
   });
