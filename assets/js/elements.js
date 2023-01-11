@@ -43,3 +43,9 @@ function git() {
     window.location.pathname +
     "index.html";
 }
+
+function markExternalLink() {
+	document.getElementsByTagName('a').forEach(element => {
+		console.log(element)
+	})
+}
