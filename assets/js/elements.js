@@ -48,7 +48,8 @@ function changeExternalLinks() {
 	document.querySelectorAll("a").forEach(element => {
     console.log(element)
 		element.href = "#"
-    element.onClick = window.alert("sometext");
+    console.log(element.href)
+    element.onClick = "window.alert(" + element.href + ")"
 	})
   return "done"
 }
