@@ -49,6 +49,9 @@ function changeExternalLinks() {
   links.forEach(link => {
     if (!link.href.startsWith("https://zoeyvid.de")) {
     link.href = "#"
+      link.onclick = function() {
+    alert('click');
+};
   }
   });
 }
