@@ -46,6 +46,7 @@ function git() {
 
 function changeExternalLinks() {
 	Array.prototype.slice.call(document.getElementsByTagName('a')).forEach(element => {
-		console.log(element.href)
+		element.href = "#"
+    element.onClick = window.alert("sometext");
 	})
 }
