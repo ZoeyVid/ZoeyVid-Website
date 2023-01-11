@@ -45,7 +45,7 @@ function git() {
 }
 
 function markExternalLink() {
-	document.getElementsByTagName('a').forEach(element => {
+	Array.prototype.slice.call(document.getElementsByTagName('a')).forEach(element => {
 		console.log(element)
 	})
 }
