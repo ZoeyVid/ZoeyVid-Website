@@ -12,4 +12,5 @@ function readHTML(div, url) {
       }
     })
   markExternalLink()
+  console.log("test")
 }
