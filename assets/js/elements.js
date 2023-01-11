@@ -44,7 +44,6 @@ function git() {
     "index.html";
 }
 
-window.onload = changeExternalLinks()
 function changeExternalLinks() {
   const links = document.querySelectorAll("a");
   links.forEach(link => {
