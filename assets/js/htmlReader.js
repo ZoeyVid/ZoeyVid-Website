@@ -11,6 +11,4 @@ function readHTML(div, url) {
         elementLoad()
       }
     })
-  changeExternalLinks()
-  console.log(changeExternalLinks())
 }

@@ -44,7 +44,7 @@ function git() {
     "index.html";
 }
 
-function changeExternalLinks() {
+window.onload = function changeExternalLinks() {
   const links = document.querySelectorAll("a");
   links.forEach(link => {
     if (!link.startsWith("https://zoeyvid.de")) {
