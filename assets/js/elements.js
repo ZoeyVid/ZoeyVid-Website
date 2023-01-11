@@ -48,9 +48,10 @@ function changeExternalLinks() {
   const links = document.querySelectorAll("a");
   links.forEach(link => {
     if (!link.href.startsWith("https://zoeyvid.de")) {
-    link.href = "#"
+      var externLink = link.href
+    link.href = ""
       link.onclick = function() {
-    alert('click');
+    confirm("Willst du wirklich zoeyvid.de zu verlassen, und auf " + String(externLink) + " gehen?")
 };
   }
   });
