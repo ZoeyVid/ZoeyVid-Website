@@ -1,4 +1,11 @@
 function elementLoad() {
+  if (confirm("Press a button!") == true) {
+  alert("You pressed OK!")
+} else {
+  alert("You canceled!")
+}
+
+  
   document.getElementById("navbar").classList.add("pb-4");
   document.getElementById("footer").classList.add("pt-4");
   document.getElementById("footer").classList.add("mt-auto");
