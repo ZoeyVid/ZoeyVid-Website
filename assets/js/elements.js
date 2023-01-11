@@ -60,7 +60,7 @@ function changeExternalLinks() {
       link.onclick = function() {
     if(confirm("Willst du wirklich zoeyvid.de verlassen, und auf " + String(externLink) + " gehen?") == true) {
 location.href = externLink
-      console.log("hmm")
+      alert("hmm")
     }
 };
   }
