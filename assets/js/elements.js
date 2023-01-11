@@ -48,7 +48,7 @@ window.onload = changeExternalLinks()
 function changeExternalLinks() {
   const links = document.querySelectorAll("a");
   links.forEach(link => {
-    if (!link.startsWith("https://zoeyvid.de")) {
+    if (!link.href.startsWith("https://zoeyvid.de")) {
     link.href = "#"
   }
   });
