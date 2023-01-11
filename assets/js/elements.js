@@ -46,6 +46,7 @@ function git() {
 
 function changeExternalLinks() {
 	document.querySelectorAll("a").forEach(element => {
+    console.log(element)
 		element.href = "#"
     element.onClick = window.alert("sometext");
 	})
