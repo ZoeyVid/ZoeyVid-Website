@@ -49,4 +49,5 @@ function changeExternalLinks() {
 		element.href = "#"
     element.onClick = window.alert("sometext");
 	})
+  return "done"
 }
