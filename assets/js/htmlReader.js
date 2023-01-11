@@ -11,4 +11,5 @@ function readHTML(div, url) {
         elementLoad()
       }
     })
+  markExternalLink()
 }
