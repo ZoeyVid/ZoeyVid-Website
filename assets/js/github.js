@@ -15,7 +15,7 @@ function getAllRepos() {
     })
     .then((json) => {
       Object.keys(json).forEach(element => {
-        document.getElementById("Projekte").innerHTML += "<a href='https://zoeyvid.de/projekt?projekt=" + element + "' class='text-white'><div class='bg-gray-800 rounded-lg p-4 m-2'><h1 class='text-2xl font-bold hover:underline' id='" + element + "Headline'>" + element + "</h1><p class='text-gray-300'>" + json[element].description + "</p><div id='" + element  + "Topics' class='pt-2'></div></div></a>"
+        document.getElementById("Projekte").innerHTML += "<a href='https://zoeyvid.de/projekt?projekt=" + element + "' class='text-white'><div class='bg-gray-800 rounded-lg p-4 m-2'><h1 class='text-2xl font-bold hover:underline' id='" + element + "Headline'>" + element + "</h1><p class='text-gray-300'>" + json[element].description + "</p><div id='" + element + "Topics' class='pt-2'></div></div></a>"
       })
       return json
     }).then((json) => {
@@ -23,7 +23,7 @@ function getAllRepos() {
         json[element].topics.forEach(topic => {
           document.getElementById(element + "Topics").innerHTML += "<span class='bg-gray-700 rounded-lg p-2 mr-2'>" + topic + "</span>"
         })
-        if(Boolean(json[element].fork)) {
+        if (Boolean(json[element].fork)) {
           document.getElementById(element + "Headline").innerText += " (Fork)"
         }
       })
