@@ -48,7 +48,7 @@ function changeExternalLinks() {
   const links = document.querySelectorAll("a");
   links.forEach(link => {
     if (!link.href.startsWith("https://zoeyvid.de")) {
-      var externLink = "https://google.com"
+      var externLink = link.href
       link.href = ""
       link.onclick = function () {
         if (confirm("Willst du wirklich zoeyvid.de verlassen, und auf " + String(externLink) + " gehen?") == true) {
@@ -57,6 +57,7 @@ function changeExternalLinks() {
           element.href = externLink
           document.body.appendChild(element)
           element.click()
+          console.log(element)
           document.body.removeChild(element)
         }
       };
