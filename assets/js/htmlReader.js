@@ -9,7 +9,7 @@ function readHTML(div, url) {
     .then(() => {
       if (div == "footer") {
         elementLoad()
-        changeExternalLinks()
       }
+      changeExternalLinks()
     })
 }
