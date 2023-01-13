@@ -57,7 +57,7 @@ function changeExternalLinks() {
           element.href = externLink
           document.body.appendChild(element)
           element.click()
-          console.log(element)
+          alert(element)
           document.body.removeChild(element)
         }
       };
