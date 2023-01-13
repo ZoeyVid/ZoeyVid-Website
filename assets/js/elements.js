@@ -49,7 +49,7 @@ function changeExternalLinks() {
   links.forEach(link => {
     if (!link.href.startsWith("https://zoeyvid.de")) {
       var externLink = link.href
-      link.href = 
+      link.removeAttribute("href");
       link.onclick = function () {
         if (confirm("Willst du wirklich zoeyvid.de verlassen, und auf " + String(externLink) + " gehen?") == true) {
           window.location.href = "https://google.com"
