@@ -48,6 +48,7 @@ function changeExternalLinks() {
   const links = document.querySelectorAll("a");
   links.forEach(link => {
     if (!link.href.startsWith("https://zoeyvid.de")) {
+      alert(link.href)
       var externLink = link.href
       link.removeAttribute("href");
       link.onclick = function () {
