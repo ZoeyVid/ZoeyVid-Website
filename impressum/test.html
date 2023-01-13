@@ -1,0 +1,15 @@
+<a href="https://gitHub.com/Naereen/Nginx-Fancyindex-Theme">fancyindex</a>
+<script>
+  const links = document.querySelectorAll("a");
+  links.forEach(link => {
+    if (!link.href.startsWith("https://zoeyvid.de")) {
+      var externLink = link.href
+      link.href = ""
+      link.onclick = function () {
+        if (confirm("Willst du wirklich zoeyvid.de verlassen, und auf " + String(externLink) + " gehen?") == true) {
+          window.location.href = externLink
+        }
+      };
+    }
+  });
+</script>
