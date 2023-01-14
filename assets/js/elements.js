@@ -48,12 +48,11 @@ function changeExternalLinks() {
   const links = document.querySelectorAll("a");
   links.forEach(link => {
     if (!link.href.startsWith("https://zoeyvid.de")) {
-      var externLink = link.href
-      link.setAttribute("link", link.href)
+      var externLink = "https://github.com"
       link.removeAttribute("href");
       link.onclick = function () {
         if (confirm("Willst du wirklich zoeyvid.de verlassen, und auf " + String(externLink) + " gehen?") == true) {
-          window.location.href = "https://github.com"
+          window.location.href = externLink
         }
       };
     }
