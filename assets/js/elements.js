@@ -54,7 +54,7 @@ function changeExternalLinks() {
           window.location.href = link.href
         }
       };
-      ink.removeAttribute("href");
+      link.removeAttribute("href");
     }
   });
 }
