@@ -55,7 +55,7 @@ function changeExternalLinks() {
         }
       };
       //link.removeAttribute("href");
-      link.classList.add("pointer-events-none");
+      //link.classList.add("pointer-events-none");
     }
   });
 }
