@@ -54,7 +54,8 @@ function changeExternalLinks() {
           window.location.href = link.href
         }
       };
-      link.removeAttribute("href");
+      //link.removeAttribute("href");
+      link.classList.add("pointer-events-none");
     }
   });
 }
