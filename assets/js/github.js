@@ -41,13 +41,12 @@ function getProjekt() {
       Object.keys(json).forEach(element => {
         if (element == urlParams.get("projekt")) {
           exist = true
-          var elementID = element
           document.title = element + " - ZoeyVid"
           var description = document.createElement('meta'); description.setAttribute('name', 'description'); description.content = json[element].description; document.getElementsByTagName('head')[0].appendChild(description);
         }
       })
-    }).then((json, elementID) => {
+    }).then(() => {
       if (!exist) window.location.href = "https://zoeyvid.de/"
       readHTML("Projekt", "https://zoeyvid.de/assets/repos/" + urlParams.get("projekt") + ".html")
-      document.getElementById("Projekt").innerHTML += "<a href=" + json[elementID].html_url + " class='text-white'>Auf GitHub Anzeigen</a>"
+      })
 }
