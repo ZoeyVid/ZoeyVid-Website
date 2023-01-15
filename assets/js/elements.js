@@ -56,8 +56,6 @@ function changeExternalLinks() {
           return false;
         }
       };
-      //link.removeAttribute("href");
-      //link.classList.add("pointer-events-none");
     }
   });
 }
