@@ -51,7 +51,9 @@ function changeExternalLinks() {
       var externLink = link.href;
       link.onclick = function () {
          if (confirm("Willst du wirklich zoeyvid.de verlassen, und auf " + link.href + " gehen?") == true) {
-          window.location.href = link.href
+          return true;
+        } else {
+          return false;
         }
       };
       //link.removeAttribute("href");
