@@ -51,6 +51,6 @@ function getProjekt() {
       if (!exist) window.location.href = "https://zoeyvid.de/"
       readHTML("Projekt", "https://zoeyvid.de/assets/repos/" + urlParams.get("projekt") + ".html")
       console.log(projektData.html_url)
-      document.getElementById("projekt").innerHTML += "<a href=" + projektData.html_url + ">Auf Github Anzeigen</a>"
+      document.getElementById("Projekt").innerHTML += "<a href=" + projektData.html_url + ">Auf Github Anzeigen</a>"
       })
 }
