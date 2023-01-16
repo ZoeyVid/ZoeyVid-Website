@@ -33,6 +33,7 @@ function getAllRepos() {
 function getProjekt() {
   const urlParams = new URLSearchParams(window.location.search);
   var exist = false
+  var projektData
   fetch("https://zoeyvid.de/assets/repos/index.json")
     .then((response) => {
       return response.json()
@@ -43,14 +44,12 @@ function getProjekt() {
           exist = true
           document.title = element + " - ZoeyVid"
           var description = document.createElement('meta'); description.setAttribute('name', 'description'); description.content = json[element].description; document.getElementsByTagName('head')[0].appendChild(description);
-          console.log(json[element])
-          return json[element]
+          projektData = json[element]
         }
       })
     }).then((json) => {
       if (!exist) window.location.href = "https://zoeyvid.de/"
       readHTML("Projekt", "https://zoeyvid.de/assets/repos/" + urlParams.get("projekt") + ".html")
-      console.log(json)
-      document.getElementById("Projekt").innerHTML += "<a href=" + json.html_url + ">Auf Github Anzeigen</a>"
+      document.getElementById("Projekt").innerHTML += "<a href=" + projektData.html_url + ">Auf Github Anzeigen</a>"
       })
 }
