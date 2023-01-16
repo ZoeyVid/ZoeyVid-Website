@@ -43,6 +43,7 @@ function getProjekt() {
           exist = true
           document.title = element + " - ZoeyVid"
           var description = document.createElement('meta'); description.setAttribute('name', 'description'); description.content = json[element].description; document.getElementsByTagName('head')[0].appendChild(description);
+          console.log(json[element])
           return json[element]
         }
       })
