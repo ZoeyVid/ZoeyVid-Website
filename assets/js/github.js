@@ -50,7 +50,7 @@ function getProjekt() {
     }).then(() => {
       if (!exist) window.location.href = "https://zoeyvid.de/"
       readHTML("Projekt", "https://zoeyvid.de/assets/repos/" + urlParams.get("projekt") + ".html")
-      console.log(projektData.html_url)
-      console.log(document.getElementById("Projekt").innerHTML += "<a href=" + projektData.html_url + ">Auf Github Anzeigen</a>")
-      })
+    }).then(() => {
+      document.getElementById("Projekt").innerHTML += "<a href=" + projektData.html_url + ">Auf Github Anzeigen</a>"
+    })
 }
