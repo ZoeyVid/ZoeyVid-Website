@@ -11,5 +11,6 @@ function readHTML(div, url) {
         elementLoad()
       }
       changeExternalLinks()
+      return true
     })
 }
