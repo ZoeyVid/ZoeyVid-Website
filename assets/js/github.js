@@ -30,11 +30,11 @@ function getAllRepos() {
     })
 }
 
-function getProjekt() {
+async function getProjekt() {
   const urlParams = new URLSearchParams(window.location.search);
   var exist = false
   var projektData
-  fetch("https://zoeyvid.de/assets/repos/index.json")
+  await fetch("https://zoeyvid.de/assets/repos/index.json")
     .then((response) => {
       return response.json()
     })
