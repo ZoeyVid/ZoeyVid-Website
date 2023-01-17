@@ -30,11 +30,11 @@ function getAllRepos() {
     })
 }
 
-async function getProjekt() {
+function getProjekt() {
   const urlParams = new URLSearchParams(window.location.search);
   var exist = false
   var projektData
-  await fetch("https://zoeyvid.de/assets/repos/index.json")
+  fetch("https://zoeyvid.de/assets/repos/index.json")
     .then((response) => {
       return response.json()
     })
@@ -50,6 +50,6 @@ async function getProjekt() {
     }).then(() => {
       if (!exist) window.location.href = "https://zoeyvid.de/"
       readHTML("Projekt", "https://zoeyvid.de/assets/repos/" + urlParams.get("projekt") + ".html")
+      document.getElementById("github").innerHTML += "<a href=" + projektData.html_url + ">Auf Github Anzeigen</a>"
     })
-  document.getElementById("Projekt").innerHTML += "<a href=" + projektData.html_url + ">Auf Github Anzeigen</a>"
 }
