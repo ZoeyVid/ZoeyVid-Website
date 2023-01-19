@@ -38,7 +38,7 @@ function toggleMobile() {
 }
 
 function git() {
-  window.location.href = "https://github.com/ZoeyVid/ZoeyVid-Webseite/blob/main" +
+  return "https://github.com/ZoeyVid/ZoeyVid-Webseite/blob/main" +
     window.location.pathname +
     "index.html";
 }
@@ -55,8 +55,8 @@ function changeExternalLinks() {
         }
       };
     } else if (link.id == "git") {
-      git();
-      return false;
+      var gitLink = git()
+      link.href = gitLink
     }
   });
 }
