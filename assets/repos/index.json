@@ -85,7 +85,9 @@
     "readme": "https://zoeyvid.de/assets/repos/ZoeyVidHandy-Bot.html",
     "fork": false,
     "description": "The Bot of the ZoeyVidHandy Discord Server!",
-    "topics": [],
+    "topics": [
+      "discord"
+    ],
     "homepage": "https://zoeyvid.de/dc"
   },
   "cloudflared": {
@@ -237,10 +239,9 @@
     "description": "A simple Scriptable lockscreen widget that view data from a Wunderground PWA",
     "topics": [
       "ios",
+      "pws",
       "scriptable",
-      "wunderground",
-      "wunderground-api",
-      "wunderground-pws"
+      "wunderground"
     ],
     "homepage": ""
   }
