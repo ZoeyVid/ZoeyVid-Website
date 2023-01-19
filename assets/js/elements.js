@@ -46,7 +46,7 @@ function git() {
 function changeExternalLinks() {
   const links = document.querySelectorAll("a");
   links.forEach(link => {
-    if (!link.href.startsWith("https://zoeyvid.de") && !link.id == "git") {
+    if (!link.href.startsWith("https://zoeyvid.de") || !link.id == "git") {
       link.onclick = function () {
          if (confirm("Willst du wirklich zoeyvid.de verlassen, und auf " + link.href + " gehen?") == true) {
           return true;
