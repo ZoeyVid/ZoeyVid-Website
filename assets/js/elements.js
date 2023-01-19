@@ -3,6 +3,7 @@ function elementLoad() {
   document.getElementById("footer").classList.add("pt-4");
   document.getElementById("footer").classList.add("mt-auto");
   document.getElementsByTagName('noscript')[0].remove();
+  document.getElementById("git").href = git()
   if (document.location.pathname == "/") {
     document.getElementById("navbar").classList.remove("pb-4");
     document.getElementById("footer").classList.remove("pt-4");
