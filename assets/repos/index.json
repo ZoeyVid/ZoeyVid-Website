@@ -228,5 +228,20 @@
     "description": "Ein Vokabel Trainer",
     "topics": [],
     "homepage": "https://hub.docker.com/r/zoeyvid/vokabel-trainer"
+  },
+  "wunderground-pwa-scriptable-lockscreen-widget": {
+    "name": "wunderground-pwa-scriptable-lockscreen-widget",
+    "html_url": "https://github.com/ZoeyVid/wunderground-pwa-scriptable-lockscreen-widget",
+    "readme": "https://zoeyvid.de/assets/repos/wunderground-pwa-scriptable-lockscreen-widget.html",
+    "fork": false,
+    "description": "A simple Scriptable lockscreen widget that view data from a Wunderground PWA",
+    "topics": [
+      "ios",
+      "scriptable",
+      "wunderground",
+      "wunderground-api",
+      "wunderground-pws"
+    ],
+    "homepage": ""
   }
 }
