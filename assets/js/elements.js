@@ -27,6 +27,26 @@ function elementLoad() {
     document.getElementById("navbarProjekteMobile").classList.remove("hover:bg-gray-700");
     document.getElementById("navbarProjekteMobile").classList.remove("hover:text-white");
   }
+  if (document.location.pathname.startsWith("/socials")) {
+    document.getElementById("navbarTeam").classList.add("bg-gray-900");
+    document.getElementById("navbarTeam").classList.replace("text-gray-300", "text-white");
+    document.getElementById("navbarTeam").classList.remove("hover:bg-gray-700");
+    document.getElementById("navbarTeam").classList.remove("hover:text-white");
+    document.getElementById("navbarTeamMobile").classList.add("bg-gray-900");
+    document.getElementById("navbarTeamMobile").classList.replace("text-gray-300", "text-white");
+    document.getElementById("navbarTeamMobile").classList.remove("hover:bg-gray-700");
+    document.getElementById("navbarTeamMobile").classList.remove("hover:text-white");
+  }
+  if (document.location.pathname.startsWith("/services")) {
+    document.getElementById("navbarServices").classList.add("bg-gray-900");
+    document.getElementById("navbarServices").classList.replace("text-gray-300", "text-white");
+    document.getElementById("navbarServices").classList.remove("hover:bg-gray-700");
+    document.getElementById("navbarServices").classList.remove("hover:text-white");
+    document.getElementById("navbarServicesMobile").classList.add("bg-gray-900");
+    document.getElementById("navbarServicesMobile").classList.replace("text-gray-300", "text-white");
+    document.getElementById("navbarServicesMobile").classList.remove("hover:bg-gray-700");
+    document.getElementById("navbarServicesMobile").classList.remove("hover:text-white");
+  }
 }
 
 function toggleMobile() {
