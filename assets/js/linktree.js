@@ -1,6 +1,6 @@
 function test() {
-    document.getElementById("Linktree").classList.add("from-cyan-500");
-    document.getElementById("Linktree").classList.add("to-blue-500");
-    document.getElementById("Linktree").classList.add("w-screen");
-    document.getElementById("Linktree").classList.add("h-screen");
+    document.getElementById("linktree").classList.add("from-cyan-500");
+    document.getElementById("linktree").classList.add("to-blue-500");
+    document.getElementById("linktree").classList.add("w-screen");
+    document.getElementById("linktree").classList.add("h-screen");
 }
