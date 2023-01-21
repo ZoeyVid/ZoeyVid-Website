@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
+html {
   @apply flex;
   @apply flex-col;
   @apply w-screen;
