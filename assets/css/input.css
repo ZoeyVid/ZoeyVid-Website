@@ -47,7 +47,7 @@ body {
   #Projekt a,
   #Impressum a,
   #Datenschutz a {
-    @apply hover: underline;
+    @apply hover:underline;
     @apply text-[#0000EE];
   }
 
