@@ -1,6 +1,6 @@
 {
     "name": "Zoey",
     "profilbild": "https://zvcdn.de/images/Zoey-PB.webp",
-    "color-from": "indigo-500",
-    "color-to": "purple-500"
+    "colorFrom": "indigo-500",
+    "colorTo": "purple-500"
 }
