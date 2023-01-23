@@ -26,7 +26,10 @@
     "readme": "https://zoeyvid.de/assets/repos/Mod-Installer.html",
     "fork": false,
     "description": "With this installer with controller support you can install Optifine, Fabric, Forge, Iris, ESSENTIAL and my 1.19 Modpacks! And download texturepacks! You can also save mods in up to 8 profiles!",
-    "topics": [],
+    "topics": [
+      "minecraft",
+      "mod"
+    ],
     "homepage": "https://github.com/ZoeyVid/Mod-Installer/releases/latest/download/Installer.bat"
   },
   "Peng-Bot": {
