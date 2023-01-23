@@ -7,9 +7,10 @@ function loadView() {
     })
     .then((json) => {
         console.log(json)
-        console.log(json[0].colorFrom)
+        console.log(json[0])
         document.getElementsByTagName('body')[0].classList.add("bg-gradient-to-r");
         document.getElementsByTagName('body')[0].classList.add("from-" + json[0].colorFrom);
         document.getElementsByTagName('body')[0].classList.add("to-" + json[0].colorTo);
+        alert(document.getElementsByTagName('body')[0].classList)
     })
 }
