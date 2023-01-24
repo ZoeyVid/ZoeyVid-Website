@@ -1,6 +1,6 @@
 {
     "name": "David",
     "profilbild": "",
-    "colorFrom": "cyan-500",
-    "colorTo": "blue-500"
+    "colorFrom": "from-cyan-500",
+    "colorTo": "to-blue-500"
 }
