@@ -748,6 +748,14 @@ p[aligin=center] {
   margin-top: 0.5rem;
 }
 
+.mr-12 {
+  margin-right: 3rem;
+}
+
+.ml-12 {
+  margin-left: 3rem;
+}
+
 .box-border {
   box-sizing: border-box;
 }
