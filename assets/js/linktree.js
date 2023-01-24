@@ -6,11 +6,8 @@ function loadView() {
       return response.json()
     })
     .then((json) => {
-        console.log(json)
-        console.log(json.colorFrom)
         document.getElementsByTagName('body')[0].classList.add("bg-gradient-to-r");
         document.getElementsByTagName('body')[0].classList.add(json.colorFrom);
         document.getElementsByTagName('body')[0].classList.add(json.colorTo);
-        alert(document.getElementsByTagName('body')[0].classList)
     })
 }
