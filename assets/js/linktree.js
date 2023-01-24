@@ -9,8 +9,8 @@ function loadView() {
         console.log(json)
         console.log(json.colorFrom)
         document.getElementsByTagName('body')[0].classList.add("bg-gradient-to-r");
-        document.getElementsByTagName('body')[0].classList.add("from-" + json.colorFrom);
-        document.getElementsByTagName('body')[0].classList.add("to-" + json.colorTo);
+        document.getElementsByTagName('body')[0].classList.add(json.colorFrom);
+        document.getElementsByTagName('body')[0].classList.add(json.colorTo);
         alert(document.getElementsByTagName('body')[0].classList)
     })
 }
