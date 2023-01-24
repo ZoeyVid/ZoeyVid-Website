@@ -7,8 +7,10 @@ function loadView() {
     })
     .then((json) => {
         console.log(json)
+        console.log(json.colorFrom)
+        document.getElementsByTagName('body')[0].classList.add("bg-gradient-to-r");
+        document.getElementsByTagName('body')[0].classList.add("from-" + json.colorFrom);
+        document.getElementsByTagName('body')[0].classList.add("to-" + json.colorTo);
+        alert(document.getElementsByTagName('body')[0].classList)
     })
-    document.getElementsByTagName('body')[0].classList.add("bg-gradient-to-r");
-    document.getElementsByTagName('body')[0].classList.add("from-cyan-500");
-    document.getElementsByTagName('body')[0].classList.add("to-blue-500");
 }
