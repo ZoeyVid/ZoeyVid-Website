@@ -18,7 +18,7 @@ jobs:
         with:
           input: assets/css/input.css
           output: assets/css/output.css
-          params: "--force--minify"
+          params: "--force --minify"
 
 #      - name: update tailwindcss
 #        uses: ZoeyVid/tailwindcss-update@main
