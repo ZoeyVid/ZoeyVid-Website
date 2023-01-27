@@ -11,5 +11,9 @@ function loadView() {
         document.getElementsByTagName('body')[0].classList.add(json.colorTo);
         document.getElementById("name").innerHTML = json.name;
         document.getElementById("bild").src = json.profilbild;
+        json.links.forEach(element => {
+          document.getElementById("links").innerHTML += '<a href="' + element.url + '" class="block w-full text-center text-white text-2xl font-bold py-2 px-4 rounded-full bg-gradient-to-r from-' + json.colorFrom + ' to-' + json.colorTo + ' hover:from-' + json.colorTo + ' hover:to-' + json.colorFrom + ' hover:text-white hover:shadow-lg">' + element.name + '</a>';
+        });
     })
 }
+ 
