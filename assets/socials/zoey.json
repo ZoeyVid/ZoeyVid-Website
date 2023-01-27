@@ -2,5 +2,22 @@
     "name": "Zoey",
     "profilbild": "https://zvcdn.de/images/Zoey-PB.webp",
     "colorFrom": "from-indigo-500",
-    "colorTo": "to-purple-500"
+    "colorTo": "to-purple-500",
+    "links": [
+        {
+            "icon": "url",
+            "name": "test1",
+            "url": "https://google.com"
+        },
+        {
+            "icon": "url",
+            "name": "test2",
+            "url": "https://google.com"
+        },
+        {
+            "icon": "url",
+            "name": "test3",
+            "url": "https://google.com"
+        }
+    ]
 }

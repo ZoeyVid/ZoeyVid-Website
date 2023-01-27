@@ -2,5 +2,22 @@
     "name": "David",
     "profilbild": "https://cdn.discordapp.com/icons/766020435522617344/2c968c861a9c046c7933b15080cdf77e.png",
     "colorFrom": "from-cyan-500",
-    "colorTo": "to-blue-500"
+    "colorTo": "to-blue-500",
+    "links": [
+        {
+            "icon": "url",
+            "name": "test1",
+            "url": "https://google.com"
+        },
+        {
+            "icon": "url",
+            "name": "test2",
+            "url": "https://google.com"
+        },
+        {
+            "icon": "url",
+            "name": "test3",
+            "url": "https://google.com"
+        }
+    ]
 }
