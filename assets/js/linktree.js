@@ -12,7 +12,7 @@ function loadView() {
         document.getElementById("name").innerHTML = json.name;
         document.getElementById("bild").src = json.profilbild;
         json.links.forEach(element => {
-          document.getElementById("links").innerHTML += '<a href="' + element.url + '"><div class="text-center text-white border-white text-2xl font-bold py-6 px-12 rounded hover:shadow-lg">' + element.name + '</div></a>';
+          document.getElementById("links").innerHTML += '<a href="' + element.url + '"><div class="text-center text-white border-white border-2 text-2xl font-bold py-6 px-12 rounded hover:shadow-lg">' + element.name + '</div></a>';
         });
     })
 }
