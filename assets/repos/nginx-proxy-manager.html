@@ -54,7 +54,7 @@ so that the barrier for entry here is low.</p>
 <li>PHP optinal, you can add php extensions, see aviable packages <a href="https://pkgs.alpinelinux.org/packages?branch=edge&amp;repo=community&amp;arch=x86_64&amp;name=php81-*" rel="nofollow">here</a> and <a href="https://pkgs.alpinelinux.org/packages?branch=edge&amp;repo=community&amp;arch=x86_64&amp;name=php82-*" rel="nofollow">here</a>
 </li>
 <li>allows different acme servers</li>
-<li>up to 64 domains per cert allowed</li>
+<li>up to 99 domains per cert allowed</li>
 <li>Brotli can be enabled</li>
 <li>HTTP/2 always enabled</li>
 <li>HTTP/2 upload fixed</li>
@@ -74,7 +74,7 @@ so that the barrier for entry here is low.</p>
 <h1><a id="user-content-use-as-webserver" class="anchor" aria-hidden="true" href="#use-as-webserver"><span aria-hidden="true" class="octicon octicon-link"></span></a>Use as webserver</h1>
 <ol>
 <li>Create a new Proxy Host</li>
-<li>Set <code>Scheme</code> to <code>http</code>, <code>Forward Hostname / IP</code> to <code>0.0.0.0</code>, <code>Forward Port</code> to <code>1</code> and enable <code>Websockets Support</code> (you can also use other values, since these get fully ignored)</li>
+<li>Set <code>Scheme</code> to <code>https</code>, <code>Forward Hostname / IP</code> to <code>0.0.0.0</code>, <code>Forward Port</code> to <code>1</code> and enable <code>Websockets Support</code> (you can also use other values, since these get fully ignored)</li>
 <li>Maybe set an Access List</li>
 <li>Make your SSL Settings</li>
 <li>
@@ -159,7 +159,7 @@ You may need to use another IP-Adress.</p>
 <p><a href="https://127.0.0.1:81" rel="nofollow">https://127.0.0.1:81</a></p>
 <p>Default Admin User:</p>
 <pre><code>Email:    admin@example.com
-Password: 9KcvfmAvcVonB7YOMqdjJGsTG2JL058Rx6xFNMintAeaGETsRBRlSbfXdi1inoCa
+Password: iArhP1j7p1P6TA92FA2FMbbUGYqwcYzxC4AVEe12Wbi94FY9gNN62aKyF1shrvG4NycjjX9KfmDQiwkLZH1ZDR9xMjiG2QmoHXi
 </code></pre>
 <p>Immediately after logging in with this default user you will be asked to modify your details and change your password.</p>
 <h2><a id="user-content-contributors" class="anchor" aria-hidden="true" href="#contributors"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contributors</h2>
