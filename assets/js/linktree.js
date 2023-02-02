@@ -12,10 +12,9 @@ function loadView() {
         document.getElementById("name").innerHTML = json.name;
         document.getElementById("bild").src = json.profilbild;
         json.links.forEach(element => {
-          document.getElementById("links").innerHTML += '<a href="' + element.url + '" class="p-6 m-6"><div class="text-center text-white border-white border-2 text-2xl font-bold">' + element.name + '</div></a>';
+          document.getElementById("links").innerHTML += '<a href="' + element.url + '"><div class="text-center text-white text-2xl font-bold">' + element.name + '</div></a>';
           console.log(element)
         });
-        String(json)
         console.log(json)
     })
 }
