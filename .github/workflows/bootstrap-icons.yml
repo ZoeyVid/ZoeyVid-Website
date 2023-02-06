@@ -24,7 +24,7 @@ jobs:
          unzip bootstrap-icons.zip
          mv bootstrap-icons-* bootstrap-icons
          rm -rf bootstrap-icons.zip
-         for file in $(ls bootstrap-icons | grep -vE \""$(echo \|"$(cat bootstrap-icons.list | tr "\n" "|")"\|)"\"); do rm -rf bootstrap-icons/"$file"; done
+         for file in $(ls bootstrap-icons | grep -vE \""$(echo \|"$(cat bootstrap-icons.list | tr "\n" "|")")"\"); do rm -rf bootstrap-icons/"$file"; done
           
       - name: push changes
         run: |
