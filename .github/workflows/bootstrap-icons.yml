@@ -21,7 +21,8 @@ jobs:
          unzip bootstrap-icons.zip
          mv bootstrap-icons-* bootstrap-icons
          rm -rf bootstrap-icons.zip
-         for file in $(ls bootstrap-icons | grep -vE "twitter|mastodon|insta"); do rm -rf "$file"; done
+         cd bootstrap-icons
+         for file in $(ls | grep -vE "twitter|mastodon|insta"); do rm -rf "$file"; done
           
       - name: push changes
         run: |
