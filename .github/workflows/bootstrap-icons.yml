@@ -1,0 +1,30 @@
+name: bootstrap-icons
+
+on:
+  push:
+  schedule:
+    - cron:  "0 */6 * * *"
+  workflow_dispatch:
+
+jobs:          
+  bootstrap-icons:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: update bootstrap-icons
+        run: |
+         cd assets
+         rm -rf bootstrap-icons
+         curl -sL $(curl https://api.github.com/repos/twbs/icons/releases/latest | jq -r .assets[].browser_download_url) -o bootstrap-icons.zip
+         unzip bootstrap-icons.zip
+         mv bootstrap-icons-* bootstrap-icons
+         rm -rf bootstrap-icons.zip
+          
+      - name: push changes
+        run: |
+          git config user.name "GitHub"
+          git config user.email "noreply@github.com"
+          git diff-index --quiet HEAD || git commit -sm "tailwindcss-update"
+          git push
