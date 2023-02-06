@@ -1,11 +1,11 @@
 name: repo-update
 
 on:
-  schedule:
-    - cron:  "0 */6 * * *"
   push:
     paths:
       - .github/workflows/repo-update.yml
+  schedule:
+    - cron:  "0 */6 * * *"
   workflow_dispatch:
 
 jobs:
