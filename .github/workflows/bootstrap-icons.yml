@@ -17,7 +17,7 @@ jobs:
         run: |
          cd assets
          rm -rf bootstrap-icons
-         curl -sL $(curl https://api.github.com/repos/twbs/icons/releases/latest | jq -r .assets[].browser_download_url) -o bootstrap-icons.zip
+         curl -sL $(curl -sL https://api.github.com/repos/twbs/icons/releases/latest | jq -r .assets[].browser_download_url) -o bootstrap-icons.zip
          unzip bootstrap-icons.zip
          mv bootstrap-icons-* bootstrap-icons
          rm -rf bootstrap-icons.zip
