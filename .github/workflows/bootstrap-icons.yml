@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - assets/bootstrap-icons.list
+      - .github/workflows/bootstrap-icons.yml
   schedule:
     - cron:  "0 */6 * * *"
   workflow_dispatch:
