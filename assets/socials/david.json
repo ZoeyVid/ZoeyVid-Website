@@ -5,17 +5,17 @@
     "colorTo": "to-blue-500",
     "links": [
         {
-            "icon": "url",
+            "icon": "link-45deg",
             "name": "test1",
             "url": "https://google.com"
         },
         {
-            "icon": "url",
+            "icon": "link-45deg",
             "name": "test2",
             "url": "https://google.com"
         },
         {
-            "icon": "url",
+            "icon": "link-45deg",
             "name": "test3",
             "url": "https://google.com"
         }
