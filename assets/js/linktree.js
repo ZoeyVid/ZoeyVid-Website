@@ -14,6 +14,9 @@ function loadView() {
         json.links.forEach(element => {
           document.getElementById("links").innerHTML += '<a href="' + element.url + '"><div class="text-center text-white text-2xl font-bold flex items-center justify-center p-6 rounded-md hover:bg-gray-700"><img class="pr-2" src="https://zoeyvid.de/assets/bootstrap-icons/' + element.icon + '.svg">' + element.name + '</div></a>';
           console.log(element)
+          // <svg>
+    //<use href="logo.svg" style="--color_fill: #000;"></use>
+    //</svg>
         });
         console.log(json)
     })
