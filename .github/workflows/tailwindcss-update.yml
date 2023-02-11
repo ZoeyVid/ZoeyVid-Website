@@ -1,25 +1,21 @@
 name: tailwindcss-update
-
 on:
   push:
   schedule:
-    - cron:  "0 */6 * * *"
+    - cron: "0 */6 * * *"
   workflow_dispatch:
-
-jobs:          
+jobs:
   tailwindcss-update:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-
       - name: update tailwindcss (minify)
         uses: ZoeyVid/tailwindcss-update@main
         with:
           input: assets/css/input.css
           output: assets/css/output.css
           params: "--minify"
-          
       - name: push changes
         run: |
           git config user.name "GitHub"
