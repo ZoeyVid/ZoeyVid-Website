@@ -1,0 +1,23 @@
+name: yq
+on:
+  push:
+    paths:
+      - .github/workflows/**
+  schedule:
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+jobs:
+  yq:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: update repos
+        run: | for workflow in .github/workflows/*.yml; do yq "$workflow" | tee "$workflow".tmp && mv "$workflow".tmp "$workflow"; done
+      - name: push changes
+        run: |
+          git config user.name "GitHub"
+          git config user.email "noreply@github.com"
+          git add -A
+          git diff-index --quiet HEAD || git commit -sm "yq"
+          git push
