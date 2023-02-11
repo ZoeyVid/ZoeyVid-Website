@@ -18,8 +18,10 @@ jobs:
           cd assets
           rm -rf bootstrap-icons
           curl -sL $(curl -sL https://api.github.com/repos/twbs/icons/releases/latest | jq -r .assets[].browser_download_url) -o bootstrap-icons.zip
-          unzip bootstrap-icons.zip\nmv bootstrap-icons-* bootstrap-icons\nrm -rf bootstrap-icons.zip
-          for file in $(ls bootstrap-icons | grep -vE \\\"\"$(echo \\|\"$(cat bootstrap-icons.list | tr \"\\n\" \"|\")\")\"\\\"); do rm -rf bootstrap-icons/\"$file\"; done
+          unzip bootstrap-icons.zip
+          mv bootstrap-icons-* bootstrap-icons
+          rm -rf bootstrap-icons.zip
+          for file in $(ls bootstrap-icons | grep -vE \""$(echo \|"$(cat bootstrap-icons.list | tr "\n" "|")")"\"); do rm -rf bootstrap-icons/"$file"; done
       - name: push changes
         run: |
           git add assets/bootstrap-icons
