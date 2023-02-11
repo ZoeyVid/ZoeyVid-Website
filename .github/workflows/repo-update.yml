@@ -3,6 +3,7 @@ name: repo-update
 on:
   push:
     paths:
+      - assets/repos/**
       - .github/workflows/repo-update.yml
   schedule:
     - cron:  "0 */6 * * *"
