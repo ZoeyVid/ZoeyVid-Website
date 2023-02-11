@@ -98,24 +98,12 @@
     "description": "",
     "topics": [
       "cloudflare",
-      "docker"
-    ],
-    "homepage": "https://hub.docker.com/r/zoeyvid/cloudflared"
-  },
-  "cloudflared-dns": {
-    "name": "cloudflared-dns",
-    "html_url": "https://github.com/ZoeyVid/cloudflared-dns",
-    "readme": "https://zoeyvid.de/assets/repos/cloudflared-dns.html",
-    "fork": false,
-    "description": "",
-    "topics": [
-      "cloudflare",
       "dns",
       "dns-over-https",
       "dns-server",
       "docker"
     ],
-    "homepage": "https://hub.docker.com/r/zoeyvid/cloudflared-dns"
+    "homepage": "https://hub.docker.com/r/zoeyvid/cloudflared"
   },
   "curl-quic": {
     "name": "curl-quic",
