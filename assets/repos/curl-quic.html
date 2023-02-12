@@ -1,7 +1,8 @@
 <meta charset=utf-8>
 <h1><a id="user-content-curl-quic" class="anchor" aria-hidden="true" href="#curl-quic"><span aria-hidden="true" class="octicon octicon-link"></span></a>curl-quic</h1>
 <h2><a id="user-content-usage" class="anchor" aria-hidden="true" href="#usage"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage:</h2>
-<div class="highlight highlight-source-shell"><pre>docker run --rm -it --pull always zoeyvid/curl-quic</pre></div>
+<div class="highlight highlight-source-shell"><pre>docker run --rm -it --pull always --name curl zoeyvid/curl-quic</pre></div>
 <h3><a id="user-content-example" class="anchor" aria-hidden="true" href="#example"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example:</h3>
-<div class="highlight highlight-source-shell"><pre>docker run --rm -it --pull always zoeyvid/curl-quic --http3 -sIL https://cloudflare-quic.com</pre></div>
+<div class="highlight highlight-source-shell"><pre>docker run --rm -it --pull always --name curl -v <span class="pl-s"><span class="pl-pds">"</span>/:/host<span class="pl-pds">"</span></span> zoeyvid/curl-quic --http3 -sL https://cloudflare-quic.com -o root/curl-output
+cat /root/curl-output</pre></div>
 
