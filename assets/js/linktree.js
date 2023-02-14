@@ -12,7 +12,7 @@ function loadView() {
         document.getElementById("name").innerHTML = json.name;
         document.getElementById("bild").src = json.profilbild;
         json.links.forEach(element => {
-          document.getElementById("links").innerHTML += '<a href="' + element.url + '"><div class="text-center text-white text-2xl font-bold flex items-center justify-center p-6 rounded-md hover:bg-gray-700"><object class="p-2" data="https://zoeyvid.de/assets/bootstrap-icons/' + element.icon + '.svg" style="--color_fill: #fffff;" type="image/svg+xml"></object>' + element.name + '</div></a>';
+          document.getElementById("links").innerHTML += '<a href="' + element.url + '"><div class="text-center text-white text-2xl font-bold flex items-center justify-center p-6 rounded-md hover:bg-gray-700"><img class="p-2" src="https://zoeyvid.de/assets/bootstrap-icons/' + element.icon + '.svg"></img>' + element.name + '</div></a>';
           document.querySelector("path").setAttribute("stroke", "white");
           document.querySelector("path").setAttribute("fill", "white");
           //https://stackoverflow.com/questions/4476526/do-i-use-img-object-or-embed-for-svg-files
