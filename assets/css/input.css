@@ -9,10 +9,6 @@ body {
   @apply min-h-screen;
 }
 
-path {
-  @apply fill-white;
-}
-
 @layer base {
   h1 {
     @apply text-2xl;
