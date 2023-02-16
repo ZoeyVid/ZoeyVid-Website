@@ -9,6 +9,8 @@
     <link href="/assets/css/output.css" rel="stylesheet">
     <script src="/assets/js/htmlReader.js"></script>
     <script src="/assets/js/elements.js"></script>
+    <script src="/assets/js/linktree.js"></script>
+    <script>insertTeamDetails()</script>
     <link rel="icon" type="image/webp" href="/images/ZoeyVid-PB.webp">
 </head>
 
@@ -41,7 +43,20 @@
             Please enable Javascript. You need it to visit this site!
         </div>
     </noscript>
-    TEST
+    <div class="grid place-items-center grid-cols-3 gap-6 pt-2">
+        <div id="Zoey" class="bg-gray-800 rounded-3xl mr-96 ml-96 text-white text-center">
+            <img id="bildZoey" class="rounded-full mx-auto h-32">
+            <h1 id="nameZoey"></h1>
+        </div>
+        <div id="ZoeyVid" class="bg-gray-800 rounded-3xl mr-96 ml-96 text-white text-center">
+            <img id="bildZoeyvid" class="rounded-full mx-auto h-32">
+            <h1 id="nameZoeyvid"></h1>
+        </div>
+        <div id="David" class="bg-gray-800 rounded-3xl mr-96 ml-96 text-white text-center">
+            <img id="bildDavid" class="rounded-full mx-auto h-32">
+            <h1 id="nameDavid"></h1>
+        </div>
+    </div>
     <div id="footer">
         <script>
             readHTML("footer", "/assets/elements/footer.html")
