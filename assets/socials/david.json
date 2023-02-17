@@ -16,9 +16,14 @@
             "url": "https://social.zoeyvid.de/@David"
         },
         {
-            "icon": "link-45deg",
-            "name": "test3",
-            "url": "https://google.com"
+            "icon": "instagram",
+            "name": "Instagram",
+            "url": "https://www.instagram.com/davidcraftdev/"
+        }, 
+        {
+            "icon": "twitter",
+            "name": "Twitter",
+            "url": "https://twitter.com/DavidCraftDev"
         }
     ]
 }
