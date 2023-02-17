@@ -1,19 +1,19 @@
 {
     "name": "David",
-    "bio": "Wadde hadde dude da",
+    "bio": "Möchte gern Hobby Developer",
     "profilbild": "/images/David-Klein.webp",
     "colorFrom": "from-cyan-500",
     "colorTo": "to-blue-500",
     "links": [
         {
-            "icon": "link-45deg",
-            "name": "test1",
-            "url": "https://google.com"
+            "icon": "github",
+            "name": "GitHub",
+            "url": "https://github.com/DavidCraftDev"
         },
         {
-            "icon": "link-45deg",
-            "name": "test2",
-            "url": "https://google.com"
+            "icon": "mastodon",
+            "name": "Mastodon",
+            "url": "https://social.zoeyvid.de/@David"
         },
         {
             "icon": "link-45deg",
