@@ -13,7 +13,7 @@ function loadView() {
         document.getElementById("name").innerHTML = json.name;
         document.getElementById("bio").innerHTML = json.bio;
         json.links.forEach(element => {
-          document.getElementById("links").innerHTML += '<a href="' + element.url + '"><div class="text-center text-white text-2xl font-bold flex items-center justify-center p-6 rounded-md hover:bg-gray-700"><img class="p-2 invert" h-4/3 w-auto src="https://zoeyvid.de/assets/bootstrap-icons/' + element.icon + '.svg"></img>' + element.name + '</div></a>';
+          document.getElementById("links").innerHTML += '<a href="' + element.url + '"><div class="text-center text-white text-2xl font-bold flex items-center justify-center p-6 pt-4 rounded-md hover:bg-gray-700"><img class="p-2 invert" h-4/3 w-auto src="https://zoeyvid.de/assets/bootstrap-icons/' + element.icon + '.svg"></img>' + element.name + '</div></a>';
         });
     })
 }
