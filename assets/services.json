@@ -1,1 +1,6 @@
-{}
+{
+    "Test":{
+        "description":"Test",
+        "link":"http://www.test.com"
+    }
+}
