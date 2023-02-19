@@ -1,4 +1,5 @@
 function getAllServices() {
+  console.log("Getting all services...(Test)")
     fetch("https://zoeyvid.de/assets/services.json")
       .then((response) => {
         return response.json()
