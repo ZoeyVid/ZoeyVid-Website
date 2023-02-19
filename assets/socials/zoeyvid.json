@@ -8,42 +8,22 @@
         {
             "icon": "github",
             "name": "GitHub",
-            "url": "https://github.com/Zoey2936"
+            "url": "https://github.com/ZoeyVid"
         },
         {
             "icon": "mastodon",
             "name": "Mastodon",
-            "url": "https://social.zoeyvid.de/@Zoey"
-        },
-        {
-            "icon": "instagram",
-            "name": "Instagram",
-            "url": "https://instagram.com/2020Sanoj"
-        },
-        {
-            "icon": "twitch",
-            "name": "Twitch",
-            "url": "https://twitch.tv/Zoey2936"
-        },
-        {
-            "icon": "youtube",
-            "name": "YouTube",
-            "url": "https://youtube.com/@Zoey2936"
-        },
-        {
-            "icon": "tiktok",
-            "name": "TikTok",
-            "url": "https://www.tiktok.com/@z0ey2936"
+            "url": "https://social.zoeyvid.de/@ZoeyVid"
         },
         {
             "icon": "envelope-at-fill",
             "name": "Mail",
-            "url": "mailto:zoey@z0ey.de"
+            "url": "mailto:zoeyvid@zvcdn.de"
         },
         {
             "icon": "link-45deg",
             "name": "Website",
-            "url": "https://z0ey.de"
+            "url": "https://zoeyvid.de"
         },
         {
             "icon": "discord",
@@ -51,19 +31,9 @@
             "url": "https://z0ey.de/dc"
         },
         {
-            "icon": "reddit",
-            "name": "Reddit",
-            "url": "https://reddit.com/user/Zoey2936"
-        },
-        {
             "icon": "twitter",
             "name": "Twitter",
-            "url": "https://twitter.com/Zoey2936"
-        },
-        {
-            "icon": "steam",
-            "name": "Steam",
-            "url": "https://steamcommunity.com/id/Zoey2936"
+            "url": "https://twitter.com/ZoeyVid"
         }
     ]
 }
