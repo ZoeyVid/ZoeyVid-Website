@@ -11,8 +11,8 @@
         "description":"Ein BetterCrewLink Server von ZoeyVid",
         "link":"http://bcl.zvcdn.de"
     },
-    "Jenkins Server":{
-        "description":"Die CI von ZoeyVid",
-        "link":"http://ci.zvcdn.de"
+    "Rustdesk":{
+        "description":"Key: hjPlufPJhGtrjfSVOArlgeNvvNGmzKOq/pIIhkkigHA=",
+        "link":"vps.zvcdn.de"
     }
 }
