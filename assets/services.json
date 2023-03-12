@@ -5,7 +5,7 @@
     },
     "Rustdesk":{
         "description":"Key: hjPlufPJhGtrjfSVOArlgeNvvNGmzKOq/pIIhkkigHA=",
-        "link":"vps.zvcdn.de"
+        "link":"rustdesk://vps.zvcdn.de?key=hjPlufPJhGtrjfSVOArlgeNvvNGmzKOq/pIIhkkigHA="
     },
     "Cryptgeon" : {
         "description" : "Eine von ZoeyVid gehostete Cryptgeon instanz",
