@@ -21,6 +21,7 @@ running at home or otherwise, including free TLS, without having to know too muc
 proxying hosts with TLS termination and it had to be so easy that a monkey could do it. This goal hasn't changed.
 While there might be advanced options they are optional and the project should be as simple as possible
 so that the barrier for entry here is low.</p>
+<h3><a id="user-content-sponsor-the-original-creator-not-us" class="anchor" aria-hidden="true" href="#sponsor-the-original-creator-not-us"><span aria-hidden="true" class="octicon octicon-link"></span></a>Sponsor the original creator (not us):</h3>
 <p><a href="https://www.buymeacoffee.com/jc21" rel="nofollow"><img src="https://camo.githubusercontent.com/674bfc1dd775fa1c51eebaf73df1c45fbb6ad76357508b1dc227d7010ba23a68/687474703a2f2f7075626c69632e6a6332312e636f6d2f6769746875622f62792d6d652d612d636f666665652e706e67" alt="Buy Me A Coffee" data-canonical-src="http://public.jc21.com/github/by-me-a-coffee.png" style="max-width: 100%;"></a></p>
 <h2><a id="user-content-features" class="anchor" aria-hidden="true" href="#features"><span aria-hidden="true" class="octicon octicon-link"></span></a>Features</h2>
 <ul>
@@ -59,6 +60,9 @@ so that the barrier for entry here is low.</p>
 <li>HTTP/2 always enabled</li>
 <li>HTTP/2 upload fixed</li>
 <li>Infinite upload size allowed</li>
+<li>Auto database vacuum (only sqlite) (FULLCLEAN=true)</li>
+<li>Auto certbot old certs clean (FULLCLEAN=true)</li>
+<li>Passwort reset (only sqlite) (<code>docker exec -it nginx-proxy-manager password-reset.js USER_EMAIL PASSWORD</code>)</li>
 </ul>
 <h2><a id="user-content-soon" class="anchor" aria-hidden="true" href="#soon"><span aria-hidden="true" class="octicon octicon-link"></span></a>Soon</h2>
 <ul>
@@ -162,7 +166,7 @@ You may need to use another IP-Address.</p>
 Password: iArhP1j7p1P6TA92FA2FMbbUGYqwcYzxC4AVEe12Wbi94FY9gNN62aKyF1shrvG4NycjjX9KfmDQiwkLZH1ZDR9xMjiG2QmoHXi
 </code></pre>
 <p>Immediately after logging in with this default user you will be asked to modify your details and change your password.</p>
-<h2><a id="user-content-contributors" class="anchor" aria-hidden="true" href="#contributors"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contributors</h2>
+<h2><a id="user-content-contributors-original-npm" class="anchor" aria-hidden="true" href="#contributors-original-npm"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contributors (original NPM)</h2>
 <p>Special thanks to <a href="https://github.com/NginxProxyManager/nginx-proxy-manager/graphs/contributors">all of our contributors</a>.</p>
 <h1><a id="user-content-please-report-bugs-first-to-this-fork-before-reporting-them-to-the-original-repository" class="anchor" aria-hidden="true" href="#please-report-bugs-first-to-this-fork-before-reporting-them-to-the-original-repository"><span aria-hidden="true" class="octicon octicon-link"></span></a>Please report Bugs first to this fork before reporting them to the original Repository</h1>
 <h2><a id="user-content-getting-support" class="anchor" aria-hidden="true" href="#getting-support"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting Support</h2>

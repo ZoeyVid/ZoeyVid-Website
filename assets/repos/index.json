@@ -118,21 +118,12 @@
     ],
     "homepage": "https://hub.docker.com/r/zoeyvid/curl-quic"
   },
-  "docker-socket-proxy": {
-    "name": "docker-socket-proxy",
-    "html_url": "https://github.com/ZoeyVid/docker-socket-proxy",
-    "readme": "https://zoeyvid.de/assets/repos/docker-socket-proxy.html",
-    "fork": true,
-    "description": "Proxy over your Docker socket to restrict which requests it accepts",
-    "topics": [],
-    "homepage": "https://hub.docker.com/r/zoeyvid/docker-socket-proxy"
-  },
   "docker-ssh-tarpit": {
     "name": "docker-ssh-tarpit",
     "html_url": "https://github.com/ZoeyVid/docker-ssh-tarpit",
     "readme": "https://zoeyvid.de/assets/repos/docker-ssh-tarpit.html",
     "fork": false,
-    "description": "SSH-Tarpi for docker",
+    "description": "SSH-Tarpit for docker",
     "topics": [
       "docker",
       "docker-container",
@@ -179,7 +170,9 @@
     "description": "Docker image for Nginx + HTTP/3 ",
     "topics": [
       "docker",
-      "nginx"
+      "nginx",
+      "proxy",
+      "reverse-proxy"
     ],
     "homepage": "https://hub.docker.com/r/zoeyvid/nginx-quic"
   },
@@ -227,6 +220,15 @@
     "description": "Ein Vokabel Trainer",
     "topics": [],
     "homepage": "https://hub.docker.com/r/zoeyvid/vokabel-trainer"
+  },
+  "w2d-docker": {
+    "name": "w2d-docker",
+    "html_url": "https://github.com/ZoeyVid/w2d-docker",
+    "readme": "https://zoeyvid.de/assets/repos/w2d-docker.html",
+    "fork": false,
+    "description": "",
+    "topics": [],
+    "homepage": "https://hub.docker.com/r/zoeyvid/w2d-docker"
   },
   "wunderground-pwa-scriptable-lockscreen-widget": {
     "name": "wunderground-pwa-scriptable-lockscreen-widget",

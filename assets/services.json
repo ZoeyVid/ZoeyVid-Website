@@ -1,6 +1,22 @@
 {
-    "Test":{
-        "description":"Test",
-        "link":"http://www.test.com"
+    "Jenkins Server":{
+        "description":"Die CI von ZoeyVid",
+        "link":"https://ci.zvcdn.de"
+    },
+    "Rustdesk":{
+        "description":"Key: hjPlufPJhGtrjfSVOArlgeNvvNGmzKOq/pIIhkkigHA=",
+        "link":"rustdesk://vps.zvcdn.de?key=hjPlufPJhGtrjfSVOArlgeNvvNGmzKOq/pIIhkkigHA="
+    },
+    "Cryptgeon" : {
+        "description" : "Eine von ZoeyVid gehostete Cryptgeon instanz",
+        "link" : "https://cg.zvcdn.de"
+    },
+    "Pastebin": {
+        "description" : "Ein von ZoeyVid gehostete Pastebin Server",
+        "link" : "https://pb.zvcdn.de"
+    },
+    "BetterCrewLink" :{
+        "description" : "Ein BetterCrewLink Server von ZoeyVid",
+        "link" : "https://bcl.zvcdn.de"
     }
 }
