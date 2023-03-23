@@ -66,8 +66,10 @@ function git() {
 
 function changeExternalLinks() {
   const links = document.querySelectorAll("a");
+  let allowedHost = "https://zoeyvid.de";
   links.forEach(link => {
-    if (!link.href.startsWith("https://zoeyvid.de")) {
+    location.hostname
+    if (!link.startsWith(allowedHost)) {
       link.onclick = function () {
          if (confirm("Willst du wirklich zoeyvid.de verlassen, und auf " + link.href + " gehen?") == true) {
           return true;
