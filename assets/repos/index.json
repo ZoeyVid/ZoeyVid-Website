@@ -118,6 +118,15 @@
     ],
     "homepage": "https://hub.docker.com/r/zoeyvid/curl-quic"
   },
+  "docker-socket-proxy": {
+    "name": "docker-socket-proxy",
+    "html_url": "https://github.com/ZoeyVid/docker-socket-proxy",
+    "readme": "https://zoeyvid.de/assets/repos/docker-socket-proxy.html",
+    "fork": true,
+    "description": "Proxy over your Docker socket to restrict which requests it accepts",
+    "topics": [],
+    "homepage": "https://hub.docker.com/r/zoeyvid/docker-socket-proxy"
+  },
   "docker-ssh-tarpit": {
     "name": "docker-ssh-tarpit",
     "html_url": "https://github.com/ZoeyVid/docker-ssh-tarpit",

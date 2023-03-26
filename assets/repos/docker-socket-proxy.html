@@ -1,0 +1,195 @@
+<meta charset=utf-8>
+<p><a href="https://github.com/Tecnativa/image-template/tree/v0.1.3"><img src="https://camo.githubusercontent.com/9770d3679dc1150115583e2765329f9d58a2806aa3b7f006162215316a717987/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c61737425323074656d706c6174652532307570646174652d76302e312e332d696e666f726d6174696f6e616c" alt="Last image-template" data-canonical-src="https://img.shields.io/badge/last%20template%20update-v0.1.3-informational" style="max-width: 100%;"></a>
+<a href="https://github.com/orgs/Tecnativa/packages/container/package/docker-socket-proxy"><img src="https://camo.githubusercontent.com/ed847d115f2bf1bb28d5978a36231b4b6a1bf286d68760df2b3eebd80afdefc0/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f476974487562253230436f6e7461696e657225323052656769737472792d6c61746573742d253233323432393265" alt="GitHub Container Registry" data-canonical-src="https://img.shields.io/badge/GitHub%20Container%20Registry-latest-%2324292e" style="max-width: 100%;"></a>
+<a href="https://hub.docker.com/r/tecnativa/docker-socket-proxy" rel="nofollow"><img src="https://camo.githubusercontent.com/ffcf8f5fa5f11765e91f92c6455bc8c50040a6f4fdad22e884dcfa8301b6a25a/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f446f636b65722532304875622d6c61746573742d253233303939636563" alt="Docker Hub" data-canonical-src="https://img.shields.io/badge/Docker%20Hub-latest-%23099cec" style="max-width: 100%;"></a></p>
+<h1><a id="user-content-docker-socket-proxy" class="anchor" aria-hidden="true" href="#docker-socket-proxy"><span aria-hidden="true" class="octicon octicon-link"></span></a>Docker Socket Proxy</h1>
+<h2><a id="user-content-what" class="anchor" aria-hidden="true" href="#what"><span aria-hidden="true" class="octicon octicon-link"></span></a>What?</h2>
+<p>This is a security-enhanced proxy for the Docker Socket.</p>
+<h2><a id="user-content-why" class="anchor" aria-hidden="true" href="#why"><span aria-hidden="true" class="octicon octicon-link"></span></a>Why?</h2>
+<p>Giving access to your Docker socket could mean giving root access to your host, or even
+to your whole swarm, but some services require hooking into that socket to react to
+events, etc. Using this proxy lets you block anything you consider those services should
+not do.</p>
+<h2><a id="user-content-how" class="anchor" aria-hidden="true" href="#how"><span aria-hidden="true" class="octicon octicon-link"></span></a>How?</h2>
+<p>We use the official <a href="https://alpinelinux.org/" rel="nofollow">Alpine</a>-based <a href="http://www.haproxy.org/" rel="nofollow">HAProxy</a> image with a small configuration file.</p>
+<p>It blocks access to the Docker socket API according to the environment variables you
+set. It returns a <code>HTTP 403 Forbidden</code> status for those dangerous requests that should
+never happen.</p>
+<h2><a id="user-content-security-recommendations" class="anchor" aria-hidden="true" href="#security-recommendations"><span aria-hidden="true" class="octicon octicon-link"></span></a>Security recommendations</h2>
+<ul>
+<li>Never expose this container's port to a public network. Only to a Docker networks
+where only reside the proxy itself and the service that uses it.</li>
+<li>Revoke access to any API section that you consider your service should not need.</li>
+<li>This image does not include TLS support, just plain HTTP proxy to the host Docker
+Unix socket (which is not TLS protected even if you configured your host for TLS
+protection). This is by design because you are supposed to restrict access to it
+through Docker's built-in firewall.</li>
+<li>
+<a href="#supported-api-versions">Read the docs</a> for the API version you are using, and
+<strong>know what you are doing</strong>.</li>
+</ul>
+<h2><a id="user-content-usage" class="anchor" aria-hidden="true" href="#usage"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
+<ol>
+<li>
+<p>Run the API proxy (<code>--privileged</code> flag is required here because it connects with the
+docker socket, which is a privileged connection in some SELinux/AppArmor contexts
+and would get locked otherwise):</p>
+<pre><code>$ docker container run \
+    -d --privileged \
+    --name dockerproxy \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    -p 127.0.0.1:2375:2375 \
+    tecnativa/docker-socket-proxy
+</code></pre>
+</li>
+<li>
+<p>Connect your local docker client to that socket:</p>
+<pre><code>$ export DOCKER_HOST=tcp://localhost:2375
+</code></pre>
+</li>
+<li>
+<p>You can see the docker version:</p>
+<pre><code>$ docker version
+Client:
+ Version:      17.03.1-ce
+ API version:  1.27
+ Go version:   go1.7.5
+ Git commit:   c6d412e
+ Built:        Mon Mar 27 17:14:43 2017
+ OS/Arch:      linux/amd64
+
+Server:
+ Version:      17.03.1-ce
+ API version:  1.27 (minimum version 1.12)
+ Go version:   go1.7.5
+ Git commit:   c6d412e
+ Built:        Mon Mar 27 17:14:43 2017
+ OS/Arch:      linux/amd64
+ Experimental: false
+</code></pre>
+</li>
+<li>
+<p>You cannot see running containers:</p>
+<pre><code>$ docker container ls
+Error response from daemon: &lt;html&gt;&lt;body&gt;&lt;h1&gt;403 Forbidden&lt;/h1&gt;
+Request forbidden by administrative rules.
+&lt;/body&gt;&lt;/html&gt;
+</code></pre>
+</li>
+</ol>
+<p>The same will happen to any containers that use this proxy's <code>2375</code> port to access the
+Docker socket API.</p>
+<h2><a id="user-content-grant-or-revoke-access-to-certain-api-sections" class="anchor" aria-hidden="true" href="#grant-or-revoke-access-to-certain-api-sections"><span aria-hidden="true" class="octicon octicon-link"></span></a>Grant or revoke access to certain API sections</h2>
+<p>You grant and revoke access to certain features of the Docker API through environment
+variables.</p>
+<p>Normally the variables match the URL prefix (i.e. <code>AUTH</code> blocks access to <code>/auth/*</code>
+parts of the API, etc.).</p>
+<p>Possible values for these variables:</p>
+<ul>
+<li>
+<code>0</code> to <strong>revoke</strong> access.</li>
+<li>
+<code>1</code> to <strong>grant</strong> access.</li>
+</ul>
+<h3><a id="user-content-access-granted-by-default" class="anchor" aria-hidden="true" href="#access-granted-by-default"><span aria-hidden="true" class="octicon octicon-link"></span></a>Access granted by default</h3>
+<p>These API sections are mostly harmless and almost required for any service that uses the
+API, so they are granted by default.</p>
+<ul>
+<li><code>EVENTS</code></li>
+<li><code>PING</code></li>
+<li><code>VERSION</code></li>
+</ul>
+<h3><a id="user-content-access-revoked-by-default" class="anchor" aria-hidden="true" href="#access-revoked-by-default"><span aria-hidden="true" class="octicon octicon-link"></span></a>Access revoked by default</h3>
+<h4><a id="user-content-security-critical" class="anchor" aria-hidden="true" href="#security-critical"><span aria-hidden="true" class="octicon octicon-link"></span></a>Security-critical</h4>
+<p>These API sections are considered security-critical, and thus access is revoked by
+default. Maximum caution when enabling these.</p>
+<ul>
+<li><code>AUTH</code></li>
+<li><code>SECRETS</code></li>
+<li>
+<code>POST</code>: When disabled, only <code>GET</code> and <code>HEAD</code> operations are allowed, meaning any
+section of the API is read-only.</li>
+</ul>
+<h4><a id="user-content-not-always-needed" class="anchor" aria-hidden="true" href="#not-always-needed"><span aria-hidden="true" class="octicon octicon-link"></span></a>Not always needed</h4>
+<p>You will possibly need to grant access to some of these API sections, which are not so
+extremely critical but can expose some information that your service does not need.</p>
+<ul>
+<li><code>ALLOW_POWER</code></li>
+<li><code>BUILD</code></li>
+<li><code>COMMIT</code></li>
+<li><code>CONFIGS</code></li>
+<li><code>CONTAINERS</code></li>
+<li><code>DISTRIBUTION</code></li>
+<li><code>EXEC</code></li>
+<li><code>GRPC</code></li>
+<li><code>IMAGES</code></li>
+<li><code>INFO</code></li>
+<li><code>NETWORKS</code></li>
+<li><code>NODES</code></li>
+<li><code>PLUGINS</code></li>
+<li><code>SERVICES</code></li>
+<li><code>SESSION</code></li>
+<li><code>SWARM</code></li>
+<li><code>SYSTEM</code></li>
+<li><code>TASKS</code></li>
+<li><code>VOLUMES</code></li>
+</ul>
+<h2><a id="user-content-use-a-different-docker-socket-location" class="anchor" aria-hidden="true" href="#use-a-different-docker-socket-location"><span aria-hidden="true" class="octicon octicon-link"></span></a>Use a different Docker socket location</h2>
+<p>If your OS stores its Docker socket in a different location and you are unable to bind
+mount it in your container specification, you can specify this via the <code>SOCKET_PATH</code>
+environment variable.</p>
+<p>For example, <a href="https://www.balena.io/os/" rel="nofollow">balenaOS</a> exposes its socket at
+<code>/var/run/balena-engine.sock</code>. To accommodate this, merely set the <code>SOCKET_PATH</code>
+environment variable to <code>/var/run/balena-engine.sock</code>.</p>
+<h2><a id="user-content-development" class="anchor" aria-hidden="true" href="#development"><span aria-hidden="true" class="octicon octicon-link"></span></a>Development</h2>
+<p>All the dependencies you need to develop this project (apart from Docker itself) are
+managed with <a href="https://python-poetry.org/" rel="nofollow">poetry</a>.</p>
+<p>To set up your development environment, run:</p>
+<pre><code>poetry install
+</code></pre>
+<h3><a id="user-content-testing" class="anchor" aria-hidden="true" href="#testing"><span aria-hidden="true" class="octicon octicon-link"></span></a>Testing</h3>
+<p>To run the tests locally, add <code>--prebuild</code> to autobuild the image before testing:</p>
+<div class="highlight highlight-source-shell"><pre>poetry run pytest --prebuild</pre></div>
+<p>By default, the image that the tests use (and optionally prebuild) is named
+<code>docker-socket-proxy:local</code>. If you prefer, you can build it separately before testing,
+and remove the <code>--prebuild</code> flag, to run the tests with that image you built:</p>
+<div class="highlight highlight-source-shell"><pre>docker image build -t docker-socket-proxy:local <span class="pl-c1">.</span>
+poetry run pytest</pre></div>
+<p>If you want to use a different image, export the <code>DOCKER_IMAGE_NAME</code> env variable with
+the name you want:</p>
+<div class="highlight highlight-source-shell"><pre><span class="pl-c"><span class="pl-c">#</span> To build it automatically</span>
+env DOCKER_IMAGE_NAME=my_custom_image poetry run pytest --prebuild
+
+<span class="pl-c"><span class="pl-c">#</span> To prebuild it separately</span>
+docker image build -t my_custom_image <span class="pl-c1">.</span>
+env DOCKER_IMAGE_NAME=my_custom_image poetry run pytest</pre></div>
+<h2><a id="user-content-logging" class="anchor" aria-hidden="true" href="#logging"><span aria-hidden="true" class="octicon octicon-link"></span></a>Logging</h2>
+<p>You can set the logging level or severity level of the messages to be logged with the
+environment variable <code>LOG_LEVEL</code>. Defaul value is info. Possible values are: debug,
+info, notice, warning, err, crit, alert and emerg.</p>
+<h2><a id="user-content-supported-api-versions" class="anchor" aria-hidden="true" href="#supported-api-versions"><span aria-hidden="true" class="octicon octicon-link"></span></a>Supported API versions</h2>
+<ul>
+<li><a href="https://docs.docker.com/engine/api/v1.27/" rel="nofollow">1.27</a></li>
+<li><a href="https://docs.docker.com/engine/api/v1.28/" rel="nofollow">1.28</a></li>
+<li><a href="https://docs.docker.com/engine/api/v1.29/" rel="nofollow">1.29</a></li>
+<li><a href="https://docs.docker.com/engine/api/v1.30/" rel="nofollow">1.30</a></li>
+<li><a href="https://docs.docker.com/engine/api/v1.37/" rel="nofollow">1.37</a></li>
+</ul>
+<h2><a id="user-content-image-tags" class="anchor" aria-hidden="true" href="#image-tags"><span aria-hidden="true" class="octicon octicon-link"></span></a>Image tags</h2>
+<p>Right now, the only supported tags in our container images are the ones following this
+rules:</p>
+<ol>
+<li>Each individual git released version will result in an image being tagged with the
+correspondent <code>:{{version}}</code>
+</li>
+<li>
+<code>:latest</code> will refer to the latest <em>released</em> version in git.</li>
+<li>
+<code>:edge</code> will be the version that is in the repo's master branch</li>
+</ol>
+<p>Any other tag you find in our <a href="https://hub.docker.com/r/tecnativa/docker-socket-proxy" rel="nofollow">Docker Hub image</a> is deprecated.</p>
+<p>We recommend using <a href="https://github.com/orgs/Tecnativa/packages/container/package/docker-socket-proxy">GitHub Container Registry</a> instead.</p>
+<h2><a id="user-content-feedback" class="anchor" aria-hidden="true" href="#feedback"><span aria-hidden="true" class="octicon octicon-link"></span></a>Feedback</h2>
+<p>Please send any issues to the <a href="https://github.com/Tecnativa/docker-socket-proxy/issues">issue tracker</a>. For other kind of feedback, you can use
+<a href="https://github.com/Tecnativa/docker-socket-proxy/discussions">our forum</a>.</p>
+
