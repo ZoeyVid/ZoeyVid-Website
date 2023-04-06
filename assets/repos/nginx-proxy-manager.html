@@ -2,7 +2,7 @@
 <p align="center">
 	<a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/64fb7ed5ef9e175687573940e302297deb9600b1e28d43c58a2d4c55e4e5168d/68747470733a2f2f6e67696e7870726f78796d616e616765722e636f6d2f6769746875622e706e67"><img src="https://camo.githubusercontent.com/64fb7ed5ef9e175687573940e302297deb9600b1e28d43c58a2d4c55e4e5168d/68747470733a2f2f6e67696e7870726f78796d616e616765722e636f6d2f6769746875622e706e67" data-canonical-src="https://nginxproxymanager.com/github.png" style="max-width: 100%;"></a>
 	<br><br>
-	<a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/c8febb45e19816409e403076aa2634d8ec118fe0717687f3b5a0332d161eeb73/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f76657273696f6e2d322e392e32322b2d677265656e2e7376673f7374796c653d666f722d7468652d6261646765"><img src="https://camo.githubusercontent.com/c8febb45e19816409e403076aa2634d8ec118fe0717687f3b5a0332d161eeb73/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f76657273696f6e2d322e392e32322b2d677265656e2e7376673f7374796c653d666f722d7468652d6261646765" data-canonical-src="https://img.shields.io/badge/version-2.9.22+-green.svg?style=for-the-badge" style="max-width: 100%;"></a>
+	<a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/f53e52d5839f977955cefcf9f5e8dd682d3d011c4862a95f048aa61f738a4a10/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f76657273696f6e2d322e31302e322b2d677265656e2e7376673f7374796c653d666f722d7468652d6261646765"><img src="https://camo.githubusercontent.com/f53e52d5839f977955cefcf9f5e8dd682d3d011c4862a95f048aa61f738a4a10/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f76657273696f6e2d322e31302e322b2d677265656e2e7376673f7374796c653d666f722d7468652d6261646765" data-canonical-src="https://img.shields.io/badge/version-2.10.2+-green.svg?style=for-the-badge" style="max-width: 100%;"></a>
 	<a href="https://hub.docker.com/r/zoeyvid/nginx-proxy-manager" rel="nofollow">
 		<img src="https://camo.githubusercontent.com/7545e5894009317cd246f63ad7942a175ce4f79945c4b37585429401b26c8b27/68747470733a2f2f696d672e736869656c64732e696f2f646f636b65722f73746172732f7a6f65797669642f6e67696e782d70726f78792d6d616e616765722e7376673f7374796c653d666f722d7468652d6261646765" data-canonical-src="https://img.shields.io/docker/stars/zoeyvid/nginx-proxy-manager.svg?style=for-the-badge" style="max-width: 100%;">
 	</a>
@@ -43,6 +43,11 @@ so that the barrier for entry here is low.</p>
 <li>Needs manual migration if you use custom certificates, just upload the CA/Intermediate Certificate (file name: <code>chain.pem</code>) in the <code>/opt/npm/tls/custom/npm-[certificate-id]</code> folder</li>
 </ul>
 </li>
+<li>fixed dnspod plugin
+<ul>
+<li>Needs manual migration, please delete all dnspod certs and recreate them OR you manually change the credentialsfile (see <a href="https://github.com/ZoeyVid/nginx-proxy-manager/blob/develop/global/certbot-dns-plugins.js">here</a> for the template)</li>
+</ul>
+</li>
 <li>Smaller then the original</li>
 <li>Runs the admin interface on port 81 with https</li>
 <li>Default page runs also with https</li>
@@ -63,9 +68,12 @@ so that the barrier for entry here is low.</p>
 <li>Auto database vacuum (only sqlite) (FULLCLEAN=true)</li>
 <li>Auto certbot old certs clean (FULLCLEAN=true)</li>
 <li>Passwort reset (only sqlite) (<code>docker exec -it nginx-proxy-manager password-reset.js USER_EMAIL PASSWORD</code>)</li>
+<li>TLS supported for MariaDB/MySQL, please set the <code>DB_MYSQL_TLS</code> env to true. If you use self signed certificates you can upload them for example to <code>/data/etc/npm/ca.crt</code> and set the <code>DB_MYSQL_CA</code> to <code>/data/etc/npm/ca.crt</code> (not tested)</li>
 </ul>
 <h2><a id="user-content-soon" class="anchor" aria-hidden="true" href="#soon"><span aria-hidden="true" class="octicon octicon-link"></span></a>Soon</h2>
 <ul>
+<li>disabling IPv4/IPv6 (<a href="https://github.com/NginxProxyManager/nginx-proxy-manager/blob/develop/docker/rootfs/etc/s6-overlay/s6-rc.d/prepare/40-dynamic.sh">1</a> / <a href="https://github.com/NginxProxyManager/nginx-proxy-manager/blob/develop/docker/rootfs/etc/s6-overlay/s6-rc.d/prepare/50-ipv6.sh">2</a> / nginx templates (nginx.js lines 200-300))</li>
+<li>support changing the PUID/PGID (maybe)</li>
 <li>more</li>
 </ul>
 <h2><a id="user-content-migration" class="anchor" aria-hidden="true" href="#migration"><span aria-hidden="true" class="octicon octicon-link"></span></a>migration</h2>
@@ -74,6 +82,8 @@ so that the barrier for entry here is low.</p>
 <strong>NOTE: migrating back to the original is not possible</strong>, so make first a <strong>backup</strong> before migration, so you can use the backup to switch back</li>
 <li>if you use custom certificates, you need to upload the CA/Intermediate Certificate (file name: <code>chain.pem</code>) in the <code>/opt/npm/tls/custom/npm-[certificate-id]</code> folder</li>
 <li>some buttons have changed, check if they are still correct</li>
+<li>please delete all dnspod certs and recreate them OR you manually change the credentialsfile (see <a href="https://github.com/ZoeyVid/nginx-proxy-manager/blob/develop/global/certbot-dns-plugins.js">here</a> for the template)</li>
+<li>changing the PUID/PGID is not supported (since it would break running in network_mode host)</li>
 </ul>
 <h1><a id="user-content-use-as-webserver" class="anchor" aria-hidden="true" href="#use-as-webserver"><span aria-hidden="true" class="octicon octicon-link"></span></a>Use as webserver</h1>
 <ol>
