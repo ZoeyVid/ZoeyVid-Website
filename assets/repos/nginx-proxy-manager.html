@@ -70,11 +70,12 @@ so that the barrier for entry here is low.</p>
 <li>Passwort reset (only sqlite) (<code>docker exec -it nginx-proxy-manager password-reset.js USER_EMAIL PASSWORD</code>)</li>
 <li>TLS supported for MariaDB/MySQL, please set the <code>DB_MYSQL_TLS</code> env to true. If you use self signed certificates you can upload them for example to <code>/data/etc/npm/ca.crt</code> and set the <code>DB_MYSQL_CA</code> to <code>/data/etc/npm/ca.crt</code> (not tested)</li>
 <li>PUID/GGID support in network mode host (please add <code>net.ipv4.ip_unprivileged_port_start=0</code> at the end of <code>/etc/sysctl.conf</code>)</li>
+<li>Option to set IP bindings (multiple instances) in network mode host</li>
+<li>Option to change backend port</li>
+<li>See composefile for all options</li>
 </ul>
 <h2><a id="user-content-soon" class="anchor" aria-hidden="true" href="#soon"><span aria-hidden="true" class="octicon octicon-link"></span></a>Soon</h2>
 <ul>
-<li>disabling IPv4/IPv6 (<a href="https://github.com/NginxProxyManager/nginx-proxy-manager/blob/develop/docker/rootfs/etc/s6-overlay/s6-rc.d/prepare/40-dynamic.sh">1</a> / <a href="https://github.com/NginxProxyManager/nginx-proxy-manager/blob/develop/docker/rootfs/etc/s6-overlay/s6-rc.d/prepare/50-ipv6.sh">2</a> / nginx templates (nginx.js lines 200-300))</li>
-<li>custom IP-Bindings in nginx/backend to allow multiple instances in host network mode</li>
 <li>dark mode</li>
 <li>more</li>
 </ul>
@@ -150,18 +151,26 @@ if (!-f $document_root$fastcgi_script_name) {return 404;}
 <span class="pl-c"><span class="pl-c">#</span>        - "/var/www:/var/www" # optional, if you want to use it as webserver for html/php</span>
 <span class="pl-c"><span class="pl-c">#</span>        - "/opt/npm-letsencrypt:/etc/letsencrypt" # Only needed for first time migration from original nginx-proxy-manager to this fork</span>
         <span class="pl-ent">environment</span>:
-        - <span class="pl-s"><span class="pl-pds">"</span>TZ=Europe/Berlin<span class="pl-pds">"</span></span> <span class="pl-c"><span class="pl-c">#</span> set timezone</span>
-<span class="pl-c"><span class="pl-c">#</span>        - "PUID=1000" # set group id</span>
-<span class="pl-c"><span class="pl-c">#</span>        - "PGID=1000" # set user id</span>
-<span class="pl-c"><span class="pl-c">#</span>        - "NGINX_LOG_NOT_FOUND=true" # Allow logging of 404 errors</span>
-<span class="pl-c"><span class="pl-c">#</span>        - "NPM_LISTEN_LOCALHOST=true" # Bind the NPM Dashboard on Port 81 only to localhost</span>
-<span class="pl-c"><span class="pl-c">#</span>        - "NPM_CERT_ID=1" # ID of cert, which should be used instead of dummycerts</span>
-<span class="pl-c"><span class="pl-c">#</span>        - "CLEAN=false" # Clean folders</span>
-<span class="pl-c"><span class="pl-c">#</span>        - "FULLCLEAN=true" # Clean unused config folders</span>
-<span class="pl-c"><span class="pl-c">#</span>        - "PHP81=true" # Activate PHP81</span>
-<span class="pl-c"><span class="pl-c">#</span>        - "PHP81_APKS=php81-curl php-81-curl" # Add php extensions, see aviable packages here: https://pkgs.alpinelinux.org/packages?branch=v3.17&amp;repo=community&amp;arch=x86_64&amp;name=php81-*</span>
-<span class="pl-c"><span class="pl-c">#</span>        - "PHP82=true" # Activate PHP82</span>
-<span class="pl-c"><span class="pl-c">#</span>        - "PHP82_APKS=php82-curl php-82-curl" # Add php extensions, see aviable packages here: https://pkgs.alpinelinux.org/packages?branch=v3.17&amp;repo=community&amp;arch=x86_64&amp;name=php82-*</span></pre></div>
+        - <span class="pl-s"><span class="pl-pds">"</span>TZ=Europe/Berlin<span class="pl-pds">"</span></span> <span class="pl-c"><span class="pl-c">#</span> set timezone, default UTC</span>
+<span class="pl-c"><span class="pl-c">#</span>        - "PUID=1000" # set group id, default 0 (root)</span>
+<span class="pl-c"><span class="pl-c">#</span>        - "PGID=1000" # set user id, default 0 (root)</span>
+<span class="pl-c"><span class="pl-c">#</span>        - "NIBEP=48693" # internal port, always bound to 127.0.0.1, default 48693, you need to change it, if you want to run multiple npm instances in network mode host</span>
+<span class="pl-c"><span class="pl-c">#</span>        - "NPM_PORT=81" # Port the NPM backend should be bound to, default 81, you need to change it, if you want to run multiple npm instances in network mode host</span>
+<span class="pl-c"><span class="pl-c">#</span>        - "IPV4_BINDING=127.0.0.1" # IPv4 address to bind, defaults to all</span>
+<span class="pl-c"><span class="pl-c">#</span>        - "NPM_IPV4_BINDING=127.0.0.1" # IPv4 address to bind for the NPM backend, defaults to all</span>
+<span class="pl-c"><span class="pl-c">#</span>        - "IPV6_BINDING=[::1]" # IPv6 address to bind, defaults to all</span>
+<span class="pl-c"><span class="pl-c">#</span>        - "NPM_IPV6_BINDING=[::1]" # IPv6 address to bind for the NPM backend, defaults to all</span>
+<span class="pl-c"><span class="pl-c">#</span>        - "DISABLE_IPV6=true" # disable IPv6, incompatible with IPV6_BINDING, default false</span>
+<span class="pl-c"><span class="pl-c">#</span>        - "NPM_DISABLE_IPV6=true" # disable IPv6 for the NPM backend, incompatible with NPM_IPV6_BINDING, default false</span>
+<span class="pl-c"><span class="pl-c">#</span>        - "NPM_LISTEN_LOCALHOST=true" # Bind the NPM Dashboard on Port 81 only to localhost, incompatible with NPM_IPV4_BINDING/NPM_IPV6_BINDING/NPM_DISABLE_IPV6, default false</span>
+<span class="pl-c"><span class="pl-c">#</span>        - "NPM_CERT_ID=1" # ID of cert, which should be used instead of dummycerts, default unset/dummycerts</span>
+<span class="pl-c"><span class="pl-c">#</span>        - "NGINX_LOG_NOT_FOUND=true" # Allow logging of 404 errors, default false</span>
+<span class="pl-c"><span class="pl-c">#</span>        - "CLEAN=false" # Clean folders, default true</span>
+<span class="pl-c"><span class="pl-c">#</span>        - "FULLCLEAN=true" # Clean unused config folders, default false</span>
+<span class="pl-c"><span class="pl-c">#</span>        - "PHP81=true" # Activate PHP81, default false</span>
+<span class="pl-c"><span class="pl-c">#</span>        - "PHP81_APKS=php81-curl php-81-curl" # Add php extensions, see aviable packages here: https://pkgs.alpinelinux.org/packages?branch=v3.17&amp;repo=community&amp;arch=x86_64&amp;name=php81-*, default none</span>
+<span class="pl-c"><span class="pl-c">#</span>        - "PHP82=true" # Activate PHP82, default false</span>
+<span class="pl-c"><span class="pl-c">#</span>        - "PHP82_APKS=php82-curl php-82-curl" # Add php extensions, see aviable packages here: https://pkgs.alpinelinux.org/packages?branch=v3.17&amp;repo=community&amp;arch=x86_64&amp;name=php82-*, default none</span></pre></div>
 <ol start="3">
 <li>Bring up your stack by running (or deploy your portainer stack)</li>
 </ol>
