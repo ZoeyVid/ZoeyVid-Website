@@ -33,50 +33,53 @@ so that the barrier for entry here is low.</p>
 <li>Advanced Nginx configuration available for super users</li>
 <li>User management, permissions and audit log</li>
 </ul>
-<h1><a id="user-content-new-features" class="anchor" aria-hidden="true" href="#new-features"><span aria-hidden="true" class="octicon octicon-link"></span></a>New Features</h1>
+<h1><a id="user-content-list-of-new-features" class="anchor" aria-hidden="true" href="#list-of-new-features"><span aria-hidden="true" class="octicon octicon-link"></span></a>List of new features</h1>
 <ul>
-<li>HTTP/3 (QUIC) Support</li>
-<li>Fix Proxy Hosts, if origin only accepts TLSv1.3</li>
-<li>Only use TLSv1.2 and TLSv1.3</li>
-<li>Uses OCSP Stapling
+<li>Supports HTTP/3 (QUIC) protocol</li>
+<li>Darkmode button in the footer for comfortable viewing</li>
+<li>Fixes proxy to https origin when the origin only accepts TLSv1.3</li>
+<li>Only enables TLSv1.2 and TLSv1.3 protocols</li>
+<li>Uses OCSP Stapling for enhanced security
 <ul>
-<li>Needs manual migration if you use custom certificates, just upload the CA/Intermediate Certificate (file name: <code>chain.pem</code>) in the <code>/opt/npm/tls/custom/npm-[certificate-id]</code> folder</li>
+<li>If using custom certificates, upload the CA/Intermediate Certificate (file name: <code>chain.pem</code>) in the <code>/opt/npm/tls/custom/npm-[certificate-id]</code> folder (manual migration may be needed)</li>
 </ul>
 </li>
-<li>fixed dnspod plugin
+<li>Resolved dnspod plugin issue
 <ul>
-<li>Needs manual migration, please delete all dnspod certs and recreate them OR you manually change the credentialsfile (see <a href="https://github.com/ZoeyVid/nginx-proxy-manager/blob/develop/global/certbot-dns-plugins.js">here</a> for the template)</li>
+<li>To migrate manually, delete all dnspod certs and recreate them OR change the credentials file as per the template given <a href="https://github.com/ZoeyVid/nginx-proxy-manager/blob/develop/global/certbot-dns-plugins.js">here</a>
+</li>
 </ul>
 </li>
-<li>Smaller then the original</li>
-<li>Runs the admin interface on port 81 with https</li>
-<li>Default page runs also with https</li>
-<li>Uses <a href="https://gitHub.com/Naereen/Nginx-Fancyindex-Theme">fancyindex</a> if you use the npm directly as webserver</li>
-<li>Expose INTERNAL backend api only to localhost</li>
-<li>Easy security headers, see <a href="https://github.com/GetPageSpeed/ngx_security_headers">here</a>
+<li>Smaller docker image with alpine-based distribution</li>
+<li>Admin backend interface runs with https</li>
+<li>Default page also runs with https</li>
+<li>Uses <a href="https://gitHub.com/Naereen/Nginx-Fancyindex-Theme">fancyindex</a> if used as webserver</li>
+<li>Exposes INTERNAL backend api only to localhost</li>
+<li>Easy application of security headers using <a href="https://github.com/GetPageSpeed/ngx_security_headers">ngx_security_headers</a>
 </li>
 <li>Access Log disabled</li>
 <li>Error Log written to console</li>
-<li>PHP optinal, you can add php extensions, see aviable packages <a href="https://pkgs.alpinelinux.org/packages?branch=v3.17&amp;repo=community&amp;arch=x86_64&amp;name=php81-*" rel="nofollow">here</a> and <a href="https://pkgs.alpinelinux.org/packages?branch=v3.17&amp;repo=community&amp;arch=x86_64&amp;name=php82-*" rel="nofollow">here</a>
+<li>PHP optional, with option to add extensions; available packages can be found <a href="https://pkgs.alpinelinux.org/packages?branch=v3.17&amp;repo=community&amp;arch=x86_64&amp;name=php81-*" rel="nofollow">here</a> and <a href="https://pkgs.alpinelinux.org/packages?branch=v3.17&amp;repo=community&amp;arch=x86_64&amp;name=php82-*" rel="nofollow">here</a>
 </li>
-<li>allows different acme servers</li>
-<li>up to 99 domains per cert allowed</li>
-<li>Brotli can be enabled</li>
-<li>HTTP/2 always enabled</li>
-<li>HTTP/2 upload fixed</li>
-<li>Infinite upload size allowed</li>
-<li>Auto database vacuum (only sqlite) (FULLCLEAN=true)</li>
-<li>Auto certbot old certs clean (FULLCLEAN=true)</li>
-<li>Passwort reset (only sqlite) (<code>docker exec -it nginx-proxy-manager password-reset.js USER_EMAIL PASSWORD</code>)</li>
-<li>TLS supported for MariaDB/MySQL, please set the <code>DB_MYSQL_TLS</code> env to true. If you use self signed certificates you can upload them for example to <code>/data/etc/npm/ca.crt</code> and set the <code>DB_MYSQL_CA</code> to <code>/data/etc/npm/ca.crt</code> (not tested)</li>
-<li>PUID/GGID support in network mode host (please add <code>net.ipv4.ip_unprivileged_port_start=0</code> at the end of <code>/etc/sysctl.conf</code>)</li>
-<li>Option to set IP bindings (multiple instances) in network mode host</li>
+<li>Allows different acme servers/certbot config file (/opt/npm/tls/certbot/config.ini)</li>
+<li>Supports up to 99 domains per cert</li>
+<li>Brotli compression can be enabled</li>
+<li>HTTP/2 always enabled with fixed upload</li>
+<li>Allows infinite upload size</li>
+<li>Automatic database vacuum (only sqlite)</li>
+<li>Automatic cleaning of old certbot certs (set FULLCLEAN to true)</li>
+<li>Password reset (only sqlite) using <code>docker exec -it nginx-proxy-manager password-reset.js USER_EMAIL PASSWORD</code>
+</li>
+<li>Supports TLS for MariaDB/MySQL; set <code>DB_MYSQL_TLS</code> env to true. Self-signed certificates can be uploaded to <code>/data/etc/npm/ca.crt</code> and <code>DB_MYSQL_CA</code> set to <code>/data/etc/npm/ca.crt</code> (not tested)</li>
+<li>Supports PUID/PGID in network mode host; add <code>net.ipv4.ip_unprivileged_port_start=0</code> at the end of <code>/etc/sysctl.conf</code>
+</li>
+<li>Option to set IP bindings for multiple instances in network mode host</li>
 <li>Option to change backend port</li>
-<li>See composefile for all options</li>
+<li>See the composefile for all available options</li>
 </ul>
 <h2><a id="user-content-soon" class="anchor" aria-hidden="true" href="#soon"><span aria-hidden="true" class="octicon octicon-link"></span></a>Soon</h2>
 <ul>
-<li>dark mode</li>
+<li>maybe redis and/or sql databases built in</li>
 <li>more</li>
 </ul>
 <h2><a id="user-content-migration" class="anchor" aria-hidden="true" href="#migration"><span aria-hidden="true" class="octicon octicon-link"></span></a>migration</h2>
