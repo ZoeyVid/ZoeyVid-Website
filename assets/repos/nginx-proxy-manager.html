@@ -164,6 +164,7 @@ if (!-f $document_root$fastcgi_script_name) {return 404;}
 <span class="pl-c"><span class="pl-c">#</span>        - "NPM_DISABLE_IPV6=true" # disable IPv6 for the NPM backend, incompatible with NPM_IPV6_BINDING, default false</span>
 <span class="pl-c"><span class="pl-c">#</span>        - "NPM_LISTEN_LOCALHOST=true" # Bind the NPM Dashboard on Port 81 only to localhost, incompatible with NPM_IPV4_BINDING/NPM_IPV6_BINDING/NPM_DISABLE_IPV6, default false</span>
 <span class="pl-c"><span class="pl-c">#</span>        - "NPM_CERT_ID=1" # ID of cert, which should be used instead of dummycerts, default unset/dummycerts</span>
+<span class="pl-c"><span class="pl-c">#</span>        - "DISABLE_HTTP=true" # disables nginx to listen on port 80, default false</span>
 <span class="pl-c"><span class="pl-c">#</span>        - "NGINX_LOG_NOT_FOUND=true" # Allow logging of 404 errors, default false</span>
 <span class="pl-c"><span class="pl-c">#</span>        - "CLEAN=false" # Clean folders, default true</span>
 <span class="pl-c"><span class="pl-c">#</span>        - "FULLCLEAN=true" # Clean unused config folders, default false</span>
