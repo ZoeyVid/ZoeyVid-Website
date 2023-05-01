@@ -16,7 +16,7 @@ jobs:
       - name: update bootstrap-icons
         run: |
           cd assets
-          curl -sL $(curl -sL https://api.github.com/repos/twbs/icons/releases/latest | jq -r .assets[].browser_download_url) -o bootstrap-icons.zip
+          curl -sL $(curl -sL https://api.github.com/repos/twbs/icons/releases/latest --header "authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" | jq -r .assets[].browser_download_url) -o bootstrap-icons.zip
           unzip bootstrap-icons.zip
           rm -rf bootstrap-icons bootstrap-icons.zip
           mv bootstrap-icons-* tmp
