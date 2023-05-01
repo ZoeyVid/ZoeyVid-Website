@@ -21,7 +21,7 @@ jobs:
           rm -rf bootstrap-icons bootstrap-icons.zip
           mv bootstrap-icons-* tmp
           mkdir bootstrap-icons
-          for icon in $(jq -r .[] bootstrap-icons.json); do mv tmp/"$icon" bootstrap-icons/"$icon"; done
+          for icon in $(jq -r .[] bootstrap-icons.json); do mv tmp/"$icon".svg bootstrap-icons/"$icon".svg; done
       - name: push changes
         run: |
           git add assets/bootstrap-icons
