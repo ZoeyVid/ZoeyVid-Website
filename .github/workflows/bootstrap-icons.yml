@@ -2,7 +2,7 @@ name: bootstrap-icons
 on:
   push:
     paths:
-      - assets/bootstrap-icons.list
+      - assets/bootstrap-icons.json
       - .github/workflows/bootstrap-icons.yml
   schedule:
     - cron: "0 */6 * * *"
