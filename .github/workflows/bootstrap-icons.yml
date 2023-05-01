@@ -16,12 +16,12 @@ jobs:
       - name: update bootstrap-icons
         run: |
           cd assets
-          rm -rf bootstrap-icons
           curl -sL $(curl -sL https://api.github.com/repos/twbs/icons/releases/latest | jq -r .assets[].browser_download_url) -o bootstrap-icons.zip
           unzip bootstrap-icons.zip
-          mv bootstrap-icons-* bootstrap-icons
-          rm -rf bootstrap-icons.zip
-          for file in $(ls bootstrap-icons | grep -vwE \""$(echo \|"$(cat bootstrap-icons.list | tr "\n" "|")".svg)"\"); do rm -vrf bootstrap-icons/"$file"; done
+          rm -rf bootstrap-icons bootstrap-icons.zip
+          mv bootstrap-icons-* tmp
+          mkdir bootstrap-icons
+          for icon in $(jq -r .[] bootstrap-icons.json); do mv tmp/"$icon" bootstrap-icons/"$icon"; done
       - name: push changes
         run: |
           git add assets/bootstrap-icons
