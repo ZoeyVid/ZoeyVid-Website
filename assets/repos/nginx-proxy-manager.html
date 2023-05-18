@@ -83,6 +83,7 @@ so that the barrier for entry here is low.</p>
 <li>if you use custom certificates, you need to upload the CA/Intermediate Certificate (file name: <code>chain.pem</code>) in the <code>/opt/npm/tls/custom/npm-[certificate-id]</code> folder</li>
 <li>some buttons have changed, check if they are still correct</li>
 <li>please delete all dnspod certs and recreate them OR you manually change the credentialsfile (see <a href="https://github.com/ZoeyVid/nginx-proxy-manager/blob/develop/global/certbot-dns-plugins.js">here</a> for the template)</li>
+<li>since this fork has dependency on <code>network_mode: host</code>, please don't forget to open port 80 and 443 (and maybe 81) in your firewall</li>
 </ul>
 <h1><a id="user-content-crowdsec" class="anchor" aria-hidden="true" href="#crowdsec"><span aria-hidden="true" class="octicon octicon-link"></span></a>Crowdsec</h1>
 <ol>
