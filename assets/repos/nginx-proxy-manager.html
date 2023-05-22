@@ -29,8 +29,16 @@ so that the barrier for entry here is low.</p>
 <ul>
 <li>Supports HTTP/3 (QUIC) protocol aviable</li>
 <li>Supports Crowdsec. Please read below for instructions on how to use it.</li>
-<li>Supports ModSecurity, with coreruleset as an option. You can configure ModSecurity/coreruleset by editing the files in the <code>/opt/npm/etc/modsecurity</code> folder.</li>
-<li>Darkmode button in the footer for comfortable viewing</li>
+<li>Supports ModSecurity, with coreruleset as an option. You can configure ModSecurity/coreruleset by editing the files in the <code>/opt/npm/etc/modsecurity</code> folder.
+<ul>
+<li>If coreruleset blocks valid requests, please check the <code>/data/etc/modsecurity/crs-setup.conf</code>
+</li>
+<li>try to whitelist your Content-Type (for example <code>application/activity+json</code> for mastodon and <code>application/dns-message</code> for DoH) you send</li>
+<li>try to whitelist your HTTP request method you use (for example<code> PUT</code> is blocked by default, this also kills the NPM)</li>
+<li>Note: to fix <a href="https://github.com/SpiderLabs/ModSecurity/issues/2848">https://github.com/SpiderLabs/ModSecurity/issues/2848</a>, instead of running <code>nginx -s reload</code>, this fork kills nginx and relaunches it</li>
+</ul>
+</li>
+<li>Darkmode button in the footer for comfortable viewing (CSS done by <a href="https://github.com/theraw">@theraw</a>)</li>
 <li>Fixes proxy to https origin when the origin only accepts TLSv1.3</li>
 <li>Only enables TLSv1.2 and TLSv1.3 protocols</li>
 <li>Uses OCSP Stapling for enhanced security
