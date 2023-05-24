@@ -31,16 +31,16 @@ so that the barrier for entry here is low.</p>
 <li>Supports CrowdSec IPS. Please see <a href="https://github.com/ZoeyVid/nginx-proxy-manager#crowdsec">here</a> to enable it.</li>
 <li>Supports ModSecurity, with coreruleset as an option. You can configure ModSecurity/coreruleset by editing the files in the <code>/opt/npm/etc/modsecurity</code> folder.
 <ul>
-<li>If coreruleset blocks valid requests, please check the <code>/data/etc/modsecurity/crs-setup.conf</code>
-</li>
-<li>try to whitelist your Content-Type (for example <code>application/activity+json</code> for mastodon and <code>application/dns-message</code> for DoH) you send</li>
-<li>try to whitelist your HTTP request method you use (for example<code> PUT</code> is blocked by default, this also kills the NPM)</li>
-<li>Note: to fix <a href="https://github.com/SpiderLabs/ModSecurity/issues/2848">https://github.com/SpiderLabs/ModSecurity/issues/2848</a>, instead of running <code>nginx -s reload</code>, this fork kills nginx and relaunches it</li>
+<li>If the core ruleset blocks valid requests, please check the <code>/data/etc/modsecurity/crs-setup.conf</code> file.</li>
+<li>Try to whitelist the Content-Type you are sending (for example, <code>application/activity+json</code> for Mastodon and <code>application/dns-message</code> for DoH).</li>
+<li>Try to whitelist the HTTP request method you are using (for example, <code>PUT</code> is blocked by default, which also affects NPM).</li>
+<li>Note: To fix <a href="https://github.com/SpiderLabs/ModSecurity/issues/2848">this issue</a>, instead of running <code>nginx -s reload</code>, this fork kills nginx and relaunches it. This can result in a 502 error when you update your hosts</li>
 </ul>
 </li>
-<li>Darkmode button in the footer for comfortable viewing (CSS done by <a href="https://github.com/theraw">@theraw</a>)</li>
+<li>Darkmode button in the footer for comfortable viewing (CSS done by <a href="https://github.com/theraw">https://github.com/theraw</a>)</li>
 <li>Fixes proxy to https origin when the origin only accepts TLSv1.3</li>
 <li>Only enables TLSv1.2 and TLSv1.3 protocols</li>
+<li>Faster creation of TLS certificates can be achieved by eliminating unnecessary Nginx reloads and configuration creations.</li>
 <li>Uses OCSP Stapling for enhanced security
 <ul>
 <li>If using custom certificates, upload the CA/Intermediate Certificate (file name: <code>chain.pem</code>) in the <code>/opt/npm/tls/custom/npm-[certificate-id]</code> folder (manual migration may be needed)</li>
