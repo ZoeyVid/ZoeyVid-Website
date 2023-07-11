@@ -24,6 +24,16 @@
             "icon": "twitter",
             "name": "Twitter",
             "url": "https://twitter.com/DavidCraftDev"
+        },
+        {
+            "icon": "moon-stars-fill",
+            "name": "Bluesky",
+            "url": "https://bsky.app/profile/davidcraft.de"
+        },
+        {
+            "icon": "at",
+            "name": "Threads",
+            "url": "https://www.threads.net/@davidcraftdev"
         }
     ]
 }
