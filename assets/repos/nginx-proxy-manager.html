@@ -140,13 +140,16 @@ alias /var/www/&lt;your-html-site-folder-name&gt;/;
 <li>Note: to add more php extension use the packages from <a href="https://pkgs.alpinelinux.org/packages?branch=v3.17&amp;repo=community&amp;arch=x86_64&amp;name=php8*-*" rel="nofollow">here</a> and add them using the <code>PHP_APKS</code> env (see compose file)</li>
 </ul>
 <pre><code>location / {
-alias /var/www/&lt;your-php-site-folder-name&gt;/;
+    alias /var/www/&lt;your-html-site-folder-name&gt;/;
 
-location ~ [^/]\.php(/|$) {
-fastcgi_pass php82;
-fastcgi_split_path_info ^(.+?\.php)(/.*)$;
-if (!-f $document_root$fastcgi_script_name) {return 404;}
-}}
+    location ~ [^/]\.php(/|$) {
+        fastcgi_pass php82;
+        fastcgi_split_path_info ^(.+?\.php)(/.*)$;
+        if (!-f $document_root$fastcgi_script_name) {
+            return 404
+        }
+    }
+}
 </code></pre>
 <h1><a id="user-content-custom-acme-server" class="anchor" aria-hidden="true" href="#custom-acme-server"><span aria-hidden="true" class="octicon octicon-link"></span></a>custom acme server</h1>
 <ol>
