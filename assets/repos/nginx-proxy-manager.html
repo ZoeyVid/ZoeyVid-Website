@@ -9,9 +9,12 @@ running at home or otherwise, including free TLS, without having to know too muc
 <li><a href="#quick-setup">Quick Setup</a></li>
 <li><a href="https://nginxproxymanager.com/screenshots" rel="nofollow">Screenshots</a></li>
 </ul>
-<p><strong>Note: To fix <a href="https://github.com/SpiderLabs/ModSecurity/issues/2848">this issue</a>, instead of running <code>nginx -s reload</code>, this fork stops nginx and starts it again. This will result in a 502 error when you update your hosts. See <a href="https://github.com/ZoeyVid/nginx-proxy-manager/issues/296">https://github.com/ZoeyVid/nginx-proxy-manager/issues/296</a> and <a href="https://github.com/ZoeyVid/nginx-proxy-manager/issues/283">https://github.com/ZoeyVid/nginx-proxy-manager/issues/283</a>.</strong> <br>
+<p><strong>Note: To fix <a href="https://github.com/SpiderLabs/ModSecurity/issues/2848">this issue</a>, instead of running <code>nginx -s reload</code>, this fork stops nginx and starts it again. This can result in a 502 error when you update your hosts. See <a href="https://github.com/ZoeyVid/nginx-proxy-manager/issues/296">https://github.com/ZoeyVid/nginx-proxy-manager/issues/296</a> and <a href="https://github.com/ZoeyVid/nginx-proxy-manager/issues/283">https://github.com/ZoeyVid/nginx-proxy-manager/issues/283</a>.</strong> <br>
 <strong>Note: NO armv7 support.</strong> <br>
-<strong>Note: add <code>net.ipv4.ip_unprivileged_port_start=0</code> at the end of <code>/etc/sysctl.conf</code> to support PUID/PGID in network mode host.</strong> <br></p>
+<strong>Note: add <code>net.ipv4.ip_unprivileged_port_start=0</code> at the end of <code>/etc/sysctl.conf</code> to support PUID/PGID in network mode host.</strong> <br>
+<strong>Note: If you don't use network mode host, which I don't recommend, don't forget to expose port 443 on tcp AND udp (http3/quic needs udp).</strong> <br>
+<strong>Note: If you don't use network mode host, which I don't recommend, don't forget to enable IPv6 in Docker, see <a href="https://github.com/nextcloud/all-in-one/blob/main/docker-ipv6-support.md">here</a>, you only need to edit the daemon.json and restart docker, if you use the bridge network, otherwise please enable IPv6 in your custom docker network!</strong> <br>
+<strong>Note: Don't forget to open Port 80 (tcp) and 443 (tcp AND udp, http3/quic needs udp) in your firewall (because of network mode host, you also need to open this ports in ufw, if you use ufw).</strong> <br></p>
 <h2><a id="user-content-project-goal" class="anchor" aria-hidden="true" tabindex="-1" href="#project-goal"><span aria-hidden="true" class="octicon octicon-link"></span></a>Project Goal</h2>
 <p>I created this project to fill a personal need to provide users with a easy way to accomplish reverse
 proxying hosts with TLS termination and it had to be so easy that a monkey could do it. This goal hasn't changed.
