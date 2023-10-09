@@ -1,7 +1,7 @@
 <meta charset=utf-8>
 <h1 id="user-content-nginx-quic"><a class="heading-link" href="#nginx-quic">nginx-quic<span aria-hidden="true" class="octicon octicon-link"></span></a></h1>
 <p>Docker image for Nginx + HTTP/3</p>
-<p>Requires: <code>zlib luajit pcre libstdc++ yajl libxml2 libxslt perl libcurl lua5.1-libs</code> and libmodsecurity <br>
+<p>Requires: <code>zlib luajit pcre libstdc++ yajl libxml2 libxslt perl libcurl lua5.1-libs geoip libmaxminddb-libs</code> and libmodsecurity <br>
 Please add: <code>lua_package_path "/usr/local/nginx/lib/lua/?.lua;;";</code> to the http part of your nginx.conf.
 If you use the tar files, please move the <code>nginx/perl5</code> folder to <code>/usr/local/lib/perl5</code>
 If you use the tar files, please move the <code>nginx/perllocal.pod</code> file to <code>/usr/lib/perl5/core_perl/perllocal.pod</code>

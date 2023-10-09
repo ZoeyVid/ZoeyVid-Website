@@ -1,15 +1,12 @@
 <meta charset=utf-8>
-<p align="center">
-	<a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/64fb7ed5ef9e175687573940e302297deb9600b1e28d43c58a2d4c55e4e5168d/68747470733a2f2f6e67696e7870726f78796d616e616765722e636f6d2f6769746875622e706e67"><img src="https://camo.githubusercontent.com/64fb7ed5ef9e175687573940e302297deb9600b1e28d43c58a2d4c55e4e5168d/68747470733a2f2f6e67696e7870726f78796d616e616765722e636f6d2f6769746875622e706e67" data-canonical-src="https://nginxproxymanager.com/github.png" style="max-width: 100%;"></a>
-    
-</p>
+<h1 id="user-content-npmplus"><a class="heading-link" href="#npmplus">NPMplus<span aria-hidden="true" class="octicon octicon-link"></span></a></h1>
 <p>This project comes as a pre-built docker image that enables you to easily forward to your websites
 running at home or otherwise, including free TLS, without having to know too much about Nginx or Letsencrypt.</p>
 <ul>
 <li><a href="#quick-setup">Quick Setup</a></li>
 <li><a href="https://nginxproxymanager.com/screenshots" rel="nofollow">Screenshots</a></li>
 </ul>
-<p><strong>Note: To fix <a href="https://github.com/SpiderLabs/ModSecurity/issues/2848">this issue</a>, instead of running <code>nginx -s reload</code>, this fork stops nginx and starts it again. This can result in a 502 error when you update your hosts. See <a href="https://github.com/ZoeyVid/nginx-proxy-manager/issues/296">https://github.com/ZoeyVid/nginx-proxy-manager/issues/296</a> and <a href="https://github.com/ZoeyVid/nginx-proxy-manager/issues/283">https://github.com/ZoeyVid/nginx-proxy-manager/issues/283</a>.</strong> <br>
+<p><strong>Note: To fix <a href="https://github.com/SpiderLabs/ModSecurity/issues/2848">this issue</a>, instead of running <code>nginx -s reload</code>, this fork stops nginx and starts it again. This can result in a 502 error when you update your hosts. See <a href="https://github.com/ZoeyVid/NPMplus/issues/296">https://github.com/ZoeyVid/NPMplus/issues/296</a> and <a href="https://github.com/ZoeyVid/NPMplus/issues/283">https://github.com/ZoeyVid/NPMplus/issues/283</a>.</strong> <br>
 <strong>Note: NO armv7 support.</strong> <br>
 <strong>Note: add <code>net.ipv4.ip_unprivileged_port_start=0</code> at the end of <code>/etc/sysctl.conf</code> to support PUID/PGID in network mode host.</strong> <br>
 <strong>Note: If you don't use network mode host, which I don't recommend, don't forget to expose port 443 on tcp AND udp (http3/quic needs udp).</strong> <br>
@@ -34,13 +31,13 @@ so that the barrier for entry here is low.</p>
 <h1 id="user-content-list-of-new-features"><a class="heading-link" href="#list-of-new-features">List of new features<span aria-hidden="true" class="octicon octicon-link"></span></a></h1>
 <ul>
 <li>Supports HTTP/3 (QUIC) protocol.</li>
-<li>Supports CrowdSec IPS. Please see <a href="https://github.com/ZoeyVid/nginx-proxy-manager#crowdsec">here</a> to enable it.</li>
+<li>Supports CrowdSec IPS. Please see <a href="https://github.com/ZoeyVid/NPMplus#crowdsec">here</a> to enable it.</li>
 <li>Supports ModSecurity, with coreruleset as an option. You can configure ModSecurity/coreruleset by editing the files in the <code>/opt/npm/etc/modsecurity</code> folder.
 <ul>
 <li>If the core ruleset blocks valid requests, please check the <code>/data/etc/modsecurity/crs-setup.conf</code> file.</li>
 <li>Try to whitelist the Content-Type you are sending (for example, <code>application/activity+json</code> for Mastodon and <code>application/dns-message</code> for DoH).</li>
 <li>Try to whitelist the HTTP request method you are using (for example, <code>PUT</code> is blocked by default, which also affects NPM).</li>
-<li>Note: To fix <a href="https://github.com/SpiderLabs/ModSecurity/issues/2848">this issue</a>, instead of running <code>nginx -s reload</code>, this fork stops nginx and starts it again. This will result in a 502 error when you update your hosts. See <a href="https://github.com/ZoeyVid/nginx-proxy-manager/issues/296">https://github.com/ZoeyVid/nginx-proxy-manager/issues/296</a> and <a href="https://github.com/ZoeyVid/nginx-proxy-manager/issues/283">https://github.com/ZoeyVid/nginx-proxy-manager/issues/283</a>.</li>
+<li>Note: To fix <a href="https://github.com/SpiderLabs/ModSecurity/issues/2848">this issue</a>, instead of running <code>nginx -s reload</code>, this fork stops nginx and starts it again. This will result in a 502 error when you update your hosts. See <a href="https://github.com/ZoeyVid/NPMplus/issues/296">https://github.com/ZoeyVid/NPMplus/issues/296</a> and <a href="https://github.com/ZoeyVid/NPMplus/issues/283">https://github.com/ZoeyVid/NPMplus/issues/283</a>.</li>
 </ul>
 </li>
 <li>Darkmode button in the footer for comfortable viewing (CSS done by <a href="https://github.com/theraw">@theraw</a>)</li>
@@ -54,7 +51,7 @@ so that the barrier for entry here is low.</p>
 </li>
 <li>Resolved dnspod plugin issue
 <ul>
-<li>To migrate manually, delete all dnspod certs and recreate them OR change the credentials file as per the template given <a href="https://github.com/ZoeyVid/nginx-proxy-manager/blob/develop/global/certbot-dns-plugins.js">here</a>
+<li>To migrate manually, delete all dnspod certs and recreate them OR change the credentials file as per the template given <a href="https://github.com/ZoeyVid/NPMplus/blob/develop/global/certbot-dns-plugins.js">here</a>
 </li>
 </ul>
 </li>
@@ -78,7 +75,7 @@ so that the barrier for entry here is low.</p>
 <li>Allows infinite upload size</li>
 <li>Automatic database vacuum (only sqlite)</li>
 <li>Automatic cleaning of old certbot certs (set FULLCLEAN to true)</li>
-<li>Password reset (only sqlite) using <code>docker exec -it nginx-proxy-manager password-reset.js USER_EMAIL PASSWORD</code>
+<li>Password reset (only sqlite) using <code>docker exec -it npmplus password-reset.js USER_EMAIL PASSWORD</code>
 </li>
 <li>Supports TLS for MariaDB/MySQL; set <code>DB_MYSQL_TLS</code> env to true. Self-signed certificates can be uploaded to <code>/data/etc/npm/ca.crt</code> and <code>DB_MYSQL_CA</code> set to <code>/data/etc/npm/ca.crt</code> (not tested)</li>
 <li>Supports PUID/PGID in network mode host; add <code>net.ipv4.ip_unprivileged_port_start=0</code> at the end of <code>/etc/sysctl.conf</code>
@@ -99,7 +96,7 @@ so that the barrier for entry here is low.</p>
 <strong>NOTE: migrating back to the original is not possible</strong>, so make first a <strong>backup</strong> before migration, so you can use the backup to switch back</li>
 <li>if you use custom certificates, you need to upload the CA/Intermediate Certificate (file name: <code>chain.pem</code>) in the <code>/opt/npm/tls/custom/npm-[certificate-id]</code> folder</li>
 <li>some buttons have changed, check if they are still correct</li>
-<li>please delete all dnspod certs and recreate them OR you manually change the credentialsfile (see <a href="https://github.com/ZoeyVid/nginx-proxy-manager/blob/develop/global/certbot-dns-plugins.js">here</a> for the template)</li>
+<li>please delete all dnspod certs and recreate them OR you manually change the credentialsfile (see <a href="https://github.com/ZoeyVid/npmplus/blob/develop/global/certbot-dns-plugins.js">here</a> for the template)</li>
 <li>since this fork has dependency on <code>network_mode: host</code>, please don't forget to open port 80 and 443 (and maybe 81) in your firewall</li>
 </ul>
 <h1 id="user-content-crowdsec"><a class="heading-link" href="#crowdsec">Crowdsec<span aria-hidden="true" class="octicon octicon-link"></span></a></h1>
@@ -177,9 +174,9 @@ so that the barrier for entry here is low.</p>
 </ol>
 <div class="highlight highlight-source-yaml"><pre><span class="pl-ent">version</span>: <span class="pl-s"><span class="pl-pds">"</span>3<span class="pl-pds">"</span></span>
 <span class="pl-ent">services</span>:
-  <span class="pl-ent">nginx-proxy-manager</span>:
-    <span class="pl-ent">container_name</span>: <span class="pl-s">nginx-proxy-manager</span>
-    <span class="pl-ent">image</span>: <span class="pl-s">zoeyvid/nginx-proxy-manager</span>
+  <span class="pl-ent">npmplus</span>:
+    <span class="pl-ent">container_name</span>: <span class="pl-s">npmplus</span>
+    <span class="pl-ent">image</span>: <span class="pl-s">zoeyvid/npmplus</span>
     <span class="pl-ent">restart</span>: <span class="pl-s">always</span>
     <span class="pl-ent">network_mode</span>: <span class="pl-s">host</span>
     <span class="pl-ent">volumes</span>:
@@ -231,7 +228,7 @@ If you want to sponsor them, please see <a href="https://github.com/NginxProxyMa
 <h1 id="user-content-please-report-bugs-first-to-this-fork-before-reporting-them-to-the-original-repository"><a class="heading-link" href="#please-report-bugs-first-to-this-fork-before-reporting-them-to-the-original-repository">Please report Bugs first to this fork before reporting them to the original Repository<span aria-hidden="true" class="octicon octicon-link"></span></a></h1>
 <h2 id="user-content-getting-support"><a class="heading-link" href="#getting-support">Getting Support<span aria-hidden="true" class="octicon octicon-link"></span></a></h2>
 <ol>
-<li><a href="https://github.com/ZoeyVid/nginx-proxy-manager/issues">Found a bug?</a></li>
-<li><a href="https://github.com/ZoeyVid/nginx-proxy-manager/discussions">Discussions</a></li>
+<li><a href="https://github.com/ZoeyVid/NPMplus/issues">Found a bug?</a></li>
+<li><a href="https://github.com/ZoeyVid/NPMplus/discussions">Discussions</a></li>
 </ol>
 
