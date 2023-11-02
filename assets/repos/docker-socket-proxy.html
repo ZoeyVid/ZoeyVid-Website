@@ -149,23 +149,20 @@ managed with <a href="https://python-poetry.org/" rel="nofollow">poetry</a>.</p>
 </code></pre>
 <h3 id="user-content-testing"><a class="heading-link" href="#testing">Testing<span aria-hidden="true" class="octicon octicon-link"></span></a></h3>
 <p>To run the tests locally, add <code>--prebuild</code> to autobuild the image before testing:</p>
-<pre lang="sh"><code>poetry run pytest --prebuild
-</code></pre>
+<div class="highlight highlight-source-shell"><pre>poetry run pytest --prebuild</pre></div>
 <p>By default, the image that the tests use (and optionally prebuild) is named
 <code>docker-socket-proxy:local</code>. If you prefer, you can build it separately before testing,
 and remove the <code>--prebuild</code> flag, to run the tests with that image you built:</p>
-<pre lang="sh"><code>docker image build -t docker-socket-proxy:local .
-poetry run pytest
-</code></pre>
+<div class="highlight highlight-source-shell"><pre>docker image build -t docker-socket-proxy:local <span class="pl-c1">.</span>
+poetry run pytest</pre></div>
 <p>If you want to use a different image, export the <code>DOCKER_IMAGE_NAME</code> env variable with
 the name you want:</p>
-<pre lang="sh"><code># To build it automatically
+<div class="highlight highlight-source-shell"><pre><span class="pl-c"><span class="pl-c">#</span> To build it automatically</span>
 env DOCKER_IMAGE_NAME=my_custom_image poetry run pytest --prebuild
 
-# To prebuild it separately
-docker image build -t my_custom_image .
-env DOCKER_IMAGE_NAME=my_custom_image poetry run pytest
-</code></pre>
+<span class="pl-c"><span class="pl-c">#</span> To prebuild it separately</span>
+docker image build -t my_custom_image <span class="pl-c1">.</span>
+env DOCKER_IMAGE_NAME=my_custom_image poetry run pytest</pre></div>
 <h2 id="user-content-logging"><a class="heading-link" href="#logging">Logging<span aria-hidden="true" class="octicon octicon-link"></span></a></h2>
 <p>You can set the logging level or severity level of the messages to be logged with the
 environment variable <code>LOG_LEVEL</code>. Defaul value is info. Possible values are: debug,
