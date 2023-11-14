@@ -14,7 +14,8 @@ running at home or otherwise, including free TLS, without having to know too muc
 <strong>Note: If you don't use network mode host, which I don't recommend, don't forget to enable IPv6 in Docker, see <a href="https://github.com/nextcloud/all-in-one/blob/main/docker-ipv6-support.md">here</a>, you only need to edit the daemon.json and restart docker, if you use the bridge network, otherwise please enable IPv6 in your custom docker network!</strong> <br>
 <strong>Note: Don't forget to open Port 80 (tcp) and 443 (tcp AND udp, http3/quic needs udp) in your firewall (because of network mode host, you also need to open this ports in ufw, if you use ufw).</strong> <br>
 <strong>Note: ModSecurity overblocking (403 Error)? Please see <code>/data/etc/modsecurity/modsecurity-default.conf</code> and <code>/opt/npm/etc/modsecurity/crs-setup.conf</code>.</strong> <br>
-<strong>Note: Internal Instance? Please disable <code>must-staple</code> in <code>/opt/npm/tls/certbot/config.ini</code>.</strong> <br></p>
+<strong>Note: Internal Instance? Please disable <code>must-staple</code> in <code>/opt/npm/tls/certbot/config.ini</code>.</strong> <br>
+<strong>Note: Other Databases like MariaDB may work, but are unsupported.</strong> <br></p>
 <h2 id="user-content-project-goal"><a class="heading-link" href="#project-goal">Project Goal<span aria-hidden="true" class="octicon octicon-link"></span></a></h2>
 <p>I created this project to fill a personal need to provide users with a easy way to accomplish reverse
 proxying hosts with TLS termination and it had to be so easy that a monkey could do it. This goal hasn't changed.
@@ -79,7 +80,7 @@ so that the barrier for entry here is low.</p>
 <li>Automatic cleaning of old certbot certs (set FULLCLEAN to true)</li>
 <li>Password reset (only sqlite) using <code>docker exec -it npmplus password-reset.js USER_EMAIL PASSWORD</code>
 </li>
-<li>Supports TLS for MariaDB/MySQL; set <code>DB_MYSQL_TLS</code> env to true. Self-signed certificates can be uploaded to <code>/data/etc/npm/ca.crt</code> and <code>DB_MYSQL_CA</code> set to <code>/data/etc/npm/ca.crt</code> (not tested)</li>
+<li>Supports TLS for MariaDB/MySQL; set <code>DB_MYSQL_TLS</code> env to true. Self-signed certificates can be uploaded to <code>/data/etc/npm/ca.crt</code> and <code>DB_MYSQL_CA</code> set to <code>/data/etc/npm/ca.crt</code> (not tested, unsupported)</li>
 <li>Supports PUID/PGID in network mode host; add <code>net.ipv4.ip_unprivileged_port_start=0</code> at the end of <code>/etc/sysctl.conf</code>
 </li>
 <li>Option to set IP bindings for multiple instances in network mode host</li>
