@@ -1,8 +1,8 @@
 <meta charset=utf-8>
-<h1 id="user-content-curl-quic"><a class="heading-link" href="#curl-quic">curl-quic<span aria-hidden="true" class="octicon octicon-link"></span></a></h1>
-<h2 id="user-content-usage"><a class="heading-link" href="#usage">Usage:<span aria-hidden="true" class="octicon octicon-link"></span></a></h2>
+<h1><a id="user-content-curl-quic" class="anchor" aria-hidden="true" tabindex="-1" href="#curl-quic"><span aria-hidden="true" class="octicon octicon-link"></span></a>curl-quic</h1>
+<h2><a id="user-content-usage" class="anchor" aria-hidden="true" tabindex="-1" href="#usage"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage:</h2>
 <div class="highlight highlight-source-shell"><pre>docker run --rm -it --pull always --name curl zoeyvid/curl-quic</pre></div>
-<h3 id="user-content-example"><a class="heading-link" href="#example">Example:<span aria-hidden="true" class="octicon octicon-link"></span></a></h3>
+<h3><a id="user-content-example" class="anchor" aria-hidden="true" tabindex="-1" href="#example"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example:</h3>
 <div class="highlight highlight-source-shell"><pre>docker run --rm -it --pull always --name curl -v <span class="pl-s"><span class="pl-pds">"</span>/:/host<span class="pl-pds">"</span></span> zoeyvid/curl-quic --http3 -sL https://cloudflare-quic.com -o root/curl-output
 cat /root/curl-output</pre></div>
 

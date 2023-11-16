@@ -1,5 +1,5 @@
 <meta charset=utf-8>
-<h1 id="user-content-npmplus"><a class="heading-link" href="#npmplus">NPMplus<span aria-hidden="true" class="octicon octicon-link"></span></a></h1>
+<h1><a id="user-content-npmplus" class="anchor" aria-hidden="true" tabindex="-1" href="#npmplus"><span aria-hidden="true" class="octicon octicon-link"></span></a>NPMplus</h1>
 <p>This project comes as a pre-built docker image that enables you to easily forward to your websites
 running at home or otherwise, including free TLS, without having to know too much about Nginx or Certbot.</p>
 <ul>
@@ -16,13 +16,13 @@ running at home or otherwise, including free TLS, without having to know too muc
 <strong>Note: ModSecurity overblocking (403 Error)? Please see <code>/data/etc/modsecurity/modsecurity-default.conf</code> and <code>/opt/npm/etc/modsecurity/crs-setup.conf</code>.</strong> <br>
 <strong>Note: Internal Instance? Please disable <code>must-staple</code> in <code>/opt/npm/tls/certbot/config.ini</code>.</strong> <br>
 <strong>Note: Other Databases like MariaDB may work, but are unsupported.</strong> <br></p>
-<h2 id="user-content-project-goal"><a class="heading-link" href="#project-goal">Project Goal<span aria-hidden="true" class="octicon octicon-link"></span></a></h2>
+<h2><a id="user-content-project-goal" class="anchor" aria-hidden="true" tabindex="-1" href="#project-goal"><span aria-hidden="true" class="octicon octicon-link"></span></a>Project Goal</h2>
 <p>I created this project to fill a personal need to provide users with a easy way to accomplish reverse
 proxying hosts with TLS termination and it had to be so easy that a monkey could do it. This goal hasn't changed.
 While there might be advanced options they are optional and the project should be as simple as possible
 so that the barrier for entry here is low.</p>
 
-<h2 id="user-content-features"><a class="heading-link" href="#features">Features<span aria-hidden="true" class="octicon octicon-link"></span></a></h2>
+<h2><a id="user-content-features" class="anchor" aria-hidden="true" tabindex="-1" href="#features"><span aria-hidden="true" class="octicon octicon-link"></span></a>Features</h2>
 <ul>
 <li>Beautiful and Secure Admin Interface based on <a href="https://tabler.github.io" rel="nofollow">Tabler</a>
 </li>
@@ -32,7 +32,7 @@ so that the barrier for entry here is low.</p>
 <li>Advanced Nginx configuration available for super users</li>
 <li>User management, permissions and audit log</li>
 </ul>
-<h1 id="user-content-list-of-new-features"><a class="heading-link" href="#list-of-new-features">List of new features<span aria-hidden="true" class="octicon octicon-link"></span></a></h1>
+<h1><a id="user-content-list-of-new-features" class="anchor" aria-hidden="true" tabindex="-1" href="#list-of-new-features"><span aria-hidden="true" class="octicon octicon-link"></span></a>List of new features</h1>
 <ul>
 <li>Supports HTTP/3 (QUIC) protocol.</li>
 <li>Supports CrowdSec IPS. Please see <a href="https://github.com/ZoeyVid/NPMplus#crowdsec">here</a> to enable it.</li>
@@ -88,12 +88,12 @@ so that the barrier for entry here is low.</p>
 <li>See the composefile for all available options</li>
 <li>If you want to redirect all HTTP traffic to HTTPS, you can use the <code>compose.override.yaml</code> file.</li>
 </ul>
-<h2 id="user-content-soon"><a class="heading-link" href="#soon">Soon<span aria-hidden="true" class="octicon octicon-link"></span></a></h2>
+<h2><a id="user-content-soon" class="anchor" aria-hidden="true" tabindex="-1" href="#soon"><span aria-hidden="true" class="octicon octicon-link"></span></a>Soon</h2>
 <ul>
 <li>maybe redis and/or sql databases built in</li>
 <li>more</li>
 </ul>
-<h2 id="user-content-migration"><a class="heading-link" href="#migration">migration<span aria-hidden="true" class="octicon octicon-link"></span></a></h2>
+<h2><a id="user-content-migration" class="anchor" aria-hidden="true" tabindex="-1" href="#migration"><span aria-hidden="true" class="octicon octicon-link"></span></a>migration</h2>
 <ul>
 <li>
 <strong>NOTE: migrating back to the original is not possible</strong>, so make first a <strong>backup</strong> before migration, so you can use the backup to switch back</li>
@@ -102,7 +102,7 @@ so that the barrier for entry here is low.</p>
 <li>please delete all dnspod certs and recreate them OR you manually change the credentialsfile (see <a href="https://github.com/ZoeyVid/npmplus/blob/develop/global/certbot-dns-plugins.js">here</a> for the template)</li>
 <li>since this fork has dependency on <code>network_mode: host</code>, please don't forget to open port 80 and 443 (and maybe 81) in your firewall</li>
 </ul>
-<h1 id="user-content-crowdsec"><a class="heading-link" href="#crowdsec">Crowdsec<span aria-hidden="true" class="octicon octicon-link"></span></a></h1>
+<h1><a id="user-content-crowdsec" class="anchor" aria-hidden="true" tabindex="-1" href="#crowdsec"><span aria-hidden="true" class="octicon octicon-link"></span></a>Crowdsec</h1>
 <ol>
 <li>Install crowdsec using this compose file: <a href="https://github.com/ZoeyVid/NPMplus/blob/develop/compose.crowdsec.yaml">https://github.com/ZoeyVid/NPMplus/blob/develop/compose.crowdsec.yaml</a>
 </li>
@@ -119,7 +119,7 @@ so that the barrier for entry here is low.</p>
 <li>save the file</li>
 <li>restart the npm</li>
 </ol>
-<h1 id="user-content-use-as-webserver"><a class="heading-link" href="#use-as-webserver">Use as webserver<span aria-hidden="true" class="octicon octicon-link"></span></a></h1>
+<h1><a id="user-content-use-as-webserver" class="anchor" aria-hidden="true" tabindex="-1" href="#use-as-webserver"><span aria-hidden="true" class="octicon octicon-link"></span></a>Use as webserver</h1>
 <ol>
 <li>Create a new Proxy Host</li>
 <li>Set <code>Scheme</code> to <code>https</code>, <code>Forward Hostname / IP</code> to <code>0.0.0.0</code>, <code>Forward Port</code> to <code>1</code> and enable <code>Websockets Support</code> (you can also use other values, since these get fully ignored)</li>
@@ -155,7 +155,7 @@ so that the barrier for entry here is low.</p>
     }
 }
 </code></pre>
-<h1 id="user-content-custom-acme-server"><a class="heading-link" href="#custom-acme-server">custom acme server<span aria-hidden="true" class="octicon octicon-link"></span></a></h1>
+<h1><a id="user-content-custom-acme-server" class="anchor" aria-hidden="true" tabindex="-1" href="#custom-acme-server"><span aria-hidden="true" class="octicon octicon-link"></span></a>custom acme server</h1>
 <ol>
 <li>Open this file: <code>nano</code> <code>/opt/npm/ssl/certbot/config.ini</code>
 </li>
@@ -163,7 +163,7 @@ so that the barrier for entry here is low.</p>
 <li>maybe set eab keys</li>
 <li>create your cert using the npm web ui</li>
 </ol>
-<h1 id="user-content-quick-setup"><a class="heading-link" href="#quick-setup">Quick Setup<span aria-hidden="true" class="octicon octicon-link"></span></a></h1>
+<h1><a id="user-content-quick-setup" class="anchor" aria-hidden="true" tabindex="-1" href="#quick-setup"><span aria-hidden="true" class="octicon octicon-link"></span></a>Quick Setup</h1>
 <ol>
 <li>Install Docker and Docker Compose (or portainer)</li>
 </ol>
@@ -193,11 +193,11 @@ You may need to use another IP-Address.</p>
 Password: iArhP1j7p1P6TA92FA2FMbbUGYqwcYzxC4AVEe12Wbi94FY9gNN62aKyF1shrvG4NycjjX9KfmDQiwkLZH1ZDR9xMjiG2QmoHXi
 </code></pre>
 <p>Immediately after logging in with this default user you will be asked to modify your details and change your password.</p>
-<h2 id="user-content-contributorssponsor-original-npm"><a class="heading-link" href="#contributorssponsor-original-npm">Contributors/Sponsor original NPM<span aria-hidden="true" class="octicon octicon-link"></span></a></h2>
+<h2><a id="user-content-contributorssponsor-original-npm" class="anchor" aria-hidden="true" tabindex="-1" href="#contributorssponsor-original-npm"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contributors/Sponsor original NPM</h2>
 <p>Special thanks to <a href="https://github.com/NginxProxyManager/nginx-proxy-manager/graphs/contributors">all of our contributors</a>.
 If you want to sponsor them, please see <a href="https://github.com/NginxProxyManager/nginx-proxy-manager/blob/master/README.md">here</a>.</p>
-<h1 id="user-content-please-report-bugs-first-to-this-fork-before-reporting-them-to-the-original-repository"><a class="heading-link" href="#please-report-bugs-first-to-this-fork-before-reporting-them-to-the-original-repository">Please report Bugs first to this fork before reporting them to the original Repository<span aria-hidden="true" class="octicon octicon-link"></span></a></h1>
-<h2 id="user-content-getting-support"><a class="heading-link" href="#getting-support">Getting Support<span aria-hidden="true" class="octicon octicon-link"></span></a></h2>
+<h1><a id="user-content-please-report-bugs-first-to-this-fork-before-reporting-them-to-the-original-repository" class="anchor" aria-hidden="true" tabindex="-1" href="#please-report-bugs-first-to-this-fork-before-reporting-them-to-the-original-repository"><span aria-hidden="true" class="octicon octicon-link"></span></a>Please report Bugs first to this fork before reporting them to the original Repository</h1>
+<h2><a id="user-content-getting-support" class="anchor" aria-hidden="true" tabindex="-1" href="#getting-support"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting Support</h2>
 <ol>
 <li><a href="https://github.com/ZoeyVid/NPMplus/issues">Found a bug?</a></li>
 <li><a href="https://github.com/ZoeyVid/NPMplus/discussions">Discussions</a></li>
