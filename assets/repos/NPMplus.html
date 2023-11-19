@@ -6,8 +6,8 @@ running at home or otherwise, including free TLS, without having to know too muc
 <li><a href="#quick-setup">Quick Setup</a></li>
 </ul>
 
-<p><strong>Note: To fix <a href="https://github.com/SpiderLabs/ModSecurity/issues/2848">this issue</a>, instead of running <code>nginx -s reload</code>, this fork stops nginx and starts it again. This can result in a 502 error when you update your hosts. See <a href="https://github.com/ZoeyVid/NPMplus/issues/296">https://github.com/ZoeyVid/NPMplus/issues/296</a> and <a href="https://github.com/ZoeyVid/NPMplus/issues/283">https://github.com/ZoeyVid/NPMplus/issues/283</a>.</strong> <br>
-<strong>Note: Reloading the NPMplus UI can cause a 502 error. See <a href="https://github.com/ZoeyVid/NPMplus/issues/241">https://github.com/ZoeyVid/NPMplus/issues/241</a>.</strong> <br>
+
+<p><strong>Note: Reloading the NPMplus UI can cause a 502 error. See <a href="https://github.com/ZoeyVid/NPMplus/issues/241">https://github.com/ZoeyVid/NPMplus/issues/241</a>.</strong> <br>
 <strong>Note: NO armv7 support.</strong> <br>
 <strong>Note: add <code>net.ipv4.ip_unprivileged_port_start=0</code> at the end of <code>/etc/sysctl.conf</code> to support PUID/PGID in network mode host.</strong> <br>
 <strong>Note: If you don't use network mode host, which I don't recommend, don't forget to expose port 443 on tcp AND udp (http3/quic needs udp).</strong> <br>
