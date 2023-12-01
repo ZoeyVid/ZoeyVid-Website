@@ -114,7 +114,16 @@ section of the API is read-only.</li>
 <p>You will possibly need to grant access to some of these API sections, which are not so
 extremely critical but can expose some information that your service does not need.</p>
 <ul>
-<li><code>ALLOW_POWER</code></li>
+<li>
+<code>ALLOW_POWER</code> (containers/<code>id</code>/<code>start</code>|<code>stop</code>|<code>kill</code>|<code>restart</code>)</li>
+<li>
+<code>ALLOW_RESTART</code> (containers/<code>id</code>/<code>restart</code>)</li>
+<li>
+<code>ALLOW_START</code> (containers/<code>id</code>/<code>start</code>)</li>
+<li>
+<code>ALLOW_STOP</code> (containers/<code>id</code>/<code>stop</code>)</li>
+<li>
+<code>ALLOW_Kill</code> (containers/<code>id</code>/<code>kill</code>)</li>
 <li><code>BUILD</code></li>
 <li><code>COMMIT</code></li>
 <li><code>CONFIGS</code></li>
@@ -165,7 +174,7 @@ docker image build -t my_custom_image <span class="pl-c1">.</span>
 env DOCKER_IMAGE_NAME=my_custom_image poetry run pytest</pre></div>
 <h2><a id="user-content-logging" class="anchor" aria-hidden="true" tabindex="-1" href="#logging"><span aria-hidden="true" class="octicon octicon-link"></span></a>Logging</h2>
 <p>You can set the logging level or severity level of the messages to be logged with the
-environment variable <code>LOG_LEVEL</code>. Defaul value is info. Possible values are: debug,
+environment variable <code>LOG_LEVEL</code>. Default value is info. Possible values are: debug,
 info, notice, warning, err, crit, alert and emerg.</p>
 <h2><a id="user-content-supported-api-versions" class="anchor" aria-hidden="true" tabindex="-1" href="#supported-api-versions"><span aria-hidden="true" class="octicon octicon-link"></span></a>Supported API versions</h2>
 <ul>
