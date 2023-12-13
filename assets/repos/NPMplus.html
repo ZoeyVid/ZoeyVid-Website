@@ -13,7 +13,7 @@ running at home or otherwise, including free TLS, without having to know too muc
 <strong>Note: If you don't use network mode host, which I don't recommend, don't forget to expose port 443 on tcp AND udp (http3/quic needs udp).</strong> <br>
 <strong>Note: If you don't use network mode host, which I don't recommend, don't forget to enable IPv6 in Docker, see <a href="https://github.com/nextcloud/all-in-one/blob/main/docker-ipv6-support.md">here</a>, you only need to edit the daemon.json and restart docker, if you use the bridge network, otherwise please enable IPv6 in your custom docker network!</strong> <br>
 <strong>Note: Don't forget to open Port 80 (tcp) and 443 (tcp AND udp, http3/quic needs udp) in your firewall (because of network mode host, you also need to open this ports in ufw, if you use ufw).</strong> <br>
-<strong>Note: ModSecurity overblocking (403 Error)? Please see <code>/data/etc/modsecurity</code>, if you also use CRS please see <a href="https://coreruleset.org/docs/concepts/false_positives_tuning" rel="nofollow">here</a>.</strong> <br>
+<strong>Note: ModSecurity overblocking (403 Error)? Please see <code>/opt/npm/etc/modsecurity</code>, if you also use CRS please see <a href="https://coreruleset.org/docs/concepts/false_positives_tuning" rel="nofollow">here</a>.</strong> <br>
 <strong>Note: Internal Instance? Please disable <code>must-staple</code> in <code>/opt/npm/tls/certbot/config.ini</code>.</strong> <br>
 <strong>Note: Other Databases like MariaDB may work, but are unsupported.</strong> <br></p>
 <h2><a id="user-content-project-goal" class="anchor" aria-hidden="true" tabindex="-1" href="#project-goal"><span aria-hidden="true" class="octicon octicon-link"></span></a>Project Goal</h2>
@@ -80,7 +80,7 @@ so that the barrier for entry here is low.</p>
 <li>Automatic cleaning of old certbot certs (set FULLCLEAN to true)</li>
 <li>Password reset (only sqlite) using <code>docker exec -it npmplus password-reset.js USER_EMAIL PASSWORD</code>
 </li>
-<li>Supports TLS for MariaDB/MySQL; set <code>DB_MYSQL_TLS</code> env to true. Self-signed certificates can be uploaded to <code>/data/etc/npm/ca.crt</code> and <code>DB_MYSQL_CA</code> set to <code>/data/etc/npm/ca.crt</code> (not tested, unsupported)</li>
+<li>Supports TLS for MariaDB/MySQL; set <code>DB_MYSQL_TLS</code> env to true. Self-signed certificates can be uploaded to <code>/opt/npm/etc/npm/ca.crt</code> and <code>DB_MYSQL_CA</code> set to <code>/data/etc/npm/ca.crt</code> (not tested, unsupported)</li>
 <li>Supports PUID/PGID in network mode host; add <code>net.ipv4.ip_unprivileged_port_start=0</code> at the end of <code>/etc/sysctl.conf</code>
 </li>
 <li>Option to set IP bindings for multiple instances in network mode host</li>
@@ -108,7 +108,7 @@ so that the barrier for entry here is low.</p>
 </li>
 <li>make sure to use <code>network_mode: host</code> in your compose file</li>
 <li>run <code>docker exec crowdsec cscli bouncers add npmplus -o raw</code> and save the output</li>
-<li>open <code>/data/etc/crowdsec/crowdsec.conf</code>
+<li>open <code>/opt/npm/etc/crowdsec/crowdsec.conf</code>
 </li>
 <li>set <code>ENABLED</code> to <code>true</code>
 </li>
