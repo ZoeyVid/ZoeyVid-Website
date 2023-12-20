@@ -41,9 +41,11 @@ so that the barrier for entry here is low.</p>
 <li>If the core ruleset blocks valid requests, please check the <code>/opt/npm/etc/modsecurity/crs-setup.conf</code> file.</li>
 <li>Try to whitelist the Content-Type you are sending (for example, <code>application/activity+json</code> for Mastodon and <code>application/dns-message</code> for DoH).</li>
 <li>Try to whitelist the HTTP request method you are using (for example, <code>PUT</code> is blocked by default, which also affects NPM).</li>
-<li>Note: To fix <a href="https://github.com/SpiderLabs/ModSecurity/issues/2848">this issue</a>, instead of running <code>nginx -s reload</code>, this fork stops nginx and starts it again. This will result in a 502 error when you update your hosts. See <a href="https://github.com/ZoeyVid/NPMplus/issues/296">https://github.com/ZoeyVid/NPMplus/issues/296</a> and <a href="https://github.com/ZoeyVid/NPMplus/issues/283">https://github.com/ZoeyVid/NPMplus/issues/283</a>.</li>
 </ul>
 </li>
+</ul>
+
+<ul>
 <li>Darkmode button in the footer for comfortable viewing (CSS done by <a href="https://github.com/theraw">@theraw</a>)</li>
 <li>Fixes proxy to https origin when the origin only accepts TLSv1.3</li>
 <li>Only enables TLSv1.2 and TLSv1.3 protocols</li>
