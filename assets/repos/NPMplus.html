@@ -133,6 +133,7 @@ so that the barrier for entry here is low.</p>
 <li>Note: the slash at the end of the file path is important</li>
 </ul>
 <pre><code>location / {
+    include conf.d/include/acme-challenge.conf;
     alias /var/www/&lt;your-html-site-folder-name&gt;/;
 }
 </code></pre>
@@ -145,6 +146,7 @@ so that the barrier for entry here is low.</p>
 <li>Note: to add more php extension using envs you can set in the compose file</li>
 </ul>
 <pre><code>location / {
+    include conf.d/include/acme-challenge.conf;
     alias /var/www/&lt;your-html-site-folder-name&gt;/;
 
     location ~ [^/]\.php(/|$) {
