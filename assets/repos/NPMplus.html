@@ -37,7 +37,8 @@ so that the barrier for entry here is low.</p>
 <ul>
 <li>Supports HTTP/3 (QUIC) protocol.</li>
 <li>Supports CrowdSec IPS. Please see <a href="https://github.com/ZoeyVid/NPMplus#crowdsec">here</a> to enable it.</li>
-<li>goaccess included, see compose.yaml (nginx config from <a href="https://github.com/xavier-hernandez/goaccess-for-nginxproxymanager/blob/main/resources/nginx/nginx.conf">here</a>)</li>
+<li>goaccess included, see compose.yaml to enable default runs on https://:91 (nginx config from <a href="https://github.com/xavier-hernandez/goaccess-for-nginxproxymanager/blob/main/resources/nginx/nginx.conf">here</a>)
+</li>
 <li>Supports ModSecurity, with coreruleset as an option. You can configure ModSecurity/coreruleset by editing the files in the <code>/opt/npm/etc/modsecurity</code> folder.
 <ul>
 <li>If the core ruleset blocks valid requests, please check the <code>/opt/npm/etc/modsecurity/crs-setup.conf</code> file.</li>
@@ -116,7 +117,7 @@ so that the barrier for entry here is low.</p>
 </li>
 <li>set <code>ENABLED</code> to <code>true</code>
 </li>
-<li>use the output of step 4 as <code>API_KEY</code>
+<li>use the output of step 3 as <code>API_KEY</code>
 </li>
 <li>make sure <code>API_URL</code> is set to <code>http://127.0.0.1:8080</code>
 </li>
