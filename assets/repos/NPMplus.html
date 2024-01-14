@@ -14,8 +14,9 @@ running at home or otherwise, including free TLS, without having to know too muc
 <strong>Note: If you don't use network mode host, which I don't recommend, don't forget to enable IPv6 in Docker, see <a href="https://github.com/nextcloud/all-in-one/blob/main/docker-ipv6-support.md">here</a>, you only need to edit the daemon.json and restart docker, if you use the bridge network, otherwise please enable IPv6 in your custom docker network!</strong> <br>
 <strong>Note: Don't forget to open Port 80 (tcp) and 443 (tcp AND udp, http3/quic needs udp) in your firewall (because of network mode host, you also need to open this ports in ufw, if you use ufw).</strong> <br>
 <strong>Note: ModSecurity overblocking (403 Error)? Please see <code>/opt/npm/etc/modsecurity</code>, if you also use CRS please see <a href="https://coreruleset.org/docs/concepts/false_positives_tuning" rel="nofollow">here</a>.</strong> <br>
-<strong>Note: Internal Instance? Please disable <code>must-staple</code> in <code>/opt/npm/tls/certbot/config.ini</code>.</strong> <br>
-<strong>Note: Other Databases like MariaDB may work, but are unsupported.</strong> <br></p>
+<strong>Note: Internal/LAN Instance? Please disable <code>must-staple</code> in <code>/opt/npm/tls/certbot/config.ini</code>.</strong> <br>
+<strong>Note: Other Databases like MariaDB may work, but are unsupported.</strong> <br>
+<strong>Note: access.log, logrotate and goaccess are NOT enabled by default bceuase of GDPR.</strong> <br></p>
 <h2><a id="user-content-project-goal" class="anchor" aria-hidden="true" tabindex="-1" href="#project-goal"><span aria-hidden="true" class="octicon octicon-link"></span></a>Project Goal</h2>
 <p>I created this project to fill a personal need to provide users with a easy way to accomplish reverse
 proxying hosts with TLS termination and it had to be so easy that a monkey could do it. This goal hasn't changed.
@@ -36,6 +37,7 @@ so that the barrier for entry here is low.</p>
 <ul>
 <li>Supports HTTP/3 (QUIC) protocol.</li>
 <li>Supports CrowdSec IPS. Please see <a href="https://github.com/ZoeyVid/NPMplus#crowdsec">here</a> to enable it.</li>
+<li>goaccess included, see compose.yaml (nginx config from <a href="https://github.com/xavier-hernandez/goaccess-for-nginxproxymanager/blob/main/resources/nginx/nginx.conf">here</a>)</li>
 <li>Supports ModSecurity, with coreruleset as an option. You can configure ModSecurity/coreruleset by editing the files in the <code>/opt/npm/etc/modsecurity</code> folder.
 <ul>
 <li>If the core ruleset blocks valid requests, please check the <code>/opt/npm/etc/modsecurity/crs-setup.conf</code> file.</li>
@@ -67,7 +69,8 @@ so that the barrier for entry here is low.</p>
 <li>Uses <a href="https://gitHub.com/Naereen/Nginx-Fancyindex-Theme">fancyindex</a> if used as webserver</li>
 <li>Exposes INTERNAL backend api only to localhost</li>
 <li>Basic security headers are added if you enable HSTS (HSTS has always subdomains and preload enabled)</li>
-<li>Access Log disabled</li>
+<li>access.log is disabled by default, unified and moved to <code>/opt/npm/nginx/access.log</code>
+</li>
 <li>Error Log written to console</li>
 <li>
 <code>Server</code> response header hidden</li>
