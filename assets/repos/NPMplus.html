@@ -14,7 +14,7 @@ running at home or otherwise, including free TLS, without having to know too muc
 <strong>Note: If you don't use network mode host, which I don't recommend, don't forget to enable IPv6 in Docker, see <a href="https://github.com/nextcloud/all-in-one/blob/main/docker-ipv6-support.md">here</a>, you only need to edit the daemon.json and restart docker, if you use the bridge network, otherwise please enable IPv6 in your custom docker network!</strong> <br>
 <strong>Note: Don't forget to open Port 80 (tcp) and 443 (tcp AND udp, http3/quic needs udp) in your firewall (because of network mode host, you also need to open this ports in ufw, if you use ufw).</strong> <br>
 <strong>Note: ModSecurity overblocking (403 Error)? Please see <code>/opt/npm/etc/modsecurity</code>, if you also use CRS please see <a href="https://coreruleset.org/docs/concepts/false_positives_tuning" rel="nofollow">here</a>.</strong> <br>
-<strong>Note: Internal/LAN Instance? Please disable <code>must-staple</code> in <code>/opt/npm/tls/certbot/config.ini</code>.</strong> <br>
+<strong>Note: Internal/LAN Instance? Please disable <code>must-staple</code> in <code>/opt/npm/tls/certbot/config.ini</code> before creating your certificates.</strong> <br>
 <strong>Note: Other Databases like MariaDB may work, but are unsupported.</strong> <br>
 <strong>Note: access.log, logrotate and goaccess are NOT enabled by default bceuase of GDPR.</strong> <br></p>
 <h2><a id="user-content-project-goal" class="anchor" aria-hidden="true" tabindex="-1" href="#project-goal"><span aria-hidden="true" class="octicon octicon-link"></span></a>Project Goal</h2>
