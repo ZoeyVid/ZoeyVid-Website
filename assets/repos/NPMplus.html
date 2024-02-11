@@ -16,7 +16,7 @@ running at home or otherwise, including free TLS, without having to know too muc
 <strong>Note: ModSecurity overblocking (403 Error)? Please see <code>/opt/npm/etc/modsecurity</code>, if you also use CRS please see <a href="https://coreruleset.org/docs/concepts/false_positives_tuning" rel="nofollow">here</a>.</strong> <br>
 <strong>Note: Internal/LAN Instance? Please disable <code>must-staple</code> in <code>/opt/npm/tls/certbot/config.ini</code> before creating your certificates.</strong> <br>
 <strong>Note: Other Databases like MariaDB may work, but are unsupported.</strong> <br>
-<strong>Note: access.log, logrotate and goaccess are NOT enabled by default bceuase of GDPR.</strong> <br></p>
+<strong>Note: access.log/stream.log, logrotate and goaccess are NOT enabled by default bceuase of GDPR, you can enable them in the compose.yaml.</strong> <br></p>
 <h2><a id="user-content-project-goal" class="anchor" aria-hidden="true" tabindex="-1" href="#project-goal"><span aria-hidden="true" class="octicon octicon-link"></span></a>Project Goal</h2>
 <p>I created this project to fill a personal need to provide users with a easy way to accomplish reverse
 proxying hosts with TLS termination and it had to be so easy that a monkey could do it. This goal hasn't changed.
@@ -111,15 +111,41 @@ so that the barrier for entry here is low.</p>
 <ol>
 <li>Install crowdsec using this compose file: <a href="https://github.com/ZoeyVid/NPMplus/blob/develop/compose.crowdsec.yaml">https://github.com/ZoeyVid/NPMplus/blob/develop/compose.crowdsec.yaml</a>
 </li>
+<li>open <code>/opt/crowdsec/conf/acquis.d/appsec.yaml</code> and fill it with:</li>
+</ol>
+<div class="highlight highlight-source-yaml"><pre><span class="pl-ent">listen_addr</span>: <span class="pl-s">127.0.0.1:7422</span>
+<span class="pl-ent">appsec_config</span>: <span class="pl-s">crowdsecurity/virtual-patching</span>
+<span class="pl-ent">name</span>: <span class="pl-s">myAppSecComponent</span>
+<span class="pl-ent">source</span>: <span class="pl-s">appsec</span>
+<span class="pl-ent">labels</span>:
+  <span class="pl-ent">type</span>: <span class="pl-s">appsec</span></pre></div>
+<ol start="3">
+<li>open <code>/opt/crowdsec/conf/acquis.d/npmplus.yaml</code> and fill it with:</li>
+</ol>
+<div class="highlight highlight-source-yaml"><pre><span class="pl-ent">filenames</span>:
+  - <span class="pl-s">/opt/npm/nginx/access.log</span>
+<span class="pl-ent">labels</span>:
+  <span class="pl-ent">type</span>: <span class="pl-s">npmplus</span>
+---
+<span class="pl-ent">source</span>: <span class="pl-s">docker</span>
+<span class="pl-ent">container_name</span>:
+ - <span class="pl-s">npmplus</span>
+<span class="pl-ent">labels</span>:
+  <span class="pl-ent">type</span>: <span class="pl-s">npmplus</span>
+---
+<span class="pl-ent">source</span>: <span class="pl-s">docker</span>
+<span class="pl-ent">container_name</span>:
+ - <span class="pl-s">npmplus</span>
+<span class="pl-ent">labels</span>:
+  <span class="pl-ent">type</span>: <span class="pl-s">modsecurity</span></pre></div>
+<ol start="4">
 <li>make sure to use <code>network_mode: host</code> in your compose file</li>
 <li>run <code>docker exec crowdsec cscli bouncers add npmplus -o raw</code> and save the output</li>
 <li>open <code>/opt/npm/etc/crowdsec/crowdsec.conf</code>
 </li>
 <li>set <code>ENABLED</code> to <code>true</code>
 </li>
-<li>use the output of step 3 as <code>API_KEY</code>
-</li>
-<li>make sure <code>API_URL</code> is set to <code>http://127.0.0.1:8080</code>
+<li>use the output of step 5 as <code>API_KEY</code>
 </li>
 <li>save the file</li>
 <li>restart the npm</li>
