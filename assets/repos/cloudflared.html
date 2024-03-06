@@ -1,5 +1,5 @@
 <meta charset=utf-8>
-<div class="markdown-heading"><h1 class="heading-element">Cloudflared</h1><a id="user-content-cloudflared" class="anchor-element" aria-label="Permalink: Cloudflared" href="#cloudflared"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<div class="markdown-heading"><h1 class="heading-element">Cloudflared</h1><a id="user-content-cloudflared" class="anchor" aria-label="Permalink: Cloudflared" href="#cloudflared"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <p>If you want to connect to services outside Docker over localhost and inside docker, but exposed to localhost: <br></p>
 <div class="highlight highlight-source-yaml"><pre><span class="pl-ent">version</span>: <span class="pl-s"><span class="pl-pds">"</span>3<span class="pl-pds">"</span></span>
 <span class="pl-ent">services</span>:
@@ -27,7 +27,7 @@ And generate a token under: Access ⇾ Tunnel ⇾ Create Tunnel <br>
 Now you can copy it and set the token in the command / compose file (replace your-cloudflared-tunnel-token with the token) <br>
 Then you can set a public host on <a href="https://dash.cloudflare.com" rel="nofollow">https://dash.cloudflare.com</a>: Access ⇾ Tunnel ⇾ Configure Tunnel <br>
 There you can set the address of the web source with its port (localhost:port for the network_mode: host version OR web-container-name:port for the second version) and the protocols (http / https - NO valid https certificate is required), then you can set above this the domain it should run on, and then you are done! <br></p>
-<div class="markdown-heading"><h2 class="heading-element">Run custom cloudflared commands:</h2><a id="user-content-run-custom-cloudflared-commands" class="anchor-element" aria-label="Permalink: Run custom cloudflared commands:" href="#run-custom-cloudflared-commands"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<div class="markdown-heading"><h2 class="heading-element">Run custom cloudflared commands:</h2><a id="user-content-run-custom-cloudflared-commands" class="anchor" aria-label="Permalink: Run custom cloudflared commands:" href="#run-custom-cloudflared-commands"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <div class="highlight highlight-source-yaml"><pre><span class="pl-ent">version</span>: <span class="pl-s"><span class="pl-pds">"</span>3<span class="pl-pds">"</span></span>
 <span class="pl-ent">services</span>:
     <span class="pl-ent">cloudflared</span>:
@@ -39,7 +39,7 @@ There you can set the address of the web source with its port (localhost:port fo
         - <span class="pl-s"><span class="pl-pds">"</span>TZ=Europe/Berlin<span class="pl-pds">"</span></span>
         <span class="pl-ent">command</span>: <span class="pl-s">&lt;command&gt;</span>
 </pre></div>
-<div class="markdown-heading"><h1 class="heading-element">Cloudflared-DNS</h1><a id="user-content-cloudflared-dns" class="anchor-element" aria-label="Permalink: Cloudflared-DNS" href="#cloudflared-dns"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<div class="markdown-heading"><h1 class="heading-element">Cloudflared-DNS</h1><a id="user-content-cloudflared-dns" class="anchor" aria-label="Permalink: Cloudflared-DNS" href="#cloudflared-dns"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <div class="highlight highlight-source-yaml"><pre><span class="pl-ent">version</span>: <span class="pl-s"><span class="pl-pds">"</span>3<span class="pl-pds">"</span></span>
 <span class="pl-ent">services</span>:
     <span class="pl-ent">cloudflared</span>:
@@ -67,7 +67,7 @@ There you can set the address of the web source with its port (localhost:port fo
         - <span class="pl-s">2a10:50c0::ad1:ff</span>
         - <span class="pl-s">2a10:50c0::ad2:ff</span>
         <span class="pl-ent">command</span>: <span class="pl-s">--upstream https://dns.adguard-dns.com/dns-query</span></pre></div>
-<div class="markdown-heading"><h2 class="heading-element">Disable systemd-resolved (used on debian)</h2><a id="user-content-disable-systemd-resolved-used-on-debian" class="anchor-element" aria-label="Permalink: Disable systemd-resolved (used on debian)" href="#disable-systemd-resolved-used-on-debian"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<div class="markdown-heading"><h2 class="heading-element">Disable systemd-resolved (used on debian)</h2><a id="user-content-disable-systemd-resolved-used-on-debian" class="anchor" aria-label="Permalink: Disable systemd-resolved (used on debian)" href="#disable-systemd-resolved-used-on-debian"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <div class="highlight highlight-source-shell"><pre>systemctl disable --now systemd-resolved
 rm -rf /etc/resolv.conf
 <span class="pl-c1">echo</span> nameserver 127.0.0.1 <span class="pl-k">&gt;&gt;</span> /etc/resolv.conf</pre></div>
