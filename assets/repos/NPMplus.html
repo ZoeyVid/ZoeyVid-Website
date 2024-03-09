@@ -101,6 +101,7 @@ so that the barrier for entry here is low.</p>
 <li>some buttons have changed, check if they are still correct</li>
 <li>please delete all dnspod certs and recreate them OR you manually change the credentialsfile (see <a href="https://github.com/ZoeyVid/npmplus/blob/develop/global/certbot-dns-plugins.js">here</a> for the template)</li>
 <li>since this fork has dependency on <code>network_mode: host</code>, please don't forget to open port 80 and 443 (and maybe 81) in your firewall</li>
+<li>if you have a healthcheck defined in your compose yaml file, remove it - this fork defines its own healthcheck in the Dockerfile, so you don't need to have it in compose anymore</li>
 </ul>
 <div class="markdown-heading"><h1 class="heading-element">Crowdsec</h1><a id="user-content-crowdsec" class="anchor" aria-label="Permalink: Crowdsec" href="#crowdsec"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <ol>
