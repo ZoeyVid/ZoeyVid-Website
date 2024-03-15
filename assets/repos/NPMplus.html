@@ -107,15 +107,6 @@ so that the barrier for entry here is low.</p>
 <ol>
 <li>Install crowdsec using this compose file: <a href="https://github.com/ZoeyVid/NPMplus/blob/develop/compose.crowdsec.yaml">https://github.com/ZoeyVid/NPMplus/blob/develop/compose.crowdsec.yaml</a>
 </li>
-<li>open <code>/opt/crowdsec/conf/acquis.d/appsec.yaml</code> and fill it with:</li>
-</ol>
-<div class="highlight highlight-source-yaml"><pre><span class="pl-ent">listen_addr</span>: <span class="pl-s">0.0.0.0:7422</span>
-<span class="pl-ent">appsec_config</span>: <span class="pl-s">crowdsecurity/virtual-patching</span>
-<span class="pl-ent">name</span>: <span class="pl-s">myAppSecComponent</span>
-<span class="pl-ent">source</span>: <span class="pl-s">appsec</span>
-<span class="pl-ent">labels</span>:
-  <span class="pl-ent">type</span>: <span class="pl-s">appsec</span></pre></div>
-<ol start="3">
 <li>open <code>/opt/crowdsec/conf/acquis.d/npmplus.yaml</code> and fill it with:</li>
 </ol>
 <div class="highlight highlight-source-yaml"><pre><span class="pl-ent">filenames</span>:
@@ -133,8 +124,15 @@ so that the barrier for entry here is low.</p>
 <span class="pl-ent">container_name</span>:
  - <span class="pl-s">npmplus</span>
 <span class="pl-ent">labels</span>:
-  <span class="pl-ent">type</span>: <span class="pl-s">modsecurity</span></pre></div>
-<ol start="4">
+  <span class="pl-ent">type</span>: <span class="pl-s">modsecurity</span>
+---
+<span class="pl-ent">listen_addr</span>: <span class="pl-s">0.0.0.0:7422</span>
+<span class="pl-ent">appsec_config</span>: <span class="pl-s">crowdsecurity/virtual-patching</span>
+<span class="pl-ent">name</span>: <span class="pl-s">appsec</span>
+<span class="pl-ent">source</span>: <span class="pl-s">appsec</span>
+<span class="pl-ent">labels</span>:
+  <span class="pl-ent">type</span>: <span class="pl-s">appsec</span></pre></div>
+<ol start="3">
 <li>make sure to use <code>network_mode: host</code> in your compose file</li>
 <li>run <code>docker exec crowdsec cscli bouncers add npmplus -o raw</code> and save the output</li>
 <li>open <code>/opt/npm/etc/crowdsec/crowdsec.conf</code>
