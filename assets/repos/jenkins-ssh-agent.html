@@ -13,29 +13,27 @@
 <li>/usr/lib/jvm/java-20-amazon-corretto</li>
 </ul>
 <div class="markdown-heading"><h2 class="heading-element">compose.yaml:</h2><a id="user-content-composeyaml" class="anchor" aria-label="Permalink: compose.yaml:" href="#composeyaml"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
-<div class="highlight highlight-source-yaml"><pre><span class="pl-ent">version</span>: <span class="pl-s"><span class="pl-pds">"</span>3<span class="pl-pds">"</span></span>
-<span class="pl-ent">services</span>:
-    <span class="pl-ent">jenkins</span>:
-        <span class="pl-ent">container_name</span>: <span class="pl-s">jenkins</span>
-        <span class="pl-ent">image</span>: <span class="pl-s">jenkins/jenkins:alpine</span>
-        <span class="pl-ent">restart</span>: <span class="pl-s">always</span>
-        <span class="pl-ent">environment</span>:
-        - <span class="pl-s"><span class="pl-pds">"</span>TZ=Europe/Berlin<span class="pl-pds">"</span></span>
-        - <span class="pl-s"><span class="pl-pds">"</span>JAVA_OPTS=-Xmx256M -Xms256M<span class="pl-pds">"</span></span>
-        <span class="pl-ent">ports</span>:
-        - <span class="pl-s"><span class="pl-pds">"</span>127.0.0.1:8081:8080<span class="pl-pds">"</span></span>
-        <span class="pl-ent">volumes</span>:
-        - <span class="pl-s"><span class="pl-pds">"</span>/opt/jenkins:/var/jenkins_home<span class="pl-pds">"</span></span>
-        <span class="pl-ent">links</span>:
-        - <span class="pl-s">jenkins-agent</span>
-
+<div class="highlight highlight-source-yaml"><pre><span class="pl-ent">services</span>:
+  <span class="pl-ent">jenkins</span>:
+    <span class="pl-ent">container_name</span>: <span class="pl-s">jenkins</span>
+    <span class="pl-ent">image</span>: <span class="pl-s">jenkins/jenkins:alpine-jdk21</span>
+    <span class="pl-ent">restart</span>: <span class="pl-s">always</span>
+    <span class="pl-ent">environment</span>:
+      - <span class="pl-s"><span class="pl-pds">"</span>TZ=Europe/Berlin<span class="pl-pds">"</span></span>
+      - <span class="pl-s"><span class="pl-pds">"</span>JAVA_OPTS=-Xmx256M -Xms256M<span class="pl-pds">"</span></span>
+    <span class="pl-ent">ports</span>:
+      - <span class="pl-s"><span class="pl-pds">"</span>127.0.0.1:8081:8080<span class="pl-pds">"</span></span>
+    <span class="pl-ent">volumes</span>:
+      - <span class="pl-s"><span class="pl-pds">"</span>/opt/jenkins:/var/jenkins_home<span class="pl-pds">"</span></span>
+    <span class="pl-ent">links</span>:
+      - <span class="pl-s">jenkins-agent</span>
     <span class="pl-ent">jenkins-agent</span>:
-        <span class="pl-ent">container_name</span>: <span class="pl-s">jenkins-agent</span>
-        <span class="pl-ent">image</span>: <span class="pl-s">zoeyvid/jenkins-ssh-agent</span>
-        <span class="pl-ent">restart</span>: <span class="pl-s">always</span>
-        <span class="pl-ent">environment</span>:
+      <span class="pl-ent">container_name</span>: <span class="pl-s">jenkins-agent</span>
+      <span class="pl-ent">image</span>: <span class="pl-s">zoeyvid/jenkins-ssh-agent</span>
+      <span class="pl-ent">restart</span>: <span class="pl-s">always</span>
+      <span class="pl-ent">environment</span>:
         - <span class="pl-s"><span class="pl-pds">"</span>TZ=Europe/Berlin<span class="pl-pds">"</span></span>
-        - <span class="pl-s"><span class="pl-pds">"</span>JENKINS_AGENT_SSH_PUBKEY=ssh-rsa ABCDEFGHIJKLMNOPQRSTUVWXYZ<span class="pl-pds">"</span></span>
-<span class="pl-c"><span class="pl-c">#</span>        volumes:</span>
+        - <span class="pl-s"><span class="pl-pds">"</span>SSH_PUBKEY=ssh-ed25519 ABCDEFGHIJKLMNOPQRSTUVWXYZ<span class="pl-pds">"</span></span>
+<span class="pl-c"><span class="pl-c">#</span>      volumes:</span>
 <span class="pl-c"><span class="pl-c">#</span>        - "/var/run/docker.sock:/var/run/docker.sock:ro"</span></pre></div>
 
