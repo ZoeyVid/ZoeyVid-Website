@@ -6,11 +6,16 @@
 <li>/usr/bin/git-lfs</li>
 <li>/usr/local/bin/mvn</li>
 <li>/usr/local/bin/mvn4</li>
-<li>/usr/local/bin/docker</li>
 <li>/usr/lib/jvm/java-8-amazon-corretto</li>
 <li>/usr/lib/jvm/java-11-amazon-corretto</li>
 <li>/usr/lib/jvm/java-17-amazon-corretto</li>
 <li>/usr/lib/jvm/java-20-amazon-corretto</li>
+</ul>
+<div class="markdown-heading"><h1 class="heading-element">connect:</h1><a id="user-content-connect" class="anchor" aria-label="Permalink: connect:" href="#connect"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<ul>
+<li>port: 2222</li>
+<li>username: jenkins</li>
+<li>and your private key (and maybe passphrase)</li>
 </ul>
 <div class="markdown-heading"><h2 class="heading-element">compose.yaml:</h2><a id="user-content-composeyaml" class="anchor" aria-label="Permalink: compose.yaml:" href="#composeyaml"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <div class="highlight highlight-source-yaml"><pre><span class="pl-ent">services</span>:
@@ -33,7 +38,5 @@
       <span class="pl-ent">restart</span>: <span class="pl-s">always</span>
       <span class="pl-ent">environment</span>:
         - <span class="pl-s"><span class="pl-pds">"</span>TZ=Europe/Berlin<span class="pl-pds">"</span></span>
-        - <span class="pl-s"><span class="pl-pds">"</span>SSH_PUBKEY=ssh-ed25519 ABCDEFGHIJKLMNOPQRSTUVWXYZ<span class="pl-pds">"</span></span>
-<span class="pl-c"><span class="pl-c">#</span>      volumes:</span>
-<span class="pl-c"><span class="pl-c">#</span>        - "/var/run/docker.sock:/var/run/docker.sock:ro"</span></pre></div>
+        - <span class="pl-s"><span class="pl-pds">"</span>SSH_PUBKEY=ssh-ed25519 ABCDEFGHIJKLMNOPQRSTUVWXYZ<span class="pl-pds">"</span></span></pre></div>
 

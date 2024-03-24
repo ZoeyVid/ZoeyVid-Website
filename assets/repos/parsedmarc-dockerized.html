@@ -1,0 +1,39 @@
+<meta charset=utf-8>
+<div class="markdown-heading"><h1 class="heading-element">parsedmarc-dockerized</h1><a id="user-content-parsedmarc-dockerized" class="anchor" aria-label="Permalink: parsedmarc-dockerized" href="#parsedmarc-dockerized"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<p>Note: The standalone <code>parsedmarc</code> docker image on <a href="https://hub.docker.com/r/patschi/parsedmarc" rel="nofollow">DockerHub @ patschi/parsedmarc</a> can also be used, if interested.</p>
+<div class="markdown-heading"><h2 class="heading-element">Setup:</h2><a id="user-content-setup" class="anchor" aria-label="Permalink: Setup:" href="#setup"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<ol>
+<li>Get basics together:</li>
+</ol>
+<pre><code>git clone https://github.com/patschi/parsedmarc-dockerized.git /opt/parsedmarc-dockerized/
+cd /opt/parsedmarc-dockerized/ &amp;&amp; cp data/conf/parsedmarc/config.sample.ini data/conf/parsedmarc/config.ini
+</code></pre>
+<ol start="2">
+<li>Next we change the <code>parsedmarc</code> config (see <a href="https://domainaware.github.io/parsedmarc/#configuration-file" rel="nofollow">docs</a>. You can set <code>Test</code> to <code>True</code> for testing purposes.)</li>
+</ol>
+<pre><code>nano data/conf/parsedmarc/config.ini
+</code></pre>
+<ol start="3">
+<li>Now we create an environment file, containing your geoipupdate settings from your <a href="https://www.maxmind.com/en/account/" rel="nofollow">MaxMind account</a> to allow the container to pull the databases. For update cycles of the databases, please see <a href="https://support.maxmind.com/geoip-faq/geoip2-and-geoip-legacy-database-updates/how-often-are-the-geoip2-and-geoip-legacy-databases-updated/" rel="nofollow">here</a>. (Fill in your data!)</li>
+</ol>
+<pre><code>cat &gt; geoipupdate.env &lt;&lt;EOF
+GEOIPUPDATE_ACCOUNT_ID=HERE_GOES_YOUR_ACCOUNT_ID
+GEOIPUPDATE_LICENSE_KEY=HERE_GOES_YOUR_LICENSE_KEY
+GEOIPUPDATE_FREQUENCY=24
+EOF
+</code></pre>
+<ol start="4">
+<li>Finally, we start up the stack and wait:</li>
+</ol>
+<pre><code>docker-compose up -d
+</code></pre>
+<div class="markdown-heading"><h3 class="heading-element">What's happening then?</h3><a id="user-content-whats-happening-then" class="anchor" aria-label="Permalink: What's happening then?" href="#whats-happening-then"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<ol>
+<li>First, containers of the stack are created and started. This might take a while, as several containers have dependencies on others being in a healthy state (meaning that its service must be fully started).</li>
+<li>During the startup of the <code>parsedmarc-init</code> container, all required steps and preparations are being taken care of - like generating a self-signed certificate for the included <code>nginx</code> webserver.</li>
+<li>Once the Kibana container - where you can view the dashboards - is started up, the corresponding parsedmarc dashboards are automatically imported into Kibana by the <code>parsedmarc-init</code> container.</li>
+<li>After some while, when everything is up and running, you can then access Kibana and its dashboards under the shipped reverse proxy at <code>https://HOST_IP:9999</code>. (Make sure to use HTTPS!)</li>
+</ol>
+<div class="markdown-heading"><h2 class="heading-element">Credits</h2><a id="user-content-credits" class="anchor" aria-label="Permalink: Credits" href="#credits"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<p>Built with awesome <a href="https://github.com/domainaware/checkdmarc">parsedmarc</a>, <a href="https://www.elastic.co/" rel="nofollow">Elasticsearch and Kibana</a>, <a href="https://nginx.org" rel="nofollow">nginx</a>, <a href="https://docker.com" rel="nofollow">Docker</a> and <a href="https://dev.maxmind.com/geoip/geoip2/geolite2/" rel="nofollow">MaxMind GeoIP</a>.</p>
+
