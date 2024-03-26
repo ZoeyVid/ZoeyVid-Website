@@ -1,3 +1,22 @@
 <meta charset=utf-8>
-<p>404: Not Found</p>
+<div class="markdown-heading"><h1 class="heading-element">aida-price-checker</h1><a id="user-content-aida-price-checker" class="anchor" aria-label="Permalink: aida-price-checker" href="#aida-price-checker"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<div class="highlight highlight-source-yaml"><pre><span class="pl-ent">services</span>:
+  <span class="pl-ent">aida-price-checker</span>:
+    <span class="pl-ent">container_name</span>: <span class="pl-s">aida-price-checker</span>
+    <span class="pl-ent">image</span>: <span class="pl-s">zoeyvid/aida-price-checker</span>
+    <span class="pl-ent">restart</span>: <span class="pl-s">always</span>
+    <span class="pl-ent">network_mode</span>: <span class="pl-s">bridge</span>
+    <span class="pl-ent">environment</span>:
+      - <span class="pl-s"><span class="pl-pds">"</span>TZ=Europe/Berlin<span class="pl-pds">"</span></span>                                   <span class="pl-c"><span class="pl-c">#</span> Zeitzone</span>
+      - <span class="pl-s"><span class="pl-pds">"</span>CI=7d<span class="pl-pds">"</span></span>                                              <span class="pl-c"><span class="pl-c">#</span> interval to sent prices</span>
+      - <span class="pl-s"><span class="pl-pds">"</span>AIDs=SO12240702<span class="pl-pds">"</span></span>                                    <span class="pl-c"><span class="pl-c">#</span> ID(s) der AIDA-Reise (bei mehreren durch Leerzeichen trennen)</span>
+      - <span class="pl-s"><span class="pl-pds">"</span>AAK=1QfHZ3LvMQ7cDSL9YFUbOsKzShRPBQDg6re5zeJG<span class="pl-pds">"</span></span>       <span class="pl-c"><span class="pl-c">#</span> x-api-key (kann im Netzwerk-Tab von F12 gefunden werden), ungültiges Beispiel</span>
+      - <span class="pl-s"><span class="pl-pds">"</span>AA=2<span class="pl-pds">"</span></span>                                               <span class="pl-c"><span class="pl-c">#</span> Anzahl Erwachsene</span>
+      - <span class="pl-s"><span class="pl-pds">"</span>AJ=1<span class="pl-pds">"</span></span>                                               <span class="pl-c"><span class="pl-c">#</span> Anzahl Jugendliche</span>
+      - <span class="pl-s"><span class="pl-pds">"</span>AC=0<span class="pl-pds">"</span></span>                                               <span class="pl-c"><span class="pl-c">#</span> Anzahl Kinder</span>
+      - <span class="pl-s"><span class="pl-pds">"</span>CUA=Firefox<span class="pl-pds">"</span></span>                                        <span class="pl-c"><span class="pl-c">#</span> User-Agent für cURL</span>
+      - <span class="pl-s"><span class="pl-pds">"</span>ACIDs=BV BB BA<span class="pl-pds">"</span></span>                                     <span class="pl-c"><span class="pl-c">#</span> Kabinen IDs ohne All inclusive</span>
+      - <span class="pl-s"><span class="pl-pds">"</span>ACAIIDs=MV MB MA<span class="pl-pds">"</span></span>                                   <span class="pl-c"><span class="pl-c">#</span> Kabinen IDs mit All inclusive</span>
+      - <span class="pl-s"><span class="pl-pds">"</span>TBT=3567368463:JUG3OCkc35zduH3759lqeJ6KN6R6UFhdie5<span class="pl-pds">"</span></span> <span class="pl-c"><span class="pl-c">#</span> Telegram Bot-Token, ungültiges Beispiel</span>
+      - <span class="pl-s"><span class="pl-pds">"</span>TCIDs=678428904<span class="pl-pds">"</span></span>                                    <span class="pl-c"><span class="pl-c">#</span> Chat-ID(s) des/der Telegram-Kontos/Konten (bei mehreren durch Leerzeichen trennen)</span></pre></div>
 
