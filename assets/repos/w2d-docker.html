@@ -1,3 +1,18 @@
 <meta charset=utf-8>
-<p>404: Not Found</p>
+<div class="markdown-heading"><h1 class="heading-element">w2d-docker</h1><a id="user-content-w2d-docker" class="anchor" aria-label="Permalink: w2d-docker" href="#w2d-docker"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<div class="markdown-heading"><h2 class="heading-element">How to use?</h2><a id="user-content-how-to-use" class="anchor" aria-label="Permalink: How to use?" href="#how-to-use"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<p>This docker image includes <a href="https://github.com/FKLC/WhatsAppToDiscord">https://github.com/FKLC/WhatsAppToDiscord</a>, here is the compose file you can use:</p>
+<div class="highlight highlight-source-yaml"><pre><span class="pl-ent">services</span>:
+  <span class="pl-ent">w2d</span>:
+    <span class="pl-ent">container_name</span>: <span class="pl-s">w2d</span>
+    <span class="pl-ent">image</span>: <span class="pl-s">zoeyvid/w2d-docker</span>
+    <span class="pl-ent">restart</span>: <span class="pl-s">always</span>
+    <span class="pl-ent">volumes</span>:
+      - <span class="pl-s"><span class="pl-pds">"</span>/opt/w2d/storage:/app/storage<span class="pl-pds">"</span></span>
+      - <span class="pl-s"><span class="pl-pds">"</span>/opt/w2d/downloads:/app/downloads<span class="pl-pds">"</span></span>
+    <span class="pl-ent">environment</span>:
+      - <span class="pl-s"><span class="pl-pds">"</span>TZ=Europe/Berlin<span class="pl-pds">"</span></span>
+      - <span class="pl-s"><span class="pl-pds">"</span>WA2DC_TOKEN=your-discord-bot-token<span class="pl-pds">"</span></span>
+    <span class="pl-ent">user</span>: <span class="pl-c1">1000:1000</span></pre></div>
+<p>make sure to change WA2DC_TOKEN and the user ids to match the correct user, you can also use root</p>
 

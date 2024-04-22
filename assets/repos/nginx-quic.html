@@ -1,6 +1,6 @@
 <meta charset=utf-8>
 <div class="markdown-heading"><h1 class="heading-element">nginx-quic</h1><a id="user-content-nginx-quic" class="anchor" aria-label="Permalink: nginx-quic" href="#nginx-quic"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
-<p>Docker image for Nginx + HTTP/3 - used as base image for NPMplus</p>
+<p>Docker image for Nginx + HTTP/3 - used as base image for NPMplus, it also contains libmodsec, some patches and some modules (including lua), you can find the all links in the Dockerfile. The python-version/python-latest build also contains python.</p>
 <p>Requires: <code>zlib luajit pcre2 libstdc++ yajl libxml2 libxslt libcurl lmdb libfuzzy2 lua5.1-libs geoip libmaxminddb-libs</code> and libmodsecurity <br>
 Please add: <code>lua_package_path "/usr/local/nginx/lib/lua/?.lua;;";</code> to the http part of your nginx.conf.
 If you use the tar files, please move the <code>nginx/libmodsecurity.so.3</code> file to <code>/usr/local/modsecurity/lib/libmodsecurity.so.3</code></p>

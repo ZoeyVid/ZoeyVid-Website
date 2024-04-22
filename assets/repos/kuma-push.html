@@ -1,0 +1,15 @@
+<meta charset=utf-8>
+<div class="markdown-heading"><h1 class="heading-element">kuma-push</h1><a id="user-content-kuma-push" class="anchor" aria-label="Permalink: kuma-push" href="#kuma-push"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<p>A docker image to use push healthchecks of uptime kuma using curl, just use this compose file:</p>
+<div class="highlight highlight-source-yaml"><pre><span class="pl-ent">services</span>:
+  <span class="pl-ent">kuma-push</span>:
+    <span class="pl-ent">container_name</span>: <span class="pl-s">kuma-push</span>
+    <span class="pl-ent">image</span>: <span class="pl-s">zoeyvid/kuma-push</span>
+    <span class="pl-ent">restart</span>: <span class="pl-s">always</span>
+    <span class="pl-ent">network_mode</span>: <span class="pl-s">bridge</span>
+    <span class="pl-ent">environment</span>:
+      - <span class="pl-s"><span class="pl-pds">"</span>TZ=Europe/Berlin<span class="pl-pds">"</span></span>                                   <span class="pl-c"><span class="pl-c">#</span> your timezone</span>
+      - <span class="pl-s"><span class="pl-pds">"</span>URL=https://status.example.org/api/push/E5JOgXP8rK<span class="pl-pds">"</span></span> <span class="pl-c"><span class="pl-c">#</span> your uptime kuma push URL</span>
+<span class="pl-c"><span class="pl-c">#</span>      - "UI=5m"                                             # interval to update DDNS</span></pre></div>
+<p>you need to change the URL</p>
+
