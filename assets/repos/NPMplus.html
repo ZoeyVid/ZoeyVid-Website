@@ -8,7 +8,7 @@ running at home or otherwise, including free TLS, without having to know too muc
 
 
 <p><strong>Note: Reloading the NPMplus UI can cause a 502 error. See <a href="https://github.com/ZoeyVid/NPMplus/issues/241">https://github.com/ZoeyVid/NPMplus/issues/241</a>.</strong> <br>
-<strong>Note: NO armv7 and route53 support.</strong> <br>
+<strong>Note: NO armv7, route53 and aws cloudfront ip ranges support.</strong> <br>
 <strong>Note: add <code>net.ipv4.ip_unprivileged_port_start=0</code> at the end of <code>/etc/sysctl.conf</code> to support PUID/PGID in network mode host.</strong> <br>
 <strong>Note: If you don't use network mode host, which I don't recommend, don't forget to expose port 443 on tcp AND udp (http3/quic needs udp).</strong> <br>
 <strong>Note: If you don't use network mode host, which I don't recommend, don't forget to enable IPv6 in Docker, see <a href="https://github.com/nextcloud/all-in-one/blob/main/docker-ipv6-support.md">here</a>, you only need to edit the daemon.json and restart docker, if you use the bridge network, otherwise please enable IPv6 in your custom docker network!</strong> <br>
