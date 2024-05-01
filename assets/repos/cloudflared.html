@@ -44,6 +44,7 @@ There you can set the address of the web source with its port (localhost:port fo
     <span class="pl-ent">container_name</span>: <span class="pl-s">cloudflared-dns</span>
     <span class="pl-ent">image</span>: <span class="pl-s">zoeyvid/cloudflared:dns</span>
     <span class="pl-ent">restart</span>: <span class="pl-s">always</span>
+    <span class="pl-ent">network_mode</span>: <span class="pl-s">bridge</span>
     <span class="pl-ent">ports</span>:
       - <span class="pl-s"><span class="pl-pds">"</span>127.0.0.1:53:53<span class="pl-pds">"</span></span>
       - <span class="pl-s"><span class="pl-pds">"</span>127.0.0.1:53:53/udp<span class="pl-pds">"</span></span>
