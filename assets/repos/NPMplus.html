@@ -75,7 +75,7 @@ so that the barrier for entry here is low.</p>
 <li>Error Log written to console</li>
 <li>
 <code>Server</code> response header hidden</li>
-<li>PHP 8.1/8.2/8.3 optional, with option to add extensions; available packages can added using envs in the compose file</li>
+<li>PHP 8.2/8.3 optional, with option to add extensions; available packages can added using envs in the compose file</li>
 <li>Allows different acme servers/certbot config file (/opt/npm/tls/certbot/config.ini)</li>
 <li>Supports up to 99 domains per cert</li>
 <li>Brotli compression can be enabled</li>
@@ -173,8 +173,8 @@ so that the barrier for entry here is low.</p>
 <p>b) Custom Nginx Configuration (advanced tab), which looks the following for file server and <strong>php</strong>:</p>
 <ul>
 <li>Note: the slash at the end of the file path is important</li>
-<li>Note: first enable <code>PHP81</code>, <code>PHP82</code> and/or <code>PHP83</code> inside your compose file</li>
-<li>Note: you can replace <code>fastcgi_pass php81;</code> with <code>fastcgi_pass</code> <code>php82</code>/<code>php83</code> <code>;</code>
+<li>Note: first enable <code>PHP82</code> and/or <code>PHP83</code> inside your compose file</li>
+<li>Note: you can replace <code>fastcgi_pass php82;</code> with <code>fastcgi_pass php83;</code>
 </li>
 <li>Note: to add more php extension using envs you can set in the compose file</li>
 </ul>
@@ -183,7 +183,7 @@ so that the barrier for entry here is low.</p>
     alias /var/www/&lt;your-html-site-folder-name&gt;/;
 
     location ~ [^/]\.php(/|$) {
-        fastcgi_pass php81;
+        fastcgi_pass php82;
         fastcgi_split_path_info ^(.+?\.php)(/.*)$;
         if (!-f $document_root$fastcgi_script_name) {
             return 404;
