@@ -11,7 +11,7 @@ running at home or otherwise, including free TLS, without having to know too muc
 <strong>Note: NO armv7, route53 and aws cloudfront ip ranges support.</strong> <br>
 <strong>Note: add <code>net.ipv4.ip_unprivileged_port_start=0</code> at the end of <code>/etc/sysctl.conf</code> to support PUID/PGID in network mode host.</strong> <br>
 <strong>Note: If you don't use network mode host, which I don't recommend, don't forget to expose port 443 on tcp AND udp (http3/quic needs udp).</strong> <br>
-<strong>Note: If you don't use network mode host, which I don't recommend, don't forget to enable IPv6 in Docker, see <a href="https://github.com/nextcloud/all-in-one/blob/main/docker-ipv6-support.md">here</a>, you only need to edit the daemon.json and restart docker, if you use the bridge network, otherwise please enable IPv6 in your custom docker network!</strong> <br>
+<strong>Note: If you don't use network mode host, which I don't recommend, don't forget to enable IPv6 in Docker, see <a href="https://github.com/nextcloud/all-in-one/blob/main/docker-ipv6-support.md">here</a>, you only need to follow step one and two before deploying NPMplus!</strong> <br>
 <strong>Note: Don't forget to open Port 80 (tcp) and 443 (tcp AND udp, http3/quic needs udp) in your firewall (because of network mode host, you also need to open this ports in ufw, if you use ufw).</strong> <br>
 <strong>Note: ModSecurity overblocking (403 Error)? Please see <code>/opt/npm/etc/modsecurity</code>, if you also use CRS please see <a href="https://coreruleset.org/docs/concepts/false_positives_tuning" rel="nofollow">here</a>.</strong> <br>
 <strong>Note: Other Databases like MariaDB may work, but are unsupported.</strong> <br>
@@ -99,7 +99,7 @@ so that the barrier for entry here is low.</p>
 <li>if you use custom certificates, you need to upload the CA/Intermediate Certificate (file name: <code>chain.pem</code>) in the <code>/opt/npm/tls/custom/npm-[certificate-id]</code> folder</li>
 <li>some buttons have changed, check if they are still correct</li>
 <li>please delete all dnspod certs and recreate them OR you manually change the credentialsfile (see <a href="https://github.com/ZoeyVid/npmplus/blob/develop/global/certbot-dns-plugins.js">here</a> for the template)</li>
-<li>since this fork has dependency on <code>network_mode: host</code>, please don't forget to open port 80 and 443 (and maybe 81) in your firewall</li>
+<li>since this fork has dependency on <code>network_mode: host</code>, please don't forget to open port 80/tcp, 443/tcp and 443/udp (and maybe 81/tcp) in your firewall</li>
 <li>if you have a healthcheck defined in your compose yaml file, remove it - this fork defines its own healthcheck in the Dockerfile, so you don't need to have it in compose anymore</li>
 </ul>
 <div class="markdown-heading"><h1 class="heading-element">Crowdsec</h1><a id="user-content-crowdsec" class="anchor" aria-label="Permalink: Crowdsec" href="#crowdsec"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
