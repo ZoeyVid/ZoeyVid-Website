@@ -104,8 +104,7 @@ so that the barrier for entry here is low.</p>
 </ul>
 <div class="markdown-heading"><h1 class="heading-element">Crowdsec</h1><a id="user-content-crowdsec" class="anchor" aria-label="Permalink: Crowdsec" href="#crowdsec"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <ol>
-<li>Install crowdsec using this compose file: <a href="https://github.com/ZoeyVid/NPMplus/blob/develop/compose.crowdsec.yaml">https://github.com/ZoeyVid/NPMplus/blob/develop/compose.crowdsec.yaml</a>
-</li>
+<li>Install crowdsec using this compose file: <a href="https://github.com/ZoeyVid/NPMplus/blob/develop/compose.crowdsec.yaml">https://github.com/ZoeyVid/NPMplus/blob/develop/compose.crowdsec.yaml</a> and enable LOGROTATE</li>
 <li>open <code>/opt/crowdsec/conf/acquis.d/npmplus.yaml</code> and fill it with:</li>
 </ol>
 <div class="highlight highlight-source-yaml"><pre><span class="pl-ent">filenames</span>:
@@ -126,7 +125,7 @@ so that the barrier for entry here is low.</p>
   <span class="pl-ent">type</span>: <span class="pl-s">modsecurity</span>
 ---
 <span class="pl-ent">listen_addr</span>: <span class="pl-s">0.0.0.0:7422</span>
-<span class="pl-ent">appsec_config</span>: <span class="pl-s">crowdsecurity/virtual-patching</span>
+<span class="pl-ent">appsec_config</span>: <span class="pl-s">crowdsecurity/appsec-default</span>
 <span class="pl-ent">name</span>: <span class="pl-s">appsec</span>
 <span class="pl-ent">source</span>: <span class="pl-s">appsec</span>
 <span class="pl-ent">labels</span>:
