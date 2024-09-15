@@ -97,11 +97,12 @@ so that the barrier for entry here is low.</p>
 <ul>
 <li>
 <strong>NOTE: migrating back to the original is not possible</strong>, so make first a <strong>backup</strong> before migration, so you can use the backup to switch back</li>
-<li>if you use custom certificates, you need to upload the CA/Intermediate Certificate (file name: <code>chain.pem</code>) in the <code>/opt/npm/tls/custom/npm-[certificate-id]</code> folder</li>
-<li>some buttons have changed, check if they are still correct</li>
+<li>if you use custom certificates, you need to upload the CA/Intermediate Certificate (file name: <code>chain.pem</code>) in the <code>/opt/npm/tls/custom/npm-[certificate-id]</code> folder, or you can instead duplicate the fullchain.pem with this name</li>
+<li>since many buttons changed, please edit every host you have and click save. (Please also resave it, if all buttons/values are fine, to update the host config to fully fit the NPMplus template)</li>
 <li>please delete all dnspod certs and recreate them OR you manually change the credentialsfile (see <a href="https://github.com/ZoeyVid/npmplus/blob/develop/global/certbot-dns-plugins.js">here</a> for the template)</li>
 <li>since this fork has dependency on <code>network_mode: host</code>, please don't forget to open port 80/tcp, 443/tcp and 443/udp (and maybe 81/tcp) in your firewall</li>
 <li>if you have a healthcheck defined in your compose yaml file, remove it - this fork defines its own healthcheck in the Dockerfile, so you don't need to have it in compose anymore</li>
+<li>please report all migration issues you have</li>
 </ul>
 <div class="markdown-heading"><h1 class="heading-element">Crowdsec</h1><a id="user-content-crowdsec" class="anchor" aria-label="Permalink: Crowdsec" href="#crowdsec"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <ol>
