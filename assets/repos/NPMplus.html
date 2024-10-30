@@ -115,8 +115,7 @@ so that the barrier for entry here is low.</p>
 <li>adjust TZ and ACME_EMAIL to your values and maybe adjust other env options to your needs.</li>
 <li>start NPMplus by running (or deploy your portainer stack)</li>
 </ol>
-<pre lang="bash"><code>docker compose up -d
-</code></pre>
+<div class="highlight highlight-source-shell"><pre>docker compose up -d</pre></div>
 <ol start="5">
 <li>Log in to the Admin UI
 When your docker container is running, connect to it on port <code>81</code> for the admin interface.
@@ -135,30 +134,29 @@ Password: iArhP1j7p1P6TA92FA2FMbbUGYqwcYzxC4AVEe12Wbi94FY9gNN62aKyF1shrvG4NycjjX
 <li>Install crowdsec using this compose file: <a href="https://github.com/ZoeyVid/NPMplus/blob/develop/compose.crowdsec.yaml">https://github.com/ZoeyVid/NPMplus/blob/develop/compose.crowdsec.yaml</a> and enable LOGROTATE in the NPMplus compose file</li>
 <li>open <code>/opt/crowdsec/conf/acquis.d/npmplus.yaml</code> and fill it with:</li>
 </ol>
-<pre lang="yaml"><code>filenames:
-  - /opt/npm/nginx/access.log
-labels:
-  type: npmplus
+<div class="highlight highlight-source-yaml"><pre><span class="pl-ent">filenames</span>:
+  - <span class="pl-s">/opt/npm/nginx/access.log</span>
+<span class="pl-ent">labels</span>:
+  <span class="pl-ent">type</span>: <span class="pl-s">npmplus</span>
 ---
-source: docker
-container_name:
- - npmplus
-labels:
-  type: npmplus
+<span class="pl-ent">source</span>: <span class="pl-s">docker</span>
+<span class="pl-ent">container_name</span>:
+ - <span class="pl-s">npmplus</span>
+<span class="pl-ent">labels</span>:
+  <span class="pl-ent">type</span>: <span class="pl-s">npmplus</span>
 ---
-source: docker
-container_name:
- - npmplus
-labels:
-  type: modsecurity
+<span class="pl-ent">source</span>: <span class="pl-s">docker</span>
+<span class="pl-ent">container_name</span>:
+ - <span class="pl-s">npmplus</span>
+<span class="pl-ent">labels</span>:
+  <span class="pl-ent">type</span>: <span class="pl-s">modsecurity</span>
 ---
-listen_addr: 0.0.0.0:7422
-appsec_config: crowdsecurity/appsec-default
-name: appsec
-source: appsec
-labels:
-  type: appsec
-</code></pre>
+<span class="pl-ent">listen_addr</span>: <span class="pl-s">0.0.0.0:7422</span>
+<span class="pl-ent">appsec_config</span>: <span class="pl-s">crowdsecurity/appsec-default</span>
+<span class="pl-ent">name</span>: <span class="pl-s">appsec</span>
+<span class="pl-ent">source</span>: <span class="pl-s">appsec</span>
+<span class="pl-ent">labels</span>:
+  <span class="pl-ent">type</span>: <span class="pl-s">appsec</span></pre></div>
 <ol start="3">
 <li>make sure to use <code>network_mode: host</code> in your compose file</li>
 <li>run <code>docker exec crowdsec cscli bouncers add npmplus -o raw</code> and save the output</li>
