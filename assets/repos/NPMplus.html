@@ -125,7 +125,8 @@ Password: iArhP1j7p1P6TA92FA2FMbbUGYqwcYzxC4AVEe12Wbi94FY9gNN62aKyF1shrvG4NycjjX
 <div class="markdown-heading"><h1 class="heading-element">Crowdsec</h1><a id="user-content-crowdsec" class="anchor" aria-label="Permalink: Crowdsec" href="#crowdsec"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <p>Note: Using Immich behind NPMplus with enabled appsec causes issues, see here: <a href="https://github.com/ZoeyVid/NPMplus/discussions/1241">#1241</a></p>
 <ol>
-<li>Install crowdsec using this compose file: <a href="https://github.com/ZoeyVid/NPMplus/blob/develop/compose.crowdsec.yaml">https://github.com/ZoeyVid/NPMplus/blob/develop/compose.crowdsec.yaml</a> and enable LOGROTATE in the NPMplus compose file</li>
+<li>set LOGROTATE to <code>true</code> in your <code>compose.yaml</code> and redeploy</li>
+<li>Install crowdsec using this compose file: <a href="https://github.com/ZoeyVid/NPMplus/blob/develop/compose.crowdsec.yaml">https://github.com/ZoeyVid/NPMplus/blob/develop/compose.crowdsec.yaml</a> and set the timezone for it</li>
 <li>open <code>/opt/crowdsec/conf/acquis.d/npmplus.yaml</code> and fill it with:</li>
 </ol>
 <div class="highlight highlight-source-yaml"><pre><span class="pl-ent">filenames</span>:
@@ -151,7 +152,7 @@ Password: iArhP1j7p1P6TA92FA2FMbbUGYqwcYzxC4AVEe12Wbi94FY9gNN62aKyF1shrvG4NycjjX
 <span class="pl-ent">source</span>: <span class="pl-s">appsec</span>
 <span class="pl-ent">labels</span>:
   <span class="pl-ent">type</span>: <span class="pl-s">appsec</span></pre></div>
-<ol start="3">
+<ol start="4">
 <li>make sure to use <code>network_mode: host</code> in your compose file</li>
 <li>run <code>docker exec crowdsec cscli bouncers add npmplus -o raw</code> and save the output</li>
 <li>open <code>/opt/npm/etc/crowdsec/crowdsec.conf</code>
@@ -161,8 +162,6 @@ Password: iArhP1j7p1P6TA92FA2FMbbUGYqwcYzxC4AVEe12Wbi94FY9gNN62aKyF1shrvG4NycjjX
 <li>use the output of step 5 as <code>API_KEY</code>
 </li>
 <li>save the file</li>
-<li>set LOGROTATE to <code>true</code> in your <code>compose.yaml</code>
-</li>
 <li>redeploy the <code>compose.yaml</code>
 </li>
 </ol>
