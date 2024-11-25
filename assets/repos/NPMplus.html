@@ -11,7 +11,8 @@ running at home or otherwise, including free TLS, without having to know too muc
 <strong>Note: access.log/stream.log, logrotate and goaccess are NOT enabled by default bceuase of GDPR, you can enable them in the compose.yaml.</strong> <br></p>
 <p><strong>Note: add <code>net.ipv4.ip_unprivileged_port_start=0</code> at the end of <code>/etc/sysctl.conf</code> to support PUID/PGID in network mode host.</strong> <br>
 <strong>Note: Don't forget to open Port 80 (tcp) and 443 (tcp AND udp, http3/quic needs udp) in your firewall (because of network mode host, you also need to open this ports in ufw, if you use ufw).</strong> <br>
-<strong>Note: If you don't use network mode host, which I don't recommend, don't forget to also expose port 443/udp (http3/quic needs udp), to enable IPv6 in Docker see step 1 and 2 <a href="https://github.com/nextcloud/all-in-one/blob/main/docker-ipv6-support.md">here</a>.</strong> <br></p>
+<strong>Note: If you don't use network mode host, which I don't recommend, don't forget to also expose port 443/udp (http3/quic needs udp) and to enable IPv6 in Docker see step 1 and 2 <a href="https://github.com/nextcloud/all-in-one/blob/main/docker-ipv6-support.md">here</a>.</strong> <br>
+<strong>MOZILLA_PKIX_ERROR_REQUIRED_TLS_FEATURE_MISSING: please see/read/use the ACME_MUST_STAPLE env option of the compose.yaml</strong> <br></p>
 <div class="markdown-heading"><h2 class="heading-element">Project Goal</h2><a id="user-content-project-goal" class="anchor" aria-label="Permalink: Project Goal" href="#project-goal"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <p>I created this project to fill a personal need to provide users with an easy way to accomplish reverse
 proxying hosts with TLS termination and it had to be so easy that a monkey could do it. This goal hasn't changed.
