@@ -8,11 +8,12 @@ running at home or otherwise, including free TLS, without having to know too muc
 <p><strong>Note: NO armv7, route53 and aws cloudfront ip ranges support.</strong> <br>
 <strong>Note: Other Databases like MariaDB may work, but are unsupported.</strong> <br>
 <strong>Note: watchtower does NOT update NPMplus, you need to do it yourself (it will only pull the image, but not update the container itself).</strong> <br>
-<strong>Note: access.log/stream.log, logrotate and goaccess are NOT enabled by default bceuase of GDPR, you can enable them in the compose.yaml.</strong> <br></p>
+<strong>Note: access.log/stream.log, logrotate and goaccess are NOT enabled by default bceuase of GDPR, you can enable them in the compose.yaml.</strong> <br>
+<strong>Note: no support for the CF-Connecting-IPv6 header when using <a href="https://developers.cloudflare.com/network/pseudo-ipv4" rel="nofollow">Cloudflares Pseudo IPv4</a></strong> <br>
+<strong>Note: Setups running inside LXC (running a Container in a Container makes no sense) or Unraid (bad container implementation) are not supported, if you want to report something please reproduce it somewhere else before reporting.</strong> <br></p>
 <p><strong>Note: add <code>net.ipv4.ip_unprivileged_port_start=0</code> at the end of <code>/etc/sysctl.conf</code> to support PUID/PGID in network mode host.</strong> <br>
 <strong>Note: Don't forget to open Port 80 (tcp) and 443 (tcp AND udp, http3/quic needs udp) in your firewall (because of network mode host, you also need to open this ports in ufw, if you use ufw).</strong> <br>
-<strong>Note: If you don't use network mode host, which I don't recommend, don't forget to also expose port 443/udp (http3/quic needs udp) and to enable IPv6 in Docker see step 1 and 2 <a href="https://github.com/nextcloud/all-in-one/blob/main/docker-ipv6-support.md">here</a>.</strong> <br>
-<strong>MOZILLA_PKIX_ERROR_REQUIRED_TLS_FEATURE_MISSING: please see/read/use the ACME_MUST_STAPLE env option of the compose.yaml</strong> <br></p>
+<strong>Note: If you don't use network mode host, which I don't recommend, don't forget to also expose port 443/udp (http3/quic needs udp) and to enable IPv6 in Docker see step 1 and 2 <a href="https://github.com/nextcloud/all-in-one/blob/main/docker-ipv6-support.md">here</a>.</strong> <br></p>
 <div class="markdown-heading"><h2 class="heading-element">Project Goal</h2><a id="user-content-project-goal" class="anchor" aria-label="Permalink: Project Goal" href="#project-goal"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <p>I created this project to fill a personal need to provide users with an easy way to accomplish reverse
 proxying hosts with TLS termination and it had to be so easy that a monkey could do it. This goal hasn't changed.
@@ -47,7 +48,7 @@ so that the barrier for entry here is low.</p>
 <li>Fixes proxy to https origin when the origin only accepts TLSv1.3</li>
 <li>Only enables TLSv1.2 and TLSv1.3 protocols, also ML-KEM support</li>
 <li>Faster creation of TLS certificates is achieved by eliminating unnecessary nginx reloads and configuration creations.</li>
-<li>Uses OCSP Stapling for enhanced security (manual certs not supported)</li>
+<li>Supports OCSP Stapling/Must-Staple for enhanced security (manual certs not supported, see compose.yaml for details)</li>
 <li>Resolved dnspod plugin issue
 <ul>
 <li>To migrate manually, delete all dnspod certs and recreate them OR change the credentials file as per the template given <a href="https://github.com/ZoeyVid/NPMplus/blob/develop/global/certbot-dns-plugins.js">here</a>
@@ -98,10 +99,10 @@ so that the barrier for entry here is low.</p>
 </ul>
 <div class="markdown-heading"><h1 class="heading-element">Quick Setup</h1><a id="user-content-quick-setup" class="anchor" aria-label="Permalink: Quick Setup" href="#quick-setup"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <ol>
-<li>Install Docker and Docker Compose (or portainer)</li>
+<li>Install Docker and Docker Compose (podman or docker rootless may also work)</li>
 </ol>
 <ul>
-<li><a href="https://docs.docker.com/engine" rel="nofollow">Docker Install documentation</a></li>
+<li><a href="https://docs.docker.com/engine/install" rel="nofollow">Docker Install documentation</a></li>
 <li><a href="https://docs.docker.com/compose/install/linux" rel="nofollow">Docker Compose Install documentation</a></li>
 </ul>
 <ol start="2">
@@ -217,10 +218,11 @@ Password: iArhP1j7p1P6TA92FA2FMbbUGYqwcYzxC4AVEe12Wbi94FY9gNN62aKyF1shrvG4NycjjX
 if you need to run scripts before NPMplus launches put them under: <code>/opt/npm/etc/prerun/*.sh</code> (please add <code>#!/bin/sh</code> / <code>#!/bin/bash</code> to the top of the script) <br>
 you need to create this folder yourself - <strong>NOTE:</strong> I won't help you creating those patches/scripts if you need them you also need to know how to create them</p>
 <div class="markdown-heading"><h2 class="heading-element">Contributing</h2><a id="user-content-contributing" class="anchor" aria-label="Permalink: Contributing" href="#contributing"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
-<p>All are welcome to create pull requests for this project.</p>
+<p>All are welcome to create pull requests for this project, but this does not mean it will be merged.</p>
 <div class="markdown-heading"><h1 class="heading-element">Please report Bugs first to this fork before reporting them to the upstream Repository</h1><a id="user-content-please-report-bugs-first-to-this-fork-before-reporting-them-to-the-upstream-repository" class="anchor" aria-label="Permalink: Please report Bugs first to this fork before reporting them to the upstream Repository" href="#please-report-bugs-first-to-this-fork-before-reporting-them-to-the-upstream-repository"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <div class="markdown-heading"><h2 class="heading-element">Getting Help</h2><a id="user-content-getting-help" class="anchor" aria-label="Permalink: Getting Help" href="#getting-help"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <ol>
+<li>Setups running inside LXC (running a Container in a Container makes no sense) or Unraid (bad container implementation) are not supported, if you want to report something please reproduce it somewhere else before reporting.</li>
 <li><a href="https://github.com/ZoeyVid/NPMplus/discussions">Support/Questions</a></li>
 <li><a href="https://reddit.com/r/NPMplus" rel="nofollow">Reddit</a></li>
 <li><a href="https://github.com/ZoeyVid/NPMplus/issues">Bugs</a></li>
