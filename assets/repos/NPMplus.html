@@ -5,15 +5,9 @@ running at home or otherwise, including free TLS, without having to know too muc
 <ul>
 <li><a href="#quick-setup">Quick Setup</a></li>
 </ul>
-<p><strong>Note: NO armv7, route53 and aws cloudfront ip ranges support.</strong> <br>
-<strong>Note: Other Databases like MariaDB may work, but are unsupported.</strong> <br>
-<strong>Note: watchtower does NOT update NPMplus, you need to do it yourself (it will only pull the image, but not update the container itself).</strong> <br>
-<strong>Note: access.log/stream.log, logrotate and goaccess are NOT enabled by default bceuase of GDPR, you can enable them in the compose.yaml.</strong> <br>
-<strong>Note: no support for the CF-Connecting-IPv6 header when using <a href="https://developers.cloudflare.com/network/pseudo-ipv4" rel="nofollow">Cloudflares Pseudo IPv4</a></strong> <br>
-<strong>Note: Setups running inside LXC (running a Container in a Container makes no sense), Unraid (bad container implementation) or Synology (Port 80/443 blocked) are not recommended, if you want to report something please reproduce it somewhere else before reporting.</strong> <br></p>
-<p><strong>Note: add <code>net.ipv4.ip_unprivileged_port_start=0</code> at the end of <code>/etc/sysctl.conf</code> to support PUID/PGID in network mode host.</strong> <br>
-<strong>Note: Don't forget to open Port 80 (tcp) and 443 (tcp AND udp, http3/quic needs udp) in your firewall (because of network mode host, you also need to open this ports in ufw, if you use ufw).</strong> <br>
-<strong>Note: If you don't use network mode host, which I don't recommend, don't forget to also expose port 443/udp (http3/quic needs udp) and to enable IPv6 in Docker see step 1 and 2 <a href="https://github.com/nextcloud/all-in-one/blob/main/docker-ipv6-support.md">here</a>.</strong> <br></p>
+<p><strong>Note: no armv7, route53 and aws cloudfront ip ranges support.</strong> <br>
+<strong>Note: other Databases like MariaDB/MySQL or PostgreSQL may work, but are unsupported and have no advantage over SQLite.</strong> <br>
+<strong>Note: watchtower does not update NPMplus, you need to do it yourself (it will only pull the image, but will not redeploy the container itself).</strong> <br></p>
 <div class="markdown-heading"><h2 class="heading-element">Project Goal</h2><a id="user-content-project-goal" class="anchor" aria-label="Permalink: Project Goal" href="#project-goal"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <p>I created this project to fill a personal need to provide users with an easy way to accomplish reverse
 proxying hosts with TLS termination and it had to be so easy that a monkey could do it. This goal hasn't changed.
@@ -35,13 +29,17 @@ so that the barrier for entry here is low.</p>
 <li>Supports CrowdSec IPS. Please see <a href="https://github.com/ZoeyVid/NPMplus#crowdsec">here</a> to enable it.</li>
 <li>goaccess included, see compose.yaml to enable, runs by default on https://:91 (nginx config from <a href="https://github.com/xavier-hernandez/goaccess-for-nginxproxymanager/blob/main/resources/nginx/nginx.conf">here</a>)
 </li>
-<li>Supports ModSecurity, with coreruleset as an option. You can configure ModSecurity/coreruleset by editing the files in the <code>/opt/npm/etc/modsecurity</code> folder (no support from me, you need to write the rules yourself - for CRS I can try to help you).
+<li>Supports ModSecurity, with coreruleset as an option. You can configure ModSecurity/coreruleset by editing the files in the <code>/opt/npm/etc/modsecurity</code> folder (no support from me, you need to write the rules yourself - for CoreRuleSet I can try to help you).
 <ul>
+<li>By default NPMplus UI does not work when you proxy NPMplus through NPMplus and you have CoreRuleSet enabled, see below</li>
 <li>ModSecurity by default blocks uploads of big files, you need to edit its config to fix this, but it can use a lot of resources to scan big files by ModSecurity</li>
-<li>ModSecurity overblocking (403 Error) with CRS? Please see <a href="https://coreruleset.org/docs/concepts/false_positives_tuning" rel="nofollow">here</a> and edit the <code>/opt/npm/etc/modsecurity/crs-setup.conf</code> file.</li>
+<li>ModSecurity overblocking (403 Error) when using CoreRuleSet? Please see <a href="https://coreruleset.org/docs/concepts/false_positives_tuning" rel="nofollow">here</a> and edit the <code>/opt/npm/etc/modsecurity/crs-setup.conf</code> file.
+<ul>
 <li>Try to whitelist the Content-Type you are sending (for example, <code>application/activity+json</code> for Mastodon and <code>application/dns-message</code> for DoH).</li>
-<li>Try to whitelist the HTTP request method you are using (for example, <code>PUT</code> is blocked by default, which also affects NPM).</li>
-<li>CRS plugins are supported, you can find a guide in this readme</li>
+<li>Try to whitelist the HTTP request method you are using (for example, <code>PUT</code> is blocked by default, which also blocks NPMplus UI).</li>
+</ul>
+</li>
+<li>CoreRuleSet plugins are supported, you can find a guide in this readme</li>
 </ul>
 </li>
 <li>Darkmode button in the footer for comfortable viewing (CSS done by <a href="https://github.com/theraw">@theraw</a>)</li>
@@ -91,7 +89,6 @@ so that the barrier for entry here is low.</p>
 <li>please delete all dnspod certs and recreate them after migration OR you manually change the credentialsfile (see <a href="https://github.com/ZoeyVid/npmplus/blob/develop/global/certbot-dns-plugins.json">here</a> for the template)</li>
 <li>stop nginx-proxy-manager download the latest compose.yaml, adjust your paths (of /etc/letsencrypt and /data) to the ones you used with nginx-proxy-manager and adjust the env of the compose file how you like it and then deploy it</li>
 <li>you can now remove the /etc/letsencrypt mount, since it was moved to /data while migration and redeploy the compose file</li>
-<li>since this fork uses <code>network_mode: host</code> by default (and all guides are written for this mode), please don't forget to open port 80/tcp, 443/tcp and 443/udp (and maybe 81/tcp) in your firewall</li>
 <li>since many buttons changed, please check if they are still correct for every host you have.</li>
 <li>maybe setup crowdsec (see below)</li>
 <li>please report all (migration) issues you may have</li>
@@ -193,8 +190,8 @@ Password: iArhP1j7p1P6TA92FA2FMbbUGYqwcYzxC4AVEe12Wbi94FY9gNN62aKyF1shrvG4NycjjX
 <p>b) Custom Nginx Configuration (advanced tab), which looks the following for file server and <strong>php</strong>:</p>
 <ul>
 <li>Note: the slash at the end of the file path is important</li>
-<li>Note: first enable <code>PHP82</code> and/or <code>PHP83</code> inside your compose file</li>
-<li>Note: you can replace <code>fastcgi_pass php82;</code> with <code>fastcgi_pass php83;</code>
+<li>Note: first enable <code>PHP82</code>, <code>PHP83</code> and/or <code>PHP84</code> inside your compose file</li>
+<li>Note: you can replace <code>fastcgi_pass php82;</code> with <code>fastcgi_pass php83;</code>/<code>fastcgi_pass php84;</code>
 </li>
 <li>Note: to add more php extension using envs you can set in the compose file</li>
 </ul>
@@ -221,7 +218,6 @@ you need to create this folder yourself - <strong>NOTE:</strong> I won't help yo
 <div class="markdown-heading"><h1 class="heading-element">Please report Bugs first to this fork before reporting them to the upstream Repository</h1><a id="user-content-please-report-bugs-first-to-this-fork-before-reporting-them-to-the-upstream-repository" class="anchor" aria-label="Permalink: Please report Bugs first to this fork before reporting them to the upstream Repository" href="#please-report-bugs-first-to-this-fork-before-reporting-them-to-the-upstream-repository"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <div class="markdown-heading"><h2 class="heading-element">Getting Help</h2><a id="user-content-getting-help" class="anchor" aria-label="Permalink: Getting Help" href="#getting-help"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <ol>
-<li>Setups running inside LXC (running a Container in a Container makes no sense) or Unraid (bad container implementation) are not recommended, if you want to report something please reproduce it somewhere else before reporting.</li>
 <li><a href="https://github.com/ZoeyVid/NPMplus/discussions">Support/Questions</a></li>
 <li><a href="https://reddit.com/r/NPMplus" rel="nofollow">Reddit</a></li>
 <li><a href="https://github.com/ZoeyVid/NPMplus/issues">Bugs</a></li>
