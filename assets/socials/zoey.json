@@ -23,7 +23,7 @@
         {
             "icon": "envelope-at-fill",
             "name": "Matrix",
-            "url": "@zoey:matrix.zvcdn.de"
+            "url": "https://matrix.to/#/@zoey:matrix.zvcdn.de"
         },
         {
             "icon": "reddit",
@@ -33,7 +33,7 @@
         {
             "icon": "discord",
             "name": "Discord",
-            "url": "https://discord.gg/CzwtVXmV"
+            "url": "@zoey2936"
         }
     ]
 }
