@@ -11,19 +11,24 @@
             "url": "https://github.com/ZoeyVid"
         },
         {
-            "icon": "mastodon",
-            "name": "Mastodon",
-            "url": "https://social.zoeyvid.de/@ZoeyVid"
-        },
-        {
             "icon": "envelope-at-fill",
             "name": "Mail",
             "url": "mailto:zoeyvid@zvcdn.de"
         },
         {
+            "icon": "mastodon",
+            "name": "Mastodon",
+            "url": "https://social.zoeyvid.de/@ZoeyVid"
+        },
+        {
             "icon": "link-45deg",
             "name": "Website",
             "url": "https://zoeyvid.de"
+        },
+        {
+            "icon": "discord",
+            "name": "Discord",
+            "url": "https://discord.gg/CzwtVXmV"
         }
     ]
 }
