@@ -21,9 +21,19 @@
             "url": "https://social.zoeyvid.de/@Zoey"
         },
         {
+            "icon": "envelope-at-fill",
+            "name": "Matrix",
+            "url": "@zoey:matrix.zvcdn.de"
+        },
+        {
             "icon": "reddit",
             "name": "Reddit",
             "url": "https://reddit.com/user/Zoey2936"
+        },
+        {
+            "icon": "discord",
+            "name": "Discord",
+            "url": "https://discord.gg/CzwtVXmV"
         }
     ]
 }
