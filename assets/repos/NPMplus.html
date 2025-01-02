@@ -8,7 +8,7 @@ running at home or otherwise, including free TLS, without having to know too muc
 <p><strong>Note: no armv7, route53 and aws cloudfront ip ranges support.</strong> <br>
 <strong>Note: other Databases like MariaDB/MySQL or PostgreSQL may work, but are unsupported and have no advantage over SQLite.</strong> <br>
 <strong>Note: watchtower does not update NPMplus, you need to do it yourself (it will only pull the image, but will not redeploy the container itself).</strong> <br>
-<strong>Note: remember to add your domain to the hsts preload list if you use security headers: <a href="https://hstspreload.org" rel="nofollow">https://hstspreload.org</a></strong></p>
+<strong>Note: remember to add your domain to the hsts preload list if you use security headers: <a href="https://hstspreload.org" rel="nofollow">https://hstspreload.org</a></strong> <br></p>
 <div class="markdown-heading"><h2 class="heading-element">Project Goal</h2><a id="user-content-project-goal" class="anchor" aria-label="Permalink: Project Goal" href="#project-goal"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <p>I created this project to fill a personal need to provide users with an easy way to accomplish reverse
 proxying hosts with TLS termination and it had to be so easy that a monkey could do it. This goal hasn't changed.
@@ -87,9 +87,9 @@ so that the barrier for entry here is low.</p>
 <ul>
 <li>
 <strong>NOTE: migrating back to the original is not possible</strong>, so make first a <strong>backup</strong> before migration, so you can use the backup to switch back</li>
-<li>please delete all dnspod certs and recreate them after migration OR you manually change the credentialsfile (see <a href="https://github.com/ZoeyVid/npmplus/blob/develop/global/certbot-dns-plugins.json">here</a> for the template)</li>
-<li>stop nginx-proxy-manager download the latest compose.yaml, adjust your paths (of /etc/letsencrypt and /data) to the ones you used with nginx-proxy-manager and adjust the env of the compose file how you like it and then deploy it</li>
-<li>you can now remove the /etc/letsencrypt mount, since it was moved to /data while migration and redeploy the compose file</li>
+<li>please delete all certs using dnspod as dns provider and recreate them after migration, since the certbot plugin used was replaced</li>
+<li>stop nginx-proxy-manager download the latest compose.yaml, adjust your paths (of /etc/letsencrypt and /data) to the ones you used with nginx-proxy-manager and adjust the envs of the compose file how you like it and then deploy it</li>
+<li>you can now remove the /etc/letsencrypt mount, since it was moved to /data while migration, and redeploy the compose file</li>
 <li>since many buttons changed, please check if they are still correct for every host you have.</li>
 <li>maybe setup crowdsec (see below)</li>
 <li>please report all (migration) issues you may have</li>
