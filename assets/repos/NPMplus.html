@@ -7,7 +7,8 @@ running at home or otherwise, including free TLS, without having to know too muc
 </ul>
 <p><strong>Note: no armv7, route53 and aws cloudfront ip ranges support.</strong> <br>
 <strong>Note: other Databases like MariaDB/MySQL or PostgreSQL may work, but are unsupported and have no advantage over SQLite.</strong> <br>
-<strong>Note: watchtower does not update NPMplus, you need to do it yourself (it will only pull the image, but will not redeploy the container itself).</strong> <br></p>
+<strong>Note: watchtower does not update NPMplus, you need to do it yourself (it will only pull the image, but will not redeploy the container itself).</strong> <br>
+<strong>Note: remember to add your domain to the hsts preload list if you use security headers: <a href="https://hstspreload.org" rel="nofollow">https://hstspreload.org</a></strong></p>
 <div class="markdown-heading"><h2 class="heading-element">Project Goal</h2><a id="user-content-project-goal" class="anchor" aria-label="Permalink: Project Goal" href="#project-goal"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <p>I created this project to fill a personal need to provide users with an easy way to accomplish reverse
 proxying hosts with TLS termination and it had to be so easy that a monkey could do it. This goal hasn't changed.
@@ -211,7 +212,7 @@ Password: iArhP1j7p1P6TA92FA2FMbbUGYqwcYzxC4AVEe12Wbi94FY9gNN62aKyF1shrvG4NycjjX
 </code></pre>
 <div class="markdown-heading"><h3 class="heading-element">prerun scripts (EXPERT option) - if you don't know what this is, ignore it</h3><a id="user-content-prerun-scripts-expert-option---if-you-dont-know-what-this-is-ignore-it" class="anchor" aria-label="Permalink: prerun scripts (EXPERT option) - if you don't know what this is, ignore it" href="#prerun-scripts-expert-option---if-you-dont-know-what-this-is-ignore-it"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <p>run order: entrypoint.sh (prerun scripts) =&gt; start.sh =&gt; launch.sh <br>
-if you need to run scripts before NPMplus launches put them under: <code>/opt/npm/etc/prerun/*.sh</code> (please add <code>#!/bin/sh</code> / <code>#!/bin/bash</code> to the top of the script) <br>
+if you need to run scripts before NPMplus launches put them under: <code>/opt/npm/etc/prerun/*.sh</code> (please add <code>#!/usr/bin/env sh</code> / <code>#!/usr/bin/env bash</code> to the top of the script) <br>
 you need to create this folder yourself - <strong>NOTE:</strong> I won't help you creating those patches/scripts if you need them you also need to know how to create them</p>
 <div class="markdown-heading"><h2 class="heading-element">Contributing</h2><a id="user-content-contributing" class="anchor" aria-label="Permalink: Contributing" href="#contributing"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <p>All are welcome to create pull requests for this project, but this does not mean it will be merged.</p>
