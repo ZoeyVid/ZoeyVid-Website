@@ -1,6 +1,6 @@
 <meta charset=utf-8>
 <div class="markdown-heading"><h1 class="heading-element">NPMplus</h1><a id="user-content-npmplus" class="anchor" aria-label="Permalink: NPMplus" href="#npmplus"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
-<p>This project comes as a pre-built docker image that enables you to easily forward to your websites
+<p>This is an improved fork of the nginx-proxy-manager and comes as a pre-built docker image that enables you to easily forward to your websites
 running at home or otherwise, including free TLS, without having to know too much about Nginx or Certbot.</p>
 <ul>
 <li><a href="#quick-setup">Quick Setup</a></li>
@@ -14,7 +14,7 @@ running at home or otherwise, including free TLS, without having to know too muc
 proxying hosts with TLS termination and it had to be so easy that a monkey could do it. This goal hasn't changed.
 While there might be advanced options they are optional and the project should be as simple as possible
 so that the barrier for entry here is low.</p>
-<div class="markdown-heading"><h2 class="heading-element">Features</h2><a id="user-content-features" class="anchor" aria-label="Permalink: Features" href="#features"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<div class="markdown-heading"><h2 class="heading-element">Upstream Features</h2><a id="user-content-upstream-features" class="anchor" aria-label="Permalink: Upstream Features" href="#upstream-features"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <ul>
 <li>Beautiful and Secure Admin Interface based on <a href="https://tabler.github.io" rel="nofollow">Tabler</a>
 </li>
@@ -66,7 +66,7 @@ so that the barrier for entry here is low.</p>
 <li>Error Log written to console</li>
 <li>
 <code>Server</code> response header hidden</li>
-<li>PHP optional, with option to add extensions; available packages can added using envs in the compose file</li>
+<li>PHP optional, with option to add extensions; available packages can added using envs in the compose file, recommended to be used together with PUID/PGID</li>
 <li>Allows different acme servers using env</li>
 <li>Supports up to 99 domains per cert</li>
 <li>Brotli compression can be enabled</li>
@@ -79,7 +79,9 @@ so that the barrier for entry here is low.</p>
 <li>multi lang support, if you want to add an language, see this commit as an example: <a href="https://github.com/ZoeyVid/NPMplus/commit/a026b42329f66b89fe1fbe5e6034df5d3fc2e11f">https://github.com/ZoeyVid/NPMplus/commit/a026b42329f66b89fe1fbe5e6034df5d3fc2e11f</a> (implementation based on <a href="https://github.com/lateautumn233">@lateautumn233</a> fork)</li>
 <li>See the compose file for all available options</li>
 <li>many env options optimized for network_mode host (ports/ip bindings)</li>
-<li>allow port range in streams</li>
+<li>allow port range in streams and $server_port as a valid input</li>
+<li>improved regex checks for inputs</li>
+<li>dns secrets are not mounted anymore, since they are saved in the db and rewritten on every container start, so they don't need to be mounted</li>
 <li>fixed smaller issues/bugs</li>
 <li>other small changes/improvements</li>
 </ul>
