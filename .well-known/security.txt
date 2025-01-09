@@ -2,7 +2,6 @@
 Hash: SHA512
 
 Contact: mailto:zoeyvid@zvcdn.de
-Expires: 2024-12-31T23:59:00.000Z
 Encryption: https://zvcdn.de/publickey.asc
 Preferred-Languages: de, en
 Canonical: https://zvcdn.de/.well-known/security.txt
@@ -11,8 +10,8 @@ Canonical: https://mx.zvcdn.de/.well-known/security.txt
 Canonical: https://social.zoeyvid.de/.well-known/security.txt
 -----BEGIN PGP SIGNATURE-----
 
-iHUEARYKAB0WIQQZsl0LheH0mUz2hsVuOQn3bP/+fAUCZc+DPwAKCRBuOQn3bP/+
-fMbHAQC404pg0e8HD9Qr4CAqGOmim559hyh9OfFRh/fRYkFQjgEAnA2FOYPDYNG6
-JF2MiqfmCslqjPKV3ALdgE5p8dFInwk=
-=y/4L
+iHUEARYKAB0WIQQZsl0LheH0mUz2hsVuOQn3bP/+fAUCZ3+uHwAKCRBuOQn3bP/+
+fM+2AP0VIumru1MuHiMQOBqrZ5j8EBe0I0BBRri6FnkQ0lOylAD/VdHijw7zsuxl
+FHIb0uYyVmahULmjPFmNWxtVA70ImQ0=
+=IsBI
 -----END PGP SIGNATURE-----
