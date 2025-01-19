@@ -43,6 +43,7 @@ so that the barrier for entry here is low.</p>
 <li>CoreRuleSet plugins are supported, you can find a guide in this readme</li>
 </ul>
 </li>
+<li>option to load the openappsec attachment module, see compose.yaml for details</li>
 <li>Darkmode button in the footer for comfortable viewing (CSS done by <a href="https://github.com/theraw">@theraw</a>)</li>
 <li>Fixes proxy to https origin when the origin only accepts TLSv1.3</li>
 <li>Only enables TLSv1.2 and TLSv1.3 protocols, also ML-KEM support</li>
@@ -152,7 +153,14 @@ Password: iArhP1j7p1P6TA92FA2FMbbUGYqwcYzxC4AVEe12Wbi94FY9gNN62aKyF1shrvG4NycjjX
 <span class="pl-ent">name</span>: <span class="pl-s">appsec</span>
 <span class="pl-ent">source</span>: <span class="pl-s">appsec</span>
 <span class="pl-ent">labels</span>:
-  <span class="pl-ent">type</span>: <span class="pl-s">appsec</span></pre></div>
+  <span class="pl-ent">type</span>: <span class="pl-s">appsec</span>
+<span class="pl-c"><span class="pl-c">#</span> if you use openappsec you can enable this</span>
+<span class="pl-c"><span class="pl-c">#</span>---</span>
+<span class="pl-c"><span class="pl-c">#</span>source: docker</span>
+<span class="pl-c"><span class="pl-c">#</span>container_name:</span>
+<span class="pl-c"><span class="pl-c">#</span> - openappsec-agent</span>
+<span class="pl-c"><span class="pl-c">#</span>labels:</span>
+<span class="pl-c"><span class="pl-c">#</span>  type: openappsec</span></pre></div>
 <ol start="4">
 <li>make sure to use <code>network_mode: host</code> in your compose file</li>
 <li>run <code>docker exec crowdsec cscli bouncers add npmplus -o raw</code> and save the output</li>
