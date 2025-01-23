@@ -6,7 +6,7 @@ function loadView() {
       return response.json()
     })
     .then((json) => {
-        document.getElementsByTagName('body')[0].classList.add("bg-gradient-to-r");
+        document.getElementsByTagName('body')[0].classList.add("bg-linear-to-r");
         document.getElementsByTagName('body')[0].classList.add(json.colorFrom);
         document.getElementsByTagName('body')[0].classList.add(json.colorTo);
         document.getElementById("bild").src = json.profilbild;
