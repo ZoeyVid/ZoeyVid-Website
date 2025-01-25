@@ -7,9 +7,8 @@ running at home or otherwise, including free TLS, without having to know too muc
 </ul>
 <p><strong>Note: no armv7, route53 and aws cloudfront ip ranges support.</strong> <br>
 <strong>Note: other Databases like MariaDB/MySQL or PostgreSQL may work, but are unsupported, have no advantage over SQLite and are not recommended.</strong> <br>
-<strong>Note: watchtower does not update NPMplus, you need to do it yourself (it will only pull the image, but will not redeploy the container itself).</strong> <br>
-<strong>Note: remember to add your domain to the hsts preload list if you use security headers: <a href="https://hstspreload.org" rel="nofollow">https://hstspreload.org</a></strong> <br></p>
-<div class="markdown-heading"><h2 class="heading-element">Project Goal</h2><a id="user-content-project-goal" class="anchor" aria-label="Permalink: Project Goal" href="#project-goal"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<strong>Note: remember to expose udp for the https port and to add your domain to the hsts preload list if you use security headers: <a href="https://hstspreload.org" rel="nofollow">https://hstspreload.org</a></strong> <br></p>
+<div class="markdown-heading"><h2 class="heading-element">Upstream Project Goal</h2><a id="user-content-upstream-project-goal" class="anchor" aria-label="Permalink: Upstream Project Goal" href="#upstream-project-goal"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <p>I created this project to fill a personal need to provide users with an easy way to accomplish reverse
 proxying hosts with TLS termination and it had to be so easy that a monkey could do it. This goal hasn't changed.
 While there might be advanced options they are optional and the project should be as simple as possible
@@ -26,7 +25,7 @@ so that the barrier for entry here is low.</p>
 </ul>
 <div class="markdown-heading"><h1 class="heading-element">List of new features</h1><a id="user-content-list-of-new-features" class="anchor" aria-label="Permalink: List of new features" href="#list-of-new-features"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <ul>
-<li>Supports HTTP/3 (QUIC) protocol.</li>
+<li>Supports HTTP/3 (QUIC) protocol, requires you to expose https with udp.</li>
 <li>Supports CrowdSec IPS. Please see <a href="https://github.com/ZoeyVid/NPMplus#crowdsec">here</a> to enable it.</li>
 <li>goaccess included, see compose.yaml to enable, runs by default on https://:91 (nginx config from <a href="https://github.com/xavier-hernandez/goaccess-for-nginxproxymanager/blob/main/resources/nginx/nginx.conf">here</a>)
 </li>
@@ -45,7 +44,7 @@ so that the barrier for entry here is low.</p>
 </li>
 <li>option to load the openappsec attachment module, see compose.yaml for details</li>
 <li>Darkmode button in the footer for comfortable viewing (CSS done by <a href="https://github.com/theraw">@theraw</a>)</li>
-<li>Fixes proxy to https origin when the origin only accepts TLSv1.3</li>
+<li>load balancing possible (requires custom conifguration), see below</li>
 <li>Only enables TLSv1.2 and TLSv1.3 protocols, also ML-KEM support</li>
 <li>Faster creation of TLS certificates is achieved by eliminating unnecessary nginx reloads and configuration creations.</li>
 <li>Supports OCSP Stapling/Must-Staple for enhanced security (manual certs not supported, see compose.yaml for details)</li>
@@ -55,7 +54,7 @@ so that the barrier for entry here is low.</p>
 </li>
 </ul>
 </li>
-<li>Smaller docker image with alpine-based distribution</li>
+<li>Smaller docker image on alpine linux</li>
 <li>Admin backend interface runs with https</li>
 <li>Default page also runs with https</li>
 <li>option to change default TLS cert</li>
@@ -220,6 +219,30 @@ Password: iArhP1j7p1P6TA92FA2FMbbUGYqwcYzxC4AVEe12Wbi94FY9gNN62aKyF1shrvG4NycjjX
     }
 }
 </code></pre>
+<div class="markdown-heading"><h1 class="heading-element">Load Balancing</h1><a id="user-content-load-balancing" class="anchor" aria-label="Permalink: Load Balancing" href="#load-balancing"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<p>Note: not supported for custom paths</p>
+<ol>
+<li>open and edit this file: <code>/opt/npm/custom_nginx/http_top.conf</code> (if you changed /opt/npm to a diffent path make sure to change the path to fit)</li>
+<li>set the upstream directive(s) with your servers which should be load balanced (<a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html" rel="nofollow">https://nginx.org/en/docs/http/ngx_http_upstream_module.html</a>), they need to run the same protocol (either http or https), like this for example:</li>
+</ol>
+<pre><code># a) at least one backend uses a diffrent port, optionally the one external server is marked as backup
+upstream server1 {
+    server 127.0.0.1:44;
+    server 127.0.0.1:33;
+    server 127.0.0.1:22;
+    server 192.158.168.11:44 backup;
+}
+# b) all services use the same port
+upstream service2 {
+    server 192.158.168.14;
+    server 192.158.168.13;
+    server 192.158.168.12;
+    server 192.158.168.11;
+}
+</code></pre>
+<ol start="3">
+<li>configure your proxy host like always in the UI, but set the hostname to service1 (or service2 or however you named it), if you followed example a) you need to keep the forward port field empty (since you set the ports within the upstream directive)</li>
+</ol>
 <div class="markdown-heading"><h3 class="heading-element">prerun scripts (EXPERT option) - if you don't know what this is, ignore it</h3><a id="user-content-prerun-scripts-expert-option---if-you-dont-know-what-this-is-ignore-it" class="anchor" aria-label="Permalink: prerun scripts (EXPERT option) - if you don't know what this is, ignore it" href="#prerun-scripts-expert-option---if-you-dont-know-what-this-is-ignore-it"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <p>run order: entrypoint.sh (prerun scripts) =&gt; start.sh =&gt; launch.sh <br>
 if you need to run scripts before NPMplus launches put them under: <code>/opt/npm/prerun/*.sh</code> (please add <code>#!/usr/bin/env sh</code> / <code>#!/usr/bin/env bash</code> to the top of the script) <br>
