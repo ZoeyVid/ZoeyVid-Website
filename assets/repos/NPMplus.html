@@ -243,6 +243,53 @@ upstream service2 {
 <ol start="3">
 <li>configure your proxy host like always in the UI, but set the hostname to service1 (or service2 or however you named it), if you followed example a) you need to keep the forward port field empty (since you set the ports within the upstream directive)</li>
 </ol>
+<div class="markdown-heading"><h3 class="heading-element">authentik advanced config example</h3><a id="user-content-authentik-advanced-config-example" class="anchor" aria-label="Permalink: authentik advanced config example" href="#authentik-advanced-config-example"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<pre><code>port_in_redirect off;
+location / {
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection $connection_upgrade;
+    include conf.d/include/proxy-headers.conf;
+    proxy_pass &lt;your-forward-scheme&gt;://&lt;your-forward-host&gt;:&lt;your forward-port&gt;$request_uri; # you need to adjust this
+
+    auth_request /outpost.goauthentik.io/auth/nginx;
+    error_page 401 = @goauthentik_proxy_signin;
+    auth_request_set $auth_cookie $upstream_http_set_cookie;
+    more_set_headers 'Set-Cookie: $auth_cookie';
+    auth_request_set $authentik_username $upstream_http_x_authentik_username;
+    auth_request_set $authentik_groups $upstream_http_x_authentik_groups;
+    auth_request_set $authentik_email $upstream_http_x_authentik_email;
+    auth_request_set $authentik_name $upstream_http_x_authentik_name;
+    auth_request_set $authentik_uid $upstream_http_x_authentik_uid;
+    proxy_set_header X-authentik-username $authentik_username;
+    proxy_set_header X-authentik-groups $authentik_groups;
+    proxy_set_header X-authentik-email $authentik_email;
+    proxy_set_header X-authentik-name $authentik_name;
+    proxy_set_header X-authentik-uid $authentik_uid;
+    
+    # This section should be uncommented when the "Send HTTP Basic authentication" option is enabled in the proxy provider
+    #auth_request_set $authentik_auth $upstream_http_authorization;
+    #proxy_set_header Authorization $authentik_auth;
+}
+
+location /outpost.goauthentik.io {
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection $connection_upgrade;
+    include conf.d/include/proxy-headers.conf;
+    proxy_pass https://&lt;ip&gt;:9443/outpost.goauthentik.io; # ensure the host of this vserver matches your external URL you've configured in authentik
+
+    proxy_set_header X-Original-URL $scheme://$host$request_uri;
+    more_set_headers 'Set-Cookie: $auth_cookie';
+    auth_request_set $auth_cookie $upstream_http_set_cookie;
+    proxy_pass_request_body off;
+    proxy_set_header Content-Length "";
+}
+
+location @goauthentik_proxy_signin {
+    internal;
+    more_set_headers 'Set-Cookie: $auth_cookie';
+    return 302 /outpost.goauthentik.io/start?rd=$request_uri;
+}
+</code></pre>
 <div class="markdown-heading"><h3 class="heading-element">prerun scripts (EXPERT option) - if you don't know what this is, ignore it</h3><a id="user-content-prerun-scripts-expert-option---if-you-dont-know-what-this-is-ignore-it" class="anchor" aria-label="Permalink: prerun scripts (EXPERT option) - if you don't know what this is, ignore it" href="#prerun-scripts-expert-option---if-you-dont-know-what-this-is-ignore-it"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <p>run order: entrypoint.sh (prerun scripts) =&gt; start.sh =&gt; launch.sh <br>
 if you need to run scripts before NPMplus launches put them under: <code>/opt/npmplus/prerun/*.sh</code> (please add <code>#!/usr/bin/env sh</code> / <code>#!/usr/bin/env bash</code> to the top of the script) <br>
