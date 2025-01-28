@@ -243,7 +243,7 @@ upstream service2 {
 <ol start="3">
 <li>configure your proxy host like always in the UI, but set the hostname to service1 (or service2 or however you named it), if you followed example a) you need to keep the forward port field empty (since you set the ports within the upstream directive)</li>
 </ol>
-<div class="markdown-heading"><h3 class="heading-element">authentik advanced config example</h3><a id="user-content-authentik-advanced-config-example" class="anchor" aria-label="Permalink: authentik advanced config example" href="#authentik-advanced-config-example"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<div class="markdown-heading"><h3 class="heading-element">authentik advanced config example (no guarantee for security of it)</h3><a id="user-content-authentik-advanced-config-example-no-guarantee-for-security-of-it" class="anchor" aria-label="Permalink: authentik advanced config example (no guarantee for security of it)" href="#authentik-advanced-config-example-no-guarantee-for-security-of-it"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <pre><code>port_in_redirect off;
 location / {
     proxy_set_header Upgrade $http_upgrade;
