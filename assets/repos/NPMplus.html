@@ -246,8 +246,9 @@ upstream service2 {
 <div class="markdown-heading"><h3 class="heading-element">authentik advanced config example (no guarantee for security of it)</h3><a id="user-content-authentik-advanced-config-example-no-guarantee-for-security-of-it" class="anchor" aria-label="Permalink: authentik advanced config example (no guarantee for security of it)" href="#authentik-advanced-config-example-no-guarantee-for-security-of-it"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <pre><code>port_in_redirect off;
 location / {
-    proxy_set_header Upgrade $http_upgrade;
-    proxy_set_header Connection $connection_upgrade;
+    # if you want to enable websockets
+    #proxy_set_header Upgrade $http_upgrade;
+    #proxy_set_header Connection $connection_upgrade;
     include conf.d/include/proxy-headers.conf;
     proxy_pass &lt;your-forward-scheme&gt;://&lt;your-forward-host&gt;:&lt;your forward-port&gt;$request_uri; # you need to adjust this
 
@@ -257,11 +258,13 @@ location / {
     more_set_headers 'Set-Cookie: $auth_cookie';
     auth_request_set $authentik_username $upstream_http_x_authentik_username;
     auth_request_set $authentik_groups $upstream_http_x_authentik_groups;
+    auth_request_set $authentik_entitlements $upstream_http_x_authentik_entitlements;
     auth_request_set $authentik_email $upstream_http_x_authentik_email;
     auth_request_set $authentik_name $upstream_http_x_authentik_name;
     auth_request_set $authentik_uid $upstream_http_x_authentik_uid;
     proxy_set_header X-authentik-username $authentik_username;
     proxy_set_header X-authentik-groups $authentik_groups;
+    proxy_set_header X-authentik-entitlements $authentik_entitlements;
     proxy_set_header X-authentik-email $authentik_email;
     proxy_set_header X-authentik-name $authentik_name;
     proxy_set_header X-authentik-uid $authentik_uid;
@@ -272,10 +275,12 @@ location / {
 }
 
 location /outpost.goauthentik.io {
-    proxy_set_header Upgrade $http_upgrade;
-    proxy_set_header Connection $connection_upgrade;
     include conf.d/include/proxy-headers.conf;
-    proxy_pass https://&lt;ip&gt;:9443/outpost.goauthentik.io; # ensure the host of this vserver matches your external URL you've configured in authentik
+
+    # When using the embedded outpost, use:
+    proxy_pass http://authentik.company:9000/outpost.goauthentik.io;
+    # For manual outpost deployments:
+    #proxy_pass http://outpost.company:9000$request_uri;
 
     proxy_set_header X-Original-URL $scheme://$host$request_uri;
     more_set_headers 'Set-Cookie: $auth_cookie';
@@ -287,7 +292,9 @@ location /outpost.goauthentik.io {
 location @goauthentik_proxy_signin {
     internal;
     more_set_headers 'Set-Cookie: $auth_cookie';
-    return 302 /outpost.goauthentik.io/start?rd=$request_uri;
+    return 302 /outpost.goauthentik.io/start?rd=$scheme://$host$request_uri;
+    # For domain level, use the below error_page to redirect to your authentik server with the full redirect path
+    # return 302 https://authentik.company/outpost.goauthentik.io/start?rd=$scheme://$host$request_uri;
 }
 </code></pre>
 <div class="markdown-heading"><h3 class="heading-element">prerun scripts (EXPERT option) - if you don't know what this is, ignore it</h3><a id="user-content-prerun-scripts-expert-option---if-you-dont-know-what-this-is-ignore-it" class="anchor" aria-label="Permalink: prerun scripts (EXPERT option) - if you don't know what this is, ignore it" href="#prerun-scripts-expert-option---if-you-dont-know-what-this-is-ignore-it"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
