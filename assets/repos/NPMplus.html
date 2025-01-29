@@ -327,7 +327,7 @@ location /internal/authelia/authz {
     proxy_method GET;
     proxy_pass_request_body off;
     proxy_set_header Content-Length "";
-    proxy_set_header X-Original-URL $scheme://$http_host$request_uri;
+    proxy_set_header X-Original-URL $scheme://$host$request_uri;
 }
 </code></pre>
 <div class="markdown-heading"><h3 class="heading-element">prerun scripts (EXPERT option) - if you don't know what this is, ignore it</h3><a id="user-content-prerun-scripts-expert-option---if-you-dont-know-what-this-is-ignore-it" class="anchor" aria-label="Permalink: prerun scripts (EXPERT option) - if you don't know what this is, ignore it" href="#prerun-scripts-expert-option---if-you-dont-know-what-this-is-ignore-it"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
