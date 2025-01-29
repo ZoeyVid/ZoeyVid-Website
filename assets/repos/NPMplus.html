@@ -286,14 +286,13 @@ location /outpost.goauthentik.io {
     # For manual outpost deployments:
     #proxy_pass http://outpost.company:9000$request_uri;
 
-    more_set_headers 'Set-Cookie: $auth_cookie';
     auth_request_set $auth_cookie $upstream_http_set_cookie;
+    more_set_headers 'Set-Cookie: $auth_cookie';
 
     internal;
     proxy_method GET;
     proxy_pass_request_body off;
     proxy_set_header Content-Length "";
-    proxy_set_header X-Original-URL $scheme://$host$request_uri;
 }
 </code></pre>
 <div class="markdown-heading"><h3 class="heading-element">authelia advanced config example (no guarantee for security of it)</h3><a id="user-content-authelia-advanced-config-example-no-guarantee-for-security-of-it" class="anchor" aria-label="Permalink: authelia advanced config example (no guarantee for security of it)" href="#authelia-advanced-config-example-no-guarantee-for-security-of-it"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
@@ -315,8 +314,11 @@ location /outpost.goauthentik.io {
     proxy_set_header Remote-Email $email;
     proxy_set_header Remote-Name $name;
 
+    # Modern Method:
     auth_request_set $redirection_url $upstream_http_location;
     error_page 401 =302 $redirection_url;
+    # Legacy Method: 
+    #error_page 401 =302 https://auth.example.com/?rd=$scheme://$host$request_uri; # change to match your authelia
 }
 
 location /internal/authelia/authz {
@@ -327,7 +329,6 @@ location /internal/authelia/authz {
     proxy_method GET;
     proxy_pass_request_body off;
     proxy_set_header Content-Length "";
-    proxy_set_header X-Original-URL $scheme://$host$request_uri;
 }
 </code></pre>
 <div class="markdown-heading"><h3 class="heading-element">prerun scripts (EXPERT option) - if you don't know what this is, ignore it</h3><a id="user-content-prerun-scripts-expert-option---if-you-dont-know-what-this-is-ignore-it" class="anchor" aria-label="Permalink: prerun scripts (EXPERT option) - if you don't know what this is, ignore it" href="#prerun-scripts-expert-option---if-you-dont-know-what-this-is-ignore-it"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
