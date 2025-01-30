@@ -220,7 +220,6 @@ Password: iArhP1j7p1P6TA92FA2FMbbUGYqwcYzxC4AVEe12Wbi94FY9gNN62aKyF1shrvG4NycjjX
 }
 </code></pre>
 <div class="markdown-heading"><h1 class="heading-element">Load Balancing</h1><a id="user-content-load-balancing" class="anchor" aria-label="Permalink: Load Balancing" href="#load-balancing"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
-<p>Note: not supported for custom paths</p>
 <ol>
 <li>open and edit this file: <code>/opt/npmplus/custom_nginx/http_top.conf</code> (if you changed /opt/npmplus to a different path make sure to change the path to fit)</li>
 <li>set the upstream directive(s) with your servers which should be load balanced (<a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html" rel="nofollow">https://nginx.org/en/docs/http/ngx_http_upstream_module.html</a>), they need to run the same protocol (either http or https), like this for example:</li>
