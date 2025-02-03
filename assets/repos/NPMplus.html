@@ -242,16 +242,11 @@ upstream service2 {
 <ol start="3">
 <li>configure your proxy host like always in the UI, but set the hostname to service1 (or service2 or however you named it), if you followed example a) you need to keep the forward port field empty (since you set the ports within the upstream directive)</li>
 </ol>
-<div class="markdown-heading"><h3 class="heading-element">authentik advanced config example (no guarantee for security of it)</h3><a id="user-content-authentik-advanced-config-example-no-guarantee-for-security-of-it" class="anchor" aria-label="Permalink: authentik advanced config example (no guarantee for security of it)" href="#authentik-advanced-config-example-no-guarantee-for-security-of-it"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
-<pre><code>location / {
-    # if you want to enable websockets
-    #proxy_set_header Upgrade $http_upgrade;
-    #proxy_set_header Connection $connection_upgrade;
-
-    include conf.d/include/proxy-headers.conf;
-    proxy_pass $forward_scheme://$server:$port$request_uri;
-
-    auth_request /outpost.goauthentik.io/auth/nginx;
+<div class="markdown-heading"><h3 class="heading-element">authentik config example (no guarantee for security of it)</h3><a id="user-content-authentik-config-example-no-guarantee-for-security-of-it" class="anchor" aria-label="Permalink: authentik config example (no guarantee for security of it)" href="#authentik-config-example-no-guarantee-for-security-of-it"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<ol>
+<li>create a custom location / (or the location you want to use), set your proxy settings, then press the gear button and paste the following in the new text field, you may need to adjust the last lines:</li>
+</ol>
+<pre><code>    auth_request /outpost.goauthentik.io/auth/nginx;
     auth_request_set $authentik_username $upstream_http_x_authentik_username;
     auth_request_set $authentik_groups $upstream_http_x_authentik_groups;
     auth_request_set $authentik_entitlements $upstream_http_x_authentik_entitlements;
@@ -275,35 +270,22 @@ upstream service2 {
     # This section should be uncommented when the "Send HTTP Basic authentication" option is enabled in the proxy provider
     #auth_request_set $authentik_auth $upstream_http_authorization;
     #proxy_set_header Authorization $authentik_auth;
-}
-
-location /outpost.goauthentik.io {
-    include conf.d/include/proxy-headers.conf;
-
-    # When using the embedded outpost, use:
-    proxy_pass http://authentik.company:9000/outpost.goauthentik.io;
-    # For manual outpost deployments:
-    #proxy_pass http://outpost.company:9000$request_uri;
-
-    auth_request_set $auth_cookie $upstream_http_set_cookie;
+</code></pre>
+<ol start="2">
+<li>create a location with the path <code>/outpost.goauthentik.io</code>, this should proxy to your authentik, examples: <a href="http://authentik.company:9000/outpost.goauthentik.io/" rel="nofollow">http://authentik.company:9000/outpost.goauthentik.io/</a> (embedded outpost) or <a href="http://outpost.company:9000" rel="nofollow">http://outpost.company:9000</a> (manual outpost deployments), then press the gear button and paste the following in the new text field</li>
+</ol>
+<pre><code>    auth_request_set $auth_cookie $upstream_http_set_cookie;
     more_set_headers 'Set-Cookie: $auth_cookie';
-
     internal;
     proxy_method GET;
     proxy_pass_request_body off;
     proxy_set_header Content-Length "";
-}
 </code></pre>
-<div class="markdown-heading"><h3 class="heading-element">authelia advanced config example (no guarantee for security of it)</h3><a id="user-content-authelia-advanced-config-example-no-guarantee-for-security-of-it" class="anchor" aria-label="Permalink: authelia advanced config example (no guarantee for security of it)" href="#authelia-advanced-config-example-no-guarantee-for-security-of-it"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
-<pre><code>location / {
-    # if you want to enable websockets
-    #proxy_set_header Upgrade $http_upgrade;
-    #proxy_set_header Connection $connection_upgrade;
-
-    include conf.d/include/proxy-headers.conf;
-    proxy_pass $forward_scheme://$server:$port$request_uri;
-
-    auth_request /internal/authelia/authz;
+<div class="markdown-heading"><h3 class="heading-element">authelia config example (no guarantee for security of it)</h3><a id="user-content-authelia-config-example-no-guarantee-for-security-of-it" class="anchor" aria-label="Permalink: authelia config example (no guarantee for security of it)" href="#authelia-config-example-no-guarantee-for-security-of-it"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<ol>
+<li>create a custom location / (or the location you want to use), set your proxy settings, then press the gear button and paste the following in the new text field, you may need to adjust the last lines:</li>
+</ol>
+<pre><code>    auth_request /internal/authelia/authz;
     auth_request_set $user $upstream_http_remote_user;
     auth_request_set $groups $upstream_http_remote_groups;
     auth_request_set $name $upstream_http_remote_name;
@@ -318,17 +300,15 @@ location /outpost.goauthentik.io {
     error_page 401 =302 $redirection_url;
     # Legacy Method: 
     #error_page 401 =302 https://auth.example.com/?rd=$scheme://$host$request_uri; # change to match your authelia
-}
-
-location /internal/authelia/authz {
-    include conf.d/include/proxy-headers.conf;
-    proxy_pass http://&lt;ip&gt;:&lt;port&gt;/api/verify; # change to ip and port of authelia
-
-    internal;
+</code></pre>
+<ol start="2">
+<li>create a location with the path <code>/internal/authelia/authz</code>, this should proxy to your authelia, example http://:/api/verify/, then press the gear button and paste the following in the new text field
+</li>
+</ol>
+<pre><code>    internal;
     proxy_method GET;
     proxy_pass_request_body off;
     proxy_set_header Content-Length "";
-}
 </code></pre>
 <div class="markdown-heading"><h3 class="heading-element">prerun scripts (EXPERT option) - if you don't know what this is, ignore it</h3><a id="user-content-prerun-scripts-expert-option---if-you-dont-know-what-this-is-ignore-it" class="anchor" aria-label="Permalink: prerun scripts (EXPERT option) - if you don't know what this is, ignore it" href="#prerun-scripts-expert-option---if-you-dont-know-what-this-is-ignore-it"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <p>run order: entrypoint.sh (prerun scripts) =&gt; start.sh =&gt; launch.sh <br>
