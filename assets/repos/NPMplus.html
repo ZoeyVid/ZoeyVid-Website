@@ -302,8 +302,7 @@ upstream service2 {
     #error_page 401 =302 https://auth.example.com/?rd=$scheme://$host$request_uri; # change auth.example.com to match your authelia domain
 </code></pre>
 <ol start="2">
-<li>create a location with the path <code>/internal/authelia/authz</code>, this should proxy to your authelia, example http://:/api/verify, then press the gear button and paste the following in the new text field
-</li>
+<li>create a location with the path <code>/internal/authelia/authz</code>, this should proxy to your authelia, example <code>http://&lt;ip&gt;:&lt;port&gt;/api/verify</code>, then press the gear button and paste the following in the new text field</li>
 </ol>
 <pre><code>    proxy_method GET;
     proxy_pass_request_body off;
