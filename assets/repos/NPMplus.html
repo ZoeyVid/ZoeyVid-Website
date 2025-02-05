@@ -273,11 +273,10 @@ upstream service2 {
     #proxy_set_header Authorization $authentik_auth;
 </code></pre>
 <ol start="2">
-<li>create a location with the path <code>/outpost.goauthentik.io</code>, this should proxy to your authentik, examples: <a href="http://authentik.company:9000/outpost.goauthentik.io/" rel="nofollow">http://authentik.company:9000/outpost.goauthentik.io/</a> (embedded outpost) or <a href="http://outpost.company:9000" rel="nofollow">http://outpost.company:9000</a> (manual outpost deployments), then press the gear button and paste the following in the new text field</li>
+<li>create a location with the path <code>/outpost.goauthentik.io</code>, this should proxy to your authentik, examples: <a href="http://authentik.company:9000/outpost.goauthentik.io" rel="nofollow">http://authentik.company:9000/outpost.goauthentik.io</a> (embedded outpost) or <a href="http://outpost.company:9000" rel="nofollow">http://outpost.company:9000</a> (manual outpost deployments), then press the gear button and paste the following in the new text field</li>
 </ol>
 <pre><code>    auth_request_set $auth_cookie $upstream_http_set_cookie;
     more_set_headers 'Set-Cookie: $auth_cookie';
-    internal;
     proxy_method GET;
     proxy_pass_request_body off;
     proxy_set_header Content-Length "";
@@ -300,14 +299,13 @@ upstream service2 {
     auth_request_set $redirection_url $upstream_http_location;
     error_page 401 =302 $redirection_url;
     # Legacy Method: 
-    #error_page 401 =302 https://auth.example.com/?rd=$scheme://$host$request_uri; # change to match your authelia
+    #error_page 401 =302 https://auth.example.com/?rd=$scheme://$host$request_uri; # change auth.example.com to match your authelia domain
 </code></pre>
 <ol start="2">
-<li>create a location with the path <code>/internal/authelia/authz</code>, this should proxy to your authelia, example http://:/api/verify/, then press the gear button and paste the following in the new text field
+<li>create a location with the path <code>/internal/authelia/authz</code>, this should proxy to your authelia, example http://:/api/verify, then press the gear button and paste the following in the new text field
 </li>
 </ol>
-<pre><code>    internal;
-    proxy_method GET;
+<pre><code>    proxy_method GET;
     proxy_pass_request_body off;
     proxy_set_header Content-Length "";
 </code></pre>
