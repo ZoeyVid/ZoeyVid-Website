@@ -28,8 +28,7 @@ so that the barrier for entry here is low.</p>
 <ul>
 <li>Supports HTTP/3 (QUIC) protocol, requires you to expose https with udp.</li>
 <li>Supports CrowdSec IPS. Please see <a href="https://github.com/ZoeyVid/NPMplus#crowdsec">here</a> to enable it.</li>
-<li>goaccess included, see compose.yaml to enable, runs by default on https://:91 (nginx config from <a href="https://github.com/xavier-hernandez/goaccess-for-nginxproxymanager/blob/main/resources/nginx/nginx.conf">here</a>)
-</li>
+<li>goaccess included, see compose.yaml to enable, runs by default on <code>https://&lt;ip&gt;:91</code> (nginx config from <a href="https://github.com/xavier-hernandez/goaccess-for-nginxproxymanager/blob/main/resources/nginx/nginx.conf">here</a>)</li>
 <li>Supports ModSecurity, with coreruleset as an option. You can configure ModSecurity/coreruleset by editing the files in the <code>/opt/npmplus/modsecurity</code> folder (no support from me, you need to write the rules yourself - for CoreRuleSet I can try to help you).
 <ul>
 <li>By default NPMplus UI does not work when you proxy NPMplus through NPMplus and you have CoreRuleSet enabled, see below</li>
