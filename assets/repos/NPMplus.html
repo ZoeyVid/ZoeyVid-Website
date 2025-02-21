@@ -285,7 +285,7 @@ proxy_set_header Content-Length "";
     add_header Set-Cookie $auth_cookie;
     return 302 /outpost.goauthentik.io/start?rd=$request_uri;
     # For domain level, use the below error_page to redirect to your authentik server with the full redirect path
-    # return 302 https://authentik.company/outpost.goauthentik.io/start?rd=$scheme://$http_host$request_uri;
+    # return 302 https://authentik.company/outpost.goauthentik.io/start?rd=$scheme://$host$request_uri;
 }
 </code></pre>
 <div class="markdown-heading"><h3 class="heading-element">authelia config example (no guarantee for security of it)</h3><a id="user-content-authelia-config-example-no-guarantee-for-security-of-it" class="anchor" aria-label="Permalink: authelia config example (no guarantee for security of it)" href="#authelia-config-example-no-guarantee-for-security-of-it"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
