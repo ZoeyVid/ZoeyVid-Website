@@ -58,7 +58,7 @@ so that the barrier for entry here is low.</p>
 <li>Admin backend interface runs with https</li>
 <li>Default page also runs with https</li>
 <li>option to change default TLS cert</li>
-<li>Uses <a href="https://gitHub.com/Naereen/Nginx-Fancyindex-Theme">fancyindex</a> if used as webserver</li>
+<li>Option to use <a href="https://gitHub.com/Naereen/Nginx-Fancyindex-Theme">fancyindex</a> if used as webserver</li>
 <li>Exposes INTERNAL backend api only to localhost</li>
 <li>Basic security headers are added if you enable HSTS (HSTS has always subdomains and preload enabled)</li>
 <li>access.log is disabled by default, unified and moved to <code>/opt/npmplus/nginx/access.log</code>
@@ -195,7 +195,7 @@ Password: iArhP1j7p1P6TA92FA2FMbbUGYqwcYzxC4AVEe12Wbi94FY9gNN62aKyF1shrvG4NycjjX
 <pre><code>location / {
     include conf.d/include/always.conf;
     alias /var/www/&lt;your-html-site-folder-name&gt;/;
-    fancyindex off; # alternative to nginxs "index" option (looks better and has more options)
+    fancyindex off; # alternative to nginxs "index" option (looks better and has more options), please load the module first in the compsoe.yaml
 }
 </code></pre>
 <p>b) Custom Nginx Configuration (advanced tab), which looks the following for file server and <strong>php</strong>:</p>
@@ -209,7 +209,7 @@ Password: iArhP1j7p1P6TA92FA2FMbbUGYqwcYzxC4AVEe12Wbi94FY9gNN62aKyF1shrvG4NycjjX
 <pre><code>location / {
     include conf.d/include/always.conf;
     alias /var/www/&lt;your-html-site-folder-name&gt;/;
-    fancyindex off; # alternative to nginxs "index" option (looks better and has more options)
+    fancyindex off; # alternative to nginxs "index" option (looks better and has more options), please load the module first in the compsoe.yaml
 
     location ~ [^/]\.php(/|$) {
         fastcgi_pass php82;
