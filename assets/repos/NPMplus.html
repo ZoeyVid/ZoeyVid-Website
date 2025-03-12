@@ -186,7 +186,8 @@ Immediately after logging in with this default user you will be asked to modify 
 <pre><code>location / {
     include conf.d/include/always.conf;
     alias /var/www/&lt;your-html-site-folder-name&gt;/;
-    fancyindex off; # alternative to nginxs "index" option (looks better and has more options), please load the module first in the compose.yaml
+    #fancyindex off; # alternative to nginxs "index" option (looks better and has more options), please load the module first in the compose.yaml
+}
 </code></pre>
 <p>b) Custom Nginx Configuration (advanced tab), which looks the following for file server and <strong>php</strong>:</p>
 <ul>
@@ -199,7 +200,7 @@ Immediately after logging in with this default user you will be asked to modify 
 <pre><code>location / {
     include conf.d/include/always.conf;
     alias /var/www/&lt;your-html-site-folder-name&gt;/;
-    fancyindex off; # alternative to nginxs "index" option (looks better and has more options), please load the module first in the compose.yaml
+    #fancyindex off; # alternative to nginxs "index" option (looks better and has more options), please load the module first in the compose.yaml
     location ~ [^/]\.php(/|$) {
         fastcgi_pass php82;
         fastcgi_split_path_info ^(.+?\.php)(/.*)$;
