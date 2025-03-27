@@ -186,9 +186,8 @@ Immediately after logging in with this default user you will be asked to modify 
 <li>Note: the slash at the end of the file path is important</li>
 </ul>
 <pre><code>location / {
-    include conf.d/include/always.conf;
     alias /var/www/&lt;your-html-site-folder-name&gt;/;
-    #fancyindex off; # alternative to nginxs "index" option (looks better and has more options), please load the module first in the compose.yaml
+    #fancyindex off; # alternative to nginx "index" option (looks better and has more options)
 }
 </code></pre>
 <p>b) Custom Nginx Configuration (advanced tab), which looks the following for file server and <strong>php</strong>:</p>
@@ -200,9 +199,8 @@ Immediately after logging in with this default user you will be asked to modify 
 <li>Note: to add more php extension using envs you can set in the compose file</li>
 </ul>
 <pre><code>location / {
-    include conf.d/include/always.conf;
     alias /var/www/&lt;your-html-site-folder-name&gt;/;
-    #fancyindex off; # alternative to nginxs "index" option (looks better and has more options), please load the module first in the compose.yaml
+    #fancyindex off; # alternative to nginx "index" option (looks better and has more options)
     location ~ [^/]\.php(/|$) {
         fastcgi_pass php82;
         fastcgi_split_path_info ^(.+?\.php)(/.*)$;
