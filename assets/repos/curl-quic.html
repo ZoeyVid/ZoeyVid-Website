@@ -1,43 +1,9 @@
 <meta charset=utf-8>
-
-  
-    
-    &lt;title&gt;Rate limit · GitHub&lt;/title&gt;
-    
-    &lt;style type="text/css" media="screen"&gt;
-      body {
-        background-color: #f6f8fa;
-        color: rgba(0, 0, 0, 0.5);
-        font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
-        font-size: 14px;
-        line-height: 1.5;
-      }
-      .c { margin: 50px auto; max-width: 600px; text-align: center; padding: 0 24px; }
-      a { text-decoration: none; }
-      a:hover { text-decoration: underline; }
-      h1 { color: #24292e; line-height: 60px; font-size: 48px; font-weight: 300; margin: 0px; }
-      p { margin: 20px 0 40px; }
-      #s { margin-top: 35px; }
-      #s a {
-        color: #666666;
-        font-weight: 200;
-        font-size: 14px;
-        margin: 0 10px;
-      }
-    &lt;/style&gt;
-  
-  
-    <div>
-      <div class="markdown-heading"><h1 class="heading-element">Access has been restricted</h1><a id="user-content-access-has-been-restricted" class="anchor" aria-label="Permalink: Access has been restricted" href="#access-has-been-restricted"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
-      <p>You have triggered a rate limit.<br><br>
-         Please wait a few minutes before you try again;<br>
-         in some cases this may take up to an hour.
-      </p>
-      <div id="user-content-s">
-        <a href="https://support.github.com">Contact Support</a> —
-        <a href="https://githubstatus.com" rel="nofollow">GitHub Status</a> —
-        <a href="https://twitter.com/githubstatus" rel="nofollow">@githubstatus</a>
-      </div>
-    </div>
-  
+<div class="markdown-heading"><h1 class="heading-element">curl-quic</h1><a id="user-content-curl-quic" class="anchor" aria-label="Permalink: curl-quic" href="#curl-quic"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<p>This docker image contains/the release files are a statically linked build of curl based on wolfssl, zlib, nghttp2, ngtcp2 and nghttp3.</p>
+<div class="markdown-heading"><h2 class="heading-element">Usage:</h2><a id="user-content-usage" class="anchor" aria-label="Permalink: Usage:" href="#usage"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<div class="highlight highlight-source-shell"><pre>docker run --rm -it --pull always --name curl -v <span class="pl-s"><span class="pl-pds">"</span>/:/host<span class="pl-pds">"</span></span> zoeyvid/curl-quic</pre></div>
+<div class="markdown-heading"><h3 class="heading-element">Example:</h3><a id="user-content-example" class="anchor" aria-label="Permalink: Example:" href="#example"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<div class="highlight highlight-source-shell"><pre>docker run --rm -it --pull always --name curl -v <span class="pl-s"><span class="pl-pds">"</span>/:/host<span class="pl-pds">"</span></span> zoeyvid/curl-quic --http3 -sL https://quic.nginx.org -o /host/root/curl-output
+cat /root/curl-output</pre></div>
 
