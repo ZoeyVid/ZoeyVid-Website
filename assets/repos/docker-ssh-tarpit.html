@@ -1,3 +1,15 @@
 <meta charset=utf-8>
-
+<div class="markdown-heading"><h1 class="heading-element">docker-ssh-tarpit</h1><a id="user-content-docker-ssh-tarpit" class="anchor" aria-label="Permalink: docker-ssh-tarpit" href="#docker-ssh-tarpit"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<p>This docker image runs <a href="https://github.com/Snawoot/ssh-tarpit">https://github.com/Snawoot/ssh-tarpit</a> rootless.</p>
+<div class="highlight highlight-source-yaml"><pre><span class="pl-ent">services</span>:
+  <span class="pl-ent">ssh-tarpit</span>:
+    <span class="pl-ent">container_name</span>: <span class="pl-s">ssh-tarpit</span>
+    <span class="pl-ent">image</span>: <span class="pl-s">zoeyvid/docker-ssh-tarpit</span>
+    <span class="pl-ent">restart</span>: <span class="pl-s">always</span>
+    <span class="pl-ent">ports</span>:
+      - <span class="pl-s"><span class="pl-pds">"</span>22:22<span class="pl-pds">"</span></span>
+<span class="pl-c"><span class="pl-c">#</span>    volumes:</span>
+<span class="pl-c"><span class="pl-c">#</span>      - "/opt/tarpit.log:/var/log/tarpit.log"</span>
+    <span class="pl-ent">environment</span>:
+      - <span class="pl-s"><span class="pl-pds">"</span>TZ=Europe/Berlin<span class="pl-pds">"</span></span></pre></div>
 
