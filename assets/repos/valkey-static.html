@@ -1,3 +1,7 @@
 <meta charset=utf-8>
-
+<div class="markdown-heading"><h1 class="heading-element">valkey-static</h1><a id="user-content-valkey-static" class="anchor" aria-label="Permalink: valkey-static" href="#valkey-static"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<p>This docker image contains/the release files are a statically linked build of valkey without TLS. <br>
+It can be seen as a drop-in replacement for the official redis image. Use: <code>zoeyvid/valkey-static</code> or <code>ghcr.io/zoeyvid/valkey-static</code>. <br>
+It includes valkey-sever and valkey-cli (with links to the old redis names, all in <code>/usr/local/bin</code>). <br>
+<strong>Note: the protected mode is disabled by default for the docker image and the binaries.</strong> You can enable it by adding <code>--protected-mode yes</code></p>
 
