@@ -259,7 +259,7 @@ proxy_set_header X-authentik-uid $authentik_uid;
 #proxy_set_header Authorization $authentik_auth;
 </code></pre>
 <ol start="2">
-<li>create a location with the path <code>/outpost.goauthentik.io</code>, this should proxy to your authentik, examples: <a href="http://authentik.company:9000/outpost.goauthentik.io" rel="nofollow">http://authentik.company:9000/outpost.goauthentik.io</a> (embedded outpost) or <a href="http://outpost.company:9000" rel="nofollow">http://outpost.company:9000</a> (manual outpost deployments), then press the gear button and paste the following in the new text field</li>
+<li>create a location with the path <code>/outpost.goauthentik.io</code>, this should proxy to your authentik, examples: <code>http://authentik.company:9000/outpost.goauthentik.io</code> (embedded outpost) or <code>http://outpost.company:9000</code> (manual outpost deployments), then press the gear button and paste the following in the new text field</li>
 </ol>
 <pre><code>auth_request_set $auth_cookie $upstream_http_set_cookie;
 more_set_headers 'Set-Cookie: $auth_cookie';
@@ -305,6 +305,23 @@ error_page 401 =302 $redirection_url;
 proxy_method GET;
 proxy_pass_request_body off;
 proxy_set_header Content-Length "";
+</code></pre>
+<div class="markdown-heading"><h3 class="heading-element">tinyauth config example (no guarantee for security of it)</h3><a id="user-content-tinyauth-config-example-no-guarantee-for-security-of-it" class="anchor" aria-label="Permalink: tinyauth config example (no guarantee for security of it)" href="#tinyauth-config-example-no-guarantee-for-security-of-it"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<ol>
+<li>create a custom location / (or the location you want to use), set your proxy settings, then press the gear button and paste the following in the new text field:</li>
+</ol>
+<pre><code>auth_request /tinyauth;
+error_page 401 = @tinyauth_login;
+</code></pre>
+<ol start="2">
+<li>create a location with the path <code>/tinyauth</code>, this should proxy to your tinyauth, example: <code>http://&lt;ip&gt;:&lt;port&gt;/api/auth/nginx</code>
+</li>
+<li>paste the following in the advanced config tab, you may need to adjust the last lines:</li>
+</ol>
+<pre><code>location @tinyauth_login {
+    internal;
+    return 302 http://tinyauth.example.com/login?redirect_uri=$scheme://$host$request_uri; # Make sure to replace the http://tinyauth.example.com with your own app URL
+}
 </code></pre>
 <div class="markdown-heading"><h3 class="heading-element">prerun scripts (EXPERT option) - if you don't know what this is, ignore it</h3><a id="user-content-prerun-scripts-expert-option---if-you-dont-know-what-this-is-ignore-it" class="anchor" aria-label="Permalink: prerun scripts (EXPERT option) - if you don't know what this is, ignore it" href="#prerun-scripts-expert-option---if-you-dont-know-what-this-is-ignore-it"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <p>if you need to run scripts before NPMplus launches put them under: <code>/opt/npmplus/prerun/*.sh</code> (please add <code>#!/usr/bin/env sh</code> / <code>#!/usr/bin/env bash</code> to the top of the script) you need to create this folder yourself, also enable the env</p>
