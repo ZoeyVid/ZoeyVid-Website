@@ -28,7 +28,7 @@ so that the barrier for entry here is low.</p>
 <li>Supports HTTP/3 (QUIC) protocol, requires you to expose https with udp.</li>
 <li>Supports CrowdSec IPS. Please see <a href="https://github.com/ZoeyVid/NPMplus#crowdsec">here</a> to enable it.</li>
 <li>goaccess included, see compose.yaml to enable, runs by default on <code>https://&lt;ip&gt;:91</code> (nginx config from <a href="https://github.com/xavier-hernandez/goaccess-for-nginxproxymanager/blob/main/resources/nginx/nginx.conf">here</a>)</li>
-<li>Supports ModSecurity, with coreruleset as an option. You can configure ModSecurity/coreruleset by editing the files in the <code>/opt/npmplus/modsecurity</code> folder (no support from me, you need to write the rules yourself - for CoreRuleSet I can try to help you).
+<li>Supports ModSecurity (which tends to overblocking), with coreruleset as an option. You can configure ModSecurity/coreruleset by editing the files in the <code>/opt/npmplus/modsecurity</code> folder (no support from me, you need to write the rules yourself - for CoreRuleSet I can try to help you).
 <ul>
 <li>By default NPMplus UI does not work when you proxy NPMplus through NPMplus and you have CoreRuleSet enabled, see below</li>
 <li>ModSecurity by default blocks uploads of big files, you need to edit its config to fix this, but it can use a lot of resources to scan big files by ModSecurity</li>
@@ -124,7 +124,8 @@ Immediately after logging in with this default user you will be asked to modify 
 </li>
 </ol>
 <div class="markdown-heading"><h1 class="heading-element">Crowdsec</h1><a id="user-content-crowdsec" class="anchor" aria-label="Permalink: Crowdsec" href="#crowdsec"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
-<p>Note: Using Immich behind NPMplus with enabled appsec causes issues, see here: <a href="https://github.com/ZoeyVid/NPMplus/discussions/1241">#1241</a></p>
+<p>Note: Using Immich behind NPMplus with enabled appsec causes issues, see here: <a href="https://github.com/ZoeyVid/NPMplus/discussions/1241">#1241</a> <br>
+Note: If you don't <a href="https://docs.crowdsec.net/docs/next/configuration/crowdsec_configuration/#sharing" rel="nofollow">disable sharing in crowdsec</a>, you need to mention that <a href="https://docs.crowdsec.net/docs/central_api/intro/#signal-meta-data" rel="nofollow">this</a> is sent to crowdsec in your privacy policy.</p>
 <ol>
 <li>Install crowdsec and the ZoeyVid/npmplus collection for example by using crowdsec container at the end of the compose.yaml</li>
 <li>set LOGROTATE to <code>true</code> in your <code>compose.yaml</code> and redeploy</li>
@@ -323,6 +324,21 @@ error_page 401 = @tinyauth_login;
     return 302 http://tinyauth.example.com/login?redirect_uri=$scheme://$host$request_uri; # Make sure to replace the http://tinyauth.example.com with your own app URL
 }
 </code></pre>
+<div class="markdown-heading"><h3 class="heading-element">Hints for Your Privacy Policy</h3><a id="user-content-hints-for-your-privacy-policy" class="anchor" aria-label="Permalink: Hints for Your Privacy Policy" href="#hints-for-your-privacy-policy"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<p><strong>Note: This is not legal advice. The following points are intended to help you identify areas that may be relevant to your privacy policy. This list may not be complete or correct.</strong></p>
+<ol>
+<li>NPMplus <strong>always</strong> writes the nginx error logs to your Docker logs; it uses the error level “warn” (so every error nginx and the nginx modules mark as error level “warn” or higher will be logged), as it contains user information (like IPs) you should mention it in your privacy policy. With the default installation no user data should leave your system because of NPMplus (except for data sent to your backends, as this is the task of a reverse proxy), this should be the only data created by NPMplus containing user information by default.</li>
+<li>If you enable <code>LOGROTATE</code> the access and error (also level “warn”) logs will be written to your disk and rotated every 25 hours and deleted based on your set number of set rotations. The access logs use these formats: <a href="https://github.com/ZoeyVid/NPMplus/blob/c6a2df722390eb3f4377c603e16587fe8c74e54f/rootfs/usr/local/nginx/conf/nginx.conf#L30">http</a> and <a href="https://github.com/ZoeyVid/NPMplus/blob/c6a2df722390eb3f4377c603e16587fe8c74e54f/rootfs/usr/local/nginx/conf/nginx.conf#L249">stream</a>. These include user information (like IPs), so make sure to also mention that these exist and what you are doing with them.</li>
+<li>If you use crowdsec, and you do <strong>not</strong> <a href="https://docs.crowdsec.net/docs/next/configuration/crowdsec_configuration/#sharing" rel="nofollow">disable sharing in crowdsec</a>, you need to mention that <a href="https://docs.crowdsec.net/docs/central_api/intro/#signal-meta-data" rel="nofollow">this</a> is sent to crowdsec in your privacy policy.</li>
+<li>If you block IPs like for example through access lists, geoip and/or crowdsec block lists, then you may also need to be mention this.</li>
+<li>If GoAccess is enabled, it processes access logs to generate statistics, which are saved on disk for a time you can configure. These statistics include user information (like IPs), so make sure to also mention this.</li>
+<li>If you use the PHP-FPM option, error logs from PHP-FPM will also be written to Docker logs. These include user information (like IPs), so make sure to also mention this.</li>
+<li>If you use open-appsec <code>NGINX_LOAD_OPENAPPSEC_ATTACHMENT_MODULE</code>, you should also include information about it; since I don't use it myself, I can't give you further hints.</li>
+<li>If you collect any user information (like through other custom nginx modules, modules you can load via env, lua scripts, ...), also mention it.</li>
+<li>If you use the caddy http to https redirect container, you should also mention the data collected by it, since it will also collect (error) logs.</li>
+<li>If you do any extra custom/advanced configuration/modification, which is in someway related to the users data, then yes, akeep in mind to also mention this.</li>
+<li>Anything else you do with the users data, should also be menntioned. (Like what you backend does or any other proxies in front of NPMplus)</li>
+</ol>
 <div class="markdown-heading"><h3 class="heading-element">prerun scripts (EXPERT option) - if you don't know what this is, ignore it</h3><a id="user-content-prerun-scripts-expert-option---if-you-dont-know-what-this-is-ignore-it" class="anchor" aria-label="Permalink: prerun scripts (EXPERT option) - if you don't know what this is, ignore it" href="#prerun-scripts-expert-option---if-you-dont-know-what-this-is-ignore-it"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <p>if you need to run scripts before NPMplus launches put them under: <code>/opt/npmplus/prerun/*.sh</code> (please add <code>#!/usr/bin/env sh</code> / <code>#!/usr/bin/env bash</code> to the top of the script) you need to create this folder yourself, also enable the env</p>
 <div class="markdown-heading"><h2 class="heading-element">Contributing</h2><a id="user-content-contributing" class="anchor" aria-label="Permalink: Contributing" href="#contributing"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
