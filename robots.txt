@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /datenschutz
+Disallow: /impressum
+Disallow: /assets
