@@ -234,20 +234,43 @@ upstream service2 {
 <ol start="3">
 <li>configure your proxy host/stream like always in the UI, but set the hostname to service1 (or service2 or however you named it), if you followed example a) you need to keep the forward port field empty (since you set the ports within the upstream directive), for b) you need to set it</li>
 </ol>
-<div class="markdown-heading"><h3 class="heading-element">authentik config example (no guarantee for security of it)</h3><a id="user-content-authentik-config-example-no-guarantee-for-security-of-it" class="anchor" aria-label="Permalink: authentik config example (no guarantee for security of it)" href="#authentik-config-example-no-guarantee-for-security-of-it"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<div class="markdown-heading"><h2 class="heading-element">anubis config</h2><a id="user-content-anubis-config" class="anchor" aria-label="Permalink: anubis config" href="#anubis-config"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<ol>
+<li>the anubis env "TARGET" should be set to a single space <code> </code>/" " and in you policy file the "status_codes" should be set to 401 and 403, like this:</li>
+</ol>
+<div class="highlight highlight-source-yaml"><pre><span class="pl-ent">status_codes</span>:
+  <span class="pl-ent">CHALLENGE</span>: <span class="pl-c1">401</span>
+  <span class="pl-ent">DENY</span>: <span class="pl-c1">403</span></pre></div>
+<ol start="2">
+<li>create a custom location / (or the location you want to use), set your proxy settings, then press the gear button and paste the following in the new text field:</li>
+</ol>
+<pre><code>auth_request /.within.website/x/cmd/anubis/api/check;
+error_page 401 403 =200 /.within.website/?redir=$request_uri;
+</code></pre>
+<ol start="3">
+<li>create a location with the path <code>/.within.website</code>, this should proxy to your anubis, example: <code>http://127.0.0.1:8923</code>, then press the gear button and paste the following in the new text field</li>
+</ol>
+<pre><code>proxy_method GET;
+proxy_pass_request_body off;
+proxy_set_header Content-Length "";
+</code></pre>
+<div class="markdown-heading"><h2 class="heading-element">authentik config example (limited support)</h2><a id="user-content-authentik-config-example-limited-support" class="anchor" aria-label="Permalink: authentik config example (limited support)" href="#authentik-config-example-limited-support"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <ol>
 <li>create a custom location / (or the location you want to use), set your proxy settings, then press the gear button and paste the following in the new text field, you may need to adjust the last lines:</li>
 </ol>
 <pre><code>auth_request /outpost.goauthentik.io/auth/nginx;
 error_page 401 = @goauthentik_proxy_signin;
+
 auth_request_set $auth_cookie $upstream_http_set_cookie;
-more_set_headers 'Set-Cookie: $auth_cookie';
+add_header Set-Cookie $auth_cookie;
+
 auth_request_set $authentik_username $upstream_http_x_authentik_username;
 auth_request_set $authentik_groups $upstream_http_x_authentik_groups;
 auth_request_set $authentik_entitlements $upstream_http_x_authentik_entitlements;
 auth_request_set $authentik_email $upstream_http_x_authentik_email;
 auth_request_set $authentik_name $upstream_http_x_authentik_name;
 auth_request_set $authentik_uid $upstream_http_x_authentik_uid;
+
 proxy_set_header X-authentik-username $authentik_username;
 proxy_set_header X-authentik-groups $authentik_groups;
 proxy_set_header X-authentik-entitlements $authentik_entitlements;
@@ -260,10 +283,10 @@ proxy_set_header X-authentik-uid $authentik_uid;
 #proxy_set_header Authorization $authentik_auth;
 </code></pre>
 <ol start="2">
-<li>create a location with the path <code>/outpost.goauthentik.io</code>, this should proxy to your authentik, examples: <code>http://authentik.company:9000/outpost.goauthentik.io</code> (embedded outpost) or <code>http://outpost.company:9000</code> (manual outpost deployments), then press the gear button and paste the following in the new text field</li>
+<li>create a location with the path <code>/outpost.goauthentik.io</code>, this should proxy to your authentik, examples: <code>https://127.0.0.1:9443/outpost.goauthentik.io</code> for embedded outpost (or <code>https://127.0.0.1:9443</code> for manual outpost deployments), then press the gear button and paste the following in the new text field</li>
 </ol>
 <pre><code>auth_request_set $auth_cookie $upstream_http_set_cookie;
-more_set_headers 'Set-Cookie: $auth_cookie';
+add_header Set-Cookie $auth_cookie;
 proxy_method GET;
 proxy_pass_request_body off;
 proxy_set_header Content-Length "";
@@ -272,59 +295,55 @@ proxy_set_header Content-Length "";
 <li>paste the following in the advanced config tab, you may need to adjust the last lines:</li>
 </ol>
 <pre><code>location @goauthentik_proxy_signin {
-    internal;
-    add_header Set-Cookie $auth_cookie;
-    return 302 /outpost.goauthentik.io/start?rd=$request_uri;
-    # For domain level, use the below error_page to redirect to your authentik server with the full redirect path
-    # return 302 https://authentik.company/outpost.goauthentik.io/start?rd=$scheme://$host$request_uri;
+  internal;
+  add_header Set-Cookie $auth_cookie;
+  return 302 /outpost.goauthentik.io/start?rd=$request_uri;
+  ## For domain level, use the below error_page to redirect to your authentik server with the full redirect path
+  #return 302 https://authentik.company/outpost.goauthentik.io/start?rd=$scheme://$host$request_uri;
 }
 </code></pre>
-<div class="markdown-heading"><h3 class="heading-element">authelia config example (no guarantee for security of it)</h3><a id="user-content-authelia-config-example-no-guarantee-for-security-of-it" class="anchor" aria-label="Permalink: authelia config example (no guarantee for security of it)" href="#authelia-config-example-no-guarantee-for-security-of-it"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<div class="markdown-heading"><h2 class="heading-element">authelia config example (limited support)</h2><a id="user-content-authelia-config-example-limited-support" class="anchor" aria-label="Permalink: authelia config example (limited support)" href="#authelia-config-example-limited-support"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <ol>
-<li>create a custom location / (or the location you want to use), set your proxy settings, then press the gear button and paste the following in the new text field, you may need to adjust the last lines:</li>
+<li>create a custom location / (or the location you want to use), set your proxy settings, then press the gear button and paste the following in the new text field:</li>
 </ol>
 <pre><code>auth_request /internal/authelia/authz;
+auth_request_set $redirection_url $upstream_http_location;
+error_page 401 =302 $redirection_url;
+
 auth_request_set $user $upstream_http_remote_user;
 auth_request_set $groups $upstream_http_remote_groups;
 auth_request_set $name $upstream_http_remote_name;
 auth_request_set $email $upstream_http_remote_email;
+
 proxy_set_header Remote-User $user;
 proxy_set_header Remote-Groups $groups;
 proxy_set_header Remote-Email $email;
 proxy_set_header Remote-Name $name;
-
-# Modern Method:
-auth_request_set $redirection_url $upstream_http_location;
-error_page 401 =302 $redirection_url;
-# Legacy Method: 
-#error_page 401 =302 https://auth.example.com/?rd=$scheme://$host$request_uri; # change auth.example.com to match your authelia domain
 </code></pre>
 <ol start="2">
-<li>create a location with the path <code>/internal/authelia/authz</code>, this should proxy to your authelia, example <code>http://&lt;ip&gt;:&lt;port&gt;/api/verify</code>, then press the gear button and paste the following in the new text field</li>
+<li>create a location with the path <code>/internal/authelia/authz</code>, this should proxy to your authelia, example <code>http://127.0.0.1:9091/api/authz/auth-request</code>, then press the gear button and paste the following in the new text field</li>
 </ol>
 <pre><code>internal;
 proxy_method GET;
 proxy_pass_request_body off;
 proxy_set_header Content-Length "";
 </code></pre>
-<div class="markdown-heading"><h3 class="heading-element">tinyauth config example (no guarantee for security of it)</h3><a id="user-content-tinyauth-config-example-no-guarantee-for-security-of-it" class="anchor" aria-label="Permalink: tinyauth config example (no guarantee for security of it)" href="#tinyauth-config-example-no-guarantee-for-security-of-it"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<div class="markdown-heading"><h2 class="heading-element">tinyauth config example (limited support)</h2><a id="user-content-tinyauth-config-example-limited-support" class="anchor" aria-label="Permalink: tinyauth config example (limited support)" href="#tinyauth-config-example-limited-support"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <ol>
-<li>create a custom location / (or the location you want to use), set your proxy settings, then press the gear button and paste the following in the new text field:</li>
+<li>create a custom location / (or the location you want to use), set your proxy settings, then press the gear button and paste the following in the new text field, you need to adjust the last line:</li>
 </ol>
 <pre><code>auth_request /tinyauth;
-error_page 401 = @tinyauth_login;
+error_page 401 =302 http://tinyauth.example.com/login?redirect_uri=$scheme://$host$request_uri;
 </code></pre>
 <ol start="2">
-<li>create a location with the path <code>/tinyauth</code>, this should proxy to your tinyauth, example: <code>http://&lt;ip&gt;:&lt;port&gt;/api/auth/nginx</code>
-</li>
-<li>paste the following in the advanced config tab, you may need to adjust the last lines:</li>
+<li>create a location with the path <code>/tinyauth</code>, this should proxy to your tinyauth, example: <code>http://&lt;ip&gt;:&lt;port&gt;/api/auth/nginx</code>, then press the gear button and paste the following in the new text field</li>
 </ol>
-<pre><code>location @tinyauth_login {
-    internal;
-    return 302 http://tinyauth.example.com/login?redirect_uri=$scheme://$host$request_uri; # Make sure to replace the http://tinyauth.example.com with your own app URL
-}
+<pre><code>internal;
+proxy_method GET;
+proxy_pass_request_body off;
+proxy_set_header Content-Length "";
 </code></pre>
-<div class="markdown-heading"><h3 class="heading-element">Hints for Your Privacy Policy</h3><a id="user-content-hints-for-your-privacy-policy" class="anchor" aria-label="Permalink: Hints for Your Privacy Policy" href="#hints-for-your-privacy-policy"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<div class="markdown-heading"><h2 class="heading-element">Hints for Your Privacy Policy</h2><a id="user-content-hints-for-your-privacy-policy" class="anchor" aria-label="Permalink: Hints for Your Privacy Policy" href="#hints-for-your-privacy-policy"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <p><strong>Note: This is not legal advice. The following points are intended to give you hints and help you identify areas that may be relevant to your privacy policy. This list may not be complete or correct.</strong></p>
 <ol>
 <li>NPMplus <strong>always</strong> writes the nginx error logs to your Docker logs; it uses the error level “warn” (so every error nginx and the nginx modules mark as error level “warn” or higher will be logged), as it contains user information (like IPs) you should mention it in your privacy policy. With the default installation no user data should leave your system because of NPMplus (except for data sent to your backends, as this is the task of a reverse proxy), this should be the only data created by NPMplus containing user information by default.</li>
@@ -336,12 +355,14 @@ error_page 401 = @tinyauth_login;
 <li>If you use open-appsec <code>NGINX_LOAD_OPENAPPSEC_ATTACHMENT_MODULE</code>, you should also include information about it; since I don't use it myself, I can't give you further hints.</li>
 <li>If you collect any user information (like through other custom nginx modules, modules you can load via env, lua scripts, ...), also mention it.</li>
 <li>If you use the caddy http to https redirect container, you should also mention the data collected by it, since it will also collect (error) logs.</li>
+<li>If use use anubis, see here: <a href="https://anubis.techaro.lol/docs/admin/configuration/impressum" rel="nofollow">https://anubis.techaro.lol/docs/admin/configuration/impressum</a>
+</li>
 <li>If you do any extra custom/advanced configuration/modification, which is in someway related to the users data, then yes, keep in mind to also mention this.</li>
 <li>Anything else you do with the users data, should also be mentioned. (Like what you backend does or any other proxies in front of NPMplus, how data is stored, how long, ads, analytic tools, how data is handled if they contact your, etc.)</li>
 <li>I think this does not need to be mentioned, but you can mention it if you want to be sure (does not apply if you use letsencrypt, they don't support OCSP anymore): some clients (like firefox) send OCSP requests to your CA by default if the CA adds OCSP-URLs to your cert (can be disabled by the users in firefox), I think this does not need to be mentioned as no data goes to you, but directly to the CA and the client initiates this check by itself and is not ask or required by you to do this, your cert just says the the client can check this if it wants</li>
 <li>Also optional and should no be required, I think: some information about the data saved by the nameservers running your domain, should not be required I think, since nearly always there is a provider between the users and your nameserver which acts like a proxy so the dns requests of your users will be hidden as theier provider, which instead should explain theier users how they handle data as "dns proxy"</li>
 </ol>
-<div class="markdown-heading"><h3 class="heading-element">prerun scripts (EXPERT option) - if you don't know what this is, ignore it</h3><a id="user-content-prerun-scripts-expert-option---if-you-dont-know-what-this-is-ignore-it" class="anchor" aria-label="Permalink: prerun scripts (EXPERT option) - if you don't know what this is, ignore it" href="#prerun-scripts-expert-option---if-you-dont-know-what-this-is-ignore-it"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<div class="markdown-heading"><h2 class="heading-element">prerun scripts (EXPERT option) - if you don't know what this is, ignore it</h2><a id="user-content-prerun-scripts-expert-option---if-you-dont-know-what-this-is-ignore-it" class="anchor" aria-label="Permalink: prerun scripts (EXPERT option) - if you don't know what this is, ignore it" href="#prerun-scripts-expert-option---if-you-dont-know-what-this-is-ignore-it"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <p>if you need to run scripts before NPMplus launches put them under: <code>/opt/npmplus/prerun/*.sh</code> (please add <code>#!/usr/bin/env sh</code> / <code>#!/usr/bin/env bash</code> to the top of the script) you need to create this folder yourself, also enable the env</p>
 <div class="markdown-heading"><h2 class="heading-element">Contributing</h2><a id="user-content-contributing" class="anchor" aria-label="Permalink: Contributing" href="#contributing"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <p>All are welcome to create pull requests for this project, but this does not mean it will be merged.</p>
