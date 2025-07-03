@@ -88,7 +88,7 @@ While advanced configuration options are available, they remain entirely optiona
 <ul>
 <li>
 <strong>NOTE: Migrating back to the original version is not possible.</strong> Please make a <strong>backup</strong> before migrating, so you have the option to revert if needed</li>
-<li>Please delete all certs using dnspod as DNS provider and recreate them after migration, since the certbot plugin used was replaced</li>
+<li>The following certbot dns plugins have been replaced, which means that certs using one of these proivder will not renew and should be recreated: <code>certbot-dns-he</code>, <code>certbot-dns-dnspod</code> and <code>certbot-dns-do</code> (<code>certbot-dns-do</code> was replaced in upstream with v2.12.4)</li>
 <li>Stop nginx-proxy-manager download the latest compose.yaml, adjust your paths (of /etc/letsencrypt and /data) to the ones you used with nginx-proxy-manager and adjust the envs of the compose file how you like it and then deploy it</li>
 <li>You can now remove the <code>/etc/letsencrypt</code> mount, since it was moved to <code>/data</code> while migration, and redeploy the compose file</li>
 <li>Since many buttons have changed, please check if they are still correct for every host you have.</li>
