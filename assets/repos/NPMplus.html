@@ -178,9 +178,11 @@ Note: If you don't <a href="https://docs.crowdsec.net/docs/next/configuration/cr
     #root /var/www/&lt;your-html-site-folder-name&gt;; # or use the "alias" directive of the line above
     #fancyindex off; # alternative to nginx "index" option (looks better and has more options)
     location ~* \.php(?:$|/) {
+      fastcgi_buffering on; # disable if the connection between nginx and php-fpm is fast
+      fastcgi_request_buffering on; # disable if the connection between nginx and php-fpm is fast
       fastcgi_split_path_info ^(.*\.php)(/.*)$;
       try_files $fastcgi_script_name =404;
-      fastcgi_pass ...; # set this to the address of your php-fpm
+      fastcgi_pass ...; # set this to the address of your php-fpm (socket/tcp)
     }
 }
 </code></pre>
