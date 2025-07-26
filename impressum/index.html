@@ -42,7 +42,10 @@
         </div>
     </noscript>
     <div id="Impressum" class="pr-4 pl-4">
-        <script>readHTML("Impressum", "/.impressum.html")</script>
+        <script>
+            readHTML("Impressum", "/.impressum.html");
+            document.head.insertAdjacentHTML('beforeend','<style>p,h1,h2{unicode-bidi:bidi-override;direction:rtl;text-align:left}</style>');
+        </script>
     </div>
     <div id="footer">
         <script>
