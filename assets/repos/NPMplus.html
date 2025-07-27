@@ -6,11 +6,11 @@ If you don't need the web GUI of NPMplus, you may also have a look at caddy: <a 
 <li><a href="#quick-setup">Quick Setup</a></li>
 <li><a href="#migration-from-upstreamvanilla-nginx-proxy-manager">Migration from upstream/vanilla nginx-proxy-manager</a></li>
 </ul>
-<p><strong>Note: supported architectures are x86_64/amd64 and aarch64/arm64 (so no support of armhf/armv7, armel/armv6, 32-bit systems and other archs, because of compile time).</strong> <br>
-<strong>Note: remember to expose udp for the https port (443/upd) and to add your domain to the <a href="https://hstspreload.org" rel="nofollow">hsts preload list</a> if you enabled hsts for your host.</strong> <br>
+<p><strong>Dupported architectures: x86_64/amd64 and aarch64/arm64 (other archs like armhf/armv7, armel/armv6 or any 32-bit systems are not supported, because of the duration to compile).</strong> <br>
+<strong>Note: remember to expose udp for the https port (443/upd) and to add your domain to the <a href="https://hstspreload.org" rel="nofollow">hsts preload list</a> if you enabled hsts for your domain.</strong> <br>
 <strong>Note: MariaDB/MySQL/PostgreSQL may work, but are unsupported, have no advantage over SQLite (at least in in NPMplus) and are not recommended.</strong> <br>
-<strong>Note: NPMplus won't trust cloudflare until you set SKIP_IP_RANGES to false, but please read <a href="#notes-on-cloudflare">this</a> first before setting the env to true.</strong> <br>
-<strong>Note: no route53 and no aws cloudfront ip ranges support.</strong> <br></p>
+<strong>Note: NPMplus won't trust cloudflare until you set the env SKIP_IP_RANGES to false, but please read <a href="#notes-on-cloudflare">this</a> first before setting the env to true.</strong> <br>
+<strong>Note: route53 is not supported as dns-challenge provider and Amazon CloudFront IPs can't be automatically trusted in NPMplus, even if you set SKIP_IP_RANGES env to false.</strong> <br></p>
 <div class="markdown-heading"><h2 class="heading-element">List of new features</h2><a id="user-content-list-of-new-features" class="anchor" aria-label="Permalink: List of new features" href="#list-of-new-features"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <ul>
 <li>Supports HTTP/3 (QUIC) protocol, requires you to expose https with udp</li>
