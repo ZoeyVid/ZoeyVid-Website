@@ -3,7 +3,7 @@
 <p>This is an improved fork of the nginx-proxy-manager, see below for some changes <br>
 If you don't need the web GUI of NPMplus, you may also have a look at caddy: <a href="https://caddyserver.com" rel="nofollow">https://caddyserver.com</a></p>
 <ul>
-<li><a href="https://github.com/ZoeyVid/NPMplus/edit/develop/README.md#compatibility-to-upstream">Compatibility (to Upstream)</a></li>
+<li><a href="#compatibility-to-upstream">Compatibility (to Upstream)</a></li>
 <li><a href="#quick-setup">Quick Setup</a></li>
 <li><a href="#migration-from-upstreamvanilla-nginx-proxy-manager">Migration from upstream/vanilla nginx-proxy-manager</a></li>
 </ul>
@@ -107,7 +107,7 @@ The initial unique admin password will be logged to the NPMplus docker logs, you
 <strong>NOTE: Migrating back to the original version is not possible.</strong> Please make a <strong>backup</strong> before migrating, so you have the option to revert if needed</li>
 </ul>
 <ol>
-<li>Please read <a href="https://github.com/ZoeyVid/NPMplus/edit/develop/README.md#compatibility-to-upstream">this</a> first</li>
+<li>Please read <a href="#compatibility-to-upstream">this</a> first</li>
 <li>make a backup of your data and letsencrypt folders (creating a copy using <code>cp -a</code> should be enough)</li>
 <li>download the latest compose.yaml of NPMplus</li>
 <li>adjust your paths (of /etc/letsencrypt and /data) to the ones you used with nginx-proxy-manager</li>
