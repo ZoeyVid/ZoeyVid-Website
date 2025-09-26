@@ -121,11 +121,10 @@ The initial unique admin password will be logged to the NPMplus docker logs, you
 <li>Please report all (migration) issues you may have</li>
 </ol>
 <div class="markdown-heading"><h1 class="heading-element">Crowdsec</h1><a id="user-content-crowdsec" class="anchor" aria-label="Permalink: Crowdsec" href="#crowdsec"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
-<p>Note: Using Immich behind NPMplus with enabled appsec causes issues, see here: <a href="https://github.com/ZoeyVid/NPMplus/discussions/1241">#1241</a> <br>
-Note: If you don't <a href="https://docs.crowdsec.net/docs/next/configuration/crowdsec_configuration/#sharing" rel="nofollow">disable sharing in crowdsec</a>, you need to mention that <a href="https://docs.crowdsec.net/docs/central_api/intro/#signal-meta-data" rel="nofollow">this</a> is sent to crowdsec in your privacy policy.</p>
+
+<p>Note: If you don't <a href="https://docs.crowdsec.net/docs/next/configuration/crowdsec_configuration/#sharing" rel="nofollow">disable sharing in crowdsec</a>, you may need to mention that <a href="https://docs.crowdsec.net/docs/central_api/intro/#signal-meta-data" rel="nofollow">this</a> is sent to crowdsec in your privacy policy.</p>
 <ol>
-<li>Install crowdsec and the ZoeyVid/npmplus collection for example by using crowdsec container at the end of the compose.yaml, you may also want to install this, but be warned of false positives: <a href="https://app.crowdsec.net/hub/author/crowdsecurity/collections/http-dos" rel="nofollow">https://app.crowdsec.net/hub/author/crowdsecurity/collections/http-dos</a>
-</li>
+<li>Install crowdsec and the ZoeyVid/npmplus collection for example by using crowdsec container at the end of the compose.yaml, you may also want to install <a href="https://app.crowdsec.net/hub/author/crowdsecurity/collections/http-dos" rel="nofollow">this</a>, but be warned of false positives</li>
 <li>Set LOGROTATE to <code>true</code> in your <code>compose.yaml</code> and redeploy</li>
 <li>Open <code>/opt/crowdsec/conf/acquis.d/npmplus.yaml</code> (path may be different depending how you installed crowdsec) and fill it with:</li>
 </ol>
@@ -153,7 +152,7 @@ Note: If you don't <a href="https://docs.crowdsec.net/docs/next/configuration/cr
 <span class="pl-c"><span class="pl-c">#</span>labels:</span>
 <span class="pl-c"><span class="pl-c">#</span>  type: openappsec</span></pre></div>
 <ol start="4">
-<li>Make sure to use <code>network_mode: host</code> in your compose file</li>
+<li>Make sure to use <code>network_mode: host</code> in your compose file for the NPMplus container</li>
 <li>Run <code>docker exec crowdsec cscli bouncers add npmplus -o raw</code> and save the output</li>
 <li>Open <code>/opt/npmplus/crowdsec/crowdsec.conf</code>
 </li>
