@@ -28,7 +28,7 @@ This plugin works with the Minecraft versions 1.13-1.21 <br></p>
 <tr>
 <td><code>/stacker immune &lt;player&gt;</code></td>
 <td>toggle for others the possibility of being stacked by others</td>
-<td><code>stacker.immune(.other)</code></td>
+<td><code>stacker.immune.other</code></td>
 <td>op</td>
 </tr>
 <tr>
@@ -40,15 +40,17 @@ This plugin works with the Minecraft versions 1.13-1.21 <br></p>
 <tr>
 <td><code>/stacker toggle &lt;player&gt;</code></td>
 <td>toggle for others the ability to stack others</td>
-<td><code>stacker.use(.other)</code></td>
+<td><code>stacker.use.other</code></td>
 <td>op</td>
 </tr>
 </tbody>
 </table>
 <ul>
 <li>The <code>stacker</code> permission gives all permissions.</li>
-<li>The <code>stacker.use(.other)</code> permission includes <code>stacker.use.self</code>.</li>
-<li>The <code>stacker.immune(.other)</code> permission includes <code>stacker.immune.self</code>.</li>
+<li>The <code>stacker.immune</code> permission gives all permissions which start with <code>stacker.immune.</code>.</li>
+<li>The <code>stacker.immune.other</code> permission includes <code>stacker.immune.self</code>.</li>
+<li>The <code>stacker.use</code> permission gives all permissions which start with <code>stacker.use.</code>.</li>
+<li>The <code>stacker.use.other</code> permission includes <code>stacker.use.self</code>.</li>
 <li>Removing the <code>stacker.command</code> permission can be used to fully disable the <code>/stacker</code> command.</li>
 </ul>
 <div class="markdown-heading"><h2 class="heading-element">Translate the Plugin</h2><a id="user-content-translate-the-plugin" class="anchor" aria-label="Permalink: Translate the Plugin" href="#translate-the-plugin"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
