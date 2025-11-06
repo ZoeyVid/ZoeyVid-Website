@@ -15,7 +15,7 @@ jobs:
         with:
           input: assets/css/input.css
           output: assets/css/output.css
-          params: "--minify"
+#          params: "--minify"
       - name: push changes
         run: |
           git add --force assets/css/output.css
