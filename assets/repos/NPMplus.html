@@ -29,7 +29,6 @@ If you don't need the web GUI of NPMplus, you may also have a look at caddy: <a 
 </ul>
 </li>
 <li>Option to load the openappsec attachment module, see compose.yaml for details</li>
-<li>Darkmode button in the footer for comfortable viewing (CSS done by <a href="https://github.com/theraw">@theraw</a>)</li>
 <li>Load balancing possible (requires custom configuration), see below</li>
 <li>Only enables TLSv1.2 and TLSv1.3 protocols, also ML-KEM support</li>
 <li>Faster creation of TLS certificates is achieved by eliminating unnecessary nginx reloads and configuration creations</li>
@@ -62,7 +61,6 @@ If you don't need the web GUI of NPMplus, you may also have a look at caddy: <a 
 <li>Automatic cleaning of old invalid certbot certs (set CLEAN to true)</li>
 <li>Password reset (only sqlite) using <code>docker exec -it npmplus password-reset.js USER_EMAIL PASSWORD</code>
 </li>
-<li>Multi language support, if you want to add a language, see this commit as an example: <a href="https://github.com/ZoeyVid/NPMplus/commit/a026b42329f66b89fe1fbe5e6034df5d3fc2e11f">https://github.com/ZoeyVid/NPMplus/commit/a026b42329f66b89fe1fbe5e6034df5d3fc2e11f</a> (implementation based on <a href="https://github.com/lateautumn233">@lateautumn233</a> fork)</li>
 <li>See the compose file for all available options</li>
 <li>Many env options optimized for network_mode host (ports/ip bindings)</li>
 <li>Allow port range in streams and $server_port as a valid input</li>
@@ -387,6 +385,7 @@ proxy_set_header Content-Length "";
 <li>to your upstreams</li>
 <li>to your acme/ocsp server</li>
 <li>to gravatar for profile pictures</li>
+<li>to github for a daily update check</li>
 <li>if used to pypi to download certbot plugins</li>
 <li>if used to your dns provider for acme dns challenges</li>
 <li>if used to <a href="http://www.site24x7.com" rel="nofollow">www.site24x7.com</a> for the reachability check</li>
