@@ -234,16 +234,21 @@ error_page 401 403 =200 /.within.website/?redir=$request_uri;
 <ol start="3">
 <li>Create a location with the path <code>/.within.website</code>, this should proxy to your anubis, example: <code>http://127.0.0.1:8923</code>, then press the gear button and paste the following in the new text field</li>
 </ol>
-<pre><code>proxy_method GET;
+<pre><code>proxy_redirect ~^[^/]+/.*$ /;
+proxy_method GET;
 proxy_pass_request_body off;
 proxy_set_header Content-Length "";
 </code></pre>
+<ol start="4">
+<li>You can override the images used by default by creating a custom location <code>/.within.website/x/cmd/anubis/static/img</code> which acts as a file server and serves the files <code>happy.webp</code>, <code>pensive.webp</code> and <code>reject.webp</code>
+</li>
+</ol>
 <div class="markdown-heading"><h3 class="heading-element">Tinyauth config example (some support)</h3><a id="user-content-tinyauth-config-example-some-support" class="anchor" aria-label="Permalink: Tinyauth config example (some support)" href="#tinyauth-config-example-some-support"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <ol>
-<li>Create a custom location / (or the location you want to use), set your proxy settings, then press the gear button and paste the following in the new text field, you need to adjust the last line:</li>
+<li>Create a custom location / (or the location you want to use), set your proxy settings, then press the gear button and paste the following in the new text field</li>
 </ol>
 <pre><code>auth_request /tinyauth;
-error_page 401 =302 http://tinyauth.example.com/login?redirect_uri=$scheme://$host$is_request_port$request_port$request_uri;
+error_page 401 = @tinyauth_login;
 </code></pre>
 <ol start="2">
 <li>Create a location with the path <code>/tinyauth</code>, this should proxy to your tinyauth, example: <code>http://&lt;ip&gt;:&lt;port&gt;/api/auth/nginx</code>, then press the gear button and paste the following in the new text field</li>
@@ -252,6 +257,14 @@ error_page 401 =302 http://tinyauth.example.com/login?redirect_uri=$scheme://$ho
 proxy_method GET;
 proxy_pass_request_body off;
 proxy_set_header Content-Length "";
+</code></pre>
+<ol start="3">
+<li>Paste the following in the advanced config tab, you need to replace <code>tinyauth.example.org</code> with the domain of your tinyauth.</li>
+</ol>
+<pre><code>location @tinyauth_login {
+  internal;
+  return 302 http://tinyauth.example.org/login?redirect_uri=$scheme://$host$is_request_port$request_port$request_uri;
+}
 </code></pre>
 <div class="markdown-heading"><h3 class="heading-element">Authelia config example (limited support)</h3><a id="user-content-authelia-config-example-limited-support" class="anchor" aria-label="Permalink: Authelia config example (limited support)" href="#authelia-config-example-limited-support"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <ol>
