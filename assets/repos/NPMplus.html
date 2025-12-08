@@ -133,7 +133,7 @@ The initial unique admin password will be logged to the NPMplus docker logs, you
 <span class="pl-c"><span class="pl-c">#</span>  type: openappsec</span></pre></div>
 <ol start="4">
 <li>Make sure to use <code>network_mode: host</code> in your compose file for the NPMplus container</li>
-<li>Run <code>docker exec crowdsec cscli bouncers add npmplus -o raw</code> and save the output</li>
+<li>Run <code>docker exec crowdsec cscli bouncers add npmplus</code> and save the api key of the output</li>
 <li>Open <code>/opt/npmplus/crowdsec/crowdsec.conf</code>
 </li>
 <li>Set <code>ENABLED</code> to <code>true</code>
