@@ -226,7 +226,7 @@ proxy_set_header Content-Length "";
 error_page 401 = @tinyauth_login;
 </code></pre>
 <ol start="2">
-<li>Create a location with the path <code>/tinyauth</code>, this should proxy to your tinyauth, example: <code>http://&lt;ip&gt;:&lt;port&gt;/api/auth/nginx</code>, then press the gear button and paste the following in the new text field</li>
+<li>Create a custom location with the path <code>/tinyauth</code>, this should proxy to your tinyauth, example: <code>http://&lt;ip&gt;:&lt;port&gt;/api/auth/nginx</code>, then press the gear button and paste the following in the new text field</li>
 </ol>
 <pre><code>internal;
 proxy_method GET;
@@ -234,12 +234,10 @@ proxy_pass_request_body off;
 proxy_set_header Content-Length "";
 </code></pre>
 <ol start="3">
-<li>Paste the following in the advanced config tab, you need to replace <code>tinyauth.example.org</code> with the domain of your tinyauth.</li>
+<li>Create a custom location <code>@tinyauth_login</code>, set the scheme to <code>empty</code>, then press the gear button and paste the following in the new text field, you need to replace <code>tinyauth.example.org</code> with the domain of your tinyauth.</li>
 </ol>
-<pre><code>location @tinyauth_login {
-  internal;
-  return 302 http://tinyauth.example.org/login?redirect_uri=$scheme://$host$is_request_port$request_port$request_uri;
-}
+<pre><code>internal;
+return 302 http://tinyauth.example.org/login?redirect_uri=$scheme://$host$is_request_port$request_port$request_uri;
 </code></pre>
 <div class="markdown-heading"><h3 class="heading-element">Authelia config example (limited support)</h3><a id="user-content-authelia-config-example-limited-support" class="anchor" aria-label="Permalink: Authelia config example (limited support)" href="#authelia-config-example-limited-support"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <ol>
@@ -305,15 +303,13 @@ proxy_pass_request_body off;
 proxy_set_header Content-Length "";
 </code></pre>
 <ol start="3">
-<li>Paste the following in the advanced config tab, you may need to adjust the last lines:</li>
+<li>Create a custom location <code>@tinyauth_login</code>, set the scheme to <code>empty</code>, then press the gear button and paste the following in the new text field,  you may need to adjust the last lines:</li>
 </ol>
-<pre><code>location @goauthentik_proxy_signin {
-  internal;
-  add_header Set-Cookie $auth_cookie;
-  return 302 /outpost.goauthentik.io/start?rd=$request_uri;
-  ## For domain level, use the below error_page to redirect to your authentik server with the full redirect path
-  #return 302 https://authentik.company/outpost.goauthentik.io/start?rd=$scheme://$host$is_request_port$request_port$request_uri;
-}
+<pre><code>internal;
+add_header Set-Cookie $auth_cookie;
+return 302 /outpost.goauthentik.io/start?rd=$request_uri;
+## For domain level, use the below error_page to redirect to your authentik server with the full redirect path
+#return 302 https://authentik.company/outpost.goauthentik.io/start?rd=$scheme://$host$is_request_port$request_port$request_uri;
 </code></pre>
 <div class="markdown-heading"><h2 class="heading-element">Notes on Cloudflare</h2><a id="user-content-notes-on-cloudflare" class="anchor" aria-label="Permalink: Notes on Cloudflare" href="#notes-on-cloudflare"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <ul>
