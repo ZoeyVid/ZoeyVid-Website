@@ -7,7 +7,8 @@ If you don't need the web GUI of NPMplus, you may also have a look at caddy: <a 
 <li><a href="#quick-setup">Quick Setup</a></li>
 <li><a href="#migration-from-upstreamvanilla-nginx-proxy-manager">Migration from upstream/vanilla nginx-proxy-manager</a></li>
 </ul>
-<p><strong>Note: remember to expose udp/quic for the https port (443/upd)</strong> <br>
+<p><strong>Note: by running NPMplus you agree to the TOS of Let's Encrypt/your custom CA</strong> <br>
+<strong>Note: remember to expose udp/quic for the https port (443/upd)</strong> <br>
 <strong>Note: remember to add your domain to the <a href="https://hstspreload.org" rel="nofollow">hsts preload list</a> if you enabled hsts for your domain.</strong> <br>
 <strong>Note: please report issues first to this fork before reporting them to the upstream repository.</strong> <br></p>
 <div class="markdown-heading"><h2 class="heading-element">List of new features</h2><a id="user-content-list-of-new-features" class="anchor" aria-label="Permalink: List of new features" href="#list-of-new-features"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
@@ -33,7 +34,7 @@ If you don't need the web GUI of NPMplus, you may also have a look at caddy: <a 
 <li>Option to use fancyindex if used as webserver</li>
 <li>Exposes INTERNAL backend api only to localhost</li>
 <li>Basic security headers are added if you enable HSTS (HSTS has always subdomains and preload enabled)</li>
-<li>access.log is disabled by default, unified and moved to <code>/opt/npmplus/nginx/access.log</code>
+<li>access.log is disabled by default, unified and moved to <code>/opt/npmplus/nginx/logs/access.log</code>
 </li>
 <li>Error Log written to console</li>
 <li>
@@ -114,7 +115,7 @@ The initial unique admin password will be logged to the NPMplus docker logs, you
 <li>Open <code>/opt/crowdsec/conf/acquis.d/npmplus.yaml</code> (path may be different depending how you installed crowdsec) and fill it with:</li>
 </ol>
 <div class="highlight highlight-source-yaml"><pre><span class="pl-ent">filenames</span>:
-  - <span class="pl-s">/opt/npmplus/nginx/*.log</span>
+  - <span class="pl-s">/opt/npmplus/nginx/logs/*.log</span>
 <span class="pl-ent">labels</span>:
   <span class="pl-ent">type</span>: <span class="pl-s">npmplus</span>
 ---
