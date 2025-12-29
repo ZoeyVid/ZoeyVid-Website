@@ -13,49 +13,29 @@ If you don't need the web GUI of NPMplus, you may also have a look at caddy: <a 
 <strong>Note: please report issues first to this fork before reporting them to the upstream repository.</strong> <br></p>
 <div class="markdown-heading"><h2 class="heading-element">List of new features</h2><a id="user-content-list-of-new-features" class="anchor" aria-label="Permalink: List of new features" href="#list-of-new-features"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <ul>
-<li>Supports HTTP/3 (QUIC) protocol, requires you to expose https with udp</li>
-<li>Supports CrowdSec IPS. Please see <a href="https://github.com/ZoeyVid/NPMplus#crowdsec">here</a> to enable it</li>
-<li>Goaccess included, see compose.yaml to enable, runs by default on <code>https://&lt;ip&gt;:91</code> (nginx config from <a href="https://github.com/xavier-hernandez/goaccess-for-nginxproxymanager/blob/main/resources/nginx/nginx.conf">here</a>)</li>
-<li>Option to load the openappsec attachment module, see compose.yaml for details</li>
-<li>Load balancing possible (requires custom configuration), see below</li>
-<li>Only enables TLSv1.2 and TLSv1.3 protocols, also ML-KEM support</li>
-<li>Faster creation of TLS certificates is achieved by eliminating unnecessary nginx reloads and configuration creations</li>
-<li>Supports OCSP Stapling/Must-Staple for enhanced security (manual certs not supported, see compose.yaml for details)</li>
-<li>Resolved dnspod plugin issue
-<ul>
-<li>To migrate manually, delete all dnspod certs and recreate them OR change the credentials file as per the template given <a href="https://github.com/ZoeyVid/NPMplus/blob/develop/global/certbot-dns-plugins.js">here</a>
-</li>
-</ul>
-</li>
-<li>Smaller docker image based on alpine linux</li>
-<li>Admin backend interface runs with https</li>
-<li>Default page also runs with https</li>
-<li>Option to change default TLS cert</li>
-<li>Option to use fancyindex if used as webserver</li>
-<li>Exposes INTERNAL backend api only to localhost</li>
-<li>Basic security headers are added if you enable HSTS (HSTS has always subdomains and preload enabled)</li>
-<li>access.log is disabled by default, unified and moved to <code>/opt/npmplus/nginx/logs/access.log</code>
-</li>
-<li>Error Log written to console</li>
-<li>
-<code>Server</code> response header hidden</li>
-<li>PHP optional, with option to add extensions; available packages can added using envs in the compose file, recommended to be used together with PUID/PGID</li>
-<li>Allows different acme servers using env</li>
-<li>Supports Brotli compression</li>
+<li>Supports HTTP/3 (QUIC), requires you to expose https with udp</li>
+<li>Support for crowdsec and openappsec</li>
+<li>Support for acme profiles (letsencrypt shotlived is used by default)</li>
+<li>Improved support for different acme servers (like ocsp/must-staple)</li>
+<li>OIDC support</li>
+<li>smaller image based on alpine</li>
+<li>ML-KEM support (also hardened TLS settings enforced)</li>
+<li>https for the NPMplus interface</li>
+<li>Goaccess included</li>
 <li>punycode domain support</li>
-<li>Allows infinite upload size</li>
-<li>Automatic database vacuum (only sqlite)</li>
-<li>Automatic cleaning of old invalid certbot certs (set CLEAN to true)</li>
+<li>zstd and brotli</li>
+<li>basic security headers always send</li>
+<li>allow empty ports to support loadbalancing</li>
+<li>proxy protocol support</li>
+<li>improved nginx build and nginx templates</li>
+<li>file and php server support (and fancyindex)</li>
+<li>option to edit custom certs</li>
+<li>gravatars are cached locally</li>
+<li>re-added some things that where removed with upstreams new frontend</li>
+<li>use secure cookied instead of local storage to save the token</li>
 <li>Password reset (only sqlite) using <code>docker exec -it npmplus password-reset.js USER_EMAIL PASSWORD</code>
 </li>
-<li>See the compose file for all available options</li>
-<li>Many env options optimized for network_mode host (ports/ip bindings)</li>
-<li>Allow port range in streams and $server_port as a valid input</li>
-<li>Improved regex checks for inputs</li>
-<li>Merge of upstreams OIDC PR</li>
-<li>DNS secrets are not mounted anymore, since they are saved in the db and rewritten on every container start, so they don't need to be mounted</li>
-<li>Fixed smaller issues/bugs</li>
-<li>Other small changes/improvements</li>
+<li>many other things, see this README.md and the compose.yaml</li>
 </ul>
 <div class="markdown-heading"><h2 class="heading-element">Compatibility (to Upstream)</h2><a id="user-content-compatibility-to-upstream" class="anchor" aria-label="Permalink: Compatibility (to Upstream)" href="#compatibility-to-upstream"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <ul>
@@ -145,22 +125,18 @@ The initial unique admin password will be logged to the NPMplus docker logs, you
 <li>Redeploy the <code>compose.yaml</code>
 </li>
 <li>It is recommended to block at the earliest possible point, so if possible set up a firewall bouncer: <a href="https://docs.crowdsec.net/u/bouncers/firewall" rel="nofollow">https://docs.crowdsec.net/u/bouncers/firewall</a>, make sure to also include the docker iptables in the firewall bouncer config</li>
+<li>Note that when using crowdsec requests will always be buffered, so setting <code>proxy_(request_)buffering</code> to off will not work</li>
 </ol>
 <div class="markdown-heading"><h2 class="heading-element">Use of external php-fpm (recommended)</h2><a id="user-content-use-of-external-php-fpm-recommended" class="anchor" aria-label="Permalink: Use of external php-fpm (recommended)" href="#use-of-external-php-fpm-recommended"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <ol>
-<li>Create a new Proxy Host with some dummy data for <code>Scheme</code> (like <code>path</code>), <code>Domain/IP/Path</code> (like <code>0.0.0.0</code>) (you can also use other values, since these get fully ignored)</li>
+<li>Create a new Proxy Host with some dummy data in the details tab (since these get fully ignored)</li>
 <li>Make other settings (like TLS)</li>
-<li>Put this in the advanced tab and adjust:</li>
+<li>Create a custom location <code>/</code> set the scheme to <code>path</code>, put in the path, the press the gear button and fill this in (edit the last line):</li>
 </ol>
-<pre><code>location / {
-    alias /var/www/&lt;your-html-site-folder-name&gt;/; # or use the "root" directive of the line below
-    #root /var/www/&lt;your-html-site-folder-name&gt;; # or use the "alias" directive of the line above
-    #fancyindex off; # alternative to nginx "index" option (looks better and has more options)
-    location ~* \.php(?:$|/) {
-      fastcgi_split_path_info ^(.*\.php)(/.*)$;
-      try_files $fastcgi_script_name =404;
-      fastcgi_pass ...; # set this to the address of your php-fpm (socket/tcp): https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_pass
-    }
+<pre><code>location ~* \.php(?:$|/) {
+  fastcgi_split_path_info ^(.*\.php)(/.*)$;
+  try_files $fastcgi_script_name =404;
+  fastcgi_pass ...; # set this to the address of your php-fpm (socket/tcp): https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_pass
 }
 </code></pre>
 <div class="markdown-heading"><h2 class="heading-element">Use of inbuilt php-fpm (not recommended)</h2><a id="user-content-use-of-inbuilt-php-fpm-not-recommended" class="anchor" aria-label="Permalink: Use of inbuilt php-fpm (not recommended)" href="#use-of-inbuilt-php-fpm-not-recommended"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
@@ -168,6 +144,14 @@ The initial unique admin password will be logged to the NPMplus docker logs, you
 <li>First enable php inside your compose file (you can add more php extension using envs in the compose file)</li>
 <li>Set the forwarding port to the php version you want to use and is supported by NPMplus (like 83/84/85)</li>
 </ol>
+<div class="markdown-heading"><h2 class="heading-element">Comments on some buttons</h2><a id="user-content-comments-on-some-buttons" class="anchor" aria-label="Permalink: Comments on some buttons" href="#comments-on-some-buttons"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<ul>
+<li>Forward Hostname / IP / Path: if the scheme is set to path you can just put here a path in and nginx works as a file server, otherwise you need to input ip/domain, you can also append a path to the ip/domain like <code>127.0.0.1/path</code> to proxy to a subpath. For custom locations a path which ends with <code>/</code> will strip the path of the location. So a request <code>GET /cdf/abc</code> to a custom location <code>/cdf</code> which proxies to <code>127.0.0.1/abc</code> will proxy to <code>127.0.0.1/abc/abc</code> and a ustom location <code>/cdf</code> which proxies to <code>127.0.0.1/abc/</code> will proxy to <code>127.0.0.1/abc</code> (same stripping applies to <code>path</code>)</li>
+<li>Forward Port (optional): port of upstream or php version if scheme is <code>path</code>
+</li>
+<li>Enable fancyindex/compression by upstream: for scheme set to <code>path</code> this will enabled fancyindex, which shows a index of all files in the folder if there is no index file, for proxy hosts this will allow the backend to compress files, I recommend you to keep this disabled</li>
+<li>Reuse Key: this will make the new cert always keep its key unless you force renew it, I recommend you to keep this disabled (not to keep the keep), a reason to keep the key would be TLSA/pubkey pinning</li>
+</ul>
 <div class="markdown-heading"><h2 class="heading-element">Load Balancing</h2><a id="user-content-load-balancing" class="anchor" aria-label="Permalink: Load Balancing" href="#load-balancing"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <ol>
 <li>Open and edit this file: <code>/opt/npmplus/custom_nginx/http_top.conf</code> (or <code>/opt/npmplus/custom_nginx/stream_top.conf</code> for streams), if you changed /opt/npmplus to a different path make sure to change the path to fit</li>
