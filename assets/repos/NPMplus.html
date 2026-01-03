@@ -150,7 +150,7 @@ The initial unique admin password will be logged to the NPMplus docker logs, you
 <li>Forward Port (optional): port of upstream or php version if scheme is <code>path</code>
 </li>
 <li>Enable fancyindex/compression by upstream: for scheme set to <code>path</code> this will enabled fancyindex, which shows a index of all files in the folder if there is no index file, for proxy hosts this will allow the backend to compress files, I recommend you to keep this disabled</li>
-<li>Reuse Key: this will make the new cert always keep its key unless you force renew it, I recommend you to keep this disabled (not to keep the keep), a reason to keep the key would be TLSA/pubkey pinning</li>
+<li>Reuse Key: this will make the new cert always keep its key unless you force renew it, I recommend you to keep this disabled (not to keep the key), a reason to keep the key would be TLSA/pubkey pinning</li>
 </ul>
 <div class="markdown-heading"><h2 class="heading-element">Examples of implementing some services using auth_request</h2><a id="user-content-examples-of-implementing-some-services-using-auth_request" class="anchor" aria-label="Permalink: Examples of implementing some services using auth_request" href="#examples-of-implementing-some-services-using-auth_request"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <p>These example need to be defined for each hosts (whitelist), if you want to configure them globally with exemptions (blacklist), please create a discussion, I can try to help you with that.</p>
