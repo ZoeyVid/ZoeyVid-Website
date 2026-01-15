@@ -1,7 +1,6 @@
 <meta charset=utf-8>
 <div class="markdown-heading"><h1 class="heading-element">NPMplus</h1><a id="user-content-npmplus" class="anchor" aria-label="Permalink: NPMplus" href="#npmplus"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
-<p>This is a fork of the nginx-proxy-manager, see below for some changes <br>
-If you don't need the web GUI of NPMplus, you may also have a look at caddy: <a href="https://caddyserver.com" rel="nofollow">https://caddyserver.com</a></p>
+<p>If you don't need the web GUI of NPMplus, you may also have a look at caddy: <a href="https://caddyserver.com" rel="nofollow">https://caddyserver.com</a></p>
 <ul>
 <li><a href="#compatibility-to-upstream">Compatibility (to Upstream)</a></li>
 <li><a href="#quick-setup">Quick Setup</a></li>
@@ -32,7 +31,7 @@ If you don't need the web GUI of NPMplus, you may also have a look at caddy: <a 
 <li>file and php server support (and fancyindex)</li>
 <li>option to edit custom certs</li>
 <li>gravatars are cached locally and fetched by the backend (better privacy by not exposing you directly to gravatar)</li>
-<li>qrcodes for totp are generated locally in your browser instead of using a public api (better privacy/security by not exposing you and the secret to the public api)</li>
+<li>qrcodes for totp are generated locally in your browser instead of using a third-party api (better privacy/security by not exposing you and the secret to the third-party api)</li>
 <li>re-added some things that where removed with upstreams new frontend</li>
 <li>use secure cookied instead of local storage to save the token</li>
 <li>Password reset (only sqlite) using <code>docker exec -it npmplus password-reset.js USER_EMAIL PASSWORD</code>
@@ -48,6 +47,8 @@ If you don't need the web GUI of NPMplus, you may also have a look at caddy: <a 
 <li>NPMplus won't trust cloudflare until you set the env SKIP_IP_RANGES to false, but please read <a href="#notes-on-cloudflare">this</a> first before setting the env to true.</li>
 <li>route53 is not supported as dns-challenge provider and Amazon CloudFront IPs can't be automatically trusted in NPMplus, even if you set SKIP_IP_RANGES env to false.</li>
 <li>The following certbot dns plugins have been replaced, which means that certs using one of these proivder will not renew and need to be recreated (not renewed): <code>certbot-dns-he</code>, <code>certbot-dns-dnspod</code>, <code>certbot-dns-online</code> and <code>certbot-dns-do</code> (<code>certbot-dns-do</code> was replaced in upstream with v2.12.4 and then merged into NPMplus)</li>
+<li>many buttons have changed behavior, see <a href="#comments-on-some-buttons">Comments on some buttons</a>
+</li>
 </ul>
 <div class="markdown-heading"><h2 class="heading-element">Quick Setup</h2><a id="user-content-quick-setup" class="anchor" aria-label="Permalink: Quick Setup" href="#quick-setup"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <ol>
