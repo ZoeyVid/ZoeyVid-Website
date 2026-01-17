@@ -265,7 +265,7 @@ proxy_pass_request_body off;
 proxy_set_header Content-Length "";
 </code></pre>
 <ol start="3">
-<li>Create a custom location <code>@tinyauth_login</code>, set the scheme to <code>empty</code>, then press the gear button and paste the following in the new text field,  you may need to adjust the last lines:</li>
+<li>Create a custom location <code>@goauthentik_proxy_signin</code>, set the scheme to <code>empty</code>, then press the gear button and paste the following in the new text field,  you may need to adjust the last lines:</li>
 </ol>
 <pre><code>internal;
 add_header Set-Cookie $auth_cookie;
