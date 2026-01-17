@@ -47,7 +47,7 @@
 <li>NPMplus won't trust cloudflare until you set the env SKIP_IP_RANGES to false, but please read <a href="#notes-on-cloudflare">this</a> first before setting the env to true.</li>
 <li>route53 is not supported as dns-challenge provider and Amazon CloudFront IPs can't be automatically trusted in NPMplus, even if you set SKIP_IP_RANGES env to false.</li>
 <li>The following certbot dns plugins have been replaced, which means that certs using one of these proivder will not renew and need to be recreated (not renewed): <code>certbot-dns-he</code>, <code>certbot-dns-dnspod</code>, <code>certbot-dns-online</code> and <code>certbot-dns-do</code> (<code>certbot-dns-do</code> was replaced in upstream with v2.12.4 and then merged into NPMplus)</li>
-<li>many buttons have changed behavior, see <a href="#comments-on-some-buttons">Comments on some buttons</a>
+<li>many forms have changed behavior, see <a href="#comments-on-some-buttons">Comments on some buttons</a>
 </li>
 </ul>
 <div class="markdown-heading"><h2 class="heading-element">Quick Setup</h2><a id="user-content-quick-setup" class="anchor" aria-label="Permalink: Quick Setup" href="#quick-setup"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
@@ -81,7 +81,7 @@
 <li>stop nginx-proxy-manager</li>
 <li>deploy the NPMplus compose.yaml</li>
 <li>You should now remove the <code>/etc/letsencrypt</code> mount, since it was moved to <code>/data</code> while migration, then redeploy the compose file</li>
-<li>Since many buttons have changed, please check if they are still correct for every host you have.</li>
+<li>Since many forms have changed, please check if they are still correct for every host you have.</li>
 <li>If you proxy NPM(plus) through NPM(plus) make sure to change the scheme from http to https</li>
 <li>Maybe setup crowdsec (see below)</li>
 <li>Please report all (migration) issues you may have</li>
