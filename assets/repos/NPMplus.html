@@ -149,7 +149,15 @@
 <li>Forward Hostname / IP / Path: if the scheme is set to path you can just put here a path in and nginx works as a file server, otherwise you need to input ip/domain, you can also append a path to the ip/domain like <code>127.0.0.1/path</code> to proxy to a subpath. For custom locations a path which ends with <code>/</code> will strip the path of the location. So a request <code>GET /cdf/abc</code> to a custom location <code>/cdf</code> which proxies to <code>127.0.0.1/abc</code> will proxy to <code>127.0.0.1/abc/abc</code> and a custom location <code>/cdf</code> which proxies to <code>127.0.0.1/abc/</code> will proxy to <code>127.0.0.1/abc</code> (same stripping applies to <code>path</code>)</li>
 <li>Forward Port (optional): port of upstream or php version if scheme is <code>path</code>
 </li>
-<li>Enable fancyindex/compression by upstream: for scheme set to <code>path</code> this will enabled fancyindex, which shows a index of all files in the folder if there is no index file, for proxy hosts this will allow the backend to compress files, I recommend you to keep this disabled</li>
+<li>Enable fancyindex/compression by upstream:
+<ul>
+<li>for scheme set to <code>path</code> this will enabled fancyindex, which shows a index of all files in the folder if there is no index file, only enable this if you know what you are doing and you need the index</li>
+<li>for scheme set to http(s)/grpc(s) this will allow the backend to compress files, I recommend you to keep this disabled, there may be cases where this is needed since otherwise the upstream missbehaves for some reason (like collabora in nextcloud all-in-one)</li>
+</ul>
+</li>
+<li>Disable Request/Response Buffering: Most time you want keep buffering enabled, you may want to disable this if you for example want to stream videos and have a fast and stable connection to the upstream server</li>
+<li>Send noindex header and block some user agents: This does what is says, it appends a header to all responses which says that the site should not be indexed while blocking requests of crawlers based on the user agent sent with the request</li>
+<li>Wbesockets: this button was removed, websockets are now always enabled</li>
 <li>Reuse Key: this will make the new cert always keep its key unless you force renew it, I recommend you to keep this disabled (not to keep the key), a reason to keep the key would be TLSA/pubkey pinning</li>
 <li>TLS to upstream (for Streams): This can be used if your stream target already uses tls but you want to override it with a NPMplus cert</li>
 </ul>
