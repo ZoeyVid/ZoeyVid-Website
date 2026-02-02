@@ -146,7 +146,13 @@
 </ol>
 <div class="markdown-heading"><h2 class="heading-element">Comments on some buttons</h2><a id="user-content-comments-on-some-buttons" class="anchor" aria-label="Permalink: Comments on some buttons" href="#comments-on-some-buttons"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <ul>
-<li>Forward Hostname / IP / Path: if the scheme is set to path you can just put here a path in and nginx works as a file server, otherwise you need to input ip/domain, you can also append a path to the ip/domain like <code>127.0.0.1/path</code> to proxy to a subpath. For custom locations a path which ends with <code>/</code> will strip the path of the location. So a request <code>GET /cdf/abc</code> to a custom location <code>/cdf</code> which proxies to <code>127.0.0.1/abc</code> will proxy to <code>127.0.0.1/abc/abc</code> and a custom location <code>/cdf</code> which proxies to <code>127.0.0.1/abc/</code> will proxy to <code>127.0.0.1/abc</code> (same stripping applies to <code>path</code>)</li>
+<li>Forward Hostname / IP / Path: if the scheme is set to path you can just put here a path in and nginx works as a file server, otherwise you need to input ip/domain, you can also append a path to the ip/domain like <code>127.0.0.1/path</code> to proxy to a subpath.
+<ul>
+<li>For custom locations with a set path, the path of the location will be stripped. So a request <code>GET /cdf/abc</code> to a custom location <code>/cdf</code> which proxies to <code>127.0.0.1/abc</code> will proxy to <code>127.0.0.1/abc/abc</code>, a custom location <code>/cdf/</code> which proxies to <code>127.0.0.1/</code> will proxy to <code>127.0.0.1/abc</code>  and a custom location <code>/cdf</code> which proxies to <code>127.0.0.1</code> will proxy to <code>127.0.0.1/cdf/abc</code>
+</li>
+<li>If the scheme is set to <code>path</code>, a path ending with a <code>/</code> will be searched relative to the custom location (is uses nginx alias) and a path ending without a <code>/</code> will be searched relative to the main <code>/</code> location (it uses nginx root)</li>
+</ul>
+</li>
 <li>Forward Port (optional): port of upstream or php version if scheme is <code>path</code>
 </li>
 <li>Enable fancyindex/compression by upstream:
