@@ -342,13 +342,44 @@ return 302 /outpost.goauthentik.io/start?rd=$request_uri;
 <span class="pl-c"><span class="pl-c">#</span>  fc00::/7 yes;</span>
 <span class="pl-c"><span class="pl-c">#</span>  fec0::/10 yes;</span>
 <span class="pl-c"><span class="pl-c">#</span>}</span></pre></div>
-<ol start="4">
-<li>create a custom location / (or the location you want to use), set your proxy settings, then press the gear button and paste the following in the new text field, you may want to adjust the last lines (do not use the advanced tab as it may break cert renewals):</li>
-</ol>
+<p>4a. to set it per location: create a custom location / (or the location you want to use), set your proxy settings, then press the gear button and paste the following in the new text field, you may want to adjust the last lines (do not use the advanced tab with this example as it may break cert renewals):</p>
 <div class="highlight highlight-source-yaml"><pre><span class="pl-c"><span class="pl-c">#</span> uncomment if you block/don't allow IPs with unknown country codes</span>
 <span class="pl-c"><span class="pl-c">#</span>if ($geo_is_private_ip = yes) { </span>
 <span class="pl-c"><span class="pl-c">#</span>  set $geoip2_country_rule yes; </span>
 <span class="pl-c"><span class="pl-c">#</span>} </span>
+<span class="pl-s">if ($geoip2_country_rule = no) { </span>
+  <span class="pl-s">return 444; </span><span class="pl-c"><span class="pl-c">#</span> this rejects the connection, but you can also return 403 to tell the client that it was denied</span>
+<span class="pl-s">} </span></pre></div>
+<p>4b. to set it for an entire host: put this in the advanced tab:</p>
+<div class="highlight highlight-source-yaml"><pre><span class="pl-c"><span class="pl-c">#</span> uncomment if you block/don't allow IPs with unknown country codes</span>
+<span class="pl-c"><span class="pl-c">#</span>if ($geo_is_private_ip = yes) { </span>
+<span class="pl-c"><span class="pl-c">#</span>  set $geoip2_country_rule yes; </span>
+<span class="pl-c"><span class="pl-c">#</span>}</span>
+<span class="pl-s">if ($request_uri ~* "^/\.well-known/acme-challenge/") {</span>
+    <span class="pl-s">set $geoip2_country_rule yes;</span>
+<span class="pl-s">}</span>
+<span class="pl-s">if ($geoip2_country_rule = no) { </span>
+  <span class="pl-s">return 444; </span><span class="pl-c"><span class="pl-c">#</span> this rejects the connection, but you can also return 403 to tell the client that it was denied</span>
+<span class="pl-s">} </span></pre></div>
+<p>4c. to set it for all http hosts of them same type: put this in the <code>custom_nginx/server_proxy.conf</code> / <code>custom_nginx/server_redirect.conf</code> / <code>custom_nginx/server_dead.conf</code> file(s):</p>
+<div class="highlight highlight-source-yaml"><pre><span class="pl-c"><span class="pl-c">#</span> uncomment if you block/don't allow IPs with unknown country codes</span>
+<span class="pl-c"><span class="pl-c">#</span>if ($geo_is_private_ip = yes) { </span>
+<span class="pl-c"><span class="pl-c">#</span>  set $geoip2_country_rule yes; </span>
+<span class="pl-c"><span class="pl-c">#</span>}</span>
+<span class="pl-s">if ($request_uri ~* "^/\.well-known/acme-challenge/") {</span>
+    <span class="pl-s">set $geoip2_country_rule yes;</span>
+<span class="pl-s">}</span>
+<span class="pl-s">if ($geoip2_country_rule = no) { </span>
+  <span class="pl-s">return 444; </span><span class="pl-c"><span class="pl-c">#</span> this rejects the connection, but you can also return 403 to tell the client that it was denied</span>
+<span class="pl-s">} </span></pre></div>
+<p>4d. to set it for all http hosts: put this in the <code>custom_nginx/server_http.conf</code> file:</p>
+<div class="highlight highlight-source-yaml"><pre><span class="pl-c"><span class="pl-c">#</span> uncomment if you block/don't allow IPs with unknown country codes</span>
+<span class="pl-c"><span class="pl-c">#</span>if ($geo_is_private_ip = yes) { </span>
+<span class="pl-c"><span class="pl-c">#</span>  set $geoip2_country_rule yes; </span>
+<span class="pl-c"><span class="pl-c">#</span>}</span>
+<span class="pl-s">if ($request_uri ~* "^/\.well-known/acme-challenge/") {</span>
+    <span class="pl-s">set $geoip2_country_rule yes;</span>
+<span class="pl-s">}</span>
 <span class="pl-s">if ($geoip2_country_rule = no) { </span>
   <span class="pl-s">return 444; </span><span class="pl-c"><span class="pl-c">#</span> this rejects the connection, but you can also return 403 to tell the client that it was denied</span>
 <span class="pl-s">} </span></pre></div>
