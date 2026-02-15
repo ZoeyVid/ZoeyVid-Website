@@ -192,7 +192,7 @@
 </ol>
 <div class="markdown-heading"><h3 class="heading-element">Authentik</h3><a id="user-content-authentik" class="anchor" aria-label="Permalink: Authentik" href="#authentik"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <ol>
-<li>Set the AUTH_REQUEST_AUTHENTIK_UPSTREAM (and optional AUTH_REQUEST_AUTHENTIK_DOMAIN) env in the NPMplus compose.yaml and select authentik/authentik-send-basic-auth in the Auth Request selection, no custom/advanced config/locations needed</li>
+<li>Set the AUTH_REQUEST_AUTHENTIK_UPSTREAM env (and optional AUTH_REQUEST_AUTHENTIK_DOMAIN env if you use "domain level", this env may not work if you use the "single application" variant) in the NPMplus compose.yaml and select authentik/authentik-send-basic-auth in the Auth Request selection, no custom/advanced config/locations needed</li>
 </ol>
 <div class="markdown-heading"><h2 class="heading-element">Load Balancing</h2><a id="user-content-load-balancing" class="anchor" aria-label="Permalink: Load Balancing" href="#load-balancing"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <ol>
