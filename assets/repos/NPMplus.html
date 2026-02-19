@@ -64,7 +64,8 @@
 <li>Adjust TZ and ACME_EMAIL to your values and maybe adjust other env options to your needs</li>
 <li>Start NPMplus by running (or deploy your portainer stack)</li>
 </ol>
-<div class="highlight highlight-source-shell"><pre>docker compose up -d</pre></div>
+<pre lang="bash"><code>docker compose up -d
+</code></pre>
 <ol start="5">
 <li>Log in to the Admin UI: When your docker container is running, connect to the admin interface using <code>https://</code> on port <code>81</code>.</li>
 </ol>
@@ -96,24 +97,25 @@
 <li>Set LOGROTATE to <code>true</code> in your <code>compose.yaml</code> and redeploy</li>
 <li>Open <code>/opt/crowdsec/conf/acquis.d/npmplus.yaml</code> (path may be different depending how you installed crowdsec) and fill it with:</li>
 </ol>
-<div class="highlight highlight-source-yaml"><pre><span class="pl-ent">filenames</span>:
-  - <span class="pl-s">/opt/npmplus/nginx/logs/*.log</span>
-<span class="pl-ent">labels</span>:
-  <span class="pl-ent">type</span>: <span class="pl-s">npmplus</span>
+<pre lang="yaml"><code>filenames:
+  - /opt/npmplus/nginx/logs/*.log
+labels:
+  type: npmplus
 ---
-<span class="pl-ent">listen_addr</span>: <span class="pl-s">0.0.0.0:7422</span>
-<span class="pl-ent">appsec_config</span>: <span class="pl-s">crowdsecurity/appsec-default</span>
-<span class="pl-ent">name</span>: <span class="pl-s">appsec</span>
-<span class="pl-ent">source</span>: <span class="pl-s">appsec</span>
-<span class="pl-ent">labels</span>:
-  <span class="pl-ent">type</span>: <span class="pl-s">appsec</span>
-<span class="pl-c"><span class="pl-c">#</span> if you use openappsec you can enable this</span>
-<span class="pl-c"><span class="pl-c">#</span>---</span>
-<span class="pl-c"><span class="pl-c">#</span>source: file</span>
-<span class="pl-c"><span class="pl-c">#</span>filenames:</span>
-<span class="pl-c"><span class="pl-c">#</span> - /opt/openappsec/logs/cp-nano-http-transaction-handler.log*</span>
-<span class="pl-c"><span class="pl-c">#</span>labels:</span>
-<span class="pl-c"><span class="pl-c">#</span>  type: openappsec</span></pre></div>
+listen_addr: 0.0.0.0:7422
+appsec_config: crowdsecurity/appsec-default
+name: appsec
+source: appsec
+labels:
+  type: appsec
+# if you use openappsec you can enable this
+#---
+#source: file
+#filenames:
+# - /opt/openappsec/logs/cp-nano-http-transaction-handler.log*
+#labels:
+#  type: openappsec
+</code></pre>
 <ol start="4">
 <li>Make sure to use <code>network_mode: host</code> in your compose file for the NPMplus container</li>
 <li>Run <code>docker exec crowdsec cscli bouncers add npmplus</code> and save the api key of the output</li>
@@ -174,9 +176,10 @@
 <li>Deploy an anubis container (see the compose.yaml for an example and information)</li>
 <li>In the mounted anubis bot policy file the "status_codes" should be set to 401 and 403, like this:</li>
 </ol>
-<div class="highlight highlight-source-yaml"><pre><span class="pl-ent">status_codes</span>:
-  <span class="pl-ent">CHALLENGE</span>: <span class="pl-c1">401</span>
-  <span class="pl-ent">DENY</span>: <span class="pl-c1">403</span></pre></div>
+<pre lang="yaml"><code>status_codes:
+  CHALLENGE: 401
+  DENY: 403
+</code></pre>
 <ol start="3">
 <li>Set the AUTH_REQUEST_ANUBIS_UPSTREAM env in the NPMplus compose.yaml and select anubis in the Auth Request selection, no custom/advanced config/locations needed</li>
 <li>You can override the images used by default by creating a custom location <code>/.within.website/x/cmd/anubis/static/img</code> which acts as a file server and serves the files <code>happy.webp</code>, <code>pensive.webp</code> and <code>reject.webp</code>
@@ -215,80 +218,85 @@
 <li>deploy a geoipupdate container (see the compose.yaml for an example, create credentials <a href="https://www.maxmind.com/en/geolite2/signup" rel="nofollow">here</a>)</li>
 <li>open and edit this file: <code>/opt/npmplus/custom_nginx/http_top.conf</code>, if you changed /opt/npmplus to a different path make sure to change the path to fit</li>
 </ol>
-<div class="highlight highlight-source-yaml"><pre><span class="pl-s">geoip2 /data/goaccess/geoip/GeoLite2-Country.mmdb {</span>
-  <span class="pl-s">auto_reload 60m;</span>
-  <span class="pl-s">$geoip2_country_iso_code country iso_code;</span>
-<span class="pl-s">}</span>
+<pre lang="yaml"><code>geoip2 /data/goaccess/geoip/GeoLite2-Country.mmdb {
+  auto_reload 60m;
+  $geoip2_country_iso_code country iso_code;
+}
 
-<span class="pl-c"><span class="pl-c">#</span> whitelist example, you can add as many country codes as you want, country code list: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#XY</span>
-<span class="pl-c"><span class="pl-c">#</span>map $geoip2_country_iso_code $geoip2_country_rule {</span>
-<span class="pl-c"><span class="pl-c">#</span>  default no;</span>
-<span class="pl-c"><span class="pl-c">#</span>  AA yes;</span>
-<span class="pl-c"><span class="pl-c">#</span>  XY yes;</span>
-<span class="pl-c"><span class="pl-c">#</span>  '' yes; # if you want to allow IPs with unknown country codes, if you don't do this make sure to allow private IPs</span>
-<span class="pl-c"><span class="pl-c">#</span>}</span>
+# whitelist example, you can add as many country codes as you want, country code list: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#XY
+#map $geoip2_country_iso_code $geoip2_country_rule {
+#  default no;
+#  AA yes;
+#  XY yes;
+#  '' yes; # if you want to allow IPs with unknown country codes, if you don't do this make sure to allow private IPs
+#}
 
-<span class="pl-c"><span class="pl-c">#</span> blacklist example, you can add as many country codes as you want, country code list: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#XY</span>
-<span class="pl-c"><span class="pl-c">#</span>map $geoip2_country_iso_code $geoip2_country_rule {</span>
-<span class="pl-c"><span class="pl-c">#</span>  default yes;</span>
-<span class="pl-c"><span class="pl-c">#</span>  AA no;</span>
-<span class="pl-c"><span class="pl-c">#</span>  XY no;</span>
-<span class="pl-c"><span class="pl-c">#</span>  '' no; # if you want to block IPs with unknown country codes, if you do this make sure to allow private IPs</span>
-<span class="pl-c"><span class="pl-c">#</span>}</span>
+# blacklist example, you can add as many country codes as you want, country code list: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#XY
+#map $geoip2_country_iso_code $geoip2_country_rule {
+#  default yes;
+#  AA no;
+#  XY no;
+#  '' no; # if you want to block IPs with unknown country codes, if you do this make sure to allow private IPs
+#}
 
-<span class="pl-c"><span class="pl-c">#</span> uncomment if you block/don't allow IPs with unknown country codes</span>
-<span class="pl-c"><span class="pl-c">#</span>geo $is_private_ip {</span>
-<span class="pl-c"><span class="pl-c">#</span>  default no;</span>
-<span class="pl-c"><span class="pl-c">#</span>  127.0.0.0/8 yes;</span>
-<span class="pl-c"><span class="pl-c">#</span>  10.0.0.0/8 yes;</span>
-<span class="pl-c"><span class="pl-c">#</span>  172.16.0.0/12 yes;</span>
-<span class="pl-c"><span class="pl-c">#</span>  192.168.0.0/16 yes;</span>
-<span class="pl-c"><span class="pl-c">#</span>  169.254.0.0/16 yes;</span>
-<span class="pl-c"><span class="pl-c">#</span>  ::1/128 yes;</span>
-<span class="pl-c"><span class="pl-c">#</span>  fc00::/7 yes;</span>
-<span class="pl-c"><span class="pl-c">#</span>  fec0::/10 yes;</span>
-<span class="pl-c"><span class="pl-c">#</span>}</span></pre></div>
+# uncomment if you block/don't allow IPs with unknown country codes
+#geo $is_private_ip {
+#  default no;
+#  127.0.0.0/8 yes;
+#  10.0.0.0/8 yes;
+#  172.16.0.0/12 yes;
+#  192.168.0.0/16 yes;
+#  169.254.0.0/16 yes;
+#  ::1/128 yes;
+#  fc00::/7 yes;
+#  fec0::/10 yes;
+#}
+</code></pre>
 <p>4a. to set it per location: create a custom location / (or the location you want to use), set your proxy settings, then press the gear button and paste the following in the new text field, you may want to adjust the last lines (do not use the advanced tab with this example as it may break cert renewals):</p>
-<div class="highlight highlight-source-yaml"><pre><span class="pl-c"><span class="pl-c">#</span> uncomment if you block/don't allow IPs with unknown country codes</span>
-<span class="pl-c"><span class="pl-c">#</span>if ($is_private_ip = yes) { </span>
-<span class="pl-c"><span class="pl-c">#</span>  set $geoip2_country_rule yes; </span>
-<span class="pl-c"><span class="pl-c">#</span>} </span>
-<span class="pl-s">if ($geoip2_country_rule = no) { </span>
-  <span class="pl-s">return 444; </span><span class="pl-c"><span class="pl-c">#</span> this rejects the connection, but you can also return 403 to tell the client that it was denied</span>
-<span class="pl-s">} </span></pre></div>
+<pre lang="yaml"><code># uncomment if you block/don't allow IPs with unknown country codes
+#if ($is_private_ip = yes) { 
+#  set $geoip2_country_rule yes; 
+#} 
+if ($geoip2_country_rule = no) { 
+  return 444; # this rejects the connection, but you can also return 403 to tell the client that it was denied
+} 
+</code></pre>
 <p>4b. to set it for an entire host: put this in the advanced tab:</p>
-<div class="highlight highlight-source-yaml"><pre><span class="pl-c"><span class="pl-c">#</span> uncomment if you block/don't allow IPs with unknown country codes</span>
-<span class="pl-c"><span class="pl-c">#</span>if ($is_private_ip = yes) { </span>
-<span class="pl-c"><span class="pl-c">#</span>  set $geoip2_country_rule yes; </span>
-<span class="pl-c"><span class="pl-c">#</span>}</span>
-<span class="pl-s">if ($request_uri ~* "^/\.well-known/acme-challenge/") {</span>
-    <span class="pl-s">set $geoip2_country_rule yes;</span>
-<span class="pl-s">}</span>
-<span class="pl-s">if ($geoip2_country_rule = no) { </span>
-  <span class="pl-s">return 444; </span><span class="pl-c"><span class="pl-c">#</span> this rejects the connection, but you can also return 403 to tell the client that it was denied</span>
-<span class="pl-s">} </span></pre></div>
+<pre lang="yaml"><code># uncomment if you block/don't allow IPs with unknown country codes
+#if ($is_private_ip = yes) { 
+#  set $geoip2_country_rule yes; 
+#}
+if ($request_uri ~* "^/\.well-known/acme-challenge/") {
+    set $geoip2_country_rule yes;
+}
+if ($geoip2_country_rule = no) { 
+  return 444; # this rejects the connection, but you can also return 403 to tell the client that it was denied
+} 
+</code></pre>
 <p>4c. to set it for all http hosts of them same type: put this in the <code>custom_nginx/server_proxy.conf</code> / <code>custom_nginx/server_redirect.conf</code> / <code>custom_nginx/server_dead.conf</code> file(s):</p>
-<div class="highlight highlight-source-yaml"><pre><span class="pl-c"><span class="pl-c">#</span> uncomment if you block/don't allow IPs with unknown country codes</span>
-<span class="pl-c"><span class="pl-c">#</span>if ($is_private_ip = yes) { </span>
-<span class="pl-c"><span class="pl-c">#</span>  set $geoip2_country_rule yes; </span>
-<span class="pl-c"><span class="pl-c">#</span>}</span>
-<span class="pl-s">if ($request_uri ~* "^/\.well-known/acme-challenge/") {</span>
-    <span class="pl-s">set $geoip2_country_rule yes;</span>
-<span class="pl-s">}</span>
-<span class="pl-s">if ($geoip2_country_rule = no) { </span>
-  <span class="pl-s">return 444; </span><span class="pl-c"><span class="pl-c">#</span> this rejects the connection, but you can also return 403 to tell the client that it was denied</span>
-<span class="pl-s">} </span></pre></div>
+<pre lang="yaml"><code># uncomment if you block/don't allow IPs with unknown country codes
+#if ($is_private_ip = yes) { 
+#  set $geoip2_country_rule yes; 
+#}
+if ($request_uri ~* "^/\.well-known/acme-challenge/") {
+    set $geoip2_country_rule yes;
+}
+if ($geoip2_country_rule = no) { 
+  return 444; # this rejects the connection, but you can also return 403 to tell the client that it was denied
+} 
+</code></pre>
 <p>4d. to set it for all http hosts: put this in the <code>custom_nginx/server_http.conf</code> file:</p>
-<div class="highlight highlight-source-yaml"><pre><span class="pl-c"><span class="pl-c">#</span> uncomment if you block/don't allow IPs with unknown country codes</span>
-<span class="pl-c"><span class="pl-c">#</span>if ($is_private_ip = yes) { </span>
-<span class="pl-c"><span class="pl-c">#</span>  set $geoip2_country_rule yes; </span>
-<span class="pl-c"><span class="pl-c">#</span>}</span>
-<span class="pl-s">if ($request_uri ~* "^/\.well-known/acme-challenge/") {</span>
-    <span class="pl-s">set $geoip2_country_rule yes;</span>
-<span class="pl-s">}</span>
-<span class="pl-s">if ($geoip2_country_rule = no) { </span>
-  <span class="pl-s">return 444; </span><span class="pl-c"><span class="pl-c">#</span> this rejects the connection, but you can also return 403 to tell the client that it was denied</span>
-<span class="pl-s">} </span></pre></div>
+<pre lang="yaml"><code># uncomment if you block/don't allow IPs with unknown country codes
+#if ($is_private_ip = yes) { 
+#  set $geoip2_country_rule yes; 
+#}
+if ($request_uri ~* "^/\.well-known/acme-challenge/") {
+    set $geoip2_country_rule yes;
+}
+if ($geoip2_country_rule = no) { 
+  return 444; # this rejects the connection, but you can also return 403 to tell the client that it was denied
+} 
+</code></pre>
 <ol start="5">
 <li>you can create multiple rule lists by adding multiple map directive, but you need to use a unique name instead of <code>$geoip2_country_rule</code> for each rule list (you need the unique name also in the custom locations)</li>
 </ol>
