@@ -107,8 +107,12 @@
 <span class="pl-ent">source</span>: <span class="pl-s">appsec</span>
 <span class="pl-ent">labels</span>:
   <span class="pl-ent">type</span>: <span class="pl-s">appsec</span>
-<span class="pl-c"><span class="pl-c">#</span> if you use openappsec you can enable this</span>
 <span class="pl-c"><span class="pl-c">#</span>---</span>
+<span class="pl-c"><span class="pl-c">#</span> If you use open-appsec, uncomment the section below.</span>
+<span class="pl-c"><span class="pl-c">#</span> If connecting to open-appsec cloud, you must edit the default 'log trigger' </span>
+<span class="pl-c"><span class="pl-c">#</span> in the cloud dashboard: check "Log to &gt; gateway / agent" and click 'enforce'.</span>
+<span class="pl-c"><span class="pl-c">#</span> Otherwise, no intrusion events will be logged to the local agent </span>
+<span class="pl-c"><span class="pl-c">#</span> for CrowdSec to process.</span>
 <span class="pl-c"><span class="pl-c">#</span>source: file</span>
 <span class="pl-c"><span class="pl-c">#</span>filenames:</span>
 <span class="pl-c"><span class="pl-c">#</span> - /opt/openappsec/logs/cp-nano-http-transaction-handler.log*</span>
