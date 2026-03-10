@@ -5,22 +5,26 @@
 <ol>
 <li>Download the compose.yaml and edit it:</li>
 </ol>
-<div class="highlight highlight-text-shell-session"><pre><span class="pl-c1">wget https://raw.githubusercontent.com/ZoeyVid/parsedmarc-dockerized/develop/compose.yaml</span>
-<span class="pl-c1">nano compose.yaml</span></pre></div>
+<pre lang="console"><code>wget https://raw.githubusercontent.com/ZoeyVid/parsedmarc-dockerized/develop/compose.yaml
+nano compose.yaml
+</code></pre>
 <ol start="2">
 <li>now adjust the value <code>GEOIPUPDATE_ACCOUNT_ID</code> and <code>GEOIPUPDATE_LICENSE_KEY</code> from your <a href="https://maxmind.com" rel="nofollow">MaxMind account</a> and edit <code>server.publicBaseUrl</code>
 </li>
 <li>Now deploy the stack</li>
 </ol>
-<div class="highlight highlight-text-shell-session"><pre><span class="pl-c1">docker compose up -d</span></pre></div>
+<pre lang="console"><code>docker compose up -d
+</code></pre>
 <ol start="4">
 <li>now you can edit the config.ini</li>
 </ol>
-<div class="highlight highlight-text-shell-session"><pre><span class="pl-c1">nano /opt/parsedmarc/conf/config.ini</span></pre></div>
+<pre lang="console"><code>nano /opt/parsedmarc/conf/config.ini
+</code></pre>
 <ol start="5">
 <li>now restart your container:</li>
 </ol>
-<div class="highlight highlight-text-shell-session"><pre><span class="pl-c1">docker restart parsedmarc</span></pre></div>
+<pre lang="console"><code>docker restart parsedmarc
+</code></pre>
 <ol start="6">
 <li>configure your reverse proxy to <code>http://127.0.0.1:5601</code>
 </li>
