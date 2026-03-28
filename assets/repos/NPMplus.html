@@ -212,6 +212,20 @@
 <ol start="3">
 <li>Configure your proxy host/stream like always in the UI, but set the hostname to service1 (or service2 or however you named it) and keep the forward port field empty (since you set the ports within the upstream directive)</li>
 </ol>
+<div class="markdown-heading"><h2 class="heading-element">Encrypted Client Hello (ECH)</h2><a id="user-content-encrypted-client-hello-ech" class="anchor" aria-label="Permalink: Encrypted Client Hello (ECH)" href="#encrypted-client-hello-ech"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<ul>
+<li>NPMplus supports generating and automatically rotating Encrypted Client Hello (ECH) keys. To enable and configure ECH, you need to set up a cron script that triggers the key generation and updates your DNS records.</li>
+<li>When the container starts, it automatically creates an empty file at <code>/opt/npmplus/tls/ech/cron.sh</code>. You need to fill this file with a script to handle your ECH keys.</li>
+<li>If this file is not empty, NPMplus will automatically execute it regularly, enable ECH in the nginx configuration, and reload nginx after execution.</li>
+<li>Inside your <code>cron.sh</code>, use the built-in <code>ech.sh</code> command to generate your keys. The syntax is: <code>ech.sh &lt;public-name&gt; &lt;identifier&gt; [max-name-length (default 64)]</code>.</li>
+<li>This command generates the keys in <code>/opt/npmplus/tls/ech/</code> (saving the current and previous keys) and outputs the Base64-encoded ECH config list to standard output, which you can capture to update your DNS records.</li>
+<li>Because ECH requires advertising your public key via an HTTPS DNS record, your <code>cron.sh</code> must push the newly generated config to your DNS provider.</li>
+<li>There is an example cron.sh script for Cloudflare in the repository: <a href="ech-cron-cloudflare-example.sh"><code>ech-cron-cloudflare-example.sh</code></a>. You can adapt this script, add your API tokens, define your zones/records, and place its contents into <code>/opt/npmplus/tls/ech/cron.sh</code>.</li>
+<li>By default, the container will run your <code>cron.sh</code> script and reload nginx on container start and then every hour after container start. You can change this interval by setting the <code>ECH_ROTATION_INTERVAL</code> environment variable in your <code>compose.yaml</code>.</li>
+<li>I recommend you to use your servers hostname/PTR record as public name. The "identifier" is only used as part of the filename.</li>
+<li>Do not set HTTPS records for FQDNs which use a CNAME record, but set them for the CNAME target, as only the HTTPS record of the CNAME target will be used by chromium.</li>
+<li>Deleting/clearing the cron.sh will disable ECH</li>
+</ul>
 <div class="markdown-heading"><h2 class="heading-element">Geoblocking example (mainly community support)</h2><a id="user-content-geoblocking-example-mainly-community-support" class="anchor" aria-label="Permalink: Geoblocking example (mainly community support)" href="#geoblocking-example-mainly-community-support"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <ol>
 <li>set the <code>NGINX_LOAD_GEOIP2_MODULE</code> env to true and redeploy NPMplus</li>
