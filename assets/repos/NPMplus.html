@@ -22,20 +22,23 @@
 <li>ML-KEM support (also hardened TLS settings enforced)</li>
 <li>https for the NPMplus interface</li>
 <li>Goaccess included</li>
-<li>punycode domain support</li>
-<li>zstd and brotli</li>
+<li>easier punycode domain support</li>
+<li>zstd and brotli compression</li>
 <li>basic security headers always send</li>
 <li>allow empty ports to support loadbalancing</li>
 <li>proxy protocol support</li>
-<li>improved nginx build and nginx templates</li>
+<li>improved nginx build (with aws-lc and custom patches) and nginx templates with keep-alive to upstreams</li>
+<li>tls certificate compression (zlib-ng+brotli) and optional encrypted client hello (ech) support</li>
+<li>mTLS ca cert upload support</li>
 <li>file and php server support (and fancyindex)</li>
 <li>option to edit custom certs</li>
 <li>gravatars are cached locally and fetched by the backend (better privacy by not exposing you directly to gravatar)</li>
 <li>qrcodes for totp are generated locally in your browser instead of using a third-party api (better privacy/security by not exposing you and the secret to the third-party api)</li>
 <li>re-added some things that where removed with upstreams new frontend</li>
-<li>use secure cookied instead of local storage to save the token</li>
+<li>use secure cookied instead of local storage to save the token combined with a Content-Security-Policy</li>
 <li>Password reset (only sqlite) using <code>docker exec -it npmplus password-reset.js USER_EMAIL PASSWORD</code>
 </li>
+<li>Swagger UI under /api/docs</li>
 <li>many other things, see this README.md and the compose.yaml</li>
 </ul>
 <div class="markdown-heading"><h2 class="heading-element">Compatibility (to Upstream)</h2><a id="user-content-compatibility-to-upstream" class="anchor" aria-label="Permalink: Compatibility (to Upstream)" href="#compatibility-to-upstream"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
