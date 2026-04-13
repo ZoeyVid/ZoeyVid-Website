@@ -190,11 +190,15 @@
 </ol>
 <div class="markdown-heading"><h3 class="heading-element">Tinyauth</h3><a id="user-content-tinyauth" class="anchor" aria-label="Permalink: Tinyauth" href="#tinyauth"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <ol>
-<li>Set the AUTH_REQUEST_TINYAUTH_UPSTREAM and AUTH_REQUEST_TINYAUTH_DOMAIN env in the NPMplus compose.yaml and select tinyauth in the Auth Request selection, no custom/advanced config/locations needed</li>
+<li>Set the AUTH_REQUEST_TINYAUTH_UPSTREAM env in the NPMplus compose.yaml and select tinyauth in the Auth Request selection, no custom/advanced config/locations needed</li>
 </ol>
 <div class="markdown-heading"><h3 class="heading-element">OAuth2Proxy</h3><a id="user-content-oauth2proxy" class="anchor" aria-label="Permalink: OAuth2Proxy" href="#oauth2proxy"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <ol>
 <li>Set the AUTH_REQUEST_OAUTH2PROXY_UPSTREAM env in the NPMplus compose.yaml and select oauth2proxy in the Auth Request selection, no custom/advanced config/locations needed</li>
+</ol>
+<div class="markdown-heading"><h3 class="heading-element">VoidAuth</h3><a id="user-content-voidauth" class="anchor" aria-label="Permalink: VoidAuth" href="#voidauth"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<ol>
+<li>Set the AUTH_REQUEST_VOIDAUTH_UPSTREAM env in the NPMplus compose.yaml and select voidauth in the Auth Request selection, no custom/advanced config/locations needed</li>
 </ol>
 <div class="markdown-heading"><h3 class="heading-element">Authelia (modern)</h3><a id="user-content-authelia-modern" class="anchor" aria-label="Permalink: Authelia (modern)" href="#authelia-modern"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <ol>
@@ -204,21 +208,7 @@
 <ol>
 <li>Set the AUTH_REQUEST_AUTHENTIK_UPSTREAM env in the NPMplus compose.yaml and select authentik/authentik-send-basic-auth in the Auth Request selection, no custom/advanced config/locations needed</li>
 </ol>
-<div class="markdown-heading"><h2 class="heading-element">Load Balancing</h2><a id="user-content-load-balancing" class="anchor" aria-label="Permalink: Load Balancing" href="#load-balancing"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
-<ol>
-<li>Open and edit this file: <code>/opt/npmplus/custom_nginx/http_top.conf</code> (or <code>/opt/npmplus/custom_nginx/stream_top.conf</code> for streams), if you changed /opt/npmplus to a different path make sure to change the path to fit</li>
-<li>Set the upstream directive(s) with your servers which should be load balanced (<a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html" rel="nofollow">https://nginx.org/en/docs/http/ngx_http_upstream_module.html</a> / <a href="https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html" rel="nofollow">https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html</a>), they need to run the same protocol (either http(s) or grpc(s) for proxy hosts or tcp/udp/proxy protocol for streams), like this for example:</li>
-</ol>
-<pre><code>upstream server1 {
-  server 127.0.0.1:44;
-  server 127.0.0.1:33;
-  server 127.0.0.1:22;
-  server 192.158.168.11:44 backup;
-}
-</code></pre>
-<ol start="3">
-<li>Configure your proxy host/stream like always in the UI, but set the hostname to service1 (or service2 or however you named it) and keep the forward port field empty (since you set the ports within the upstream directive)</li>
-</ol>
+
 <div class="markdown-heading"><h2 class="heading-element">Encrypted Client Hello (ECH)</h2><a id="user-content-encrypted-client-hello-ech" class="anchor" aria-label="Permalink: Encrypted Client Hello (ECH)" href="#encrypted-client-hello-ech"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <ul>
 <li>NPMplus supports generating and automatically rotating Encrypted Client Hello (ECH) keys. To enable and configure ECH, you need to set up a cron script that triggers the key generation and updates your DNS records.</li>
