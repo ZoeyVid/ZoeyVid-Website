@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v6.0.2
         with:
           ref: ${{ github.ref_name }}
       - name: update repos
@@ -32,7 +32,7 @@ jobs:
           sed -i "s|\"null\"|\"\"|g" $path/index.json
           rm -rf $path/repos.json
       - name: json-syntax-check
-        uses: limitusus/json-syntax-check@v2
+        uses: limitusus/json-syntax-check@v2.0.3
         with:
           pattern: "\\.json$*"
       - name: push changes
