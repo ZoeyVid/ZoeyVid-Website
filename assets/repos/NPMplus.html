@@ -40,6 +40,8 @@
 </li>
 <li>Swagger UI under /api/docs</li>
 <li>many other things, see this README.md and the compose.yaml</li>
+<li>Proxy Locations can have access lists different to their host</li>
+<li>Proxy Hosts and Proxy Locations can use multiple access lists</li>
 </ul>
 <div class="markdown-heading"><h2 class="heading-element">Compatibility (to Upstream)</h2><a id="user-content-compatibility-to-upstream" class="anchor" aria-label="Permalink: Compatibility (to Upstream)" href="#compatibility-to-upstream"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <ul>
@@ -373,6 +375,9 @@
 <li>if enabled to the crowdsec (container) lapi</li>
 <li>if you see more/others please report them</li>
 </ul>
+<div class="markdown-heading"><h2 class="heading-element">Access Lists</h2><a id="user-content-access-lists" class="anchor" aria-label="Permalink: Access Lists" href="#access-lists"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<p>When using multiple Access Lists on a Proxy Host or a Proxy Location, they are evaluated in a top-down order from the UI.
+The <code>Satisfy Any</code> or <code>Pass Auth to Upstream</code> only get applied if they are set on the first Access List assigned to a proxy host/location</p>
 <div class="markdown-heading"><h2 class="heading-element">Contributing</h2><a id="user-content-contributing" class="anchor" aria-label="Permalink: Contributing" href="#contributing"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <p>All are welcome to create pull requests for this project, but this does not mean that they will be merged, so better ask if your PR would be merged before creating one (via Discussion), typos and translations are excluded from this.</p>
 <div class="markdown-heading"><h1 class="heading-element">Please report issues first to this fork before reporting them to the upstream repository</h1><a id="user-content-please-report-issues-first-to-this-fork-before-reporting-them-to-the-upstream-repository" class="anchor" aria-label="Permalink: Please report issues first to this fork before reporting them to the upstream repository" href="#please-report-issues-first-to-this-fork-before-reporting-them-to-the-upstream-repository"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
