@@ -40,15 +40,21 @@ default. Maximum caution when enabling these.</p>
 extremely critical but can expose some information that your service does not need.</p>
 <ul>
 <li>
-<code>ALLOW_POWER</code> (containers/<code>id</code>/<code>start</code>|<code>stop</code>|<code>kill</code>|<code>restart</code>)</li>
+<code>ALLOW_POWER</code> (containers/<code>id</code>/<code>start</code>|<code>stop</code>|<code>kill</code>|<code>restart</code>|<code>pause</code>|<code>unpause</code>)</li>
 <li>
 <code>ALLOW_RESTART</code> (containers/<code>id</code>/<code>restart</code>)</li>
+<li>
+<code>ALLOW_RESTARTS</code> (containers/<code>id</code>/<code>stop</code>|<code>restart</code>|<code>kill</code>)</li>
 <li>
 <code>ALLOW_START</code> (containers/<code>id</code>/<code>start</code>)</li>
 <li>
 <code>ALLOW_STOP</code> (containers/<code>id</code>/<code>stop</code>)</li>
 <li>
 <code>ALLOW_Kill</code> (containers/<code>id</code>/<code>kill</code>)</li>
+<li>
+<code>ALLOW_PAUSE</code> (containers/<code>id</code>/<code>pause</code>)</li>
+<li>
+<code>ALLOW_UNPAUSE</code> (containers/<code>id</code>/<code>unpause</code>)</li>
 <li><code>BUILD</code></li>
 <li><code>COMMIT</code></li>
 <li><code>CONFIGS</code></li>
