@@ -18,16 +18,6 @@ function elementLoad() {
     document.getElementById("navbarStartseiteMobile").classList.remove("hover:bg-gray-700");
     document.getElementById("navbarStartseiteMobile").classList.remove("hover:text-white");
   }
-  if (document.location.pathname.startsWith("/projekt")) {
-    document.getElementById("navbarProjekte").classList.add("bg-gray-900");
-    document.getElementById("navbarProjekte").classList.replace("text-gray-300", "text-white");
-    document.getElementById("navbarProjekte").classList.remove("hover:bg-gray-700");
-    document.getElementById("navbarProjekte").classList.remove("hover:text-white");
-    document.getElementById("navbarProjekteMobile").classList.add("bg-gray-900");
-    document.getElementById("navbarProjekteMobile").classList.replace("text-gray-300", "text-white");
-    document.getElementById("navbarProjekteMobile").classList.remove("hover:bg-gray-700");
-    document.getElementById("navbarProjekteMobile").classList.remove("hover:text-white");
-  }
   if (document.location.pathname.startsWith("/socials")) {
     document.getElementById("navbarTeam").classList.add("bg-gray-900");
     document.getElementById("navbarTeam").classList.replace("text-gray-300", "text-white");
@@ -70,7 +60,7 @@ function changeExternalLinks() {
   links.forEach(link => {
     if (!link.href.startsWith("https://zoeyvid.de")) {
       link.onclick = function () {
-         if (confirm("Willst du wirklich zoeyvid.de verlassen, und auf " + link.href + " gehen?") == true) {
+         if (confirm("Do you want to leave zoeyvid.de and go to " + link.href + "?") == true) {
           return true;
         } else {
           return false;
