@@ -1,52 +1,31 @@
 function elementLoad() {
   document.getElementById("navbar").classList.add("pb-4");
-  document.getElementById("footer").classList.add("pt-4");
-  document.getElementById("footer").classList.add("mt-auto");
+  document.getElementById("footer").classList.add("pt-4", "mt-auto");
   document.getElementsByTagName('noscript')[0].remove();
   document.getElementById("year").textContent = new Date().getFullYear();
   document.getElementById("git").href = git();
-  if (document.location.pathname == "/") {
-    document.getElementById("navbar").classList.remove("pb-4");
-    document.getElementById("footer").classList.remove("pt-4");
-    document.getElementById("footer").classList.remove("mt-auto");
-    document.getElementById("navbarStartseite").classList.add("bg-gray-900");
-    document.getElementById("navbarStartseite").classList.replace("text-gray-300", "text-white");
-    document.getElementById("navbarStartseite").classList.remove("hover:bg-gray-700");
-    document.getElementById("navbarStartseite").classList.remove("hover:text-white");
-    document.getElementById("navbarStartseiteMobile").classList.add("bg-gray-900");
-    document.getElementById("navbarStartseiteMobile").classList.replace("text-gray-300", "text-white");
-    document.getElementById("navbarStartseiteMobile").classList.remove("hover:bg-gray-700");
-    document.getElementById("navbarStartseiteMobile").classList.remove("hover:text-white");
-  }
-  if (document.location.pathname.startsWith("/socials")) {
-    document.getElementById("navbarTeam").classList.add("bg-gray-900");
-    document.getElementById("navbarTeam").classList.replace("text-gray-300", "text-white");
-    document.getElementById("navbarTeam").classList.remove("hover:bg-gray-700");
-    document.getElementById("navbarTeam").classList.remove("hover:text-white");
-    document.getElementById("navbarTeamMobile").classList.add("bg-gray-900");
-    document.getElementById("navbarTeamMobile").classList.replace("text-gray-300", "text-white");
-    document.getElementById("navbarTeamMobile").classList.remove("hover:bg-gray-700");
-    document.getElementById("navbarTeamMobile").classList.remove("hover:text-white");
-  }
-  if (document.location.pathname.startsWith("/services")) {
-    document.getElementById("navbarServices").classList.add("bg-gray-900");
-    document.getElementById("navbarServices").classList.replace("text-gray-300", "text-white");
-    document.getElementById("navbarServices").classList.remove("hover:bg-gray-700");
-    document.getElementById("navbarServices").classList.remove("hover:text-white");
-    document.getElementById("navbarServicesMobile").classList.add("bg-gray-900");
-    document.getElementById("navbarServicesMobile").classList.replace("text-gray-300", "text-white");
-    document.getElementById("navbarServicesMobile").classList.remove("hover:bg-gray-700");
-    document.getElementById("navbarServicesMobile").classList.remove("hover:text-white");
+
+  const paths = {
+    "/": "navbarStartseite",
+    "/socials": "navbarTeam",
+    "/services": "navbarServices"
+  };
+
+  if (paths[document.location.pathname]) {
+    const element = document.getElementById(paths[document.location.pathname]);
+    const mobileElement = document.getElementById(paths[document.location.pathname] + "Mobile");
+    element.classList.add("bg-gray-900");
+    element.classList.replace("text-gray-300", "text-white");
+    element.classList.remove("hover:bg-gray-700", "hover:text-white");
+    mobileElement.classList.add("bg-gray-900");
+    mobileElement.classList.replace("text-gray-300", "text-white");
+    mobileElement.classList.remove("hover:bg-gray-700", "hover:text-white");
   }
 }
 
 function toggleMobile() {
   var mobileMenu = document.getElementById("mobile-menu");
-  if (mobileMenu.classList.contains("hidden")) {
-    mobileMenu.classList.remove("hidden");
-  } else {
-    mobileMenu.classList.add("hidden");
-  }
+  mobileMenu.classList.toggle("hidden");
 }
 
 function git() {
@@ -60,7 +39,7 @@ function changeExternalLinks() {
   links.forEach(link => {
     if (!link.href.startsWith("https://zoeyvid.de")) {
       link.onclick = function () {
-         if (confirm("Do you want to leave zoeyvid.de and go to " + link.href + "?") == true) {
+        if (confirm("Do you want to leave zoeyvid.de and go to " + link.href + "?") == true) {
           return true;
         } else {
           return false;
