@@ -1,49 +1,49 @@
 function loadView() {
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get("person") !== "zoey" && urlParams.get("person") !== "zoeyvid" && urlParams.get("person") !== "david") window.location.href = "https://zoeyvid.de/"
-    fetch("https://zoeyvid.de/assets/socials/" + urlParams.get("person") + ".json")
+  const urlParams = new URLSearchParams(window.location.search);
+  const persons = ["zoey", "zoeyvid", "david"];
+  if (!persons.includes(urlParams.get("person"))) window.location.href = "https://zoeyvid.de/"
+  fetch("https://zoeyvid.de/assets/socials/" + urlParams.get("person") + ".json")
     .then((response) => {
       return response.json()
     })
     .then((json) => {
-        document.getElementsByTagName('body')[0].classList.add("bg-linear-to-r");
-        document.getElementsByTagName('body')[0].classList.add(json.colorFrom);
-        document.getElementsByTagName('body')[0].classList.add(json.colorTo);
-        document.getElementById("bild").src = json.profilbild;
-        document.getElementById("name").innerHTML = json.name;
-        document.getElementById("bio").innerHTML = json.bio;
-        json.links.forEach(element => {
-          document.getElementById("links").innerHTML += '<a href="' + element.url + '"><div class="text-center text-white text-2xl font-bold flex items-center justify-center p-6 rounded-md hover:bg-gray-700"><img class="p-2 invert" h-4/3 w-auto src="https://zoeyvid.de/assets/bootstrap-icons/' + element.icon + '.svg"></img>' + element.name + '</div></a>';
-        });
+      document.getElementsByTagName('body')[0].classList.add("bg-linear-to-r", json.colorFrom, json.colorTo);
+      document.getElementById("bild").src = json.profilbild;
+      document.getElementById("name").textContent = json.name;
+      document.getElementById("bio").textContent = json.bio;
+      document.title = json.name + " - Linktree";
+      const links = document.getElementById("links");
+      const template = document.getElementById("linktemplate");
+      json.links.forEach(element => {
+        const linkElement = template.content.cloneNode(true);
+        linkElement.querySelector(".link").href = element.url;
+        linkElement.querySelector(".link-image").src = "https://zoeyvid.de/assets/bootstrap-icons/" + element.icon + ".svg";
+        linkElement.querySelector(".link-text").textContent = element.name;
+        links.appendChild(linkElement);
+      });
     })
 }
- 
-function insertTeamDetails() {
-    fetch("https://zoeyvid.de/assets/socials/zoey.json")
+
+function fetchTeamDetails() {
+  fetch("https://zoeyvid.de/assets/socials/zoey.json")
     .then((response) => {
       return response.json()
     })
-    .then((json) => {
-        document.getElementById("bildZoey").src = json.profilbild;
-        document.getElementById("nameZoey").innerHTML = json.name;
-        document.getElementById("bioZoey").innerHTML = json.bio;
-    })
-    fetch("https://zoeyvid.de/assets/socials/zoeyvid.json")
+    .then((json) => insertTeamDetails("Zoey", json))
+  fetch("https://zoeyvid.de/assets/socials/zoeyvid.json")
     .then((response) => {
       return response.json()
     })
-    .then((json) => {
-        document.getElementById("bildZoeyvid").src = json.profilbild;
-        document.getElementById("nameZoeyvid").innerHTML = json.name;
-        document.getElementById("bioZoeyvid").innerHTML = json.bio;
-    })
-    fetch("https://zoeyvid.de/assets/socials/david.json")
+    .then((json) => insertTeamDetails("Zoeyvid", json))
+  fetch("https://zoeyvid.de/assets/socials/david.json")
     .then((response) => {
       return response.json()
     })
-    .then((json) => {
-        document.getElementById("bildDavid").src = json.profilbild;
-        document.getElementById("nameDavid").innerHTML = json.name;
-        document.getElementById("bioDavid").innerHTML = json.bio;
-    })
+    .then((json) => insertTeamDetails("David", json));
+}
+
+function insertTeamDetails(name, json) {
+  document.getElementById("bild" + name).src = json.profilbild;
+  document.getElementById("name" + name).textContent = json.name;
+  document.getElementById("bio" + name).textContent = json.bio;
 }

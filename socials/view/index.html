@@ -50,6 +50,15 @@
         <h1 id="name"></h1>
         <p id="bio"></p>
         <div id="links" class="grid place-items-center grid-cols-2 gap-8 pt-2">
+            <template id="linktemplate">
+                <a class="link">
+                    <div
+                        class="text-center text-white text-2xl font-bold flex items-center justify-center p-6 rounded-md hover:bg-gray-700">
+                        <img class="p-2 invert h-4/3 w-auto link-image"></img>
+                        <span class="link-text"></span>
+                    </div>
+                </a>
+            </template>
         </div>
     </div>
     <div id="footer">
