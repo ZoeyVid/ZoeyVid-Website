@@ -14,42 +14,41 @@ function getAllRepos() {
       return response.json()
     })
     .then((json) => {
+      const projects = document.getElementById("Projekte")
+      const projectsTemplate = document.getElementById("repoTemplate")
+      const topicsTemplate = document.getElementById("topicTemplate")
       Object.keys(json).forEach(element => {
-        document.getElementById("Projekte").innerHTML += "<a href='https://zoeyvid.de/project?project=" + element + "' class='text-white'><div class='bg-gray-800 rounded-lg p-4 m-2'><h1 class='text-2xl font-bold hover:underline' id='" + element + "Headline'>" + element + "</h1><p class='text-gray-300'>" + json[element].description + "</p><p class='text-gray-400 text-sm'>" + json[element].spdx_id + "</p><div id='" + element + "Topics' class='pt-2'></div></div></a>"
-      })
-      return json
-    }).then((json) => {
-      Object.keys(json).forEach(element => {
-        json[element].topics.forEach(topic => {
-          document.getElementById(element + "Topics").innerHTML += "<span class='bg-gray-700 rounded-lg p-2 mr-2'>" + topic + "</span>"
+        const data = json[element]
+        const clone = projectsTemplate.content.cloneNode(true)
+        clone.querySelector(".repo-link").href = "https://zoeyvid.de/project?project=" + element
+        clone.querySelector(".repo-title").textContent = data.name + (Boolean(data.fork) ? " (Fork)" : "")
+        clone.querySelector(".repo-description").textContent = data.description
+        clone.querySelector(".repo-spdx-id").textContent = data.spdx_id
+        data.topics.forEach(topic => {
+          const topicClone = topicsTemplate.content.cloneNode(true)
+          topicClone.querySelector(".topic").textContent = topic
+          clone.querySelector(".repo-topics").appendChild(topicClone)
         })
-        if (Boolean(json[element].fork)) {
-          document.getElementById(element + "Headline").innerText += " (Fork)"
-        }
+        projects.appendChild(clone)
       })
     })
 }
 
 function getProjekt() {
   const urlParams = new URLSearchParams(window.location.search);
-  var exist = false
-  var projektData
   fetch("https://zoeyvid.de/assets/repos/index.json")
     .then((response) => {
       return response.json()
     })
     .then((json) => {
-      Object.keys(json).forEach(element => {
-        if (element == urlParams.get("projekt")) {
-          exist = true
-          document.title = element + " - ZoeyVid"
-          var description = document.createElement('meta'); description.setAttribute('name', 'description'); description.content = json[element].description; document.getElementsByTagName('head')[0].appendChild(description);
-          projektData = json[element]
-        }
-      })
-    }).then(() => {
-      if (!exist) window.location.href = "https://zoeyvid.de/"
-      readHTML("Projekt", "https://zoeyvid.de/assets/repos/" + urlParams.get("projekt") + ".html")
-      document.getElementById("github").innerHTML += "<a href=" + projektData.html_url + ">Auf Github Anzeigen</a>"
+      const data = json[urlParams.get("project")]
+      if (!data) return window.location.href = "https://zoeyvid.de/"
+      document.title = data.name + " - ZoeyVid"
+      var description = document.createElement('meta'); description.setAttribute('name', 'description'); description.content = data.description; document.getElementsByTagName('head')[0].appendChild(description);
+      return data
+
+    }).then((data) => {
+      readHTML("Projekt", "https://zoeyvid.de/assets/repos/" + urlParams.get("project") + ".html")
+      document.getElementById("github").innerHTML += "<a href=" + data.html_url + ">View on GitHub</a>"
     })
 }
