@@ -42,12 +42,16 @@ function getProjekt() {
     })
     .then((json) => {
       const data = json[urlParams.get("project")]
-      if (!data) return window.location.href = "https://zoeyvid.de/"
+      if (!data) {
+          window.location.href = "https://zoeyvid.de/"
+          return null;
+        }
       document.title = data.name + " - ZoeyVid"
       var description = document.createElement('meta'); description.setAttribute('name', 'description'); description.content = data.description; document.getElementsByTagName('head')[0].appendChild(description);
       return data
 
     }).then((data) => {
+      if (!data) return;
       readHTML("Projekt", "https://zoeyvid.de/assets/repos/" + urlParams.get("project") + ".html")
       document.getElementById("github").innerHTML += "<a href=" + data.html_url + ">View on GitHub</a>"
     })
