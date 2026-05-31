@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta name="description" content="Die Startseite der Webseite von ZoeyVid" />
+	<meta name="description" content="The homepage of the ZoeyVid website" />
 	<title>Startseite - ZoeyVid</title>
 	<link href="/assets/css/output.css" rel="stylesheet">
 	<script src="/assets/js/htmlReader.js"></script>
@@ -13,7 +13,7 @@
 
 	<!--Open-Graph-Tags-->
 	<meta property="og:title" content="Startseite - ZoeyVid" />
-	<meta property="og:description" content="Die Startseite von ZoeyVid!" />
+	<meta property="og:description" content="The homepage of the ZoeyVid website" />
 	<meta property="og:image" content="https://zvcdn.de/images/ZoeyVid-Banner.webp" />
 	<meta property="og:type" content="website" />
 	<meta property="og:locale" content="de_DE" />
