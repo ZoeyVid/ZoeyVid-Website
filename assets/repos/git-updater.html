@@ -2,17 +2,16 @@
 <div class="markdown-heading"><h1 class="heading-element">git-updates</h1><a id="user-content-git-updates" class="anchor" aria-label="Permalink: git-updates" href="#git-updates"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <div class="markdown-heading"><h2 class="heading-element">How to use?</h2><a id="user-content-how-to-use" class="anchor" aria-label="Permalink: How to use?" href="#how-to-use"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <p>If you want to have always the newest copy of a repo (for example of a static website) on your disk you can use this compose file:</p>
-<pre lang="yaml"><code>services:
-  git-repo:
-    container_name: git-updater-git-repo
-    image: zoeyvid/git-updater:latest
-    restart: always
-    network_mode: bridge
-    volumes:
-      - "/path/to/git-repo:/src"
-    environment:
-      - "TZ=Europe/Berlin"
-    user: 1000:1000
-</code></pre>
+<div class="highlight highlight-source-yaml"><pre><span class="pl-ent">services</span>:
+  <span class="pl-ent">git-repo</span>:
+    <span class="pl-ent">container_name</span>: <span class="pl-s">git-updater-git-repo</span>
+    <span class="pl-ent">image</span>: <span class="pl-s">zoeyvid/git-updater:latest</span>
+    <span class="pl-ent">restart</span>: <span class="pl-s">always</span>
+    <span class="pl-ent">network_mode</span>: <span class="pl-s">bridge</span>
+    <span class="pl-ent">volumes</span>:
+      - <span class="pl-s"><span class="pl-pds">"</span>/path/to/git-repo:/src<span class="pl-pds">"</span></span>
+    <span class="pl-ent">environment</span>:
+      - <span class="pl-s"><span class="pl-pds">"</span>TZ=Europe/Berlin<span class="pl-pds">"</span></span>
+    <span class="pl-ent">user</span>: <span class="pl-c1">1000:1000</span></pre></div>
 <p>make sure to change /path/to/git-repo and the user ids to match the correct user, you can also use root</p>
 
