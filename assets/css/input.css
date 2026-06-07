@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@layer utilities {
+@layer base {
   body {
     @apply flex;
     @apply flex-col;
@@ -9,9 +9,7 @@
     @apply dark:bg-gray-900;
     @apply dark:text-white;
   }
-}
 
-@layer base {
   h1 {
     @apply text-2xl;
     @apply font-bold;
@@ -37,6 +35,7 @@
     @apply text-white;
     @apply rounded-lg;
     @apply p-4;
+    @apply my-1;
   }
 
   code {
@@ -44,7 +43,6 @@
     @apply text-white;
     @apply rounded-lg;
     @apply p-1;
-    @apply my-1;
   }
 
   #Projekt a,
