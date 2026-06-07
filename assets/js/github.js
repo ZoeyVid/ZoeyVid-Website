@@ -24,11 +24,11 @@ function getAllRepos() {
         clone.querySelector(".repo-title").textContent = data.name + (Boolean(data.fork) ? " (Fork)" : "")
         clone.querySelector(".repo-description").textContent = data.description
         clone.querySelector(".repo-spdx-id").textContent = data.spdx_id
-        data.topics.forEach(topic => {
-          const topicClone = topicsTemplate.content.cloneNode(true)
-          topicClone.querySelector(".topic").textContent = topic
-          clone.querySelector(".repo-topics").appendChild(topicClone)
-        })
+        //data.topics.forEach(topic => {
+        //  const topicClone = topicsTemplate.content.cloneNode(true)
+        //  topicClone.querySelector(".topic").textContent = topic
+        //  clone.querySelector(".repo-topics").appendChild(topicClone)
+        //})
         projects.appendChild(clone)
       })
     })
