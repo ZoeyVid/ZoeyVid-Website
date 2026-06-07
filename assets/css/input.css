@@ -4,7 +4,7 @@
   body {
     @apply flex;
     @apply flex-col;
-    @apply w-screen;
+    @apply w-full;
     @apply min-h-screen;
     @apply dark:bg-gray-900;
     @apply dark:text-white;
