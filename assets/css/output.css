@@ -761,6 +761,7 @@
     color: var(--color-white);
     border-radius: var(--radius-lg);
     padding: calc(var(--spacing) * 1);
+    margin-block: calc(var(--spacing) * 1);
   }
   #Projekt a, #Impressum a, #Datenschutz a {
     &:hover {
