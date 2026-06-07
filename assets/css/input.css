@@ -35,7 +35,7 @@
     @apply text-white;
     @apply rounded-lg;
     @apply p-4;
-    @apply my-1;
+    @apply my-2;
   }
 
   code {
