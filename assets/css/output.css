@@ -753,7 +753,7 @@
     color: var(--color-white);
     border-radius: var(--radius-lg);
     padding: calc(var(--spacing) * 4);
-    margin-block: calc(var(--spacing) * 1);
+    margin-block: calc(var(--spacing) * 2);
   }
   code {
     background-color: var(--color-gray-800);
