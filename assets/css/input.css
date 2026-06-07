@@ -50,7 +50,8 @@
   #Impressum a,
   #Datenschutz a {
     @apply hover:underline;
-    @apply text-[#0000EE];
+    @apply text-blue-600;
+    @apply visited:text-indigo-600;
   }
 
   p[aligin=center] {
