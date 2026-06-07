@@ -773,7 +773,7 @@
       color: var(--color-indigo-600);
     }
   }
-  p[aligin=center] {
+  p[align=center] {
     align-content: flex-start;
   }
 }
