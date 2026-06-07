@@ -52,7 +52,7 @@ function getProjekt() {
 
     }).then((data) => {
       if (!data) return;
-      readHTML("Projekt", "https://zoeyvid.de/assets/repos/" + urlParams.get("project") + ".html")
+      readHTML("Projekt", "https://zoeyvid.de/assets/repos/" + encodeURIComponent(data.name) + ".html")
       document.getElementById("github").innerHTML += "<a href=" + data.html_url + ">View on GitHub</a>"
     })
 }

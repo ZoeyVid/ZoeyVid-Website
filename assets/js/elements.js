@@ -37,7 +37,7 @@ function git() {
 function changeExternalLinks() {
   const links = document.querySelectorAll("a");
   links.forEach(link => {
-    if (!link.href.startsWith("https://zoeyvid.de")) {
+    if (new URL(link.href).hostname === 'zoeyvid.de') {
       link.onclick = function () {
         if (confirm("Do you want to leave zoeyvid.de and go to " + link.href + "?") == true) {
           return true;
