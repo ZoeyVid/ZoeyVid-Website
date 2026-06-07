@@ -38,6 +38,9 @@ function changeExternalLinks() {
   const links = document.querySelectorAll("a");
   links.forEach(link => {
     if (new URL(link.href).hostname === 'zoeyvid.de') {
+      console.log("Internal link: " + link.href);
+      console.log("Hostname: " + new URL(link.href).hostname);
+      console.log("Current hostname: " + window.location.hostname);
       link.onclick = function () {
         if (confirm("Do you want to leave zoeyvid.de and go to " + link.href + "?") == true) {
           return true;
