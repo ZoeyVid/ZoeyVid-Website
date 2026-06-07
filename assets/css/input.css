@@ -44,6 +44,7 @@
     @apply text-white;
     @apply rounded-lg;
     @apply p-1;
+    @apply my-1;
   }
 
   #Projekt a,
