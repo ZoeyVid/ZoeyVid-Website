@@ -54,7 +54,7 @@
     @apply visited:text-indigo-600;
   }
 
-  p[aligin=center] {
+  p[align=center] {
     @apply content-start;
   }
 
