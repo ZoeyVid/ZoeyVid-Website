@@ -9,9 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v7.0.0
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
       - name: update tailwindcss (minify)
-        uses: ZoeyVid/tailwindcss-update@main
+        uses: ZoeyVid/tailwindcss-update@c315e0e5891d9cdc20548ac7aa455e580ce09856 # main
         with:
           input: assets/css/input.css
           output: assets/css/output.css
