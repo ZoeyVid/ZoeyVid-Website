@@ -2,11 +2,19 @@ User-agent: *
 Disallow: /assets
 Disallow: /impressum
 Disallow: /.impressum.html
+Disallow: /imprint
+Disallow: /.imprint.html
 Disallow: /datenschutz
 Disallow: /.datenschutz.html
+Disallow: /privacy
+Disallow: /.privacy.html
 
 User-agent: ia_archiver
 Disallow: /impressum
 Disallow: /.impressum.html
+Disallow: /imprint
+Disallow: /.imprint.html
 Disallow: /datenschutz
 Disallow: /.datenschutz.html
+Disallow: /privacy
+Disallow: /.privacy.html
