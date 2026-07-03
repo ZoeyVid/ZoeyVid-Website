@@ -15,7 +15,12 @@ jobs:
         with:
           input: assets/css/input.css
           output: assets/css/output.css
-#          params: "--minify"
+          params: "--minify"
+      - name: update tailwindcss (minify)
+        uses: ZoeyVid/tailwindcss-update@c315e0e5891d9cdc20548ac7aa455e580ce09856 # main
+        with:
+          input: assets/css/input.css
+          output: assets/css/output.non-min.css
       - name: push changes
         run: |
           git add --force assets/css/output.css
