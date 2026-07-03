@@ -23,7 +23,7 @@ jobs:
           output: assets/css/output.non-min.css
       - name: push changes
         run: |
-          git add --force assets/css/output.css
+          git add --force assets/css/output.css assets/css/output.non-min.css
           git config user.name "GitHub"
           git config user.email "noreply@github.com"
           git diff-index --quiet HEAD || git commit -sm "tailwindcss-update"
