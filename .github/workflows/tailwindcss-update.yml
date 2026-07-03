@@ -10,17 +10,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
-      - name: update tailwindcss (minify)
-        uses: ZoeyVid/tailwindcss-update@c315e0e5891d9cdc20548ac7aa455e580ce09856 # main
-        with:
-          input: assets/css/input.css
-          output: assets/css/output.css
-          params: "--minify"
-      - name: update tailwindcss
-        uses: ZoeyVid/tailwindcss-update@c315e0e5891d9cdc20548ac7aa455e580ce09856 # main
-        with:
-          input: assets/css/input.css
-          output: assets/css/output.non-min.css
+      - name: run tailwindcc
+        run: |
+          wget https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-linux-x64-musl -O tailwindcss
+          chmod +x tailwindcss
+          tailwindcss --input assets/css/input.css --output assets/css/output.css --minify
+          tailwindcss --input assets/css/input.css --output assets/css/output.non-min.css "$INPUT_PARAMS"
       - name: push changes
         run: |
           git add --force assets/css/output.css assets/css/output.non-min.css
