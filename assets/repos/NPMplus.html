@@ -66,7 +66,7 @@
 </ul>
 <ol start="2">
 <li>Download this <a href="https://raw.githubusercontent.com/ZoeyVid/NPMplus/refs/heads/develop/compose.yaml" rel="nofollow">compose.yaml</a> (or use its content as a portainer stack)</li>
-<li>Adjust TZ and ACME_EMAIL to your values and maybe adjust other env options to your needs</li>
+<li>Adjust TZ to match your Timezone and maybe adjust other env options to your needs</li>
 <li>Start NPMplus by running (or deploy your portainer stack)</li>
 </ol>
 <div class="highlight highlight-source-shell"><pre>docker compose up -d</pre></div>
@@ -83,7 +83,7 @@
 <li>make a backup of your data and letsencrypt folders (creating a copy using <code>cp -a</code> should be enough)</li>
 <li>download the latest compose.yaml of NPMplus</li>
 <li>adjust your paths (of /etc/letsencrypt and /data) to the ones you used with nginx-proxy-manager</li>
-<li>adjust TZ and ACME_EMAIL to your values and maybe adjust other env options to your needs</li>
+<li>adjust TZ to match your Timezone and maybe adjust other env options to your needs</li>
 <li>stop nginx-proxy-manager</li>
 <li>deploy the NPMplus compose.yaml</li>
 <li>You should now remove the <code>/etc/letsencrypt</code> mount, since it was moved to <code>/data</code> while migration, then redeploy the compose file</li>
