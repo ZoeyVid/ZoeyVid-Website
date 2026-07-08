@@ -211,9 +211,6 @@
   .relative {
     position: relative;
   }
-  .static {
-    position: static;
-  }
   .inset-y-0 {
     inset-block: 0;
   }
