@@ -1,9 +1,8 @@
 <meta charset="utf-8">
 <div class="markdown-heading"><h1 class="heading-element">YT Party</h1><a id="user-content-yt-party" class="anchor" aria-label="Permalink: YT Party" href="#yt-party"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
-<p>YouTube audio in Minecraft 26.2 with synchronized listening parties. A client-side Fabric mod
-fetches, decodes and plays YouTube audio itself (playlist, play/pause, volume, seek) and keeps
-the playlist order, current track and pause state in sync per "party". <strong>Fully standalone:</strong>
-without a backend it works purely locally. Everything is controlled <strong>through the UI</strong> (key <strong>J</strong>).</p>
+<p>Synchronised YouTube listening inside Minecraft. Everyone in a <em>party</em> hears the same track at the
+same position — play/pause, seek, skip and playlist edits stay in lockstep. Audio is decoded and
+played entirely client‑side; nothing but small control messages travels over the network.</p>
 <blockquote>
 <p><strong>Note — this project is "vibecoded".</strong> It was built end-to-end by an AI (Claude Opus 4.8) from
 natural-language prompts, not hand-written by a human engineer. Keep that in mind: read the code and
@@ -12,79 +11,55 @@ test it before relying on it. The quality reflects what Opus 4.8 produces at bes
 <strong>AI-free — not vibecoded</strong>. This repository is the only one built this way, and it is labelled as
 such on purpose.</p>
 </blockquote>
+<div class="markdown-heading"><h2 class="heading-element">Components</h2><a id="user-content-components" class="anchor" aria-label="Permalink: Components" href="#components"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <table>
 <thead>
 <tr>
-<th>Part</th>
-<th>Path</th>
-<th>Role</th>
+<th>Component</th>
+<th>What it is</th>
+<th>Who needs it</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Mod</td>
-<td><code>mod/</code></td>
-<td>
-<strong>One jar for client and Fabric server.</strong> Client: audio (LavaPlayer → OpenAL), GUI, playlist, sync. Server: party logic (own entrypoint, no audio). Also buildable as a slim <strong>server jar without audio libraries</strong>.</td>
+<td><strong>Client mod</strong></td>
+<td>Fabric mod: the in‑game UI and the audio player (extract → decode → OpenAL)</td>
+<td>every listener</td>
 </tr>
 <tr>
-<td>Plugin</td>
-<td><code>plugin/</code></td>
-<td>Paper counterpart of the server side.</td>
+<td><strong>Relay</strong></td>
+<td>standalone, end‑to‑end‑encrypted server that hosts party state across <em>any</em> servers</td>
+<td>run one, or use a public one</td>
 </tr>
 <tr>
-<td>Relay</td>
-<td><code>relay/</code></td>
-<td>Standalone, <strong>encrypted</strong> TCP server (Go, stdlib only, static binary) for worlds <strong>without</strong> a plugin/server-mod.</td>
+<td><strong>Server mod</strong></td>
+<td>a separate, minimal server‑only jar (party logic, no UI or audio) for a Fabric server</td>
+<td>server owner (optional)</td>
+</tr>
+<tr>
+<td><strong>Plugin</strong></td>
+<td>Bukkit plugin for Spigot / Paper / Folia servers</td>
+<td>server owner (optional)</td>
 </tr>
 </tbody>
 </table>
-<p>Three backends, <strong>one</strong> byte protocol — the same client mod talks to all of them identically.
-One backend is enough (or none → local only).</p>
-<hr>
-<div class="markdown-heading"><h2 class="heading-element">For players</h2><a id="user-content-for-players" class="anchor" aria-label="Permalink: For players" href="#for-players"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
-<ol>
-<li>Install <strong>Fabric</strong> for Minecraft 26.2, then drop <strong>Fabric API</strong> and the
-<strong><code>ytparty-…-bundle.jar</code></strong> into your <code>mods/</code> folder.</li>
-<li>In game, press <strong>J</strong> — the playlist menu opens.</li>
-</ol>
-<p><strong>In the menu:</strong></p>
-<ul>
-<li>
-<strong>Top:</strong> a URL field + <strong>Add</strong>. Paste a YouTube link or type <code>ytsearch:query</code>.</li>
-<li>
-<strong>Controls:</strong> play/pause, skip, a <strong>volume slider</strong> (independent of Minecraft's master volume) and
-a clickable/draggable <strong>timeline</strong> for seeking.</li>
-<li>
-<strong>Track list:</strong> each row has ▶ (play), ▲▼ (reorder), ✕ (remove). The current track is marked ♪ and
-shows a ⏸/▶ toggle. Long playlists <strong>scroll</strong> with the mouse wheel (a counter shows the range).</li>
-<li>
-<strong>Party:</strong> <strong>Create party</strong> starts one, <strong>Party…</strong> opens management, <strong>Leave</strong> leaves it.
-<strong>Relay</strong> opens the relay connection (for worlds without a server backend).</li>
-</ul>
-<p><strong>Managing a party (Party…):</strong> managers can toggle <code>public</code> on/off, pick the join level, change member
-levels, and <strong>invite</strong> via the name field (with a level). Invitees see a <strong>Join</strong> button next time they
-open the menu. In a party everyone automatically follows whatever a manager plays/pauses/seeks. Three
-levels: <strong>LISTEN</strong> (hear only), <strong>INVITE</strong> (+ invite), <strong>MANAGE</strong> (+ full control) — see
-<a href="docs/PROTOCOL.md"><code>docs/PROTOCOL.md</code></a>.</p>
-<p><strong>Relay (no server backend):</strong> in the menu choose <strong>Relay</strong> → enter host, port and password →
-<strong>Connect</strong>. Party features then run over the relay instead of a Minecraft server.</p>
-<p>The <strong>J</strong> key is a normal Minecraft keybind (category <em>Miscellaneous</em>) and can be <strong>rebound</strong> under
-Options → Controls. It only fires in a world — there is currently no way to open the menu from the
-main menu (a possible future feature).</p>
-<div class="markdown-heading"><h3 class="heading-element">Who can be in a party together</h3><a id="user-content-who-can-be-in-a-party-together" class="anchor" aria-label="Permalink: Who can be in a party together" href="#who-can-be-in-a-party-together"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<p>You only ever need the <strong>client mod</strong>. It works <strong>solo</strong> out of the box (a private, in‑process party).
+To listen <em>together</em> you point it at one <strong>backend</strong> — a relay, a Fabric server running the server
+mod, or a Bukkit server running the plugin. All three speak the same protocol and run the same party
+logic, so the experience is identical whichever you use.</p>
+<div class="markdown-heading"><h2 class="heading-element">Who can be in a party together</h2><a id="user-content-who-can-be-in-a-party-together" class="anchor" aria-label="Permalink: Who can be in a party together" href="#who-can-be-in-a-party-together"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <p>A party lives entirely inside <strong>one</strong> backend; the relay and a server plugin/mod never bridge. So two
 people share a party only if they share a backend. The relay is independent of Minecraft — it works
-from singleplayer or from any server, as long as both connect to the <strong>same</strong> relay (same host/port/
-password). A <strong>singleplayer</strong> integrated server is private to you (a party of one). Local playback
-always works everywhere; only the <em>sync</em> needs a backend.</p>
+from singleplayer or from any server, as long as both connect to the <strong>same</strong> relay (same host / port /
+password). A <strong>singleplayer</strong> world is private to you (a party of one). Local playback always works
+everywhere; only the <em>sync</em> needs a backend.</p>
 <table>
 <thead>
 <tr>
-<th>Person A ↓ \ Person B →</th>
+<th>Person A ↓ \ B →</th>
 <th align="center">Singleplayer (no relay)</th>
-<th align="center">Same server X (plugin/mod)</th>
-<th align="center">Different server Y</th>
+<th align="center">Server X (plugin/mod)</th>
+<th align="center">Server Y (plugin/mod)</th>
 <th align="center">Server without backend</th>
 <th align="center">On the same relay</th>
 </tr>
@@ -99,7 +74,7 @@ always works everywhere; only the <em>sync</em> needs a backend.</p>
 <td align="center">✗</td>
 </tr>
 <tr>
-<td><strong>Same server X (plugin/mod)</strong></td>
+<td><strong>Server X (plugin/mod)</strong></td>
 <td align="center">✗</td>
 <td align="center">✓ <em>(server X)</em>
 </td>
@@ -108,7 +83,7 @@ always works everywhere; only the <em>sync</em> needs a backend.</p>
 <td align="center">✗</td>
 </tr>
 <tr>
-<td><strong>Different server Y</strong></td>
+<td><strong>Server Y (plugin/mod)</strong></td>
 <td align="center">✗</td>
 <td align="center">✗</td>
 <td align="center">✓ <em>(server Y)</em>
@@ -135,110 +110,67 @@ always works everywhere; only the <em>sync</em> needs a backend.</p>
 </tr>
 </tbody>
 </table>
-<p>In words: two players can party <strong>either</strong> by being on the <strong>same dedicated server</strong> that runs the
-plugin/server-mod (and neither using a relay — a connected relay overrides the server), <strong>or</strong> by both
-connecting to the <strong>same relay</strong>. Concretely: two singleplayer users → only via a shared relay; a
-plugin-server user + a singleplayer user → only if the server user <em>also</em> connects to that relay
-(their server party is then replaced by the relay party).</p>
-<p><strong>Different servers, shared relay:</strong> yes — two people on <em>different</em> Paper/Fabric servers can listen
-together if both connect to the same relay (each one's server backend is simply ignored while the relay
-is connected). The relay doesn't care where you are in Minecraft.</p>
-<p><strong>Leaving a world/server:</strong> in a <strong>server</strong> party, disconnecting removes you from it (the party continues
-for the others, or disbands if you were the last manager). A <strong>relay</strong> party is independent of Minecraft —
-switching worlds or servers, or returning to the main menu, does <strong>not</strong> drop you from it; you stay until
-you Leave or disconnect the relay.</p>
-<p>To invite, type a name, or on a server pick from the online player list (<strong>Invite from list…</strong>, with a
-search box for many players).</p>
-<hr>
-<div class="markdown-heading"><h2 class="heading-element">Running a backend (one is enough)</h2><a id="user-content-running-a-backend-one-is-enough" class="anchor" aria-label="Permalink: Running a backend (one is enough)" href="#running-a-backend-one-is-enough"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
-<table>
-<thead>
-<tr>
-<th>Backend</th>
-<th>Install</th>
-<th>Configuration</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Fabric server</td>
-<td>the <strong>same <code>…-bundle.jar</code></strong> <em>or</em> the slim <strong><code>…-server.jar</code></strong> in <code>mods/</code> + Fabric API</td>
-<td>none</td>
-</tr>
-<tr>
-<td>Bukkit plugin</td>
-<td>
-<code>ytparty-plugin-….jar</code> in <code>plugins/</code> (Spigot / Paper / Folia, 1.13+)</td>
-<td>none</td>
-</tr>
-<tr>
-<td>Relay</td>
-<td>run the binary <strong>or</strong> Docker/Compose</td>
-<td>environment only</td>
-</tr>
-</tbody>
-</table>
-<p>All options (with defaults and meaning) are in <a href="docs/CONFIGURATION.md"><code>docs/CONFIGURATION.md</code></a>.</p>
-<p>Relay quickly via Compose (password e.g. from a <code>.env</code> file):</p>
-<pre><code>YTPARTY_RELAY_PASSWORD=… docker compose up -d   # compose.yaml + relay/Dockerfile
-</code></pre>
-<p><code>YTPARTY_RELAY_PASSWORD</code> is required: if unset, the relay refuses to start and prints a randomly
-generated example key to copy.</p>
-<hr>
-<div class="markdown-heading"><h2 class="heading-element">Building</h2><a id="user-content-building" class="anchor" aria-label="Permalink: Building" href="#building"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
-<p>Mod + plugin need <strong>JDK 25</strong>, the relay needs <strong>Go 1.26</strong>. The Gradle wrapper is included.</p>
-<pre><code>cd mod &amp;&amp; ./gradlew shadowJar serverJar   # bundle.jar (~33 MB) + server.jar (~21 KB)
-cd plugin &amp;&amp; ./gradlew build                 # ytparty-plugin-0.1.0.jar
-go build -tags timetzdata -buildmode=pie -trimpath -ldflags="-s -w -buildid=" -o relay relay
-</code></pre>
-<p>CI workflows in <a href=".github/workflows/"><code>.github/workflows/</code></a>: <code>mod.yml</code> and <code>plugin.yml</code> build the
-jars, <code>relay.yml</code> builds and pushes the multi-arch Docker image (amd64 + arm64), plus lint workflows
-(hadolint, shellcheck, codespell, JSON).</p>
-<hr>
-<div class="markdown-heading"><h2 class="heading-element">Encryption &amp; permissions</h2><a id="user-content-encryption--permissions" class="anchor" aria-label="Permalink: Encryption &amp; permissions" href="#encryption--permissions"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<p>In words: party up <strong>either</strong> by being on the <strong>same</strong> dedicated server that runs the plugin/server‑mod
+(and neither side using a relay — a connected relay overrides the server), <strong>or</strong> by both connecting to
+the <strong>same relay</strong>. Two people on <em>different</em> Paper/Fabric servers can listen together via a shared
+relay; each one's server backend is simply ignored while the relay is connected.</p>
+<div class="markdown-heading"><h2 class="heading-element">Quick start</h2><a id="user-content-quick-start" class="anchor" aria-label="Permalink: Quick start" href="#quick-start"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<ol>
+<li>
+<strong>Install the client mod</strong> (needs Fabric API) in your <code>mods/</code> folder. Open the party UI with the
+keybind (rebindable under Options → Controls) and add a YouTube URL — that already works solo.</li>
+<li>
+<strong>To sync with others</strong>, either:
 <ul>
-<li>Sync over the <strong>plugin/server-mod</strong> rides inside Minecraft's own game connection (already
-AES-encrypted in online mode). The <strong>relay</strong> encrypts its own socket with a hybrid
-<strong>X25519 + ML-KEM-768</strong> handshake (forward secrecy + post-quantum) and AES-256-GCM →
-<a href="docs/SECURITY.md"><code>docs/SECURITY.md</code></a>.</li>
-<li>Permissions (LISTEN/INVITE/MANAGE) are enforced server-side → <a href="docs/PROTOCOL.md"><code>docs/PROTOCOL.md</code></a>.</li>
+<li>
+<strong>Relay:</strong> enter host / port / password in the in‑game <em>Relay</em> screen and connect. Run your own
+with Docker (<code>compose.yaml</code> + <code>relay/Dockerfile</code>, image <code>ghcr.io/zoeyvid/ytparty</code>) — see
+<a href="relay/README.md"><code>relay/README.md</code></a>.</li>
+<li>
+<strong>Server backend:</strong> join a Fabric server with the server mod, or a Bukkit server with the plugin.
+No client setup needed — the party UI just works there.</li>
 </ul>
-<div class="markdown-heading"><h2 class="heading-element">More</h2><a id="user-content-more" class="anchor" aria-label="Permalink: More" href="#more"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+</li>
+</ol>
+<div class="markdown-heading"><h2 class="heading-element">Build</h2><a id="user-content-build" class="anchor" aria-label="Permalink: Build" href="#build"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<p>Each component builds independently; exact tool and library versions are pinned in the build files
+(<code>mod/gradle.properties</code>, <code>mod/build.gradle</code>, <code>plugin/build.gradle</code>, <code>relay/go.mod</code>,
+<code>relay/Dockerfile</code>) rather than repeated here. See <a href="docs/DEVELOPMENT.md"><code>docs/DEVELOPMENT.md</code></a>.</p>
+<div class="markdown-heading"><h2 class="heading-element">Docs</h2><a id="user-content-docs" class="anchor" aria-label="Permalink: Docs" href="#docs"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <table>
 <thead>
 <tr>
-<th>Doc</th>
+<th>File</th>
 <th>Contents</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><a href="docs/CONFIGURATION.md"><code>docs/CONFIGURATION.md</code></a></td>
-<td>Every config option, default and meaning</td>
-</tr>
-<tr>
-<td><a href="docs/PROTOCOL.md"><code>docs/PROTOCOL.md</code></a></td>
-<td>Wire protocol (C2S/S2C) + permission system</td>
-</tr>
-<tr>
-<td><a href="docs/SECURITY.md"><code>docs/SECURITY.md</code></a></td>
-<td>Security model, relay crypto, hardening, residual risks</td>
+<td><a href="docs/DEVELOPMENT.md"><code>docs/DEVELOPMENT.md</code></a></td>
+<td>building, project layout, per‑component toolchain</td>
 </tr>
 <tr>
 <td><a href="docs/DEPENDENCIES.md"><code>docs/DEPENDENCIES.md</code></a></td>
-<td>All external dependencies</td>
+<td>what each component depends on and why</td>
 </tr>
 <tr>
-<td><a href="docs/DEVELOPMENT.md"><code>docs/DEVELOPMENT.md</code></a></td>
-<td>Versions, build, 26.2 API, lessons, performance</td>
+<td><a href="docs/CONFIGURATION.md"><code>docs/CONFIGURATION.md</code></a></td>
+<td>relay settings and the in‑game client settings</td>
 </tr>
 <tr>
-<td><a href="relay/README.md"><code>relay/README.md</code></a></td>
-<td>Build &amp; run the relay</td>
+<td><a href="docs/PROTOCOL.md"><code>docs/PROTOCOL.md</code></a></td>
+<td>the wire protocol and the synchronisation model</td>
+</tr>
+<tr>
+<td><a href="docs/SECURITY.md"><code>docs/SECURITY.md</code></a></td>
+<td>threat model and the relay's encryption</td>
+</tr>
+<tr>
+<td><a href="docs/PLANNED.md"><code>docs/PLANNED.md</code></a></td>
+<td>ideas not yet built</td>
 </tr>
 </tbody>
 </table>
-<div class="markdown-heading"><h2 class="heading-element">Legal</h2><a id="user-content-legal" class="anchor" aria-label="Permalink: Legal" href="#legal"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
-<p>Pulling YouTube audio this way violates the YouTube ToS. Common for private/community use, but it's
-your responsibility.</p>
+<div class="markdown-heading"><h2 class="heading-element">License</h2><a id="user-content-license" class="anchor" aria-label="Permalink: License" href="#license"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<p>See <a href="COPYING"><code>COPYING</code></a>.</p>
 
