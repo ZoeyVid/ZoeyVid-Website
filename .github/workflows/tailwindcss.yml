@@ -22,5 +22,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git diff --quiet && exit 0
-          git commit -sam "update and lint"
+          git commit -sam "tailwindcss"
           git push
