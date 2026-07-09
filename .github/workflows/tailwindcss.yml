@@ -1,0 +1,26 @@
+name: tailwindcss
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "0 * * * *"
+  workflow_dispatch:
+jobs:
+  tailwindcss:
+    runs-on: ubuntu-slim
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      - name: tailwindcss
+        run: |
+          curl -sSfL https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-linux-x64 -o tailwindcss
+          chmod +x tailwindcss
+          ./tailwindcss --input assets/css/input.css --output assets/css/output.css --minify
+          ./tailwindcss --input assets/css/input.css --output assets/css/output.non-min.css "$INPUT_PARAMS"
+      - name: push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git diff --quiet && exit 0
+          git commit -sam "update and lint"
+          git push
