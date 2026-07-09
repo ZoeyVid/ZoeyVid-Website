@@ -1,0 +1,31 @@
+name: repos
+on:
+  push:
+    branches:
+      - develop
+  schedule:
+    - cron: "0 * * * *"
+  workflow_dispatch:
+jobs:
+  repos:
+    runs-on: ubuntu-slim
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      - name: refresh
+        run: |
+          rm -rf assets/repos
+          mkdir -p assets/repos
+          repos=$(curl -sL "https://api.github.com/orgs/ZoeyVid/repos?per_page=100" --header "authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" | jq '[ .[] | select(.archived==false and .private==false and .name != ".github") ] | sort_by(.name)')
+          for repo in $(jq -r '.[].name' <<< "$repos"); do
+            branch=$(jq -r --arg r "$repo" 'first(.[] | select(.name==$r).default_branch)' <<< "$repos")
+            echo -e "<meta charset=\"utf-8\">\n$(curl -X POST https://api.github.com/markdown/raw --header "authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" --header "Content-Type: text/plain" -d "$(curl -sL https://raw.githubusercontent.com/ZoeyVid/$repo/$branch/README.md)")\n" | tee "assets/repos/$repo.html"
+          done
+          jq 'map({ (.name): { name, html_url, fork, description: (.description // ""), license: (.license.spdx_id // "") } }) | add' <<< "$repos" | tee assets/repos/index.json
+      - name: push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet && exit 0
+          git commit -sm "update and lint"
+          git push
