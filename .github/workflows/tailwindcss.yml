@@ -17,10 +17,11 @@ jobs:
           chmod +x tailwindcss
           ./tailwindcss --input assets/css/input.css --output assets/css/output.css --minify
           ./tailwindcss --input assets/css/input.css --output assets/css/output.non-min.css "$INPUT_PARAMS"
-      - name: push
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git diff --quiet && exit 0
-          git commit -sam "tailwindcss"
-          git push
+      - uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
+        with:
+          signoff: true
+          delete-branch: true
+          commit-message: tailwindcss
+          branch: tailwindcss
+          title: tailwindcss
+          body: tailwindcss
