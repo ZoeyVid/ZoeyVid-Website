@@ -14,7 +14,7 @@
 <div class="markdown-heading"><h2 class="heading-element">List of some changes</h2><a id="user-content-list-of-some-changes" class="anchor" aria-label="Permalink: List of some changes" href="#list-of-some-changes"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <ul>
 <li>Supports HTTP/3 (QUIC), requires you to expose https with udp</li>
-<li>Support for crowdsec and openappsec</li>
+<li>Support for crowdsec</li>
 <li>Support for acme profiles (letsencrypt shortlived is used by default)</li>
 <li>Improved support for different acme servers (like ocsp/must-staple)</li>
 <li>OIDC support</li>
@@ -111,18 +111,7 @@
 <span class="pl-ent">name</span>: <span class="pl-s">appsec</span>
 <span class="pl-ent">source</span>: <span class="pl-s">appsec</span>
 <span class="pl-ent">labels</span>:
-  <span class="pl-ent">type</span>: <span class="pl-s">appsec</span>
-<span class="pl-c"><span class="pl-c">#</span>---</span>
-<span class="pl-c"><span class="pl-c">#</span> If you use open-appsec, uncomment the section below.</span>
-<span class="pl-c"><span class="pl-c">#</span> If connecting to open-appsec cloud, you must edit the default 'log trigger' </span>
-<span class="pl-c"><span class="pl-c">#</span> in the cloud dashboard: check "Log to &gt; gateway / agent" and click 'enforce'.</span>
-<span class="pl-c"><span class="pl-c">#</span> Otherwise, no intrusion events will be logged to the local agent </span>
-<span class="pl-c"><span class="pl-c">#</span> for CrowdSec to process.</span>
-<span class="pl-c"><span class="pl-c">#</span>source: file</span>
-<span class="pl-c"><span class="pl-c">#</span>filenames:</span>
-<span class="pl-c"><span class="pl-c">#</span> - /opt/openappsec/logs/cp-nano-http-transaction-handler.log*</span>
-<span class="pl-c"><span class="pl-c">#</span>labels:</span>
-<span class="pl-c"><span class="pl-c">#</span>  type: openappsec</span></pre></div>
+  <span class="pl-ent">type</span>: <span class="pl-s">appsec</span></pre></div>
 <ol start="4">
 <li>Make sure to use <code>network_mode: host</code> in your compose file for the NPMplus container</li>
 <li>Run <code>docker exec crowdsec cscli bouncers add npmplus</code> and save the api key of the output</li>
@@ -372,7 +361,6 @@
 <li>If you're blocking IPs — for example, using access lists, GeoIP filtering, or CrowdSec block lists — make sure to mention this as well.</li>
 <li>If GoAccess is enabled, it processes access logs to generate statistics, which are saved on disk for a time you can configure. These statistics include user information (like IPs), so make sure to also mention this.</li>
 <li>If you use the PHP-FPM option, error logs from PHP-FPM will also be written to Docker logs. These include user information (like IPs), so make sure to also mention this.</li>
-<li>If you use open-appsec <code>NGINX_LOAD_OPENAPPSEC_ATTACHMENT_MODULE</code>, you should also include information about it; since I don't use it myself, I can't give you any further hints.</li>
 <li>If you collect any user information (like through other custom nginx modules, modules you can load via env, lua scripts, etc.), also mention it.</li>
 <li>If you use the caddy http to https redirect container, you should also mention the data collected by it, since it will also collect (error) logs.</li>
 <li>If use use anubis, see here: <a href="https://anubis.techaro.lol/docs/admin/configuration/impressum" rel="nofollow">https://anubis.techaro.lol/docs/admin/configuration/impressum</a>
