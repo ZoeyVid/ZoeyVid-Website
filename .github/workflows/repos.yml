@@ -16,10 +16,10 @@ jobs:
           cd assets
           rm -rf repos
           mkdir -p repos
-          repos=$(curl -sL "https://api.github.com/orgs/ZoeyVid/repos?per_page=100" --header "authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" | jq '[ .[] | select(.archived==false and .private==false and .name != ".github") ] | sort_by(.name)')
+          repos=$(curl -sSfL "https://api.github.com/orgs/ZoeyVid/repos?per_page=100" --header "authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" | jq '[ .[] | select(.archived==false and .private==false and .name != ".github") ] | sort_by(.name)')
           for repo in $(jq -r '.[].name' <<< "$repos"); do
             branch=$(jq -r --arg r "$repo" 'first(.[] | select(.name==$r).default_branch)' <<< "$repos")
-            echo -e "<meta charset=\"utf-8\">\n$(curl -X POST https://api.github.com/markdown/raw --header "authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" --header "Content-Type: text/plain" -d "$(curl -sL https://raw.githubusercontent.com/ZoeyVid/$repo/$branch/README.md)")\n" | tee "repos/$repo.html"
+            echo -e "<meta charset=\"utf-8\">\n$(curl -sSfL -X POST https://api.github.com/markdown/raw --header "authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" --header "Content-Type: text/plain" -d "$(curl -sSfL https://raw.githubusercontent.com/ZoeyVid/$repo/$branch/README.md)")\n" | tee "repos/$repo.html"
           done
           jq 'map({ (.name): { name, html_url, fork, description: (.description // ""), license: (.license.spdx_id // "") } }) | add' <<< "$repos" | tee repos/index.json
       - name: push
