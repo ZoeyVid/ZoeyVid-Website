@@ -1,3 +1,176 @@
 <meta charset="utf-8">
-
+<div class="markdown-heading"><h1 class="heading-element">YT Party</h1><a id="user-content-yt-party" class="anchor" aria-label="Permalink: YT Party" href="#yt-party"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<p>Synchronised YouTube listening inside Minecraft. Everyone in a <em>party</em> hears the same track at the
+same position — play/pause, seek, skip and playlist edits stay in lockstep. Audio is decoded and
+played entirely client‑side; nothing but small control messages travels over the network.</p>
+<blockquote>
+<p><strong>Note — this project is "vibecoded".</strong> It was built end-to-end by an AI (Claude Opus 4.8) from
+natural-language prompts, not hand-written by a human engineer. Keep that in mind: read the code and
+test it before relying on it. The quality reflects what Opus 4.8 produces at best — no more, no less.</p>
+<p><strong>This is the exception, not the rule.</strong> All of my <em>other</em> projects are written by hand and are
+<strong>AI-free — not vibecoded</strong>. This repository is the only one built this way, and it is labelled as
+such on purpose.</p>
+</blockquote>
+<div class="markdown-heading"><h2 class="heading-element">Components</h2><a id="user-content-components" class="anchor" aria-label="Permalink: Components" href="#components"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>What it is</th>
+<th>Who needs it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Client mod</strong></td>
+<td>Fabric mod: the in‑game UI and the audio player (extract → decode → OpenAL)</td>
+<td>every listener</td>
+</tr>
+<tr>
+<td><strong>Relay</strong></td>
+<td>standalone, end‑to‑end‑encrypted server that hosts party state across <em>any</em> servers</td>
+<td>run one, or use a public one</td>
+</tr>
+<tr>
+<td><strong>Server mod</strong></td>
+<td>a separate, minimal server‑only jar (party logic, no UI or audio) for a Fabric server</td>
+<td>server owner (optional)</td>
+</tr>
+<tr>
+<td><strong>Plugin</strong></td>
+<td>Bukkit plugin for Spigot / Paper / Folia servers</td>
+<td>server owner (optional)</td>
+</tr>
+</tbody>
+</table>
+<p>You only ever need the <strong>client mod</strong>. It works <strong>solo</strong> out of the box (a private, in‑process party).
+To listen <em>together</em> you point it at one <strong>backend</strong> — a relay, a Fabric server running the server
+mod, or a Bukkit server running the plugin. All three speak the same protocol and run the same party
+logic, so the experience is identical whichever you use.</p>
+<div class="markdown-heading"><h2 class="heading-element">Who can be in a party together</h2><a id="user-content-who-can-be-in-a-party-together" class="anchor" aria-label="Permalink: Who can be in a party together" href="#who-can-be-in-a-party-together"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<p>A party lives entirely inside <strong>one</strong> backend; the relay and a server plugin/mod never bridge. So two
+people share a party only if they share a backend. The relay is independent of Minecraft — it works
+from singleplayer or from any server, as long as both connect to the <strong>same</strong> relay (same host / port /
+password). A <strong>singleplayer</strong> world is private to you (a party of one). Local playback always works
+everywhere; only the <em>sync</em> needs a backend.</p>
+<table>
+<thead>
+<tr>
+<th>Person A ↓ \ B →</th>
+<th align="center">Singleplayer (no relay)</th>
+<th align="center">Server X (plugin/mod)</th>
+<th align="center">Server Y (plugin/mod)</th>
+<th align="center">Server without backend</th>
+<th align="center">On the same relay</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Singleplayer (no relay)</strong></td>
+<td align="center">✗</td>
+<td align="center">✗</td>
+<td align="center">✗</td>
+<td align="center">✗</td>
+<td align="center">✗</td>
+</tr>
+<tr>
+<td><strong>Server X (plugin/mod)</strong></td>
+<td align="center">✗</td>
+<td align="center">✓ <em>(server X)</em>
+</td>
+<td align="center">✗</td>
+<td align="center">✗</td>
+<td align="center">✗</td>
+</tr>
+<tr>
+<td><strong>Server Y (plugin/mod)</strong></td>
+<td align="center">✗</td>
+<td align="center">✗</td>
+<td align="center">✓ <em>(server Y)</em>
+</td>
+<td align="center">✗</td>
+<td align="center">✗</td>
+</tr>
+<tr>
+<td><strong>Server without backend</strong></td>
+<td align="center">✗</td>
+<td align="center">✗</td>
+<td align="center">✗</td>
+<td align="center">✗</td>
+<td align="center">✗</td>
+</tr>
+<tr>
+<td><strong>On the same relay</strong></td>
+<td align="center">✗</td>
+<td align="center">✗</td>
+<td align="center">✗</td>
+<td align="center">✗</td>
+<td align="center">✓ <em>(relay)</em>
+</td>
+</tr>
+</tbody>
+</table>
+<p>In words: party up <strong>either</strong> by being on the <strong>same</strong> dedicated server that runs the plugin/server‑mod
+(and neither side using a relay — a connected relay overrides the server), <strong>or</strong> by both connecting to
+the <strong>same relay</strong>. Two people on <em>different</em> Paper/Fabric servers can listen together via a shared
+relay; each one's server backend is simply ignored while the relay is connected.</p>
+<div class="markdown-heading"><h2 class="heading-element">Quick start</h2><a id="user-content-quick-start" class="anchor" aria-label="Permalink: Quick start" href="#quick-start"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<ol>
+<li>
+<strong>Install the client mod</strong> (needs Fabric API) in your <code>mods/</code> folder. Open the party UI with the
+keybind (rebindable under Options → Controls) and add a YouTube URL — that already works solo.</li>
+<li>
+<strong>To sync with others</strong>, either:
+<ul>
+<li>
+<strong>Relay:</strong> enter host / port / password in the in‑game <em>Relay</em> screen and connect. Run your own
+with Docker (<code>compose.yaml</code> + <code>relay/Dockerfile</code>, image <code>ghcr.io/zoeyvid/ytparty</code>) — see
+<a href="relay/README.md"><code>relay/README.md</code></a>.</li>
+<li>
+<strong>Server backend:</strong> join a Fabric server with the server mod, or a Bukkit server with the plugin.
+No client setup needed — the party UI just works there.</li>
+</ul>
+</li>
+</ol>
+<div class="markdown-heading"><h2 class="heading-element">Build</h2><a id="user-content-build" class="anchor" aria-label="Permalink: Build" href="#build"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<p>Each component builds independently; exact tool and library versions are pinned in the build files
+(<code>mod/gradle.properties</code>, <code>mod/build.gradle</code>, <code>plugin/build.gradle</code>, <code>relay/go.mod</code>,
+<code>relay/Dockerfile</code>) rather than repeated here. See <a href="docs/DEVELOPMENT.md"><code>docs/DEVELOPMENT.md</code></a>.</p>
+<div class="markdown-heading"><h2 class="heading-element">Docs</h2><a id="user-content-docs" class="anchor" aria-label="Permalink: Docs" href="#docs"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="docs/DEVELOPMENT.md"><code>docs/DEVELOPMENT.md</code></a></td>
+<td>building, project layout, per‑component toolchain</td>
+</tr>
+<tr>
+<td><a href="docs/DEPENDENCIES.md"><code>docs/DEPENDENCIES.md</code></a></td>
+<td>what each component depends on and why</td>
+</tr>
+<tr>
+<td><a href="docs/CONFIGURATION.md"><code>docs/CONFIGURATION.md</code></a></td>
+<td>relay settings and the in‑game client settings</td>
+</tr>
+<tr>
+<td><a href="docs/PROTOCOL.md"><code>docs/PROTOCOL.md</code></a></td>
+<td>the wire protocol and the synchronisation model</td>
+</tr>
+<tr>
+<td><a href="docs/SECURITY.md"><code>docs/SECURITY.md</code></a></td>
+<td>threat model and the relay's encryption</td>
+</tr>
+<tr>
+<td><a href="docs/PLANNED.md"><code>docs/PLANNED.md</code></a></td>
+<td>ideas not yet built</td>
+</tr>
+</tbody>
+</table>
+<div class="markdown-heading"><h2 class="heading-element">License</h2><a id="user-content-license" class="anchor" aria-label="Permalink: License" href="#license"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<p>See <a href="COPYING"><code>COPYING</code></a>.</p>
 
