@@ -13,35 +13,32 @@
 <strong>Note: please report issues first to this fork before reporting them to the upstream repository.</strong> <br></p>
 <div class="markdown-heading"><h2 class="heading-element">List of some changes</h2><a id="user-content-list-of-some-changes" class="anchor" aria-label="Permalink: List of some changes" href="#list-of-some-changes"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <ul>
-<li>Supports HTTP/3 (QUIC), requires you to expose https with udp</li>
-<li>Support for crowdsec</li>
-<li>Support for acme profiles (letsencrypt shortlived is used by default)</li>
-<li>Improved support for different acme servers (like ocsp/must-staple)</li>
-<li>OIDC support</li>
-<li>smaller image based on alpine</li>
-<li>ML-KEM support (also hardened TLS settings enforced)</li>
-<li>https for the NPMplus interface</li>
-<li>Goaccess included, served under /goaccess of the web UI for logged in admins</li>
-<li>easier punycode domain support</li>
-<li>zstd and brotli compression</li>
-<li>basic security headers always send</li>
-<li>allow empty ports to support loadbalancing</li>
-<li>proxy protocol support</li>
-<li>improved nginx build (with aws-lc and custom patches) and nginx templates with keep-alive to upstreams</li>
-<li>tls certificate compression (zlib-ng+brotli) and optional encrypted client hello (ech) support</li>
-<li>mTLS ca cert upload support</li>
-<li>file and php server support (and fancyindex)</li>
-<li>option to edit custom certs</li>
-<li>gravatars are cached locally and fetched by the backend (better privacy by not exposing you directly to gravatar)</li>
-<li>qrcodes for totp are generated locally in your browser instead of using a third-party api (better privacy/security by not exposing you and the secret to the third-party api)</li>
-<li>re-added some things that where removed with upstreams new frontend</li>
-<li>use secure cookied instead of local storage to save the token combined with a Content-Security-Policy</li>
-<li>Password reset (only sqlite) using <code>docker exec -it npmplus password-reset.js USER_EMAIL PASSWORD</code>
+<li>HTTP/3 (QUIC), needs https exposed over udp</li>
+<li>crowdsec (and appsec) support</li>
+<li>hardened TLS by default:
+<ul>
+<li>patched nginx build with aws-lc compiled form source</li>
+<li>enforced cipher/curve order, certificate compression (zlib-ng+brotli)</li>
+<li>optional encrypted client hello (ech)</li>
+</ul>
 </li>
-<li>Swagger UI under /api/docs</li>
+<li>shortlived letsencrypt certificates by default, plus proper support for other acme servers</li>
+<li>mTLS with client certificates per host</li>
+<li>more ways to serve a host: grpc, proxy protocol, loadbalancing over multiple upstreams, and serving files or php directly with fancyindex support</li>
+<li>built-in auth_request support for the common auth providers, no advanced config needed</li>
+<li>OIDC login for the web UI</li>
+<li>multiple access lists per host and per location</li>
+<li>security headers always sent, fingerprinting headers stripped, based on the OWASP secure headers project</li>
+<li>hardened web UI itself: https, strict CSP, httpOnly cookie instead of local storage, rate limits and more</li>
+<li>opt-in logging</li>
+<li>zstd and brotli compression in addition to gzip</li>
+<li>Goaccess log analytics (/goaccess) and a Swagger UI (/api/docs) for the api, both in the web UI</li>
+<li>password/mfa reset (only sqlite): <code>docker exec -it npmplus password-reset.js USER_EMAIL [PASSWORD] [--disable-mfa]</code>
+</li>
+<li>alpine based, much smaller image</li>
+<li>punycode domain support</li>
+<li>option to replace custom certs</li>
 <li>many other things, see this README.md and the compose.yaml</li>
-<li>Proxy Locations can have access lists different to their host</li>
-<li>Proxy Hosts and Proxy Locations can use multiple access lists</li>
 </ul>
 <div class="markdown-heading"><h2 class="heading-element">Compatibility (to Upstream)</h2><a id="user-content-compatibility-to-upstream" class="anchor" aria-label="Permalink: Compatibility (to Upstream)" href="#compatibility-to-upstream"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <ul>
@@ -155,7 +152,7 @@
 <li>Disable Crowdsec Appsec: this will disable crowdsec appsec only for one host/one location, this will only do something if appsec is configured</li>
 <li>Disable Response Buffering: Most time you want keep buffering enabled, you may want to disable this if you for example want to stream videos and you have a fast and stable connection to the upstream server, this effects the connection from the upstream server to NPMplus</li>
 <li>Disable Request Buffering: Most time you want keep buffering enabled, request buffering will always be enabled if crowdsec appsec is enabled, you may want to disable this if you for example want to upload huge files and have a fast and stable connection to the upstream server, this effects the connection from the NPMplus to the upstream server</li>
-<li>Enable compression by upstream: this will allow the backend to compress files, I recommend you to keep this disabled, there may be cases where this is needed since otherwise the upstream missbehaves for some reason (like collabora in nextcloud all-in-one)</li>
+<li>Enable compression by upstream: this will allow the backend to compress files, I recommend you to keep this disabled unless your backend provides precompressed assets, there may be cases where this is needed since otherwise the upstream missbehaves for some reason (like collabora in nextcloud all-in-one)</li>
 <li>Enable fancyindex: this will enabled fancyindex, which shows a index of all files in the folder if there is no index file, only enable this if you know what you are doing and you need the index</li>
 <li>Websockets: this button was removed, websockets are now always enabled</li>
 <li>Reuse Key: this will make the new cert always keep its key unless you force renew it, I recommend you to keep this disabled (not to keep the key), a reason to keep the key would be TLSA/pubkey pinning</li>
