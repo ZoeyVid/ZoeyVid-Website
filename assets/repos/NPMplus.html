@@ -90,10 +90,18 @@
 <li>Please report all (migration) issues you may have</li>
 </ol>
 <div class="markdown-heading"><h1 class="heading-element">Crowdsec</h1><a id="user-content-crowdsec" class="anchor" aria-label="Permalink: Crowdsec" href="#crowdsec"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
-
 <p>Note: If you don't <a href="https://docs.crowdsec.net/docs/next/configuration/crowdsec_configuration/#sharing" rel="nofollow">disable sharing in crowdsec</a>, you may need to mention that <a href="https://docs.crowdsec.net/docs/central_api/intro/#signal-meta-data" rel="nofollow">this</a> is sent to crowdsec in your privacy policy.</p>
 <ol>
-<li>Install crowdsec and the ZoeyVid/npmplus collection for example by using crowdsec container at the end of the compose.yaml, you may also want to install <a href="https://app.crowdsec.net/hub/author/crowdsecurity/collections/http-dos" rel="nofollow">this</a>, but be warned of false positives</li>
+<li>Install crowdsec and the ZoeyVid/npmplus collection for example by using crowdsec container in the compose.yaml, you may also want to install some of these optional collections by editing the <code>COLLECTIONS</code> env:
+<ul>
+<li>
+<a href="https://app.crowdsec.net/hub/author/crowdsecurity/collections/http-dos" rel="nofollow">crowdsecurity/http-dos</a>: detects http dos tools which the default http scenarios miss, but be warned of false positives</li>
+<li>
+<a href="https://app.crowdsec.net/hub/author/crowdsecurity/collections/appsec-crs" rel="nofollow">crowdsecurity/appsec-crs</a>: the OWASP Core Rule Set, it is loaded out-of-band, so matching requests are not blocked, but an IP triggering more than 5 rules gets banned, you also need to uncomment <code>crowdsecurity/crs</code> in step 3</li>
+<li>
+<a href="https://app.crowdsec.net/hub/author/crowdsecurity/collections/http-extended-context" rel="nofollow">crowdsecurity/http-extended-context</a>: adds the attacked domain to the alert context, which is sent to crowdsec if your instance is enrolled in the console</li>
+</ul>
+</li>
 <li>Set LOGROTATE to <code>true</code> in your <code>compose.yaml</code> and redeploy</li>
 <li>Open <code>/opt/crowdsec/conf/acquis.d/npmplus.yaml</code> (path may be different depending how you installed crowdsec) and fill it with:</li>
 </ol>
@@ -103,19 +111,23 @@
   <span class="pl-ent">type</span>: <span class="pl-s">npmplus</span>
 ---
 <span class="pl-ent">listen_addr</span>: <span class="pl-s">0.0.0.0:7422</span>
-<span class="pl-ent">appsec_config</span>: <span class="pl-s">crowdsecurity/appsec-default</span>
+<span class="pl-ent">appsec_configs</span>:
+  - <span class="pl-s">crowdsecurity/appsec-default</span>
+<span class="pl-c"><span class="pl-c">#</span>  - crowdsecurity/crs # only if you installed crowdsecurity/appsec-crs</span>
+<span class="pl-c"><span class="pl-c">#</span>  - crowdsecurity/appsec-bot-* # only if you set up bot detection, see below</span>
 <span class="pl-ent">name</span>: <span class="pl-s">appsec</span>
 <span class="pl-ent">source</span>: <span class="pl-s">appsec</span>
 <span class="pl-ent">labels</span>:
   <span class="pl-ent">type</span>: <span class="pl-s">appsec</span></pre></div>
 <ol start="4">
+<li>Restart the crowdsec container</li>
 <li>Make sure to use <code>network_mode: host</code> in your compose file for the NPMplus container</li>
 <li>Run <code>docker exec crowdsec cscli bouncers add npmplus</code> and save the api key of the output</li>
 <li>Open <code>/opt/npmplus/crowdsec/crowdsec.conf</code>
 </li>
 <li>Set <code>ENABLED</code> to <code>true</code>
 </li>
-<li>Use the output of step 5 as <code>API_KEY</code>
+<li>Use the output of step 6 as <code>API_KEY</code>
 </li>
 <li>Save the file</li>
 <li>Redeploy the <code>compose.yaml</code>
@@ -123,6 +135,21 @@
 <li>It is recommended to block at the earliest possible point, so if possible set up a firewall bouncer: <a href="https://docs.crowdsec.net/u/bouncers/firewall" rel="nofollow">https://docs.crowdsec.net/u/bouncers/firewall</a>, make sure to also include the docker iptables in the firewall bouncer config</li>
 <li>Note that when using crowdsec requests will always be buffered, so setting <code>proxy_(request_)buffering</code> to off will not work</li>
 </ol>
+<div class="markdown-heading"><h2 class="heading-element">Bot detection (optional)</h2><a id="user-content-bot-detection-optional" class="anchor" aria-label="Permalink: Bot detection (optional)" href="#bot-detection-optional"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<p>Bot detection challenges every request without a valid cookie, so clients which can not solve it, like apps, get blocked. Full documentation: <a href="https://doc.crowdsec.net/docs/next/appsec/bot_detection/enable" rel="nofollow">https://doc.crowdsec.net/docs/next/appsec/bot_detection/enable</a>, the short version:</p>
+<ol>
+<li>Add <code>crowdsecurity/appsec-bot-challenge</code>, <code>crowdsecurity/appsec-bot-challenge-strict</code> or <code>crowdsecurity/appsec-bot-challenge-permissive</code> to the <code>COLLECTIONS</code> env, depending on your wanted threshold</li>
+<li>Uncomment <code>crowdsecurity/appsec-bot-*</code> in the acquisition file from step 3, the wildcard only matches appsec-configs you actually installed</li>
+<li>Restart crowdsec</li>
+</ol>
+<div class="markdown-heading"><h2 class="heading-element">Rate limiting (optional)</h2><a id="user-content-rate-limiting-optional" class="anchor" aria-label="Permalink: Rate limiting (optional)" href="#rate-limiting-optional"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<p>If you added rate limiting (<code>limit_req_zone</code>/<code>limit_req</code>) through the advanced config or <code>/data/custom_nginx</code>, <code>crowdsecurity/nginx-req-limit-exceeded</code> from the ZoeyVid/npmplus collection needs the error log, since nginx only writes the <code>limiting requests, excess</code> lines there. Add it to the acquisition file from step 3:</p>
+<div class="highlight highlight-source-yaml"><pre><span class="pl-ent">filenames</span>:
+  - <span class="pl-s">/opt/npmplus/nginx/logs/access.log</span>
+  - <span class="pl-s">/opt/npmplus/nginx/logs/error.log</span>
+<span class="pl-ent">labels</span>:
+  <span class="pl-ent">type</span>: <span class="pl-s">npmplus</span></pre></div>
+<p>nginx writes the client IP itself, so bans can not be forged. The request line however is written out as the client sent it, a crafted one can put any value into <code>target_fqdn</code>, so do not build whitelists on the domain of an error log alert.</p>
 <div class="markdown-heading"><h2 class="heading-element">Use of external php-fpm (recommended)</h2><a id="user-content-use-of-external-php-fpm-recommended" class="anchor" aria-label="Permalink: Use of external php-fpm (recommended)" href="#use-of-external-php-fpm-recommended"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <p>To set it per location: press the gear button, set the scheme to <code>path</code>, put in the path and paste the following in the new text field at the bottom, you need to adjust the last line:</p>
 <pre><code>location ~* [^/]\.php(?:$|/) {
