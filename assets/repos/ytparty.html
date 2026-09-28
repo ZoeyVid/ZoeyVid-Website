@@ -1,8 +1,8 @@
 <meta charset="utf-8">
 <div class="markdown-heading"><h1 class="heading-element">YT Party</h1><a id="user-content-yt-party" class="anchor" aria-label="Permalink: YT Party" href="#yt-party"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
-<p>Synchronised YouTube listening inside Minecraft. Everyone in a <em>party</em> hears the same track at the
-same position — play/pause, seek, skip and playlist edits stay in lockstep. Audio is decoded and
-played entirely client‑side; nothing but small control messages travels over the network.</p>
+<p>Synchronised YouTube and ARD Mediathek listening inside Minecraft. Everyone in a <em>party</em> hears the
+same track at the same position — play/pause, seek, skip and playlist edits stay in lockstep. Audio is
+decoded and played entirely client‑side; nothing but small control messages travels over the network.</p>
 <blockquote>
 <p><strong>Note — this project is vibecoded.</strong> It was built end-to-end by an AI (Claude Opus) from
 natural-language prompts, not hand-written by a human engineer. Keep that in mind: read the code and
@@ -118,7 +118,12 @@ relay; each one's server backend is simply ignored while the relay is connected.
 <ol>
 <li>
 <strong>Install the client mod</strong> (needs Fabric API) in your <code>mods/</code> folder. Open the party UI with the
-keybind (rebindable under Options → Controls) and add a YouTube URL — that already works solo.</li>
+keybind (rebindable under Options → Controls) and add a YouTube or ARD Mediathek video URL — that
+already works solo. Livestreams aren't supported. ARD Mediathek videos that need a login can't be
+added, age‑restricted (FSK) ones only late in the evening (as on the website: FSK 16 from 22:00,
+FSK 18 from 23:00), and some are only available in Germany or the DACH region. With
+<a href="https://ffmpeg.org" rel="nofollow">ffmpeg</a> installed on your <code>PATH</code>, the HUD settings can also show the video as a
+small picture‑in‑picture window, synced to the audio (toggle key <code>K</code>).</li>
 <li>
 <strong>To sync with others</strong>, either:
 <ul>
