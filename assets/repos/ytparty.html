@@ -119,11 +119,14 @@ relay; each one's server backend is simply ignored while the relay is connected.
 <li>
 <strong>Install the client mod</strong> (needs Fabric API) in your <code>mods/</code> folder. Open the party UI with the
 keybind (rebindable under Options → Controls) and add a YouTube or ARD Mediathek video URL — that
-already works solo. Livestreams aren't supported. ARD Mediathek videos that need a login can't be
-added, age‑restricted (FSK) ones only late in the evening (as on the website: FSK 16 from 22:00,
+already works solo. A playlist URL adds its first video. ARD Mediathek videos that need a login can't
+be added, age‑restricted (FSK) ones only late in the evening (as on the website: FSK 16 from 22:00,
 FSK 18 from 23:00), and some are only available in Germany or the DACH region. With
-<a href="https://ffmpeg.org" rel="nofollow">ffmpeg</a> installed on your <code>PATH</code>, the HUD settings can also show the video as a
-small picture‑in‑picture window, synced to the audio (toggle key <code>K</code>).</li>
+<a href="https://ffmpeg.org" rel="nofollow">ffmpeg</a> installed on your <code>PATH</code>, the settings can also show the video as a
+small picture‑in‑picture window, synced to the audio (toggle key <code>K</code>). ffmpeg also plays YouTube
+livestreams (audio only); each listener hears them at their own live point, so they aren't synced or
+seekable. With <a href="https://github.com/yt-dlp/yt-dlp">yt-dlp</a> installed as well, <em>Other sites</em> in the
+settings (off by default) also accepts URLs from the other sites yt-dlp supports.</li>
 <li>
 <strong>To sync with others</strong>, either:
 <ul>
