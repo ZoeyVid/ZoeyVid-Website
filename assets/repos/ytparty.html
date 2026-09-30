@@ -33,7 +33,7 @@ such on purpose.</p>
 </tr>
 <tr>
 <td><strong>Server mod</strong></td>
-<td>a separate, minimal server‑only jar (party logic, no UI or audio) for a Fabric server</td>
+<td>a separate, small <code>-slim.jar</code> (party logic) for a Fabric server; it also works as the client mod, but then needs ffmpeg for all audio</td>
 <td>server owner (optional)</td>
 </tr>
 <tr>
@@ -117,16 +117,23 @@ relay; each one's server backend is simply ignored while the relay is connected.
 <div class="markdown-heading"><h2 class="heading-element">Quick start</h2><a id="user-content-quick-start" class="anchor" aria-label="Permalink: Quick start" href="#quick-start"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <ol>
 <li>
-<strong>Install the client mod</strong> (needs Fabric API) in your <code>mods/</code> folder. Open the party UI with the
+<strong>Install the client mod</strong> (needs Fabric API) in your <code>mods/</code> folder: the <code>-bundle.jar</code>, or the much
+smaller <code>-slim.jar</code> if <a href="https://ffmpeg.org" rel="nofollow">ffmpeg</a> is installed, which it then uses for all audio
+(install only one of the two jars; with both, Fabric loads either one). Open the party UI with the
 keybind (rebindable under Options → Controls) and add a YouTube or ARD Mediathek video URL — that
 already works solo. A playlist URL adds its first video. ARD Mediathek videos that need a login can't
 be added, age‑restricted (FSK) ones only late in the evening (as on the website: FSK 16 from 22:00,
 FSK 18 from 23:00), and some are only available in Germany or the DACH region. With
-<a href="https://ffmpeg.org" rel="nofollow">ffmpeg</a> installed on your <code>PATH</code>, the settings can also show the video as a
-small picture‑in‑picture window, synced to the audio (toggle key <code>K</code>). ffmpeg also plays YouTube
+<a href="https://ffmpeg.org" rel="nofollow">ffmpeg</a> installed (on your <code>PATH</code> or in a
+<a href="docs/DEPENDENCIES.md">usual install folder</a>), the <em>Settings</em> screen can also show the video
+as a small picture‑in‑picture window, synced to the audio (toggle key <code>K</code>). ffmpeg also plays YouTube
 livestreams (audio only); each listener hears them at their own live point, so they aren't synced or
-seekable. With <a href="https://github.com/yt-dlp/yt-dlp">yt-dlp</a> installed as well, <em>Other sites</em> in the
-settings (off by default) also accepts URLs from the other sites yt-dlp supports.</li>
+seekable. A short dropout is bridged by reconnecting; after a longer one the stream is loaded once
+more, and if that fails too you get an error. With <a href="https://github.com/yt-dlp/yt-dlp">yt-dlp</a>
+installed as well, URLs from the other sites yt-dlp supports play too, but only from the sites you
+list under <em>Settings</em> → <em>Allowed sites</em> (none by default; e.g. <code>https://www.zdf.de</code>). Their
+livestreams and internet radios (Icecast, Shoutcast) play like YouTube livestreams; a file whose
+length can't be read is shown as LIVE too (not seekable or synced, no video), but it ends normally.</li>
 <li>
 <strong>To sync with others</strong>, either:
 <ul>
