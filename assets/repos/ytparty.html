@@ -127,13 +127,14 @@ FSK 18 from 23:00), and some are only available in Germany or the DACH region. W
 <a href="https://ffmpeg.org" rel="nofollow">ffmpeg</a> installed (on your <code>PATH</code> or in a
 <a href="docs/DEPENDENCIES.md">usual install folder</a>), the <em>Settings</em> screen can also show the video
 as a small picture‑in‑picture window, synced to the audio (toggle key <code>K</code>). ffmpeg also plays YouTube
-livestreams (audio only); each listener hears them at their own live point, so they aren't synced or
+livestreams with video; each listener gets them at their own live point, so they aren't synced or
 seekable. A short dropout is bridged by reconnecting; after a longer one the stream is loaded once
 more, and if that fails too you get an error. With <a href="https://github.com/yt-dlp/yt-dlp">yt-dlp</a>
 installed as well, URLs from the other sites yt-dlp supports play too, but only from the sites you
 list under <em>Settings</em> → <em>Allowed sites</em> (none by default; e.g. <code>https://www.zdf.de</code>). Their
 livestreams and internet radios (Icecast, Shoutcast) play like YouTube livestreams; a file whose
-length can't be read is shown as LIVE too (not seekable or synced, no video), but it ends normally.</li>
+length can't be read is shown as LIVE too (not seekable or synced, no video), but it ends normally.
+A livestream's video that starts later (turned on or resized mid‑stream) can be a few seconds off.</li>
 <li>
 <strong>To sync with others</strong>, either:
 <ul>
