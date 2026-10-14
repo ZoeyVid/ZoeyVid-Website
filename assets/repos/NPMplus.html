@@ -370,6 +370,7 @@
 </ul>
 </li>
 <li>If you still want to use cloudflare proxy make sure to set <code>your domain =&gt; SSL/TLS =&gt; SSL/TLS encryption =&gt; Current encryption mode =&gt; Configure</code> to "Full (strict)"</li>
+<li>If you use cloudflare proxy and your local dns server resolves your domains directly to NPMplus (split dns/dns rewrites), make sure it also overrides or blocks (empty answer) their HTTPS (type 65) records, otherwise browsers may use the ECH config of cloudflare (public name <code>cloudflare-ech.com</code>) and the connection to NPMplus will fail, since NPMplus does not have the ECH keys of cloudflare</li>
 <li>Just using cloudflare as a dns nameserver provider for your domain is fine</li>
 <li>If you use cloudflare to forward mails to your inbox, note that cloudflare also acts as man-in-the-middle in this case</li>
 </ul>
