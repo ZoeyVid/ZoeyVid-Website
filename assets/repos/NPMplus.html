@@ -33,8 +33,7 @@
 <li>opt-in logging</li>
 <li>zstd and brotli compression in addition to gzip</li>
 <li>Goaccess log analytics (/goaccess) and a Swagger UI (/api/docs) for the api, both in the web UI</li>
-<li>password/mfa reset (only sqlite): <code>docker exec -it npmplus password-reset.js USER_EMAIL [PASSWORD] [--disable-mfa]</code>
-</li>
+<li>password/mfa reset (only sqlite): <code>docker exec -it npmplus password-reset.js USER_EMAIL [--disable-mfa]</code>, the new password is read from stdin</li>
 <li>alpine based, much smaller image</li>
 <li>punycode domain support</li>
 <li>option to replace custom certs</li>
