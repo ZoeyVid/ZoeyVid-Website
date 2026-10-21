@@ -167,7 +167,7 @@
 <ul>
 <li>Forward Hostname / IP / Path: if the scheme is set to path you can just put here a path in and nginx works as a file server, otherwise you need to input ip/domain, you can also append a path to the ip/domain like <code>127.0.0.1/path</code> to proxy to a subpath.
 <ul>
-<li>For custom locations with a set path, dns will be only refreshed on nginx reloads and the path of the location will be stripped. So a request <code>GET /cdf/abc</code> to a custom location <code>/cdf</code> which proxies to <code>127.0.0.1/abc</code> will proxy to <code>127.0.0.1/abc/abc</code>, a custom location <code>/cdf/</code> which proxies to <code>127.0.0.1/</code> will proxy to <code>127.0.0.1/abc</code>  and a custom location <code>/cdf</code> which proxies to <code>127.0.0.1</code> will proxy to <code>127.0.0.1/cdf/abc</code>
+<li>For custom locations with a set path, the path of the location will be stripped. So a request <code>GET /cdf/abc</code> to a custom location <code>/cdf</code> which proxies to <code>127.0.0.1/abc</code> will proxy to <code>127.0.0.1/abc/abc</code>, a custom location <code>/cdf/</code> which proxies to <code>127.0.0.1/</code> will proxy to <code>127.0.0.1/abc</code>  and a custom location <code>/cdf</code> which proxies to <code>127.0.0.1</code> will proxy to <code>127.0.0.1/cdf/abc</code>
 </li>
 <li>If the scheme is set to <code>path</code>, a path ending with a <code>/</code> will be searched relative to the custom location (is uses nginx alias) and a path ending without a <code>/</code> will be searched relative to the main <code>/</code> location (it uses nginx root)</li>
 </ul>
@@ -392,15 +392,18 @@
 <ul>
 <li>to your clients</li>
 <li>to your upstreams</li>
+<li>to your dns server for name resolution</li>
 <li>to your acme/ocsp server</li>
-<li>to github for a daily update check</li>
+<li>to github for an hourly update check</li>
 <li>if not disabled gravatar for profile pictures</li>
 <li>if used to your OIDC</li>
 <li>if used to pypi to download certbot plugins</li>
 <li>if used to your dns provider for acme dns challenges</li>
 <li>if used to <a href="http://www.site24x7.com" rel="nofollow">www.site24x7.com</a> for the reachability check</li>
+<li>if enabled to the alpine package repositories to install the inbuilt php-fpm and its extensions</li>
 <li>if enabled to cloudflare to download their IPs</li>
 <li>if enabled to the crowdsec (container) lapi</li>
+<li>if enabled to your captcha provider for the crowdsec captcha remediation</li>
 <li>if you see more/others please report them</li>
 </ul>
 <div class="markdown-heading"><h2 class="heading-element">Access Lists</h2><a id="user-content-access-lists" class="anchor" aria-label="Permalink: Access Lists" href="#access-lists"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
