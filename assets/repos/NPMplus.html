@@ -149,7 +149,8 @@
   - <span class="pl-s">/opt/npmplus/nginx/logs/error.log</span>
 <span class="pl-ent">labels</span>:
   <span class="pl-ent">type</span>: <span class="pl-s">npmplus</span></pre></div>
-<p>nginx writes the client IP itself, so bans can not be forged. The request line however is written out as the client sent it, a crafted one can put any value into <code>target_fqdn</code>, so do not build whitelists on the domain of an error log alert.</p>
+<p>nginx writes the client IP itself, so bans can not be forged. The request line however is written out as the client sent it, a crafted one can put any value into <code>target_fqdn</code>, so do not build whitelists on the domain of an error log alert.
+Failed basic auth attempts are written to both logs, so <code>crowdsecurity/http-generic-bf</code> counts each of them twice and bans after roughly half as many failed attempts (3 instead of 6 in quick succession).</p>
 <div class="markdown-heading"><h2 class="heading-element">Use of external php-fpm (recommended)</h2><a id="user-content-use-of-external-php-fpm-recommended" class="anchor" aria-label="Permalink: Use of external php-fpm (recommended)" href="#use-of-external-php-fpm-recommended"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <p>To set it per location: press the gear button, set the scheme to <code>path</code>, put in the path and paste the following in the new text field at the bottom, you need to adjust the last line:</p>
 <pre><code>location ~* [^/]\.php(?:$|/) {
