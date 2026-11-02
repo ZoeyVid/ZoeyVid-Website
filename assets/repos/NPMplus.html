@@ -293,45 +293,45 @@ Failed basic auth attempts are written to both logs, so <code>crowdsecurity/http
 <span class="pl-c"><span class="pl-c">#</span>}</span></pre></div>
 <p>3a. to set it per location: press the gear button (on the tab itself, not the tab selection) on the details tab (or on the custom location you want to use), set your proxy settings and paste the following in the new text field at the bottom, you may want to adjust the last lines (do not use the advanced tab with this example as it may break cert renewals):</p>
 <div class="highlight highlight-source-yaml"><pre><span class="pl-c"><span class="pl-c">#</span> uncomment if you block/don't allow IPs with unknown country codes</span>
-<span class="pl-c"><span class="pl-c">#</span>if ($is_private_ip = yes) { </span>
-<span class="pl-c"><span class="pl-c">#</span>  set $geoip2_country_rule yes; </span>
-<span class="pl-c"><span class="pl-c">#</span>} </span>
-<span class="pl-s">if ($geoip2_country_rule = no) { </span>
+<span class="pl-c"><span class="pl-c">#</span>if ($is_private_ip = yes) {</span>
+<span class="pl-c"><span class="pl-c">#</span>  set $geoip2_country_rule yes;</span>
+<span class="pl-c"><span class="pl-c">#</span>}</span>
+<span class="pl-s">if ($geoip2_country_rule = no) {</span>
   <span class="pl-s">return 444; </span><span class="pl-c"><span class="pl-c">#</span> this rejects the connection, but you can also return 403 to tell the client that it was denied</span>
-<span class="pl-s">} </span></pre></div>
+<span class="pl-s">}</span></pre></div>
 <p>3b. to set it for an entire host: put this in the advanced tab:</p>
 <div class="highlight highlight-source-yaml"><pre><span class="pl-c"><span class="pl-c">#</span> uncomment if you block/don't allow IPs with unknown country codes</span>
-<span class="pl-c"><span class="pl-c">#</span>if ($is_private_ip = yes) { </span>
-<span class="pl-c"><span class="pl-c">#</span>  set $geoip2_country_rule yes; </span>
+<span class="pl-c"><span class="pl-c">#</span>if ($is_private_ip = yes) {</span>
+<span class="pl-c"><span class="pl-c">#</span>  set $geoip2_country_rule yes;</span>
 <span class="pl-c"><span class="pl-c">#</span>}</span>
-<span class="pl-s">if ($request_uri ~* "^/\.well-known/acme-challenge/") {</span>
+<span class="pl-s">if ($uri ~ "^/\.well-known/acme-challenge/") {</span>
     <span class="pl-s">set $geoip2_country_rule yes;</span>
 <span class="pl-s">}</span>
-<span class="pl-s">if ($geoip2_country_rule = no) { </span>
+<span class="pl-s">if ($geoip2_country_rule = no) {</span>
   <span class="pl-s">return 444; </span><span class="pl-c"><span class="pl-c">#</span> this rejects the connection, but you can also return 403 to tell the client that it was denied</span>
-<span class="pl-s">} </span></pre></div>
+<span class="pl-s">}</span></pre></div>
 <p>3c. to set it for all http hosts of them same type: put this in the <code>custom_nginx/server_proxy.conf</code> / <code>custom_nginx/server_redirect.conf</code> / <code>custom_nginx/server_dead.conf</code> file(s):</p>
 <div class="highlight highlight-source-yaml"><pre><span class="pl-c"><span class="pl-c">#</span> uncomment if you block/don't allow IPs with unknown country codes</span>
-<span class="pl-c"><span class="pl-c">#</span>if ($is_private_ip = yes) { </span>
-<span class="pl-c"><span class="pl-c">#</span>  set $geoip2_country_rule yes; </span>
+<span class="pl-c"><span class="pl-c">#</span>if ($is_private_ip = yes) {</span>
+<span class="pl-c"><span class="pl-c">#</span>  set $geoip2_country_rule yes;</span>
 <span class="pl-c"><span class="pl-c">#</span>}</span>
-<span class="pl-s">if ($request_uri ~* "^/\.well-known/acme-challenge/") {</span>
+<span class="pl-s">if ($uri ~ "^/\.well-known/acme-challenge/") {</span>
     <span class="pl-s">set $geoip2_country_rule yes;</span>
 <span class="pl-s">}</span>
-<span class="pl-s">if ($geoip2_country_rule = no) { </span>
+<span class="pl-s">if ($geoip2_country_rule = no) {</span>
   <span class="pl-s">return 444; </span><span class="pl-c"><span class="pl-c">#</span> this rejects the connection, but you can also return 403 to tell the client that it was denied</span>
-<span class="pl-s">} </span></pre></div>
+<span class="pl-s">}</span></pre></div>
 <p>3d. to set it for all http hosts: put this in the <code>custom_nginx/server_http.conf</code> file:</p>
 <div class="highlight highlight-source-yaml"><pre><span class="pl-c"><span class="pl-c">#</span> uncomment if you block/don't allow IPs with unknown country codes</span>
-<span class="pl-c"><span class="pl-c">#</span>if ($is_private_ip = yes) { </span>
-<span class="pl-c"><span class="pl-c">#</span>  set $geoip2_country_rule yes; </span>
+<span class="pl-c"><span class="pl-c">#</span>if ($is_private_ip = yes) {</span>
+<span class="pl-c"><span class="pl-c">#</span>  set $geoip2_country_rule yes;</span>
 <span class="pl-c"><span class="pl-c">#</span>}</span>
-<span class="pl-s">if ($request_uri ~* "^/\.well-known/acme-challenge/") {</span>
+<span class="pl-s">if ($uri ~ "^/\.well-known/acme-challenge/") {</span>
     <span class="pl-s">set $geoip2_country_rule yes;</span>
 <span class="pl-s">}</span>
-<span class="pl-s">if ($geoip2_country_rule = no) { </span>
+<span class="pl-s">if ($geoip2_country_rule = no) {</span>
   <span class="pl-s">return 444; </span><span class="pl-c"><span class="pl-c">#</span> this rejects the connection, but you can also return 403 to tell the client that it was denied</span>
-<span class="pl-s">} </span></pre></div>
+<span class="pl-s">}</span></pre></div>
 <ol start="4">
 <li>you can create multiple rule lists by adding multiple map directive, but you need to use a unique name instead of <code>$geoip2_country_rule</code> for each rule list (you need the unique name also in the custom locations)</li>
 </ol>
