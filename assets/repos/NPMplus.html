@@ -177,7 +177,16 @@ Failed basic auth attempts are written to both logs, so <code>crowdsecurity/http
 </li>
 <li>Send noindex header and block some user agents: This does what is says, it appends a header to all responses which says that the site should not be indexed while blocking requests of crawlers based on the user agent sent with the request</li>
 <li>Disable Crowdsec Appsec: this will disable crowdsec appsec only for one host/one location, this will only do something if appsec is configured</li>
-<li>Disable Response Buffering: Most time you want keep buffering enabled, you may want to disable this if you for example want to stream videos and you have a fast and stable connection to the upstream server, this effects the connection from the upstream server to NPMplus</li>
+<li>Response Buffering: this effects the connection from the upstream server to NPMplus, with the auto options the upstream can override this for single responses by sending the <code>X-Accel-Buffering: yes</code> or <code>X-Accel-Buffering: no</code> header, the forced options ignore this header
+<ul>
+<li>On (auto): responses are buffered in RAM and if needed on disk, most time you want to keep this</li>
+<li>On (forced): like On (auto), you may want to use this if the upstream sends <code>X-Accel-Buffering: no</code> for responses which do not need it, note that realtime responses of this upstream may arrive delayed</li>
+<li>RAM only (auto): responses are only buffered in RAM (about 1 MiB) and never on disk, you may want to use this if you for example want to stream videos or want to avoid disk writes</li>
+<li>RAM only (forced): like RAM only (auto), you may want to use this if the upstream sends <code>X-Accel-Buffering: no</code> only to avoid disk buffering (like Nextcloud for downloads)</li>
+<li>Off (auto): disables buffering completely, use this for realtime upstreams which do not send <code>X-Accel-Buffering: no</code> (like server-sent events, streamed responses or long polling), it is recommended that realtime upstreams send <code>X-Accel-Buffering: no</code> for these responses instead, so you can keep On (auto)</li>
+<li>Off (forced): like Off (auto), you may want to use this if the upstream sends <code>X-Accel-Buffering: yes</code> for realtime responses</li>
+</ul>
+</li>
 <li>Disable Request Buffering: Most time you want keep buffering enabled, request buffering will always be enabled if crowdsec appsec is enabled, you may want to disable this if you for example want to upload huge files and have a fast and stable connection to the upstream server, this effects the connection from the NPMplus to the upstream server</li>
 <li>Enable compression by upstream: this will allow the backend to compress files, I recommend you to keep this disabled unless your backend provides precompressed assets, there may be cases where this is needed since otherwise the upstream missbehaves for some reason (like collabora in nextcloud all-in-one)</li>
 <li>Enable fancyindex: this will enabled fancyindex, which shows a index of all files in the folder if there is no index file, only enable this if you know what you are doing and you need the index</li>
