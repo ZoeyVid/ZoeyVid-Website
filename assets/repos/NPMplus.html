@@ -151,7 +151,7 @@
   <span class="pl-ent">type</span>: <span class="pl-s">npmplus</span></pre></div>
 <p>nginx writes the client IP itself, so bans can not be forged. The request line however is written out as the client sent it, a crafted one can put any value into <code>target_fqdn</code>, so do not build whitelists on the domain of an error log alert.
 Failed basic auth attempts are written to both logs, so <code>crowdsecurity/http-generic-bf</code> counts each of them twice and bans after roughly half as many failed attempts (3 instead of 6 in quick succession).</p>
-<div class="markdown-heading"><h2 class="heading-element">Use of external php-fpm (recommended)</h2><a id="user-content-use-of-external-php-fpm-recommended" class="anchor" aria-label="Permalink: Use of external php-fpm (recommended)" href="#use-of-external-php-fpm-recommended"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<div class="markdown-heading"><h2 class="heading-element">Use of php-fpm</h2><a id="user-content-use-of-php-fpm" class="anchor" aria-label="Permalink: Use of php-fpm" href="#use-of-php-fpm"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <p>To set it per location: press the gear button, set the scheme to <code>path</code>, put in the path and paste the following in the new text field at the bottom, you need to adjust the last line:</p>
 <pre><code>location ~* [^/]\.php(?:$|/) {
   fastcgi_split_path_info ^(.*\.php)(/.*)$;
@@ -159,11 +159,6 @@ Failed basic auth attempts are written to both logs, so <code>crowdsecurity/http
   fastcgi_pass ...; # set this to the address of your php-fpm (socket/tcp): https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_pass
 }
 </code></pre>
-<div class="markdown-heading"><h2 class="heading-element">Use of inbuilt php-fpm (not recommended)</h2><a id="user-content-use-of-inbuilt-php-fpm-not-recommended" class="anchor" aria-label="Permalink: Use of inbuilt php-fpm (not recommended)" href="#use-of-inbuilt-php-fpm-not-recommended"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
-<ol>
-<li>First enable php inside your compose file (you can add more php extension using envs in the compose file)</li>
-<li>Set the forwarding port to the php version you want to use and is supported by NPMplus (like 83/84/85)</li>
-</ol>
 <div class="markdown-heading"><h2 class="heading-element">Comments on some buttons</h2><a id="user-content-comments-on-some-buttons" class="anchor" aria-label="Permalink: Comments on some buttons" href="#comments-on-some-buttons"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <ul>
 <li>Forward Hostname / IP / Path: if the scheme is set to path you can just put here a path in and nginx works as a file server, otherwise you need to input ip/domain, you can also append a path to the ip/domain like <code>127.0.0.1/path</code> to proxy to a subpath.
@@ -173,7 +168,7 @@ Failed basic auth attempts are written to both logs, so <code>crowdsecurity/http
 <li>If the scheme is set to <code>path</code>, a path ending with a <code>/</code> will be searched relative to the custom location (is uses nginx alias) and a path ending without a <code>/</code> will be searched relative to the main <code>/</code> location (it uses nginx root)</li>
 </ul>
 </li>
-<li>Forward Port (optional): port of upstream or php version if scheme is <code>path</code>
+<li>Forward Port (optional): port of upstream, not used if scheme is <code>path</code>
 </li>
 <li>Send noindex header and block some user agents: This does what is says, it appends a header to all responses which says that the site should not be indexed while blocking requests of crawlers based on the user agent sent with the request</li>
 <li>Disable Crowdsec Appsec: this will disable crowdsec appsec only for one host/one location, this will only do something if appsec is configured</li>
@@ -388,7 +383,7 @@ Failed basic auth attempts are written to both logs, so <code>crowdsecurity/http
 <li>If you use crowdsec, and you do <strong>not</strong> <a href="https://docs.crowdsec.net/docs/next/configuration/crowdsec_configuration/#sharing" rel="nofollow">disable sharing in crowdsec</a>, you need to mention that <a href="https://docs.crowdsec.net/docs/central_api/intro/#signal-meta-data" rel="nofollow">this</a> is sent to crowdsec in your privacy policy.</li>
 <li>If you're blocking IPs — for example, using access lists, GeoIP filtering, or CrowdSec block lists — make sure to mention this as well.</li>
 <li>If GoAccess is enabled, it processes access logs to generate statistics, which are saved on disk for a time you can configure. These statistics include user information (like IPs), so make sure to also mention this.</li>
-<li>If you use the PHP-FPM option, error logs from PHP-FPM will also be written to Docker logs. These include user information (like IPs), so make sure to also mention this.</li>
+<li>If you use an external PHP-FPM server, it will most likely also write (error) logs. These can include user information (like IPs), so make sure to also mention this.</li>
 <li>If you collect any user information (like through other custom nginx modules, modules you can load via env, lua scripts, etc.), also mention it.</li>
 <li>If you use the caddy http to https redirect container, you should also mention the data collected by it, since it will also collect (error) logs.</li>
 <li>If use use anubis, see here: <a href="https://anubis.techaro.lol/docs/admin/configuration/impressum" rel="nofollow">https://anubis.techaro.lol/docs/admin/configuration/impressum</a>
@@ -410,7 +405,6 @@ Failed basic auth attempts are written to both logs, so <code>crowdsecurity/http
 <li>if used to pypi to download certbot plugins</li>
 <li>if used to your dns provider for acme dns challenges</li>
 <li>if used to <a href="http://www.site24x7.com" rel="nofollow">www.site24x7.com</a> for the reachability check</li>
-<li>if enabled to the alpine package repositories to install the inbuilt php-fpm and its extensions</li>
 <li>if enabled to cloudflare to download their IPs</li>
 <li>if enabled to the crowdsec (container) lapi</li>
 <li>if enabled to your captcha provider for the crowdsec captcha remediation</li>
