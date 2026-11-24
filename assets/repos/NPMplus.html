@@ -133,7 +133,7 @@
 </li>
 <li>It is recommended to block at the earliest possible point, so if possible set up a firewall bouncer: <a href="https://docs.crowdsec.net/u/bouncers/firewall" rel="nofollow">https://docs.crowdsec.net/u/bouncers/firewall</a>, make sure to also include the docker iptables in the firewall bouncer config</li>
 <li>Note that when crowdsec appsec is enabled for a host/location, request bodies will always be buffered, so setting <code>proxy_request_buffering</code> to off will not work there, response buffering is not affected</li>
-<li>Note that appsec blocks requests with a body bigger than 10 MiB by default, so you may want to enable "Disable Crowdsec Appsec" for hosts/locations which receive bigger uploads (like Nextcloud)</li>
+<li>Note that appsec blocks requests with a body bigger than 10 MiB by default, so you may want to enable "Disable CrowdSec AppSec" for hosts/locations which receive bigger uploads (like Nextcloud)</li>
 </ol>
 <div class="markdown-heading"><h2 class="heading-element">Bot detection (optional)</h2><a id="user-content-bot-detection-optional" class="anchor" aria-label="Permalink: Bot detection (optional)" href="#bot-detection-optional"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <p>Bot detection challenges every request without a valid cookie, so clients which can not solve it, like apps, get blocked. Full documentation: <a href="https://doc.crowdsec.net/docs/next/appsec/bot_detection/enable" rel="nofollow">https://doc.crowdsec.net/docs/next/appsec/bot_detection/enable</a>, the short version:</p>
@@ -171,7 +171,7 @@ Failed basic auth attempts are written to both logs, so <code>crowdsecurity/http
 <li>Forward Port (optional): port of upstream, not used if scheme is <code>path</code>
 </li>
 <li>Send noindex header and block some user agents: This does what is says, it appends a header to all responses which says that the site should not be indexed while blocking requests of crawlers based on the user agent sent with the request</li>
-<li>Disable Crowdsec Appsec: this will disable crowdsec appsec only for one host/one location, this will only do something if appsec is configured</li>
+<li>Disable CrowdSec AppSec: this will disable crowdsec appsec only for one host/one location, this will only do something if appsec is configured</li>
 <li>Response Buffering: this effects the connection from the upstream server to NPMplus, with the auto options the upstream can override this for single responses by sending the <code>X-Accel-Buffering: yes</code> or <code>X-Accel-Buffering: no</code> header, the forced options ignore this header
 <ul>
 <li>On (auto): responses are buffered in RAM and if needed on disk, most time you want to keep this</li>
@@ -211,6 +211,7 @@ Failed basic auth attempts are written to both logs, so <code>crowdsecurity/http
 <div class="markdown-heading"><h3 class="heading-element">OAuth2Proxy</h3><a id="user-content-oauth2proxy" class="anchor" aria-label="Permalink: OAuth2Proxy" href="#oauth2proxy"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <ol>
 <li>Set the AUTH_REQUEST_OAUTH2PROXY_UPSTREAM env in the NPMplus compose.yaml and select oauth2proxy in the Auth Request selection, no custom/advanced config/locations needed</li>
+<li>Optionally you can pass query parameters (like allowed_groups, allowed_emails or allowed_email_domains) to the /oauth2/auth endpoint of oauth2proxy by putting for example <code>set $oauth2proxy_query "allowed_groups=admins,devs";</code> in the text field at the bottom after pressing the gear button (on the details tab or on a custom location), putting it in the advanced tab instead sets it for the entire host and overrides the values set per location</li>
 </ol>
 <div class="markdown-heading"><h3 class="heading-element">VoidAuth</h3><a id="user-content-voidauth" class="anchor" aria-label="Permalink: VoidAuth" href="#voidauth"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <ol>
